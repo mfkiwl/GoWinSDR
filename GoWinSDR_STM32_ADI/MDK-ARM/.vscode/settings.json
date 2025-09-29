@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        "ad9361.h": "c",
+        "common.h": "c",
+        "ad9361_util.h": "c",
+        "no_os_gpio.h": "c",
+        "inttypes.h": "c",
+        "iio_ad9361.h": "c",
+        "compare": "c",
+        "memory": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "xmemory": "c",
+        "xstring": "c",
+        "xtr1common": "c",
+        "xutility": "c",
+        "config.h": "c"
+    }
+}
