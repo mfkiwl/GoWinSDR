@@ -77,11 +77,12 @@ int32_t spi_read(SPI_HandleTypeDef *spi,
 				 uint8_t *data,
 				 uint8_t bytes_number)
 {
-	if (HAL_SPI_Receive(spi, data, bytes_number, HAL_MAX_DELAY) != HAL_OK)
-	{
-		return -1;
-	}
-
+	// if (HAL_SPI_Receive(spi, data, bytes_number, HAL_MAX_DELAY) != HAL_OK)
+	// {
+	// 	return -1;
+	// }
+	
+	Soft_SPI_ReadBuffer(data, bytes_number); // Use software SPI to read data
 	return SUCCESS;
 }
 
@@ -92,27 +93,91 @@ int spi_write_then_read(SPI_HandleTypeDef *spi,
 		const unsigned char *txbuf, unsigned n_tx,
 		unsigned char *rxbuf, unsigned n_rx)
 {
-	HAL_GPIO_WritePin(SPI2_EN_GPIO_Port, SPI2_EN_Pin, GPIO_PIN_RESET); // CS low
+	// HAL_GPIO_WritePin(SPI1_EN_GPIO_Port, SPI1_EN_Pin, GPIO_PIN_RESET); // CS low
+	SOFT_SPI_CS_LOW();
 	// Send tx data first
+
+	// printf("SPI TX: ");
+	// for (unsigned i = 0; i < n_tx; i++) {
+	// 	printf("%02X ", txbuf[i]);
+	// }
+	// printf("\n");
+
+	
 	if (n_tx > 0) {
-		HAL_StatusTypeDef status = HAL_SPI_Transmit(spi, (uint8_t*)txbuf, n_tx, HAL_MAX_DELAY);
-		if (status != HAL_OK)
-		{
-			printf("Error: SPI transmit failed: %d\n", status);
-			return -1;
-		}
+		// HAL_StatusTypeDef status = HAL_SPI_Transmit(spi, (uint8_t*)txbuf, n_tx, HAL_MAX_DELAY);
+		Soft_SPI_TransferBuffer((uint8_t*)txbuf, NULL, n_tx); // Use software SPI to send data
+		// if (status != HAL_OK)
+		// {
+		// 	printf("Error: SPI transmit failed: %d\n", status);
+		// 	return -1;
+		// }
 	}
 
 	if (n_rx > 0) {
-		if (HAL_SPI_Receive(spi, rxbuf, n_rx, HAL_MAX_DELAY) != HAL_OK)
-		{
-			printf("Error: SPI receive failed\n");
-			return -1;
-		}
+		Soft_SPI_ReadBuffer(rxbuf, n_rx); // Use software SPI to read data
+		// if (HAL_SPI_Receive(spi, rxbuf, n_rx, HAL_MAX_DELAY) != HAL_OK)
+		// {
+		// 	printf("Error: SPI receive failed\n");
+		// 	return -1;
+		// }
 	}
-	HAL_GPIO_WritePin(SPI2_EN_GPIO_Port, SPI2_EN_Pin, GPIO_PIN_SET); // CS high
+	// HAL_GPIO_WritePin(SPI1_EN_GPIO_Port, SPI1_EN_Pin, GPIO_PIN_SET); // CS high
+	SOFT_SPI_CS_HIGH();
 	return SUCCESS;
 }
+
+// int spi_write_then_read(SPI_HandleTypeDef *spi,
+//                                    const unsigned char *txbuf, unsigned n_tx,
+//                                    unsigned char *rxbuf, unsigned n_rx)
+// {
+
+// 	HAL_StatusTypeDef status;
+    
+//     // 参数检查
+//     if (spi == NULL || (n_tx > 0 && txbuf == NULL) || (n_rx > 0 && rxbuf == NULL)) {
+//         return -1;
+//     }
+    
+//     unsigned total_len = n_tx + n_rx;
+    
+//     // 如果总长度较小，使用栈缓冲区；否则需要动态分配或使用静态缓冲区
+//     if (total_len <= 256) {
+//         uint8_t tx_buffer[256];
+//         uint8_t rx_buffer[256];
+        
+//         // 准备发送缓冲区
+//         if (n_tx > 0) {
+//             memcpy(tx_buffer, txbuf, n_tx);
+//         }
+//         // 填充dummy bytes用于接收阶段
+//         if (n_rx > 0) {
+//             memset(tx_buffer + n_tx, 0xFF, n_rx);
+//         }
+        
+//         HAL_GPIO_WritePin(SPI2_EN_GPIO_Port, SPI2_EN_Pin, GPIO_PIN_RESET); // CS low
+        
+//         // 全双工传输
+//         status = HAL_SPI_TransmitReceive(spi, tx_buffer, rx_buffer, total_len, HAL_MAX_DELAY);
+        
+//         HAL_GPIO_WritePin(SPI2_EN_GPIO_Port, SPI2_EN_Pin, GPIO_PIN_SET); // CS high
+        
+//         if (status != HAL_OK) {
+//             return -1;
+//         }
+        
+//         // 复制接收到的数据（跳过发送阶段的数据）
+//         if (n_rx > 0) {
+//             memcpy(rxbuf, rx_buffer + n_tx, n_rx);
+//         }
+        
+//         return 0;
+//     } else {
+//         // 数据量大时，使用分步传输方式
+        
+//     }
+	
+// }
 
 /***************************************************************************//**
  * @brief gpio_init

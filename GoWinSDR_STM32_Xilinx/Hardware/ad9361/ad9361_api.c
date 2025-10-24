@@ -84,7 +84,7 @@ int32_t ad9361_init (struct ad9361_rf_phy **ad9361_phy, AD9361_InitParam *init_p
 		return -ENOMEM;
 	}
 
-	phy->spi = &hspi2;
+	phy->spi = &hspi1;
 
 	phy->clk_refin = (struct clk *)zmalloc(sizeof(*phy->clk_refin));
 	if (!phy->clk_refin) {
@@ -414,6 +414,9 @@ int32_t ad9361_init (struct ad9361_rf_phy **ad9361_phy, AD9361_InitParam *init_p
 		ret = -ENODEV;
 		goto out;
 	}
+
+	printf("Target device ID : 0x%X\n", (unsigned int)ret);
+	
 	rev = ret & REV_MASK;
 
 	if (AD9364_DEVICE) {

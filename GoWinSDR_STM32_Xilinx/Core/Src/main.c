@@ -35,6 +35,7 @@
 #endif
 #include "adc_core.h"
 #include "dac_core.h"
+#include "softspi.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -88,7 +89,7 @@ AD9361_InitParam default_init_param = {
 	/* Reference Clock */
 	40000000UL,	//reference_clk_rate
 	/* Base Configuration */
-	1,		//two_rx_two_tx_mode_enable *** adi,2rx-2tx-mode-enable
+	0,		//two_rx_two_tx_mode_enable *** adi,2rx-2tx-mode-enable
 	1,		//one_rx_one_tx_mode_use_rx_num *** adi,1rx-1tx-mode-use-rx-num
 	1,		//one_rx_one_tx_mode_use_tx_num *** adi,1rx-1tx-mode-use-tx-num
 	1,		//frequency_division_duplex_mode_enable *** adi,frequency-division-duplex-mode-enable
@@ -113,18 +114,18 @@ AD9361_InitParam default_init_param = {
 	0,		//ensm_enable_pin_pulse_mode_enable *** adi,ensm-enable-pin-pulse-mode-enable
 	0,		//ensm_enable_txnrx_control_enable *** adi,ensm-enable-txnrx-control-enable
 	/* LO Control */
-	2400000000UL,	//rx_synthesizer_frequency_hz *** adi,rx-synthesizer-frequency-hz
-	2400000000UL,	//tx_synthesizer_frequency_hz *** adi,tx-synthesizer-frequency-hz
+	325000000UL,	//rx_synthesizer_frequency_hz *** adi,rx-synthesizer-frequency-hz
+	325000000UL,	//tx_synthesizer_frequency_hz *** adi,tx-synthesizer-frequency-hz
 	/* Rate & BW Control */
 	{983040000, 245760000, 122880000, 61440000, 30720000, 30720000},//uint32_t	rx_path_clock_frequencies[6] *** adi,rx-path-clock-frequencies
-	{983040000, 122880000, 122880000, 61440000, 30720000, 30720000},//uint32_t	tx_path_clock_frequencies[6] *** adi,tx-path-clock-frequencies
+	{983040000, 245760000, 122880000, 61440000, 30720000, 30720000},//uint32_t	tx_path_clock_frequencies[6] *** adi,tx-path-clock-frequencies
 	18000000,//rf_rx_bandwidth_hz *** adi,rf-rx-bandwidth-hz
 	18000000,//rf_tx_bandwidth_hz *** adi,rf-tx-bandwidth-hz
 	/* RF Port Control */
 	0,		//rx_rf_port_input_select *** adi,rx-rf-port-input-select
 	0,		//tx_rf_port_input_select *** adi,tx-rf-port-input-select
 	/* TX Attenuation Control */
-	10000,	//tx_attenuation_mdB *** adi,tx-attenuation-mdB
+	0,	//tx_attenuation_mdB *** adi,tx-attenuation-mdB
 	0,		//update_tx_gain_in_alert_enable *** adi,update-tx-gain-in-alert-enable
 	/* Reference Clock Control */
 	0,		//xo_disable_use_ext_refclk_enable *** adi,xo-disable-use-ext-refclk-enable
@@ -255,12 +256,12 @@ AD9361_InitParam default_init_param = {
 	0,		//fdd_alt_word_order_enable *** adi,fdd-alt-word-order-enable
 	0,		//invert_rx_frame_enable *** adi,invert-rx-frame-enable
 	0,		//fdd_rx_rate_2tx_enable *** adi,fdd-rx-rate-2tx-enable
-	0,		//swap_ports_enable *** adi,swap-ports-enable
+	1,		//swap_ports_enable *** adi,swap-ports-enable
 	0,		//single_data_rate_enable *** adi,single-data-rate-enable
-	1,		//lvds_mode_enable *** adi,lvds-mode-enable
+	0,		//lvds_mode_enable *** adi,lvds-mode-enable
 	0,		//half_duplex_mode_enable *** adi,half-duplex-mode-enable
 	0,		//single_port_mode_enable *** adi,single-port-mode-enable
-	0,		//full_port_enable *** adi,full-port-enable
+	1,		//full_port_enable *** adi,full-port-enable
 	0,		//full_duplex_swap_bits_enable *** adi,full-duplex-swap-bits-enable
 	0,		//delay_rx_data *** adi,delay-rx-data
 	0,		//rx_data_clock_delay *** adi,rx-data-clock-delay
@@ -268,7 +269,7 @@ AD9361_InitParam default_init_param = {
 	7,		//tx_fb_clock_delay *** adi,tx-fb-clock-delay
 	0,		//tx_data_delay *** adi,tx-data-delay
 	150,	//lvds_bias_mV *** adi,lvds-bias-mV
-	1,		//lvds_rx_onchip_termination_enable *** adi,lvds-rx-onchip-termination-enable
+	1,		//lvds_rx_onchip_termination_enable *** adi,lvds-rx-onchip-termination-enable 
 	0,		//rx1rx2_phase_inversion_en *** adi,rx1-rx2-phase-inversion-enable
 	0xFF,	//lvds_invert1_control *** adi,lvds-invert1-control
 	0x0F,	//lvds_invert2_control *** adi,lvds-invert2-control
@@ -401,10 +402,16 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI1_Init();
-  MX_SPI2_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  HAL_GPIO_WritePin(RST_FPGA_GPIO_Port, RST_FPGA_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+  HAL_Delay(2000);
+
+  Soft_SPI_Init(SOFT_SPI_MODE1);
   printf("System Start\n");
+  HAL_GPIO_WritePin(RST_FPGA_GPIO_Port, RST_FPGA_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
 
   default_init_param.gpio_resetb = -1;
   default_init_param.gpio_sync = -1;
@@ -416,22 +423,85 @@ int main(void)
   int ret = ad9361_init(&ad9361_phy, &default_init_param);
   printf("ad9361_init return: %d\n", ret);
 
-  // ad9361_set_tx_fir_config(ad9361_phy, tx_fir_config);
-  // ad9361_set_rx_fir_config(ad9361_phy, rx_fir_config);
+  ad9361_set_tx_fir_config(ad9361_phy, tx_fir_config);
+  ad9361_set_rx_fir_config(ad9361_phy, rx_fir_config);
 
-  /* USER CODE END 2 */
+
+  ad9361_set_en_state_machine_mode(ad9361_phy, ENSM_MODE_FDD);
+
+    uint32_t rx_freq, tx_freq;
+	ad9361_get_rx_sampling_freq(ad9361_phy, &rx_freq);
+	ad9361_get_tx_sampling_freq(ad9361_phy, &tx_freq);
+	printf("\n采样频率:\n");
+	printf("  RX: %u Hz (%.2f MSPS)\n", rx_freq, rx_freq/1e6);
+	printf("  TX: %u Hz (%.2f MSPS)\n", tx_freq, tx_freq/1e6);
+
+	// 4. LO频率
+	uint64_t rx_lo, tx_lo;
+	ad9361_get_rx_lo_freq(ad9361_phy, &rx_lo);
+	ad9361_get_tx_lo_freq(ad9361_phy, &tx_lo);
+	printf("\nLO频率:\n");
+	printf("  RX: %llu Hz (%.3f GHz)\n", rx_lo, rx_lo/1e9);
+	printf("  TX: %llu Hz (%.3f GHz)\n", tx_lo, tx_lo/1e9);
+
+
+
+	// uint8_t tx_ctrl = ad9361_spi_read(ad9361_phy->spi, 0x002);
+	// tx_ctrl = (tx_ctrl & 0xFC) | 0x01;  // 设置bit[1:0]=01，使能FIR+1x插值
+	// ad9361_spi_write(ad9361_phy->spi, 0x002, tx_ctrl);
+	// printf("TX Ctrl after FIR enable: 0x%02X\n", ad9361_spi_read(ad9361_phy->spi, 0x002));
+
+	// uint32_t ensm_state;
+	// ad9361_get_en_state_machine_mode(ad9361_phy, &ensm_state);
+	// printf("ENSM状态: %u (FDD=%d)\n", ensm_state, ENSM_MODE_FDD);
+
+	// ad9361_set_en_state_machine_mode(ad9361_phy, ENSM_MODE_TX);
+
+	// ad9361_get_en_state_machine_mode(ad9361_phy, &ensm_state);
+	// printf("ENSM状态: %u (FDD=%d)\n", ensm_state, ENSM_MODE_FDD);
+
+	int32_t tx_gain = 0;  
+	ad9361_set_tx_attenuation(ad9361_phy, 0, tx_gain);
+
+	ad9361_set_tx_rf_port_output(ad9361_phy, 0);
+
+
+	// 3. 读取关键状态
+	uint8_t ensm = ad9361_spi_read(ad9361_phy->spi, 0x017);
+	uint8_t tx_ctrl = ad9361_spi_read(ad9361_phy->spi, 0x002);
+	uint8_t pll = ad9361_spi_read(ad9361_phy->spi, 0x247);
+
+	printf("\n=== Final Status ===\n");
+	printf("ENSM (0x017): 0x%02X (TX_ON=%d)\n", ensm, (ensm>>4)&1);
+	printf("TX Ctrl (0x002): 0x%02X\n", tx_ctrl);
+	printf("PLL Lock (0x247): 0x%02X (TX_PLL=%d)\n", pll, (pll>>1)&1);
+
+	uint8_t reg_val;
+	printf("AD9361寄存器0x000-0x007:\n");
+	for (uint8_t addr = 0x00; addr <= 0x07; addr++) {
+		reg_val = ad9361_spi_read(ad9361_phy->spi, addr);
+		printf("  [0x%03X] = 0x%02X\n", addr, reg_val);
+	}
+
+	
+
+	// ad9361_set_rx_rf_port_input(ad9361_phy, 0);
+	// ad9361_set_rx_rf_gain(ad9361_phy, 0, 10); // 10 dB
+
+	/* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
   while (1)
   {
-
+	
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  printf("Test\n");
-	  HAL_Delay(1000);
+	  
+	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+	HAL_Delay(100);
   }
   /* USER CODE END 3 */
 }

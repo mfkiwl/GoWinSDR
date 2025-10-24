@@ -57,10 +57,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define SPI2_EN_Pin GPIO_PIN_13
-#define SPI2_EN_GPIO_Port GPIOB
-#define UART_Forward_Pin GPIO_PIN_8
-#define UART_Forward_GPIO_Port GPIOA
+#define SPI1_EN_Pin GPIO_PIN_4
+#define SPI1_EN_GPIO_Port GPIOA
+#define RST_FPGA_Pin GPIO_PIN_8
+#define RST_FPGA_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 

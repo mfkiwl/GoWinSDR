@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 d:\Code\git\GoWinSDR\GoWinSDR_STM32_Xilinx\MDK-ARM\GoWinSDR.uvprojx
-Project File Date:  09/26/2025
+Project File Date:  10/10/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\Hardware\MDK\Core\ARM\ARMCC\Bin'
@@ -31,11 +31,17 @@ Note: source file '..\Hardware\ad9361\main.c' - object file renamed from 'GoWinS
 compiling main.c...
 ../Hardware/api/api.h(10): warning:  #1-D: last line of file ends without a newline
   #endif // API_H
-../Core/Src/main.c: 1 warning, 0 errors
+../Hardware/api/softspi.h(53): warning:  #1-D: last line of file ends without a newline
+  #endif /* __SOFT_SPI_H */
+../Core/Src/main.c(480): warning:  #870-D: invalid multibyte character sequence
+  	printf("AD9361寄存�?0x000-0x007:\n");
+../Core/Src/main.c(588): warning:  #1-D: last line of file ends without a newline
+  #endif /* USE_FULL_ASSERT */
+../Core/Src/main.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=39990 RO-data=7966 RW-data=576 ZI-data=5368  
+Program Size: Code=41110 RO-data=7966 RW-data=1176 ZI-data=5280  
 FromELF: creating hex file...
-"GoWinSDR\GoWinSDR.axf" - 0 Error(s), 1 Warning(s).
+"GoWinSDR\GoWinSDR.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -59,7 +65,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE@5.6.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:06
 </pre>
 </body>
 </html>
