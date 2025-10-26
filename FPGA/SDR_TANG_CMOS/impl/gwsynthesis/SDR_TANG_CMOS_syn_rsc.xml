@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="top" Register="26" Lut="48" T_Register="1013(26)" T_Alu="65(0)" T_Lut="654(48)" T_Bsram="21(0)">
+ <SubModule name="u_ad9363_dev_cmos"/>
+ <SubModule name="gw_gao_inst_0" Register="557" Alu="15" Lut="505" Bsram="20" T_Register="557(557)" T_Alu="15(15)" T_Lut="505(505)" T_Bsram="20(20)"/>
+ <SubModule name="your_instance_name" Register="430" Alu="50" Lut="101" Bsram="1" T_Register="430(430)" T_Alu="50(50)" T_Lut="101(101)" T_Bsram="1(1)"/>
+</Module>
