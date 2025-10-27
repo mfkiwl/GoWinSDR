@@ -15,7 +15,7 @@ from ethernet_worker import EthernetWorker  # 确保这是修改后的 worker
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("FPGA 无线通信上位机 (PyQt6) - [串口+UDP]")
+        self.setWindowTitle("FPGA 无线通信上位机- [串口+UDP]")
         self.setGeometry(100, 100, 1200, 800)
 
         self.init_ui()
