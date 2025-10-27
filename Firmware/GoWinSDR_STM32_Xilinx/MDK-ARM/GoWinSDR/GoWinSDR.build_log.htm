@@ -21,25 +21,26 @@ Target DLL:      CMSIS_AGDI.dll V1.33.16.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-D:\Code\git\GoWinSDR\GoWinSDR_STM32_Xilinx\MDK-ARM\GoWinSDR.uvprojx
+d:\Code\git\GoWinSDR\Firmware\GoWinSDR_STM32_Xilinx\MDK-ARM\GoWinSDR.uvprojx
 Project File Date:  10/10/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\Hardware\MDK\Core\ARM\ARMCC\Bin'
 Build target 'GoWinSDR'
 Note: source file '..\Hardware\ad9361\main.c' - object file renamed from 'GoWinSDR\main.o' to 'GoWinSDR\main_1.o'.
+compiling console.c...
 compiling main.c...
 ../Hardware/api/api.h(10): warning:  #1-D: last line of file ends without a newline
   #endif // API_H
 ../Hardware/api/softspi.h(53): warning:  #1-D: last line of file ends without a newline
   #endif /* __SOFT_SPI_H */
-../Core/Src/main.c(480): warning:  #870-D: invalid multibyte character sequence
-  	printf("AD9361寄存�?0x000-0x007:\n");
-../Core/Src/main.c(588): warning:  #1-D: last line of file ends without a newline
+../Hardware/ad9361/command.h(45): warning:  #47-D: incompatible redefinition of macro "NULL"  (declared at line 72 of "E:\Hardware\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h")
+  #define NULL		((void *)0)
+../Core/Src/main.c(605): warning:  #1-D: last line of file ends without a newline
   #endif /* USE_FULL_ASSERT */
 ../Core/Src/main.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=41110 RO-data=7966 RW-data=1176 ZI-data=5280  
+Program Size: Code=51966 RO-data=11058 RW-data=2072 ZI-data=5592  
 FromELF: creating hex file...
 "GoWinSDR\GoWinSDR.axf" - 0 Error(s), 4 Warning(s).
 
@@ -65,7 +66,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE@5.6.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

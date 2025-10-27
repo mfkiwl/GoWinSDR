@@ -72,7 +72,7 @@ char uart_init(unsigned long baudRate)
 *******************************************************************************/
 void uart_write_char(char data)
 {
-	putchar(data);
+	HAL_UART_Transmit(&huart1, (uint8_t *)&data, 1, HAL_MAX_DELAY);
 }
 
 /***************************************************************************//**
@@ -84,7 +84,7 @@ void uart_write_char(char data)
 *******************************************************************************/
 void uart_read_char(char * data)
 {
-	*data = getchar();
+	HAL_UART_Receive(&huart1, (uint8_t *)data, 1, HAL_MAX_DELAY);
 }
 
 /***************************************************************************//**
