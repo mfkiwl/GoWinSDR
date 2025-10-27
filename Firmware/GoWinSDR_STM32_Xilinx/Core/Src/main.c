@@ -29,10 +29,8 @@
 #include "ad9361_api.h"
 #include "parameters.h"
 #include "platform.h"
-#ifdef CONSOLE_COMMANDS
 #include "command.h"
 #include "console.h"
-#endif
 #include "adc_core.h"
 #include "dac_core.h"
 #include "softspi.h"
@@ -476,14 +474,7 @@ int main(void)
 	printf("TX Ctrl (0x002): 0x%02X\n", tx_ctrl);
 	printf("PLL Lock (0x247): 0x%02X (TX_PLL=%d)\n", pll, (pll>>1)&1);
 
-	uint8_t reg_val;
-	printf("AD9361寄存器0x000-0x007:\n");
-	for (uint8_t addr = 0x00; addr <= 0x07; addr++) {
-		reg_val = ad9361_spi_read(ad9361_phy->spi, addr);
-		printf("  [0x%03X] = 0x%02X\n", addr, reg_val);
-	}
 
-	
 
 	// ad9361_set_rx_rf_port_input(ad9361_phy, 0);
 	// ad9361_set_rx_rf_gain(ad9361_phy, 0, 10); // 10 dB
@@ -492,19 +483,45 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  if (ret != 0)
+  {
+	  console_print("AD9361 Initialization Failed!\n");
+	  while(1);
+  }
+  get_help(NULL, 0);
 
   while (1)
   {
-	
+	  console_get_command(received_cmd);
+	  invalid_cmd = 0;
+	  for (cmd = 0; cmd < cmd_no; cmd++)
+	  {
+		  param_no = 0;
+		  cmd_type = console_check_commands(received_cmd, cmd_list[cmd].name,
+											param, &param_no);
+		  if (cmd_type == UNKNOWN_CMD)
+		  {
+			  invalid_cmd++;
+		  }
+		  else
+		  {
+			  cmd_list[cmd].function(param, param_no);
+		  }
+	  }
+	  if(invalid_cmd == cmd_no)
+	  {
+		  console_print("Invalid command!\n");
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 	  
 	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	HAL_Delay(100);
   }
   /* USER CODE END 3 */
 }
+
+
 
 /**
   * @brief System Clock Configuration

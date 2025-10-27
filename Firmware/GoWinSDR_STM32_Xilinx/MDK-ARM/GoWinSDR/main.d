@@ -49,5 +49,7 @@ gowinsdr\main.o: ../Hardware/api/api.h
 gowinsdr\main.o: ../Hardware/ad9361/parameters.h
 gowinsdr\main.o: ../Hardware/ad9361/platform.h
 gowinsdr\main.o: ../Hardware/api/softspi.h
+gowinsdr\main.o: ../Hardware/ad9361/command.h
+gowinsdr\main.o: ../Hardware/ad9361/console.h
 gowinsdr\main.o: ../Hardware/ad9361/adc_core.h
 gowinsdr\main.o: ../Hardware/ad9361/dac_core.h
