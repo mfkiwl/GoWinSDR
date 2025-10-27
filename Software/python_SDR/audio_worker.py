@@ -14,8 +14,8 @@ class AudioWorker(QObject):
         super().__init__()
         self.is_recording = False
         self.frames = []
-        self.sample_rate = 44100  # 采样率
-        self.channels = 1  # 单声道
+        self.sample_rate = 48000  # 采样率
+        self.channels = 2  # 双声道
 
     def start_recording(self):
         """
