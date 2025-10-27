@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import (QMainWindow, QWidget, QHBoxLayout, QVBoxLayout,
-                             QSplitter, QTabWidget)  # <-- 导入 QTabWidget
+                             QSplitter, QTabWidget)
 from PyQt6.QtCore import QThread, Qt
 from config_widget import ConfigWidget
 from params_widget import ParamsWidget
@@ -7,135 +7,131 @@ from file_widget import FileWidget
 from log_widget import LogWidget
 from serial_worker import SerialWorker
 
-# --- 新增导入 ---
 from ethernet_widget import EthernetWidget
 from video_widget import VideoWidget
-from ethernet_worker import EthernetWorker
+from ethernet_worker import EthernetWorker  # 确保这是修改后的 worker
 
-
-# --- 结束新增 ---
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("FPGA 无线通信上位机 (PyQt6) - [串口+网络]")
-        self.setGeometry(100, 100, 1200, 800)  # 窗口改大一点
+        self.setWindowTitle("FPGA 无线通信上位机 (PyQt6) - [串口+UDP]")
+        self.setGeometry(100, 100, 1200, 800)
 
         self.init_ui()
         self.setup_serial_thread()
-        self.setup_ethernet_thread()  # <-- 启动新线程
+        self.setup_ethernet_thread()  # 启动新线程
 
     def init_ui(self):
         # --- 创建左右布局 ---
         left_panel = QWidget()
         left_layout = QVBoxLayout(left_panel)
-        left_panel.setMaximumWidth(300)  # 限制左侧宽度
+        left_panel.setMaximumWidth(300)
 
         self.config_widget = ConfigWidget()
-        self.ethernet_widget = EthernetWidget()  # <-- 新增
+        self.ethernet_widget = EthernetWidget()  # 这是新的UDP UI
         self.params_widget = ParamsWidget()
 
         left_layout.addWidget(self.config_widget)
-        left_layout.addWidget(self.ethernet_widget)  # <-- 新增
+        left_layout.addWidget(self.ethernet_widget)
         left_layout.addWidget(self.params_widget)
         left_layout.addStretch()
 
         right_panel = QWidget()
         right_layout = QVBoxLayout(right_panel)
 
-        # --- 右侧布局大修改：使用 QTabWidget ---
         self.tab_widget = QTabWidget()
         self.file_widget = FileWidget()
-        self.video_widget = VideoWidget()  # <-- 新增
+        self.video_widget = VideoWidget()
 
-        self.tab_widget.addTab(self.file_widget, "串口文件传输")
-        self.tab_widget.addTab(self.video_widget, "网络视频监控")
+        self.tab_widget.addTab(self.file_widget, "文件、文本及语音传输")
+        self.tab_widget.addTab(self.video_widget, "网络视频监控 (UDP)")
 
         self.log_widget = LogWidget()
-        # --- 结束修改 ---
 
-        # 使用 QSplitter 使 Tab区 和 日志区 可以调整大小
         splitter = QSplitter(Qt.Orientation.Vertical)
-        splitter.addWidget(self.tab_widget)  # <-- 修改
+        splitter.addWidget(self.tab_widget)
         splitter.addWidget(self.log_widget)
-        splitter.setSizes([500, 300])  # 初始大小
+        splitter.setSizes([500, 300])
 
         right_layout.addWidget(splitter)
 
-        # --- 组合主布局 ---
         main_widget = QWidget()
         main_layout = QHBoxLayout(main_widget)
         main_layout.addWidget(left_panel)
-        main_layout.addWidget(right_panel, stretch=1)  # 右侧占满
+        main_layout.addWidget(right_panel, stretch=1)
 
         self.setCentralWidget(main_widget)
 
     def setup_serial_thread(self):
+        # (这部分代码与之前完全相同，保持不变)
         self.serial_thread = QThread()
         self.serial_worker = SerialWorker()
-
         self.serial_worker.moveToThread(self.serial_thread)
 
-        # --- 连接 Worker 的信号 ---
         self.serial_worker.connected.connect(self.on_serial_connected)
         self.serial_worker.disconnected.connect(self.on_serial_disconnected)
         self.serial_worker.log_received.connect(self.log_widget.append_log)
         self.serial_worker.error_occurred.connect(self.on_serial_error)
 
-        # --- 连接线程管理信号 ---
         self.serial_thread.started.connect(lambda: self.log_widget.append_log("串口线程启动"))
         self.serial_worker.finished.connect(self.serial_thread.quit)
         self.serial_worker.finished.connect(self.serial_worker.deleteLater)
         self.serial_thread.finished.connect(self.serial_thread.deleteLater)
 
-        # --- 连接UI控件到Worker的槽 ---
         self.config_widget.connect_clicked.connect(self.serial_worker.connect_serial)
         self.config_widget.disconnect_clicked.connect(self.serial_worker.disconnect_serial)
 
         self.params_widget.send_param_clicked.connect(self.send_parameter)
         self.file_widget.send_file_clicked.connect(self.serial_worker.send_file)
 
-        # 启动线程
         self.serial_thread.start()
 
-    # --- 新增: setup_ethernet_thread ---
     def setup_ethernet_thread(self):
+        """
+        关键修复：
+        - 线程和 worker 保持存活（初始化时启动一次），在 stop 后不再 deleteLater。
+        - start_listening/stop_listening/send_command 使用 QueuedConnection，确保在 worker 所在线程中执行。
+        - 这样可以在停止后重新配置 IP/port 并再次点击“开始监听”生效。
+        """
         self.eth_thread = QThread()
         self.eth_worker = EthernetWorker()
 
+        # 把 worker 移到线程，但不要在停止时自动 delete 或 quit 线程，
+        # 以便可以重复使用同一个 worker/线程。
         self.eth_worker.moveToThread(self.eth_thread)
 
-        # --- 连接 Worker 的信号 ---
-        self.eth_worker.connected.connect(self.on_eth_connected)
-        self.eth_worker.disconnected.connect(self.on_eth_disconnected)
+        # 连接 Worker 的信号到 UI/主窗口槽
+        self.eth_worker.started.connect(self.on_eth_started)
+        self.eth_worker.stopped.connect(self.on_eth_stopped)
         self.eth_worker.log_received.connect(self.log_widget.append_log)
         self.eth_worker.video_frame_ready.connect(self.video_widget.update_frame)
         self.eth_worker.error_occurred.connect(self.on_eth_error)
 
-        # --- 连接线程管理信号 ---
-        self.eth_thread.started.connect(lambda: self.log_widget.append_log("网络线程启动"))
-        self.eth_worker.finished.connect(self.eth_thread.quit)
-        self.eth_worker.finished.connect(self.eth_worker.deleteLater)
-        self.eth_thread.finished.connect(self.eth_thread.deleteLater)
+        # 不再把 finished 连接到线程 quit/deleteLater，这会在第一次停止后销毁 worker/thread
+        # 保留 thread 在后台运行，这样可以继续接收 queued calls 到 worker
 
-        # --- 连接UI控件到Worker的槽 ---
-        self.ethernet_widget.connect_clicked.connect(self.eth_worker.connect_tcp)
-        self.ethernet_widget.disconnect_clicked.connect(self.eth_worker.disconnect_tcp)
+        # 使用 QueuedConnection 确保调用在 worker 所在线程中执行
+        self.ethernet_widget.start_listening_clicked.connect(
+            self.eth_worker.start_listening, Qt.ConnectionType.QueuedConnection
+        )
+        self.ethernet_widget.stop_listening_clicked.connect(
+            self.eth_worker.stop_listening, Qt.ConnectionType.QueuedConnection
+        )
+        self.ethernet_widget.send_command_clicked.connect(
+            self.eth_worker.send_command, Qt.ConnectionType.QueuedConnection
+        )
 
-        # 你也可以在这里连接其他控制信号, e.g.:
-        # self.some_control_button.clicked.connect(lambda: self.eth_worker.send_command("START_SCAN"))
-
-        # 启动线程
+        # 启动线程一次（线程保持运行，worker 可重复接受调用）
         self.eth_thread.start()
+        self.log_widget.append_log("网络线程启动")
 
-    # --- 结束新增 ---
-
-    # --- 串口槽函数 ---
+    # --- 串口槽函数 (保持不变) ---
     def on_serial_connected(self, message):
         self.log_widget.append_log(message)
         self.config_widget.set_connection_state(True)
         self.params_widget.set_enabled(True)
-        self.file_widget.set_enabled(True)  # 只启用文件传输
+        self.file_widget.set_enabled(True)
 
     def on_serial_disconnected(self):
         self.log_widget.append_log("串口已断开")
@@ -148,62 +144,54 @@ class MainWindow(QMainWindow):
         if "连接失败" in message or "读取错误" in message:
             self.on_serial_disconnected()
 
-    # --- 新增: 网络槽函数 ---
-    def on_eth_connected(self):
-        self.log_widget.append_log("TCP网络已连接")
+    # --- 网络槽函数 (已更新) ---
+    def on_eth_started(self):
+        self.log_widget.append_log("UDP 监听已开始")
         self.ethernet_widget.set_connection_state(True)
-        # 可以在这里启用网络相关的控制按钮
-        # self.video_widget.set_enabled(True)
 
-    def on_eth_disconnected(self):
-        self.log_widget.append_log("TCP网络已断开")
+    def on_eth_stopped(self):
+        self.log_widget.append_log("UDP 监听已停止")
         self.ethernet_widget.set_connection_state(False)
 
     def on_eth_error(self, message):
         self.log_widget.append_log(f"[网络错误] {message}")
-        self.on_eth_disconnected()  # 发生错误时自动更新UI为断开状态
+        if "绑定失败" in message:
+            self.on_eth_stopped()
 
     # --- 结束新增 ---
 
     def send_parameter(self, name, value):
-        """
-        将参数格式化为命令字符串发送
-        (你需要根据FPGA的协议修改这里的命令格式)
-        """
-        # 示例命令格式: "SET <NAME> <VALUE>"
         command = f"SET {name} {value}"
 
-        # *** 逻辑修改：你需要决定参数是通过串口还是网口发送 ***
-        # 这里我们假设参数仍然通过串口发送
+        # 假设参数仍然通过串口发送
         if self.serial_worker and self.serial_worker.serial and self.serial_worker.serial.is_open:
             self.serial_worker.send_data(command)
-        # 或者，如果通过网络发送:
-        # if self.eth_worker and self.eth_worker.sock:
-        #    self.eth_worker.send_command(command)
         else:
             self.log_widget.append_log("[错误] 无法发送参数：没有活动连接")
 
     def closeEvent(self, event):
-        """
-        重写关闭事件，确保两个线程都安全退出
-        """
         self.log_widget.append_log("正在关闭应用程序...")
 
         # 停止串口线程
         if self.serial_thread.isRunning():
-            self.serial_worker.disconnect_serial()  # 触发 worker 循环停止
+            self.serial_worker.disconnect_serial()
             self.serial_thread.quit()
-            if not self.serial_thread.wait(2000):  # 等待2秒
-                self.log_widget.append_log("串口线程未能正常停止，将强制终止")
+            if not self.serial_thread.wait(2000):
                 self.serial_thread.terminate()
 
-        # 停止网络线程
-        if self.eth_thread.isRunning():
-            self.eth_worker.disconnect_tcp()  # 触发 worker 循环停止
+        # 停止网络线程：先请求 worker 停止监听，然后停止线程的事件循环并等待退出
+        try:
+            # 请求停止（queued）
+            if self.eth_worker:
+                self.eth_worker.stop_listening()
+        except Exception:
+            pass
+
+        # 现在结束 QThread 的 event loop
+        if hasattr(self, "eth_thread") and self.eth_thread.isRunning():
             self.eth_thread.quit()
-            if not self.eth_thread.wait(2000):  # 等待2秒
+            if not self.eth_thread.wait(2000):
                 self.log_widget.append_log("网络线程未能正常停止，将强制终止")
                 self.eth_thread.terminate()
 
         event.accept()
-

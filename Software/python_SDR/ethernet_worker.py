@@ -1,17 +1,21 @@
 import socket
-import time
+import threading
 from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtGui import QImage
 
 
 class EthernetWorker(QObject):
     """
-    网络工作线程
-    处理所有TCP Socket的读写操作
+    网络工作线程 (UDP)
+
+    - 接收循环运行在独立的 Python 线程 self._recv_thread 中，start_listening 非阻塞。
+    - 支持 stop_listening 安全关闭 socket 以中断 recvfrom。
+    - 新增 send_command 方法，可在监听时或未监听时发送 UDP 命令（若未监听则使用短期临时 socket 发送）。
     """
+
     # 定义信号
-    connected = pyqtSignal()
-    disconnected = pyqtSignal()
+    started = pyqtSignal()
+    stopped = pyqtSignal()
     log_received = pyqtSignal(str)  # 用于发送日志
     video_frame_ready = pyqtSignal(QImage)  # 用于发送视频帧
     error_occurred = pyqtSignal(str)
@@ -21,110 +25,141 @@ class EthernetWorker(QObject):
         super().__init__()
         self.sock = None
         self._running = False
-        self.ip = ""
-        self.port = 0
+        self.fpga_addr = None  # (ip, port)
+        self._recv_thread = None
+        self._lock = threading.Lock()
 
-    def connect_tcp(self, ip, port):
+    def start_listening(self, listen_ip, listen_port, fpga_ip, fpga_port):
         """
-        尝试连接到TCP服务器 (FPGA)
+        启动接收线程（非阻塞，立即返回）。
+        实际接收循环在独立线程 self._recv_thread 中运行。
         """
-        self.ip = ip
-        self.port = port
+        with self._lock:
+            if self._recv_thread and self._recv_thread.is_alive():
+                self.log_received.emit("[警告] 监听已在运行，请先停止。")
+                return
 
-        if self.sock:
-            self.disconnect_tcp()
-
-        try:
-            self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            # 设置一个合理的超时时间
-            self.sock.settimeout(5.0)
-            self.sock.connect((self.ip, self.port))
-
-            # 连接成功后，可以设置为非阻塞或保持阻塞
-            # 我们在这里保持阻塞，因为recv()将在一个专用线程中运行
-            self.sock.settimeout(None)
-
+            # 存储目标地址
+            self.fpga_addr = (fpga_ip, fpga_port)
             self._running = True
-            self.connected.emit()
-            self.log_received.emit(f"成功连接到 {self.ip}:{self.port}")
-            # 启动读取循环
-            self.run_read_loop()
 
-        except socket.timeout:
-            self.error_occurred.emit("连接超时")
-            self.sock = None
-        except Exception as e:
-            self.error_occurred.emit(f"连接失败: {e}")
-            self.sock = None
+            # 启动后台接收线程
+            self._recv_thread = threading.Thread(
+                target=self._recv_loop, args=(listen_ip, listen_port), daemon=True
+            )
+            self._recv_thread.start()
 
-    def disconnect_tcp(self):
+        # 发信号通知已经开始（UI可立即响应）
+        self.started.emit()
+        self.log_received.emit(f"UDP 正在监听 {listen_ip}:{listen_port}...")
+
+    def _recv_loop(self, listen_ip, listen_port):
         """
-        断开TCP连接
+        在独立的 Python 线程中执行接收循环。
+        关闭 socket 会使 recvfrom 抛出异常，从而结束循环。
         """
-        self._running = False
-        if self.sock:
+        try:
+            # 1. 创建 UDP socket
+            self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            self.sock.settimeout(0.5)
+
+            # 2. 绑定本地地址
             try:
-                self.sock.shutdown(socket.SHUT_RDWR)
-                self.sock.close()
+                self.sock.bind((listen_ip, listen_port))
             except Exception as e:
-                self.error_occurred.emit(f"关闭Socket时出错: {e}")
-            self.sock = None
+                # 绑定失败，向 UI 报错并返回
+                self.error_occurred.emit(f"UDP 绑定失败: {e}")
+                return
 
-    def run_read_loop(self):
-        """
-        循环读取TCP数据。
-        假设视频数据是JPEG帧 (以 \xff\xd8 开始, 以 \xff\xd9 结束)
-        """
-        buffer = b''
-        while self._running:
-            try:
-                # 阻塞式读取
-                data = self.sock.recv(4096)
-                if not data:
-                    # 连接被对方关闭
-                    self.log_received.emit("连接被远端关闭")
-                    self._running = False
-                    break
-
-                buffer += data
-
-                # 寻找JPEG帧
-                start_index = buffer.find(b'\xff\xd8')
-                end_index = buffer.find(b'\xff\xd9')
-
-                if start_index != -1 and end_index != -1 and end_index > start_index:
-                    jpg_data = buffer[start_index: end_index + 2]
-                    buffer = buffer[end_index + 2:]  # 保留缓冲区剩余部分
-
-                    # 将原始JPG数据转换为QImage
+            # 3. 接收循环
+            while self._running:
+                try:
+                    data, addr = self.sock.recvfrom(65536)
                     image = QImage()
-                    image.loadFromData(jpg_data, "JPEG")
+                    image.loadFromData(data, "JPEG")
 
                     if not image.isNull():
                         self.video_frame_ready.emit(image)
                     else:
-                        self.log_received.emit("[警告] 收到损坏的JPEG帧")
+                        self.log_received.emit("[警告] 收到损坏的UDP数据包 (非JPEG?)")
 
-            except Exception as e:
-                if self._running:  # 只有在非主动断开时才报告错误
-                    self.error_occurred.emit(f"TCP读取错误: {e}")
-                self._running = False
+                except socket.timeout:
+                    # 正常超时，继续检查 self._running
+                    continue
+                except Exception as e:
+                    # 当另一个线程调用 close() 时会抛异常
+                    if self._running:
+                        self.error_occurred.emit(f"UDP 接收错误: {e}")
+                    # 不论是否主动停止，都退出循环
+                    break
 
-        # 循环结束
-        self.disconnected.emit()
-        self.finished.emit()
-        self.sock = None
-        self.log_received.emit("网络连接已断开")
+        finally:
+            # 清理 socket
+            try:
+                if self.sock:
+                    self.sock.close()
+            except Exception:
+                pass
+            self.sock = None
+
+            # 确保状态一致
+            self._running = False
+
+            # 发停止/完成信号（这些信号会回到主线程，更新 UI）
+            self.stopped.emit()
+            self.finished.emit()
+            self.log_received.emit("UDP 监听已停止")
+
+    def stop_listening(self):
+        """
+        停止接收循环并关闭 socket。
+        这个函数可以从主线程被调用（直接或 queued 连接都可以），
+        关闭 socket 会导致 recvfrom 抛出异常，从而让后台线程退出循环。
+        """
+        self._running = False
+
+        # 强制关闭 socket（可能在接收线程中被使用）
+        try:
+            if self.sock:
+                self.sock.close()
+        except Exception:
+            pass
+
+        # 不在这里 join 线程以避免阻塞 GUI；后台线程退出后会发 stopped/finished
+        self.log_received.emit("停止请求已发送 -> 正在等待接收线程退出...")
 
     def send_command(self, cmd_str):
         """
-        发送控制命令 (例如：控制云台，调整参数等)
+        使用 sendto() 发送UDP命令。
+        - 若当前已有用于接收的 socket（self.sock），优先通过该 socket 发送。
+        - 若未监听，也允许通过临时 socket 发送命令（不会改变监听状态）。
+        - 线程安全：使用 self._lock 保护对 self.sock / self.fpga_addr 的访问。
         """
-        if self.sock and self._running:
+        with self._lock:
+            addr = self.fpga_addr
+
+            if not addr:
+                self.error_occurred.emit("发送失败: 目标地址未设置")
+                return
+
             try:
-                self.sock.sendall(cmd_str.encode('utf-8') + b'\n')
-                self.log_received.emit(f"-> [TCP发送]: {cmd_str}")
+                payload = cmd_str.encode('utf-8') + b'\n'
+                if self.sock:
+                    # 如果监听 socket 存在，直接使用它发送
+                    try:
+                        self.sock.sendto(payload, addr)
+                    except Exception as e:
+                        # 如果通过监听 socket 发送失败，再尝试临时 socket 发送一次
+                        self.log_received.emit(f"通过监听 socket 发送失败，尝试临时 socket：{e}")
+                        tmp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                        tmp.sendto(payload, addr)
+                        tmp.close()
+                else:
+                    # 未监听时使用短期 socket 发送
+                    tmp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                    tmp.sendto(payload, addr)
+                    tmp.close()
+
+                self.log_received.emit(f"-> [UDP发送]: {cmd_str} 至 {addr}")
             except Exception as e:
-                self.error_occurred.emit(f"TCP发送失败: {e}")
-        else:
-            self.error_occurred.emit("发送失败: TCP未连接")
+                self.error_occurred.emit(f"UDP 发送失败: {e}")
