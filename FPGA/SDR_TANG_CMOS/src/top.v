@@ -1,55 +1,54 @@
     module top (
-        input                               sys_clk                    ,
-        input                               rst_n                      ,
+    input                               sys_clk                    ,
+    input                               rst_n                      ,
 
         // RX Port
-        input                               rx_clk_in_p                ,
-        input              [  11:0]         rx_data_in                 ,
-        input                               rx_frame_in_p              ,
+    input                               rx_clk_in_p                ,
+    input              [  11:0]         rx_data_in                 ,
+    input                               rx_frame_in_p              ,
 
         // TX Port
-        output             [  11:0]         tx_data_out                ,
-        output                              tx_clk_out_p               ,
-        output                              tx_frame_out_p             ,//fb
+    output             [  11:0]         tx_data_out                ,
+    output                              tx_clk_out_p               ,
+    output                              tx_frame_out_p             ,//fb
 
-        output                              en_agc                     ,
-        output reg                          enable                     ,
-        output reg                          txnrx                      ,
-        output                              reset                      ,
-        output                              sync_in                    ,
+    output                              en_agc                     ,
+    output reg                          enable                     ,
+    output reg                          txnrx                      ,
+    output                              reset                      ,
+    output                              sync_in                    ,
 
-        output                              led                         
+    output                              led                         
     );
 
-    wire                                    clk_40M                    ;
+wire                                    clk_40M                    ;
 
     Gowin_PLL pll0(
-        .clkin                             (sys_clk                   ),//input  clkin
-        .clkout0                           (clk_40M                   ),//output  clkout0
-        .mdclk                             (sys_clk                   ) //input  mdclk
+    .clkin                             (sys_clk                   ),//input  clkin
+    .clkout0                           (clk_40M                   ),//output  clkout0
+    .mdclk                             (sys_clk                   ) //input  mdclk
     );
 
 
-    assign gclk_div = sys_clk;                                          //50Mhz  
+    assign gclk_div = sys_clk;                                      //50Mhz  
 
-    wire                                    data_clk                   ;
-    wire                   [  11:0]         sine                       ;
+wire                                    data_clk                   ;
+wire                   [  11:0]         sine                       ;
 
-    wire                   [  11:0]         adc_data_out_i1            ;
-    wire                   [  11:0]         adc_data_out_q1            ;
-    wire                                    adc_out_valid              ;
-    wire                                    adc_status                 ;
+wire                   [  11:0]         adc_data_out_i1            ;
+wire                   [  11:0]         adc_data_out_q1            ;
+wire                                    adc_out_valid              ;
+wire                                    adc_status                 ;
 
-    wire                   [  11:0]         dac_data_in_i1             ;
-    wire                   [  11:0]         dac_data_in_q1             ;
-    reg                                     dac_in_valid               ;
-
+wire                   [  11:0]         dac_data_in_i1             ;
+wire                   [  11:0]         dac_data_in_q1             ;
+wire                                    dac_in_valid               ;
     assign      dac_r1_mode = 1'b1        ;
     assign      adc_r1_mode = 1'b1        ;
 
     // 30分频方波 (divide-by-30) from clk_40M -> data_clk
-    reg                    [   4:0]         div_cnt_30                 ;
-    reg                                     data_clk_r                 ;
+reg                    [   4:0]         div_cnt_30                 ;
+reg                                     data_clk_r                 ;
 
     always @(posedge clk_40M or negedge rst_n) begin
         if (!rst_n) begin
@@ -58,46 +57,36 @@
         end else begin
             if (div_cnt_30 == 5'd14) begin
                 div_cnt_30 <= 5'd0;
-                data_clk_r <= ~data_clk_r;                              // toggle every 15 cycles -> period = 30 cycles
+                data_clk_r <= ~data_clk_r;                          // toggle every 15 cycles -> period = 30 cycles
             end else begin
                 div_cnt_30 <= div_cnt_30 + 1'b1;
             end
         end
     end
 
-    assign dac_data_in_i1 = sine;
-    assign dac_data_in_q1 = sine;
 
     ad9363_dev_cmos u_ad9363_dev_cmos(
-        .rst_n                             (rst_n                     ),
+    .rst_n                             (rst_n                     ),
         //差分时钟转为单端时钟data_clk
-        .data_clk                          (     data_clk      ),
+    .data_clk                          (data_clk                  ),
         //Rx Port
-        .rx_data_in                        (rx_data_in                ),
-        .rx_clk_in_p                       (rx_clk_in_p               ),
-        .rx_frame_in_p                     (rx_frame_in_p             ),
+    .rx_data_in                        (rx_data_in                ),
+    .rx_clk_in_p                       (rx_clk_in_p               ),
+    .rx_frame_in_p                     (rx_frame_in_p             ),
         //6位转换12数据
-        .adc_data_out_i1                   (adc_data_out_i1           ),
-        .adc_data_out_q1                   (adc_data_out_q1           ),
-        .adc_out_valid                     (adc_out_valid             ),
-        .adc_status                        (adc_status                ),
+    .adc_data_out_i1                   (adc_data_out_i1           ),
+    .adc_data_out_q1                   (adc_data_out_q1           ),
+    .adc_out_valid                     (adc_out_valid             ),
+    .adc_status                        (adc_status                ),
         //需要 数 模 转换的数据 12位转6位
-        .dac_data_in_i1                    (dac_data_in_i1            ),
-        .dac_data_in_q1                    (dac_data_in_q1            ),
-        .dac_in_valid                      (dac_in_valid              ),
+    .dac_data_in_i1                    (dac_data_in_i1            ),
+    .dac_data_in_q1                    (dac_data_in_q1            ),
+    .dac_in_valid                      (dac_in_valid              ),
         //12位以及转换为6位的数据
-        .tx_data_out                       (tx_data_out               ),
-        .tx_clk_out_p                      (tx_clk_out_p              ),
-        .tx_frame_out_p                    (tx_frame_out_p            ) 
+    .tx_data_out                       (tx_data_out               ),
+    .tx_clk_out_p                      (tx_clk_out_p              ),
+    .tx_frame_out_p                    (tx_frame_out_p            ) 
     );
-
-
-    always @(posedge gclk_div) begin
-        if(rst_n == 1'b1) begin
-            dac_in_valid <= 1'b1;
-        end
-        else;
-    end
 
     always @(posedge gclk_div or negedge rst_n)
     begin
@@ -111,8 +100,8 @@
         end
     end
 
-    reg                    [  23:0]         led_cnt                    ;
-    reg                                     led_blink                  ;
+reg                    [  23:0]         led_cnt                    ;
+reg                                     led_blink                  ;
 
     always @(posedge data_clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -131,14 +120,99 @@
     assign led = led_blink;
 
     DDS_II_Top your_instance_name(
-        .clk_i                             (data_clk                  ),//input clk_i
-        .rst_n_i                           (rst_n                     ),//input rst_n_i
-        .sine_o                            (sine                      ),//output [11:0] sine_o
-        .data_valid_o                      (                          ) //output data_valid_o
+    .clk_i                             (data_clk                  ),//input clk_i
+    .rst_n_i                           (rst_n                     ),//input rst_n_i
+    .sine_o                            (sine                      ),//output [11:0] sine_o
+    .data_valid_o                      (                          ) //output data_valid_o
     );
 
     assign      en_agc      = 1'b0        ;
     assign      sync_in     = 1'b1        ;
     assign      reset       = 1'b1        ;
 
+
+    // generate 100 kHz test clock from sys_clk
+localparam                              integer SYS_CLK_FREQ_HZ = 50_000_000;// adjust if sys_clk differs
+localparam                              integer TEST_CLK_FREQ_HZ = 250_000;
+localparam                              integer DIV_HALF = SYS_CLK_FREQ_HZ / (2 * TEST_CLK_FREQ_HZ);// toggle every DIV_HALF cycles
+
+reg                    [  31:0]         test_div_cnt               ;
+reg                                     test_clk_reg               ;
+wire                                    test_clk = test_clk_reg    ;
+
+    always @(posedge sys_clk or negedge rst_n) begin
+        if (!rst_n) begin
+            test_div_cnt <= 32'd0;
+            test_clk_reg <= 1'b0;
+        end else begin
+            if (test_div_cnt >= DIV_HALF - 1) begin
+                test_div_cnt <= 32'd0;
+                test_clk_reg <= ~test_clk_reg;
+            end else begin
+                test_div_cnt <= test_div_cnt + 1'b1;
+            end
+        end
+    end
+
+    // Instantiate rf_rxt module
+wire                   [   7:0]         rx_data_out                ;
+wire                                    rx_data_valid              ;
+wire                                    rx_data_missing            ;
+
+wire                   [   7:0]         tx_data_in                 ;
+wire                                    tx_data_valid              ;
+wire                                    tx_data_ready              ;
+
+    rf_rxt #(
+    .SAMPLE_RATE                       (32'd30720000              ),
+    .BIT_RATE                          (32'd1000000               ) // 1Mbps for testing
+    ) u_rf_rxt (
+    .clk                               (sys_clk                   ),
+    .rst_n                             (rst_n                     ),
+    .sample_clk                        (data_clk                  ),
+        
+        // RX DATA Port
+    .rx_data_out                       (rx_data_out               ),
+    .rx_clk_in                         (test_clk                  ),
+    .rx_data_valid                     (rx_data_valid             ),
+    .rx_data_missing                   (rx_data_missing           ),
+        
+        // RX Signal Input
+    .adc_data_in_i1                    (adc_data_out_i1           ),
+    .adc_data_in_q1                    (adc_data_out_q1           ),
+    .adc_in_valid                      (adc_out_valid             ),
+        
+        // TX DATA Port
+    .tx_data_in                        (tx_data_in                ),
+    .tx_clk_in                         (test_clk                  ),
+    .tx_data_valid                     (tx_data_valid             ),
+    .tx_data_ready                     (tx_data_ready             ),
+        
+        // TX Signal Output
+    .dac_data_out_i1                   (dac_data_in_i1            ),
+    .dac_data_out_q1                   (dac_data_in_q1            ),
+    .dac_out_valid                     (dac_in_valid              ) 
+    );
+
+    // Generate test data at test_clk rate
+reg                    [   7:0]         test_data_cnt              ;
+reg                                     test_data_valid_reg        ;
+
+    always @(posedge test_clk or negedge rst_n) begin
+        if (!rst_n) begin
+            test_data_cnt <= 8'd0;
+            test_data_valid_reg <= 1'b0;
+        end else begin
+            if (tx_data_ready) begin
+                test_data_cnt <= test_data_cnt + 1'b1;
+                test_data_valid_reg <= 1'b1;
+            end else begin
+                test_data_valid_reg <= 1'b0;
+            end
+        end
+    end
+
+    assign tx_data_in = test_data_cnt;
+    assign tx_data_valid = 1'b1;
+    
     endmodule

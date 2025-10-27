@@ -1,9 +1,9 @@
--d D:\Code\Gowin\SDR_TANG_CMOS\impl\gwsynthesis\SDR_TANG_CMOS.vg
+-d D:\Code\git\GoWinSDR\FPGA\SDR_TANG_CMOS\impl\gwsynthesis\SDR_TANG_CMOS.vg
 -p GW5AT-60B-PBGA484A-1
 -pn GW5AT-LV60PG484AC1/I0
--cst D:\Code\Gowin\SDR_TANG_CMOS\src\SDR_Test.cst
--cfg D:\Code\Gowin\SDR_TANG_CMOS\impl\pnr\device.cfg
--gao_crc 0100000110100000
+-cst D:\Code\git\GoWinSDR\FPGA\SDR_TANG_CMOS\src\SDR_Test.cst
+-cfg D:\Code\git\GoWinSDR\FPGA\SDR_TANG_CMOS\impl\pnr\device.cfg
+-gao_crc 1101100011000011
 -bit
 -tr
 -ph

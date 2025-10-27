@@ -1,7 +1,7 @@
 Dependencies for Project 'GoWinSDR', Target 'GoWinSDR': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (startup_stm32f411xe.s)(0x68E7C928)(--cpu Cortex-M4.fp.sp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_GoWinSDR-IE:\Hardware\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\Hardware\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 539" --pd "_RTE_ SETA 1" --pd "STM32F411xE SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f411xe.lst --xref -o gowinsdr\startup_stm32f411xe.o --depend gowinsdr\startup_stm32f411xe.d)
-F (../Core/Src/main.c)(0x68FF075F)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I.\RTE\_GoWinSDR-IE:\Hardware\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\Hardware\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr\main.o --omf_browse gowinsdr\main.crf --depend gowinsdr\main.d)
+F (../Core/Src/main.c)(0x68FF983C)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I.\RTE\_GoWinSDR-IE:\Hardware\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\Hardware\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr\main.o --omf_browse gowinsdr\main.crf --depend gowinsdr\main.d)
 I (../Core/Inc/main.h)(0x68E7C349)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6649DDC7)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x68D6316D)
@@ -51,8 +51,8 @@ I (../Hardware/api/api.h)(0x68D2DC0E)
 I (../Hardware/ad9361/parameters.h)(0x68CA6952)
 I (../Hardware/ad9361/platform.h)(0x68E89C88)
 I (../Hardware/api/softspi.h)(0x68E89DC0)
-I (../Hardware/ad9361/command.h)(0x68FF0075)
-I (../Hardware/ad9361/console.h)(0x68FF00DA)
+I (../Hardware/ad9361/command.h)(0x68FF0C2F)
+I (../Hardware/ad9361/console.h)(0x68FF0C2F)
 I (../Hardware/ad9361/adc_core.h)(0x63201D27)
 I (../Hardware/ad9361/dac_core.h)(0x63201D27)
 F (../Core/Src/gpio.c)(0x68E7C348)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I.\RTE\_GoWinSDR-IE:\Hardware\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\Hardware\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr\gpio.o --omf_browse gowinsdr\gpio.crf --depend gowinsdr\gpio.d)
@@ -941,8 +941,8 @@ I (E:\Hardware\MDK\Core\ARM\ARMCC\include\stdio.h)(0x5E8E3CC2)
 I (..\Hardware\ad9361\config.h)(0x63201D27)
 F (..\Hardware\ad9361\adc_core.h)(0x63201D27)()
 F (..\Hardware\ad9361\command.c)(0x68D56DB0)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I.\RTE\_GoWinSDR-IE:\Hardware\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\Hardware\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr\command.o --omf_browse gowinsdr\command.crf --depend gowinsdr\command.d)
-I (..\Hardware\ad9361\command.h)(0x68FF0075)
-I (..\Hardware\ad9361\console.h)(0x68FF00DA)
+I (..\Hardware\ad9361\command.h)(0x68FF0C2F)
+I (..\Hardware\ad9361\console.h)(0x68FF0C2F)
 I (../Core/Inc/usart.h)(0x68D53045)
 I (../Core/Inc/main.h)(0x68E7C349)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6649DDC7)
@@ -987,13 +987,13 @@ I (../Hardware/api/api.h)(0x68D2DC0E)
 I (../Core/Inc/spi.h)(0x68E7C349)
 I (..\Hardware\ad9361\config.h)(0x63201D27)
 I (..\Hardware\ad9361\dac_core.h)(0x63201D27)
-F (..\Hardware\ad9361\command.h)(0x68FF0075)()
+F (..\Hardware\ad9361\command.h)(0x68FF0C2F)()
 F (..\Hardware\ad9361\config.h)(0x63201D27)()
-F (..\Hardware\ad9361\console.c)(0x68FF076C)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I.\RTE\_GoWinSDR-IE:\Hardware\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\Hardware\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr\console.o --omf_browse gowinsdr\console.crf --depend gowinsdr\console.d)
+F (..\Hardware\ad9361\console.c)(0x68FF0C2F)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I.\RTE\_GoWinSDR-IE:\Hardware\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\Hardware\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr\console.o --omf_browse gowinsdr\console.crf --depend gowinsdr\console.d)
 I (E:\Hardware\MDK\Core\ARM\ARMCC\include\stdarg.h)(0x5E8E3CC2)
 I (E:\Hardware\MDK\Core\ARM\ARMCC\include\stdlib.h)(0x5E8E3CC2)
 I (E:\Hardware\MDK\Core\ARM\ARMCC\include\stdio.h)(0x5E8E3CC2)
-I (..\Hardware\ad9361\console.h)(0x68FF00DA)
+I (..\Hardware\ad9361\console.h)(0x68FF0C2F)
 I (../Core/Inc/usart.h)(0x68D53045)
 I (../Core/Inc/main.h)(0x68E7C349)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6649DDC7)
@@ -1025,7 +1025,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x6649DDC7)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x6649DDC7)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6649DDC7)
-F (..\Hardware\ad9361\console.h)(0x68FF00DA)()
+F (..\Hardware\ad9361\console.h)(0x68FF0C2F)()
 F (..\Hardware\ad9361\dac_core.c)(0x68D2D775)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I.\RTE\_GoWinSDR-IE:\Hardware\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\Hardware\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr\dac_core.o --omf_browse gowinsdr\dac_core.crf --depend gowinsdr\dac_core.d)
 I (E:\Hardware\MDK\Core\ARM\ARMCC\include\stdint.h)(0x5E8E3CC2)
 I (..\Hardware\ad9361\dac_core.h)(0x63201D27)

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="top" Register="26" Lut="48" T_Register="1013(26)" T_Alu="65(0)" T_Lut="654(48)" T_Bsram="21(0)">
+<Module name="top" Register="42" Alu="7" Lut="60" T_Register="1327(42)" T_Alu="86(7)" T_Lut="842(60)" T_Bsram="32(0)">
  <SubModule name="u_ad9363_dev_cmos"/>
- <SubModule name="gw_gao_inst_0" Register="557" Alu="15" Lut="505" Bsram="20" T_Register="557(557)" T_Alu="15(15)" T_Lut="505(505)" T_Bsram="20(20)"/>
  <SubModule name="your_instance_name" Register="430" Alu="50" Lut="101" Bsram="1" T_Register="430(430)" T_Alu="50(50)" T_Lut="101(101)" T_Bsram="1(1)"/>
+ <SubModule name="u_rf_rxt" Register="26" Lut="27" T_Register="158(26)" T_Alu="14(0)" T_Lut="136(27)" T_Bsram="2(0)">
+  <SubModule name="fifo_tx_u0" Register="66" Alu="7" Lut="57" Bsram="1" T_Register="66(66)" T_Alu="7(7)" T_Lut="57(57)" T_Bsram="1(1)"/>
+  <SubModule name="fifo_rx_u0" Register="66" Alu="7" Lut="52" Bsram="1" T_Register="66(66)" T_Alu="7(7)" T_Lut="52(52)" T_Bsram="1(1)"/>
+ </SubModule>
+ <SubModule name="gw_gao_inst_0" Register="697" Alu="15" Lut="545" Bsram="29" T_Register="697(697)" T_Alu="15(15)" T_Lut="545(545)" T_Bsram="29(29)"/>
 </Module>

@@ -262,8 +262,8 @@ AD9361_InitParam default_init_param = {
 	1,		//full_port_enable *** adi,full-port-enable
 	0,		//full_duplex_swap_bits_enable *** adi,full-duplex-swap-bits-enable
 	0,		//delay_rx_data *** adi,delay-rx-data
-	0,		//rx_data_clock_delay *** adi,rx-data-clock-delay
-	4,		//rx_data_delay *** adi,rx-data-delay
+	15,		//rx_data_clock_delay *** adi,rx-data-clock-delay
+	0,		//rx_data_delay *** adi,rx-data-delay
 	7,		//tx_fb_clock_delay *** adi,tx-fb-clock-delay
 	0,		//tx_data_delay *** adi,tx-data-delay
 	150,	//lvds_bias_mV *** adi,lvds-bias-mV

@@ -10,6 +10,14 @@
    "Type" : "verilog"
   },
   {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/fifo_top/fifo_top.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/fifo_top_rx/fifo_top_rx.v",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/gowin_pll/gowin_pll.v",
    "Type" : "verilog"
   },
@@ -19,6 +27,10 @@
   },
   {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/pll_init.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/rf_rxt.v",
    "Type" : "verilog"
   },
   {
