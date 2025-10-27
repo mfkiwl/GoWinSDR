@@ -3,21 +3,21 @@
         {
             "name": "GoWinSDR",
             "includePath": [
-                "d:\\Code\\git\\GoWinSDR\\GoWinSDR_STM32_Xilinx\\Core\\Inc",
-                "d:\\Code\\git\\GoWinSDR\\GoWinSDR_STM32_Xilinx\\Drivers\\STM32F4xx_HAL_Driver\\Inc",
-                "d:\\Code\\git\\GoWinSDR\\GoWinSDR_STM32_Xilinx\\Drivers\\STM32F4xx_HAL_Driver\\Inc\\Legacy",
-                "d:\\Code\\git\\GoWinSDR\\GoWinSDR_STM32_Xilinx\\Drivers\\CMSIS\\Device\\ST\\STM32F4xx\\Include",
-                "d:\\Code\\git\\GoWinSDR\\GoWinSDR_STM32_Xilinx\\Drivers\\CMSIS\\Include",
-                "d:\\Code\\git\\GoWinSDR\\GoWinSDR_STM32_Xilinx\\Hardware",
-                "d:\\Code\\git\\GoWinSDR\\GoWinSDR_STM32_Xilinx\\Hardware\\ad9361",
-                "d:\\Code\\git\\GoWinSDR\\GoWinSDR_STM32_Xilinx\\Hardware\\api",
+                "d:\\Code\\git\\GoWinSDR\\Firmware\\GoWinSDR_STM32_Xilinx\\Core\\Inc",
+                "d:\\Code\\git\\GoWinSDR\\Firmware\\GoWinSDR_STM32_Xilinx\\Drivers\\STM32F4xx_HAL_Driver\\Inc",
+                "d:\\Code\\git\\GoWinSDR\\Firmware\\GoWinSDR_STM32_Xilinx\\Drivers\\STM32F4xx_HAL_Driver\\Inc\\Legacy",
+                "d:\\Code\\git\\GoWinSDR\\Firmware\\GoWinSDR_STM32_Xilinx\\Drivers\\CMSIS\\Device\\ST\\STM32F4xx\\Include",
+                "d:\\Code\\git\\GoWinSDR\\Firmware\\GoWinSDR_STM32_Xilinx\\Drivers\\CMSIS\\Include",
+                "d:\\Code\\git\\GoWinSDR\\Firmware\\GoWinSDR_STM32_Xilinx\\Hardware",
+                "d:\\Code\\git\\GoWinSDR\\Firmware\\GoWinSDR_STM32_Xilinx\\Hardware\\ad9361",
+                "d:\\Code\\git\\GoWinSDR\\Firmware\\GoWinSDR_STM32_Xilinx\\Hardware\\api",
                 "E:\\Hardware\\MDK\\Core\\ARM\\ARMCC\\include",
                 "E:\\Hardware\\MDK\\Core\\ARM\\ARMCC\\include\\arm_linux",
                 "E:\\Hardware\\MDK\\Core\\ARM\\ARMCC\\include\\arm_linux_compat",
                 "E:\\Hardware\\MDK\\Core\\ARM\\ARMCC\\include\\rw",
-                "d:\\Code\\git\\GoWinSDR\\GoWinSDR_STM32_Xilinx\\MDK-ARM",
-                "d:\\Code\\git\\GoWinSDR\\GoWinSDR_STM32_Xilinx\\Core\\Src",
-                "d:\\Code\\git\\GoWinSDR\\GoWinSDR_STM32_Xilinx\\Drivers\\STM32F4xx_HAL_Driver\\Src"
+                "d:\\Code\\git\\GoWinSDR\\Firmware\\GoWinSDR_STM32_Xilinx\\MDK-ARM",
+                "d:\\Code\\git\\GoWinSDR\\Firmware\\GoWinSDR_STM32_Xilinx\\Core\\Src",
+                "d:\\Code\\git\\GoWinSDR\\Firmware\\GoWinSDR_STM32_Xilinx\\Drivers\\STM32F4xx_HAL_Driver\\Src"
             ],
             "defines": [
                 "USE_HAL_DRIVER",
