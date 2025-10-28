@@ -36,6 +36,41 @@ module gw_gao(
     \eth_inst/rx_state[2] ,
     \eth_inst/rx_state[1] ,
     \eth_inst/rx_state[0] ,
+    \eth_inst/tx_data_valid ,
+    \eth_inst/tx_buf_ready ,
+    \eth_inst/rx_cnt[15] ,
+    \eth_inst/rx_cnt[14] ,
+    \eth_inst/rx_cnt[13] ,
+    \eth_inst/rx_cnt[12] ,
+    \eth_inst/rx_cnt[11] ,
+    \eth_inst/rx_cnt[10] ,
+    \eth_inst/rx_cnt[9] ,
+    \eth_inst/rx_cnt[8] ,
+    \eth_inst/rx_cnt[7] ,
+    \eth_inst/rx_cnt[6] ,
+    \eth_inst/rx_cnt[5] ,
+    \eth_inst/rx_cnt[4] ,
+    \eth_inst/rx_cnt[3] ,
+    \eth_inst/rx_cnt[2] ,
+    \eth_inst/rx_cnt[1] ,
+    \eth_inst/rx_cnt[0] ,
+    \eth_inst/rx_data_valid_reg ,
+    \eth_inst/rx_dest_port[15] ,
+    \eth_inst/rx_dest_port[14] ,
+    \eth_inst/rx_dest_port[13] ,
+    \eth_inst/rx_dest_port[12] ,
+    \eth_inst/rx_dest_port[11] ,
+    \eth_inst/rx_dest_port[10] ,
+    \eth_inst/rx_dest_port[9] ,
+    \eth_inst/rx_dest_port[8] ,
+    \eth_inst/rx_dest_port[7] ,
+    \eth_inst/rx_dest_port[6] ,
+    \eth_inst/rx_dest_port[5] ,
+    \eth_inst/rx_dest_port[4] ,
+    \eth_inst/rx_dest_port[3] ,
+    \eth_inst/rx_dest_port[2] ,
+    \eth_inst/rx_dest_port[1] ,
+    \eth_inst/rx_dest_port[0] ,
     \eth_inst/clk_125m ,
     tms_pad_i,
     tck_pad_i,
@@ -80,6 +115,41 @@ input \eth_inst/rx_state[3] ;
 input \eth_inst/rx_state[2] ;
 input \eth_inst/rx_state[1] ;
 input \eth_inst/rx_state[0] ;
+input \eth_inst/tx_data_valid ;
+input \eth_inst/tx_buf_ready ;
+input \eth_inst/rx_cnt[15] ;
+input \eth_inst/rx_cnt[14] ;
+input \eth_inst/rx_cnt[13] ;
+input \eth_inst/rx_cnt[12] ;
+input \eth_inst/rx_cnt[11] ;
+input \eth_inst/rx_cnt[10] ;
+input \eth_inst/rx_cnt[9] ;
+input \eth_inst/rx_cnt[8] ;
+input \eth_inst/rx_cnt[7] ;
+input \eth_inst/rx_cnt[6] ;
+input \eth_inst/rx_cnt[5] ;
+input \eth_inst/rx_cnt[4] ;
+input \eth_inst/rx_cnt[3] ;
+input \eth_inst/rx_cnt[2] ;
+input \eth_inst/rx_cnt[1] ;
+input \eth_inst/rx_cnt[0] ;
+input \eth_inst/rx_data_valid_reg ;
+input \eth_inst/rx_dest_port[15] ;
+input \eth_inst/rx_dest_port[14] ;
+input \eth_inst/rx_dest_port[13] ;
+input \eth_inst/rx_dest_port[12] ;
+input \eth_inst/rx_dest_port[11] ;
+input \eth_inst/rx_dest_port[10] ;
+input \eth_inst/rx_dest_port[9] ;
+input \eth_inst/rx_dest_port[8] ;
+input \eth_inst/rx_dest_port[7] ;
+input \eth_inst/rx_dest_port[6] ;
+input \eth_inst/rx_dest_port[5] ;
+input \eth_inst/rx_dest_port[4] ;
+input \eth_inst/rx_dest_port[3] ;
+input \eth_inst/rx_dest_port[2] ;
+input \eth_inst/rx_dest_port[1] ;
+input \eth_inst/rx_dest_port[0] ;
 input \eth_inst/clk_125m ;
 input tms_pad_i;
 input tck_pad_i;
@@ -123,6 +193,41 @@ wire \eth_inst/rx_state[3] ;
 wire \eth_inst/rx_state[2] ;
 wire \eth_inst/rx_state[1] ;
 wire \eth_inst/rx_state[0] ;
+wire \eth_inst/tx_data_valid ;
+wire \eth_inst/tx_buf_ready ;
+wire \eth_inst/rx_cnt[15] ;
+wire \eth_inst/rx_cnt[14] ;
+wire \eth_inst/rx_cnt[13] ;
+wire \eth_inst/rx_cnt[12] ;
+wire \eth_inst/rx_cnt[11] ;
+wire \eth_inst/rx_cnt[10] ;
+wire \eth_inst/rx_cnt[9] ;
+wire \eth_inst/rx_cnt[8] ;
+wire \eth_inst/rx_cnt[7] ;
+wire \eth_inst/rx_cnt[6] ;
+wire \eth_inst/rx_cnt[5] ;
+wire \eth_inst/rx_cnt[4] ;
+wire \eth_inst/rx_cnt[3] ;
+wire \eth_inst/rx_cnt[2] ;
+wire \eth_inst/rx_cnt[1] ;
+wire \eth_inst/rx_cnt[0] ;
+wire \eth_inst/rx_data_valid_reg ;
+wire \eth_inst/rx_dest_port[15] ;
+wire \eth_inst/rx_dest_port[14] ;
+wire \eth_inst/rx_dest_port[13] ;
+wire \eth_inst/rx_dest_port[12] ;
+wire \eth_inst/rx_dest_port[11] ;
+wire \eth_inst/rx_dest_port[10] ;
+wire \eth_inst/rx_dest_port[9] ;
+wire \eth_inst/rx_dest_port[8] ;
+wire \eth_inst/rx_dest_port[7] ;
+wire \eth_inst/rx_dest_port[6] ;
+wire \eth_inst/rx_dest_port[5] ;
+wire \eth_inst/rx_dest_port[4] ;
+wire \eth_inst/rx_dest_port[3] ;
+wire \eth_inst/rx_dest_port[2] ;
+wire \eth_inst/rx_dest_port[1] ;
+wire \eth_inst/rx_dest_port[0] ;
 wire \eth_inst/clk_125m ;
 wire tms_pad_i;
 wire tck_pad_i;
@@ -197,8 +302,8 @@ gw_con_top  u_icon_top(
 
 ao_top_0  u_la0_top(
     .control(control0[9:0]),
-    .trig0_i(\eth_inst/gmii_rxdv ),
-    .data_i({\eth_inst/tx_data[7] ,\eth_inst/tx_data[6] ,\eth_inst/tx_data[5] ,\eth_inst/tx_data[4] ,\eth_inst/tx_data[3] ,\eth_inst/tx_data[2] ,\eth_inst/tx_data[1] ,\eth_inst/tx_data[0] ,\eth_inst/rx_data[7] ,\eth_inst/rx_data[6] ,\eth_inst/rx_data[5] ,\eth_inst/rx_data[4] ,\eth_inst/rx_data[3] ,\eth_inst/rx_data[2] ,\eth_inst/rx_data[1] ,\eth_inst/rx_data[0] ,led_rx,led_tx,rx_data_valid,rx_frame_start,rx_frame_end,tx_ready,rx_active,tx_active,\eth_inst/gmii_rxd[7] ,\eth_inst/gmii_rxd[6] ,\eth_inst/gmii_rxd[5] ,\eth_inst/gmii_rxd[4] ,\eth_inst/gmii_rxd[3] ,\eth_inst/gmii_rxd[2] ,\eth_inst/gmii_rxd[1] ,\eth_inst/gmii_rxd[0] ,\eth_inst/gmii_rxdv ,\eth_inst/rx_state[3] ,\eth_inst/rx_state[2] ,\eth_inst/rx_state[1] ,\eth_inst/rx_state[0] }),
+    .trig0_i({\eth_inst/rx_dest_port[15] ,\eth_inst/rx_dest_port[14] ,\eth_inst/rx_dest_port[13] ,\eth_inst/rx_dest_port[12] ,\eth_inst/rx_dest_port[11] ,\eth_inst/rx_dest_port[10] ,\eth_inst/rx_dest_port[9] ,\eth_inst/rx_dest_port[8] ,\eth_inst/rx_dest_port[7] ,\eth_inst/rx_dest_port[6] ,\eth_inst/rx_dest_port[5] ,\eth_inst/rx_dest_port[4] ,\eth_inst/rx_dest_port[3] ,\eth_inst/rx_dest_port[2] ,\eth_inst/rx_dest_port[1] ,\eth_inst/rx_dest_port[0] }),
+    .data_i({\eth_inst/tx_data[7] ,\eth_inst/tx_data[6] ,\eth_inst/tx_data[5] ,\eth_inst/tx_data[4] ,\eth_inst/tx_data[3] ,\eth_inst/tx_data[2] ,\eth_inst/tx_data[1] ,\eth_inst/tx_data[0] ,\eth_inst/rx_data[7] ,\eth_inst/rx_data[6] ,\eth_inst/rx_data[5] ,\eth_inst/rx_data[4] ,\eth_inst/rx_data[3] ,\eth_inst/rx_data[2] ,\eth_inst/rx_data[1] ,\eth_inst/rx_data[0] ,led_rx,led_tx,rx_data_valid,rx_frame_start,rx_frame_end,tx_ready,rx_active,tx_active,\eth_inst/gmii_rxd[7] ,\eth_inst/gmii_rxd[6] ,\eth_inst/gmii_rxd[5] ,\eth_inst/gmii_rxd[4] ,\eth_inst/gmii_rxd[3] ,\eth_inst/gmii_rxd[2] ,\eth_inst/gmii_rxd[1] ,\eth_inst/gmii_rxd[0] ,\eth_inst/gmii_rxdv ,\eth_inst/rx_state[3] ,\eth_inst/rx_state[2] ,\eth_inst/rx_state[1] ,\eth_inst/rx_state[0] ,\eth_inst/tx_data_valid ,\eth_inst/tx_buf_ready ,\eth_inst/rx_cnt[15] ,\eth_inst/rx_cnt[14] ,\eth_inst/rx_cnt[13] ,\eth_inst/rx_cnt[12] ,\eth_inst/rx_cnt[11] ,\eth_inst/rx_cnt[10] ,\eth_inst/rx_cnt[9] ,\eth_inst/rx_cnt[8] ,\eth_inst/rx_cnt[7] ,\eth_inst/rx_cnt[6] ,\eth_inst/rx_cnt[5] ,\eth_inst/rx_cnt[4] ,\eth_inst/rx_cnt[3] ,\eth_inst/rx_cnt[2] ,\eth_inst/rx_cnt[1] ,\eth_inst/rx_cnt[0] ,\eth_inst/rx_data_valid_reg }),
     .clk_i(\eth_inst/clk_125m )
 );
 

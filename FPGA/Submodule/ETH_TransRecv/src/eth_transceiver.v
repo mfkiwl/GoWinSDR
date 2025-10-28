@@ -247,6 +247,8 @@ always @(posedge RGMII_RXCLK or negedge rst_n) begin
                         if (rx_dest_port == BOARD_PORT) begin
                             rx_state <= RX_PAYLOAD;
                             rx_cnt   <= 16'd0;
+                            // rx_data_valid_reg <= 1'b1;
+                            // rx_data_reg       <= gmii_rxd;
                         end
                         else begin
                             rx_state <= RX_END;
@@ -463,7 +465,8 @@ always @(posedge clk_125m or negedge rst_n) begin
             
             TX_UDP_HEAD: begin
                 tx_cnt   <= tx_cnt + 1'b1;
-                gmii_txd <= ip_header[5 + tx_cnt[3]][(3 - tx_cnt[1:0]) * 8 +: 8];
+                // gmii_txd <= ip_header[5 + tx_cnt[3]][(3 - tx_cnt[1:0]) * 8 +: 8];
+                gmii_txd <= ip_header[5 + tx_cnt[2]][(3 - tx_cnt[1:0]) * 8 +: 8];
                 
                 if (tx_cnt == 16'd7) begin
                     tx_state <= TX_PAYLOAD;
@@ -474,7 +477,6 @@ always @(posedge clk_125m or negedge rst_n) begin
             TX_PAYLOAD: begin
                 tx_cnt   <= tx_cnt + 1'b1;
                 gmii_txd <= tx_buffer[tx_cnt];
-                
                 if (tx_cnt == tx_buf_len - 1) begin
                     tx_state <= TX_CRC;
                     tx_cnt   <= 16'd0;

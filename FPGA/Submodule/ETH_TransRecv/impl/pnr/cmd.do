@@ -1,9 +1,9 @@
--d D:\Code\Gowin\ETH_TransRecv\impl\gwsynthesis\ETH_TransRecv.vg
+-d D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv\impl\gwsynthesis\ETH_TransRecv.vg
 -p GW5AT-60B-PBGA484A-1
 -pn GW5AT-LV60PG484AC1/I0
--cst D:\Code\Gowin\ETH_TransRecv\src\ETH_TransRecv.cst
--cfg D:\Code\Gowin\ETH_TransRecv\impl\pnr\device.cfg
--gao_crc 0011010101101111
+-cst D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv\src\ETH_TransRecv.cst
+-cfg D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv\impl\pnr\device.cfg
+-gao_crc 1000000010111001
 -bit
 -tr
 -ph
