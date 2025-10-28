@@ -36,7 +36,7 @@ class MainWindow(QMainWindow):
         # (UI 布局保持不变)
         left_panel = QWidget()
         left_layout = QVBoxLayout(left_panel)
-        left_panel.setMaximumWidth(300)
+        left_panel.setMaximumWidth(335)
         self.config_widget = ConfigWidget()
         self.ethernet_widget = EthernetWidget()
         self.params_widget = ParamsWidget()
