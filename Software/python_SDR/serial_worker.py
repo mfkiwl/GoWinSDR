@@ -12,11 +12,13 @@ class SerialWorker(QObject):
     # 定义信号
     connected = pyqtSignal(str)  # 连接成功时发射
     disconnected = pyqtSignal()  # 断开连接时发射
-    log_received = pyqtSignal(str)  # 收到日志数据时发射
+    log_received = pyqtSignal(str)  # 收到普通日志时发射
     error_occurred = pyqtSignal(str)  # 发生错误时发射
-
-    # --- 新增 ---
     finished = pyqtSignal()  # 线程结束时发射
+
+    # --- 新增: 用于参数响应的专用信号 ---
+    #      (command_name, value)
+    param_response_received = pyqtSignal(str, str)
 
     def __init__(self):
         super().__init__()
@@ -28,6 +30,7 @@ class SerialWorker(QObject):
         尝试连接串口
         """
         if self.serial:
+            # 如果已连接，先断开旧的
             self.disconnect_serial()
 
         try:
@@ -44,54 +47,82 @@ class SerialWorker(QObject):
         """
         断开串口连接
         """
-        self._running = False
+        self._running = False  # 通知读取循环停止
         if self.serial:
             try:
                 self.serial.close()
             except Exception as e:
                 self.error_occurred.emit(f"关闭串口时出错: {e}")
             self.serial = None
-        self.disconnected.emit()
 
-        # --- 新增 ---
-        # 当断开连接(工作完成)时，发射finished信号
-        self.finished.emit()
+        self.disconnected.emit()
+        self.finished.emit()  # 确保线程可以被清理
 
     def start_read_loop(self):
         """
-        循环读取串口数据
-        这个函数会阻塞，直到 _running 为 False
+        循环读取串口数据 (已修改为可解析响应)
         """
+        buffer = bytearray()
         while self._running and self.serial and self.serial.is_open:
             try:
-                # readline() 会阻塞直到收到一个换行符或超时
+                # 检查是否有数据在等待
                 if self.serial.in_waiting > 0:
-                    line = self.serial.readline()
-                    if line:
-                        # 假设设备发送的是UTF-8编码的文本
-                        self.log_received.emit(line.decode('utf-8', errors='ignore').strip())
+                    # 读取所有可用数据，避免阻塞
+                    data = self.serial.read(self.serial.in_waiting)
+                    buffer.extend(data)
+
+                    # 处理缓冲区中的所有完整行
+                    while b'\n' in buffer:
+                        line_bytes, buffer = buffer.split(b'\n', 1)
+                        line_str = line_bytes.decode('utf-8', errors='ignore').strip()
+                        self.process_line(line_str)
+                else:
+                    # 没有数据时短暂休眠，避免CPU空转
+                    time.sleep(0.01)
+
             except serial.SerialException as e:
-                # 串口拔出等异常
                 self.error_occurred.emit(f"读取错误: {e}")
                 self._running = False  # 导致循环退出
             except Exception as e:
-                # 其他未知错误
-                self.error_occurred.emit(f"未知读取错误: {e}")
-            time.sleep(0.01)  # 避免CPU空转
+                if self._running:  # 避免在关闭时报告错误
+                    self.error_occurred.emit(f"未知读取错误: {e}")
 
         # 循环结束，确保已断开连接 (如果尚未断开)
         if self.serial:
-            self.disconnect_serial()  # 这将触发 finished 信号
+            self.disconnect_serial()
+
+    def process_line(self, line):
+        """
+        辅助函数: 解析收到的行
+        """
+        if not line:
+            return
+
+        # --- 核心逻辑: 检查它是否是一个参数响应 ---
+        # 你的设备响应格式为 "command=value"
+        if '=' in line:
+            parts = line.split('=', 1)
+            if len(parts) == 2:
+                command = parts[0].strip()
+                value = parts[1].strip()
+
+                # 这是一个参数响应！
+                self.param_response_received.emit(command, value)
+                return  # 处理完毕
+
+        # --- 如果不是参数响应，则视为普通日志 ---
+        self.log_received.emit(line)
 
     def send_data(self, data_str):
         """
-        向串口发送字符串数据
+        向串口发送字符串数据 (命令)
         """
         if self.serial and self.serial.is_open:
             try:
-                # 确保发送的是字节，并添加换行符（假设设备需要）
-                self.serial.write(data_str.encode('utf-8') + b'\n')
-                self.log_received.emit(f"-> [发送命令]: {data_str}")
+                # 你的设备需要换行符来执行命令
+                full_command = data_str + '\n'
+                self.serial.write(full_command.encode('utf-8'))
+                self.log_received.emit(f"-> [发送]: {data_str}")
             except Exception as e:
                 self.error_occurred.emit(f"发送失败: {e}")
         else:
@@ -100,6 +131,7 @@ class SerialWorker(QObject):
     def send_file(self, file_path):
         """
         向串口发送文件（原始字节）
+        (此功能保持不变)
         """
         if not (self.serial and self.serial.is_open):
             self.error_occurred.emit("发送失败: 串口未连接")
@@ -125,6 +157,7 @@ class SerialWorker(QObject):
     def get_available_ports():
         """
         静态方法，获取当前可用的串口列表
+        (此功能保持不变)
         """
         ports = serial.tools.list_ports.comports()
         return [port.device for port in ports]
