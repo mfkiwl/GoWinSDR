@@ -117,6 +117,21 @@ class SerialWorker(QObject):
         """
         向串口发送字符串数据 (命令)
         """
+        # --- 添加详细调试打印 ---
+        print(f"[SerialWorker] send_data received: '{data_str}'")
+        print(f"[SerialWorker] Checking serial object: {self.serial}")
+        serial_is_open = False
+        if self.serial:
+            try:
+                serial_is_open = self.serial.is_open
+                print(f"[SerialWorker] Checking serial.is_open: {serial_is_open}")
+            except Exception as check_e:
+                # 如果访问 is_open 出错，说明串口对象可能已失效
+                print(f"[SerialWorker] Error checking serial.is_open: {check_e}")
+                serial_is_open = False
+        # --- 结束添加 ---
+
+        # 使用检查过的值
         if self.serial and self.serial.is_open:
             try:
                 # 你的设备需要换行符来执行命令
