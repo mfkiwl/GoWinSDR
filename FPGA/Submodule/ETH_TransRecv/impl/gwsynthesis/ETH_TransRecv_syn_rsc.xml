@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="eth_loopback_demo" T_Register="847(0)" T_Alu="113(0)" T_Lut="1109(0)" T_Bsram="11(0)">
+ <SubModule name="gw_gao_inst_0" Register="396" Alu="15" Lut="461" Bsram="10" T_Register="396(396)" T_Alu="15(15)" T_Lut="461(461)" T_Bsram="10(10)"/>
+ <SubModule name="eth_inst" Register="419" Alu="98" Lut="589" Bsram="1" T_Register="451(419)" T_Alu="98(98)" T_Lut="648(589)" T_Bsram="1(1)">
+  <SubModule name="pll_inst">
+   <SubModule name="u_pll"/>
+  </SubModule>
+  <SubModule name="crc_inst" Register="32" Lut="59" T_Register="32(32)" T_Lut="59(59)"/>
+  <SubModule name="gmii2rgmii_inst"/>
+ </SubModule>
+</Module>

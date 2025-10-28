@@ -1,0 +1,20 @@
+-d D:\Code\Gowin\ETH_TransRecv\impl\gwsynthesis\ETH_TransRecv.vg
+-p GW5AT-60B-PBGA484A-1
+-pn GW5AT-LV60PG484AC1/I0
+-cst D:\Code\Gowin\ETH_TransRecv\src\ETH_TransRecv.cst
+-cfg D:\Code\Gowin\ETH_TransRecv\impl\pnr\device.cfg
+-gao_crc 0011010101101111
+-bit
+-tr
+-ph
+-timing
+-cst_error
+-convert_sdp32_36_to_sdp16_18
+-place_option 0
+-route_option 0
+-clock_route_order 0
+-correct_hold 1
+-route_maxfan 23
+-global_freq 100.000
+-enable_dsrm 0
+-rtl_gao
