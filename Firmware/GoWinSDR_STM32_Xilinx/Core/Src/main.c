@@ -488,7 +488,6 @@ int main(void)
 	  console_print("AD9361 Initialization Failed!\n");
 	  while(1);
   }
-  get_help(NULL, 0);
 
   while (1)
   {

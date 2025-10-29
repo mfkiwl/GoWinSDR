@@ -143,7 +143,7 @@ reg                                     led_blink                  ;
 
     // generate 100 kHz test clock from sys_clk
 localparam                              integer SYS_CLK_FREQ_HZ = 50_000_000;// adjust if sys_clk differs
-localparam                              integer TEST_CLK_FREQ_HZ = 250_000;
+localparam                              integer TEST_CLK_FREQ_HZ = 125_000;
 localparam                              integer DIV_HALF = SYS_CLK_FREQ_HZ / (2 * TEST_CLK_FREQ_HZ);// toggle every DIV_HALF cycles
 
 reg                    [  31:0]         test_div_cnt               ;
@@ -164,8 +164,29 @@ wire                                    test_clk = test_clk_reg    ;
         end
     end
 
+    localparam integer TEST2_CLK_FREQ_HZ = 2_000_000;
+    localparam integer DIV_HALF_250K     = SYS_CLK_FREQ_HZ / (2 * TEST2_CLK_FREQ_HZ);
+
+    reg  [31:0] div_cnt_250k;
+    reg         clk_250k_reg;
+    wire        clk_250k = clk_250k_reg;
+
+    always @(posedge sys_clk or negedge rst_n) begin
+        if (!rst_n) begin
+            div_cnt_250k  <= 32'd0;
+            clk_250k_reg  <= 1'b0;
+        end else begin
+            if (div_cnt_250k >= DIV_HALF_250K - 1) begin
+                div_cnt_250k <= 32'd0;
+                clk_250k_reg <= ~clk_250k_reg;
+            end else begin
+                div_cnt_250k <= div_cnt_250k + 1'b1;
+            end
+        end
+    end
+
     // Instantiate rf_rxt module
-wire                   [   7:0]         rx_data_out                ;
+wire                                    rx_data_out                ;
 wire                                    rx_data_valid              ;
 wire                                    rx_data_missing            ;
 
@@ -183,7 +204,7 @@ wire                                    tx_data_ready              ;
         
         // RX DATA Port
     .rx_data_out                       (rx_data_out               ),
-    .rx_clk_in                         (test_clk                  ),
+    .rx_clk_in                         (clk_250k                  ),
     .rx_data_valid                     (rx_data_valid             ),
     .rx_data_missing                   (rx_data_missing           ),
         

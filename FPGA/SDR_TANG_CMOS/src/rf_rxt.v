@@ -7,7 +7,7 @@ module rf_rxt #(
     input                               sample_clk                 ,
 
     // RX DATA Port
-    output             [   7:0]         rx_data_out                ,
+    output                              rx_data_out                ,
     input                               rx_clk_in                  ,
     output                              rx_data_valid              ,
     output                              rx_data_missing            ,
@@ -213,22 +213,19 @@ reg                                     integrate_ready            ;
     end
 
 wire                                    rx_fifo_empty              ;
-wire                   [   1:0]         demod_data_invert          ;
-assign demod_data_invert = ~demod_data;                             // Invert bits if needed;
 
 assign rx_data_valid = ~rx_fifo_empty;
     // FIFO for demodulated data output
     fifo_rx fifo_rx_u0(
-    .Data                              (demod_data_invert         ),//input [1:0] Data
+    .Data                              (demod_data                ),//input [1:0] Data
     .WrClk                             (demod_bit_clk             ),//input WrClk
     .RdClk                             (rx_clk_in                 ),//input RdClk
     .WrEn                              (demod_valid               ),//input WrEn
     .RdEn                              (1'b1                      ),//input RdEn
-    .Q                                 (rx_data_out               ),//output [7:0] Q
+    .Q                                 (rx_data_out               ),//output [0:0] Q
     .Empty                             (rx_fifo_empty             ),//output Empty
     .Full                              (rx_data_missing           ) //output Full
     );
 
-    assign rx_clk_out = demod_bit_clk;
 
 endmodule

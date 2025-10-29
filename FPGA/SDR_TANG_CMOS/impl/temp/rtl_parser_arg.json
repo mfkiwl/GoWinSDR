@@ -18,6 +18,10 @@
    "Type" : "verilog"
   },
   {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_frame_buf/eth_frame_buf.v",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_frame_gene.v",
    "Type" : "verilog"
   },
@@ -75,10 +79,6 @@
   },
   {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/top.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_frame_buf/eth_frame_buf.v",
    "Type" : "verilog"
   }
  ],

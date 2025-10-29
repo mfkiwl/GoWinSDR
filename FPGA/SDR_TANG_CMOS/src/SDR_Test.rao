@@ -76,16 +76,6 @@
             </Bus>
             <Signal capture_enable="true">rst_n</Signal>
             <Signal capture_enable="true">rx_clk_in_p</Signal>
-            <Bus capture_enable="true" name="rx_data_out[7:0]">
-                <Signal>rx_data_out[7]</Signal>
-                <Signal>rx_data_out[6]</Signal>
-                <Signal>rx_data_out[5]</Signal>
-                <Signal>rx_data_out[4]</Signal>
-                <Signal>rx_data_out[3]</Signal>
-                <Signal>rx_data_out[2]</Signal>
-                <Signal>rx_data_out[1]</Signal>
-                <Signal>rx_data_out[0]</Signal>
-            </Bus>
             <Bus capture_enable="true" name="tx_data_in[7:0]">
                 <Signal>tx_data_in[7]</Signal>
                 <Signal>tx_data_in[6]</Signal>
@@ -129,6 +119,7 @@
                 <Signal>u_rf_data_processor/rd_state[0]</Signal>
             </Bus>
             <Signal capture_enable="true">u_rf_data_processor/rf_tx_clk</Signal>
+            <Signal capture_enable="true">rx_data_out</Signal>
         </SignalList>
         <Triggers>
             <Trigger index="0">
@@ -174,5 +165,5 @@
             <Expression>M0</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>0110100001000101</GAO_ID>
+    <GAO_ID>1111100110011010</GAO_ID>
 </GAO_CONFIG>

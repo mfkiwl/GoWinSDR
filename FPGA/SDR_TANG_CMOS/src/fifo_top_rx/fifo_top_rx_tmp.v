@@ -5,7 +5,7 @@
 //Part Number: GW5AT-LV60PG484AC1/I0
 //Device: GW5AT-60
 //Device Version: B
-//Created Time: Mon Oct 27 17:59:25 2025
+//Created Time: Thu Oct 30 00:48:09 2025
 
 //Change the instance name and port connections to the signal names
 //--------Copy here to design--------
@@ -16,7 +16,7 @@
 		.RdClk(RdClk), //input RdClk
 		.WrEn(WrEn), //input WrEn
 		.RdEn(RdEn), //input RdEn
-		.Q(Q), //output [7:0] Q
+		.Q(Q), //output [0:0] Q
 		.Empty(Empty), //output Empty
 		.Full(Full) //output Full
 	);

@@ -8,6 +8,24 @@
   "ModuleName" : "arp_responder"
  },
  {
+  "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_frame_buf/eth_frame_buf.v",
+  "InstLine" : 760,
+  "InstName" : "eth_frame_buf",
+  "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_frame_buf/eth_frame_buf.v",
+  "ModuleLine" : 760,
+  "ModuleName" : "eth_frame_buf",
+  "SubInsts" : [
+   {
+    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_frame_buf/eth_frame_buf.v",
+    "InstLine" : 781,
+    "InstName" : "fifo_inst",
+    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_frame_buf/eth_frame_buf.v",
+    "ModuleLine" : 13,
+    "ModuleName" : "~fifo.eth_frame_buf"
+   }
+  ]
+ },
+ {
   "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/top.v",
   "InstLine" : 1,
   "InstName" : "top",
@@ -69,7 +87,7 @@
    },
    {
     "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/top.v",
-    "InstLine" : 179,
+    "InstLine" : 200,
     "InstName" : "u_rf_rxt",
     "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/rf_rxt.v",
     "ModuleLine" : 1,
@@ -95,15 +113,15 @@
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/rf_rxt.v",
-      "InstLine" : 221,
+      "InstLine" : 219,
       "InstName" : "fifo_rx_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/fifo_top_rx/fifo_top_rx.v",
-      "ModuleLine" : 413,
+      "ModuleLine" : 418,
       "ModuleName" : "fifo_rx",
       "SubInsts" : [
        {
         "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/fifo_top_rx/fifo_top_rx.v",
-        "InstLine" : 434,
+        "InstLine" : 439,
         "InstName" : "fifo_inst",
         "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/fifo_top_rx/fifo_top_rx.v",
         "ModuleLine" : 13,
@@ -115,7 +133,7 @@
    },
    {
     "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/top.v",
-    "InstLine" : 244,
+    "InstLine" : 265,
     "InstName" : "eth_inst",
     "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_transceiver.v",
     "ModuleLine" : 1,
@@ -167,7 +185,7 @@
    },
    {
     "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/top.v",
-    "InstLine" : 277,
+    "InstLine" : 298,
     "InstName" : "u_rf_data_processor",
     "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_frame_gene.v",
     "ModuleLine" : 1,
@@ -195,7 +213,7 @@
    },
    {
     "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/top.v",
-    "InstLine" : 302,
+    "InstLine" : 323,
     "InstName" : "u_rf_data_depacketizer",
     "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_pack.v",
     "ModuleLine" : 1,
@@ -220,24 +238,6 @@
       ]
      }
     ]
-   }
-  ]
- },
- {
-  "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_frame_buf/eth_frame_buf.v",
-  "InstLine" : 760,
-  "InstName" : "eth_frame_buf",
-  "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_frame_buf/eth_frame_buf.v",
-  "ModuleLine" : 760,
-  "ModuleName" : "eth_frame_buf",
-  "SubInsts" : [
-   {
-    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_frame_buf/eth_frame_buf.v",
-    "InstLine" : 781,
-    "InstName" : "fifo_inst",
-    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_frame_buf/eth_frame_buf.v",
-    "ModuleLine" : 13,
-    "ModuleName" : "~fifo.eth_frame_buf"
    }
   ]
  }
