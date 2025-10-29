@@ -3,6 +3,7 @@
 -pn GW5AT-LV60PG484AC1/I0
 -cst D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv\src\ETH_TransRecv.cst
 -cfg D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv\impl\pnr\device.cfg
+-sdc D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv\src\timeconstrain.sdc
 -gao_crc 1000000010111001
 -bit
 -tr
