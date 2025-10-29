@@ -2,12 +2,12 @@
     input                               sys_clk                    ,
     input                               rst_n                      ,
 
-        // RX Port
+    // RX Port
     input                               rx_clk_in_p                ,
     input              [  11:0]         rx_data_in                 ,
     input                               rx_frame_in_p              ,
 
-        // TX Port
+    // TX Port
     output             [  11:0]         tx_data_out                ,
     output                              tx_clk_out_p               ,
     output                              tx_frame_out_p             ,//fb
@@ -17,6 +17,16 @@
     output reg                          txnrx                      ,
     output                              reset                      ,
     output                              sync_in                    ,
+
+    // RGMII接口
+    output              PHY_CLK,
+    input               RGMII_RXCLK,
+    input [3:0]         RGMII_RXD,
+    input               RGMII_RXDV,
+    output              RGMII_GTXCLK,
+    output [3:0]        RGMII_TXD,
+    output              RGMII_TXEN,
+    output              RGMII_RST_N,
 
     output                              led                         
     );
@@ -194,25 +204,120 @@ wire                                    tx_data_ready              ;
     .dac_out_valid                     (dac_in_valid              ) 
     );
 
-    // Generate test data at test_clk rate
-reg                    [   7:0]         test_data_cnt              ;
-reg                                     test_data_valid_reg        ;
+//     // Generate test data at test_clk rate
+// reg                    [   7:0]         test_data_cnt              ;
+// reg                                     test_data_valid_reg        ;
 
-    always @(posedge test_clk or negedge rst_n) begin
-        if (!rst_n) begin
-            test_data_cnt <= 8'd0;
-            test_data_valid_reg <= 1'b0;
-        end else begin
-            if (tx_data_ready) begin
-                test_data_cnt <= test_data_cnt + 1'b1;
-                test_data_valid_reg <= 1'b1;
-            end else begin
-                test_data_valid_reg <= 1'b0;
-            end
-        end
-    end
+//     always @(posedge test_clk or negedge rst_n) begin
+//         if (!rst_n) begin
+//             test_data_cnt <= 8'd0;
+//             test_data_valid_reg <= 1'b0;
+//         end else begin
+//             if (tx_data_ready) begin
+//                 test_data_cnt <= test_data_cnt + 1'b1;
+//                 test_data_valid_reg <= 1'b1;
+//             end else begin
+//                 test_data_valid_reg <= 1'b0;
+//             end
+//         end
+//     end
 
-    assign tx_data_in = test_data_cnt;
-    assign tx_data_valid = 1'b1;
+//     assign tx_data_in = test_data_cnt;
+//     assign tx_data_valid = 1'b1;
+
+wire [7:0]  eth_rx_data;
+wire        eth_rx_data_valid;
+wire        eth_rx_frame_start;
+wire        eth_rx_frame_end;
+wire        eth_tx_ready;
+wire        eth_rx_active;
+wire        eth_tx_active;
+wire [7:0]  eth_tx_data;
+wire        eth_tx_data_valid;
+wire        eth_tx_frame_start;
+
+// 实例化以太网收发模块
+eth_transceiver #(
+    .BOARD_MAC  (48'h11_45_14_19_19_81),
+    .BOARD_IP   ({8'd192, 8'd168, 8'd3, 8'd2}),
+    .BOARD_PORT (16'h8000)
+) eth_inst (
+    .sys_clk            (sys_clk        ),
+    .rst_n              (rst_n          ),
+    
+    .PHY_CLK            (PHY_CLK        ),
+    .RGMII_RXCLK        (RGMII_RXCLK    ),
+    .RGMII_RXD          (RGMII_RXD      ),
+    .RGMII_RXDV         (RGMII_RXDV     ),
+    .RGMII_GTXCLK       (RGMII_GTXCLK   ),
+    .RGMII_TXD          (RGMII_TXD      ),
+    .RGMII_TXEN         (RGMII_TXEN     ),
+    .RGMII_RST_N        (RGMII_RST_N    ),
+    
+    .tx_data            (eth_tx_data    ),  // 回环：接收数据直接发送
+    .tx_data_valid      (eth_tx_data_valid),
+    .tx_frame_start     (eth_tx_frame_start),
+    .tx_ready           (eth_tx_ready   ),
+    
+    .rx_data            (eth_rx_data        ),
+    .rx_data_valid      (eth_rx_data_valid  ),
+    .rx_frame_start     (eth_rx_frame_start ),
+    .rx_frame_end       (eth_rx_frame_end   ),
+    
+    .rx_active          (   ),
+    .tx_active          (   )
+);
+
+// Instantiate rf_data_processor module
+wire        fifo_almost_full;
+
+rf_data_processor #(
+    .FRAME_HEAD(16'hEB90),
+    .FRAME_TAIL(16'h55AA)
+) u_rf_data_processor (
+    // Ethernet RX clock domain
+    .eth_rx_clk         (RGMII_RXCLK),
+    .eth_rx_rst_n       (rst_n),
+    .rx_data            (eth_rx_data),
+    .rx_data_valid      (eth_rx_data_valid),
+    .rx_frame_start     (eth_rx_frame_start),
+    .rx_frame_end       (eth_rx_frame_end),
+    
+    // RF TX clock domain
+    .rf_tx_clk          (test_clk),
+    .rf_tx_rst_n        (rst_n),
+    .rf_tx_data         (tx_data_in),
+    .rf_tx_valid        (tx_data_valid),
+    .fifo_almost_full   (fifo_almost_full)
+);
+
+// Instantiate rf_data_depacketizer module
+wire        depack_frame_error;
+wire [15:0] depack_frame_length;
+
+rf_data_depacketizer #(
+    .FRAME_HEAD         (16'hEB90),
+    .FRAME_TAIL         (16'h55AA),
+    .TIMEOUT_CNT        (32'd125000)
+) u_rf_data_depacketizer (
+    // RF RX clock domain
+    .rf_rx_clk          (test_clk),
+    .rf_rx_rst_n        (rst_n),
+    .rf_rx_data         (rx_data_out),
+    .rf_rx_valid        (rx_data_valid),
+    
+    // Ethernet TX clock domain
+    .eth_tx_clk         (RGMII_RXCLK),
+    .eth_tx_rst_n       (rst_n),
+    .tx_data            (eth_tx_data),
+    .tx_data_valid      (eth_tx_data_valid),
+    .tx_frame_start     (eth_tx_frame_start),
+    .tx_ready           (eth_tx_ready),
+    
+    // Status indicators
+    .frame_error        (depack_frame_error),
+    .frame_length       (depack_frame_length)
+);
+
     
     endmodule

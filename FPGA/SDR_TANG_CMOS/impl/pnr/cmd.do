@@ -3,7 +3,8 @@
 -pn GW5AT-LV60PG484AC1/I0
 -cst D:\Code\git\GoWinSDR\FPGA\SDR_TANG_CMOS\src\SDR_Test.cst
 -cfg D:\Code\git\GoWinSDR\FPGA\SDR_TANG_CMOS\impl\pnr\device.cfg
--gao_crc 1101100011000011
+-sdc D:\Code\git\GoWinSDR\FPGA\SDR_TANG_CMOS\src\timeconstrain.sdc
+-gao_crc 0110100001000101
 -bit
 -tr
 -ph

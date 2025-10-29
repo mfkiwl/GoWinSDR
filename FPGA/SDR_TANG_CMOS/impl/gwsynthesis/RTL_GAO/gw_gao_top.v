@@ -11,18 +11,6 @@ module gw_gao(
     \rx_data_in[2] ,
     \rx_data_in[1] ,
     \rx_data_in[0] ,
-    \sine[11] ,
-    \sine[10] ,
-    \sine[9] ,
-    \sine[8] ,
-    \sine[7] ,
-    \sine[6] ,
-    \sine[5] ,
-    \sine[4] ,
-    \sine[3] ,
-    \sine[2] ,
-    \sine[1] ,
-    \sine[0] ,
     \adc_data_out_i1[11] ,
     \adc_data_out_i1[10] ,
     \adc_data_out_i1[9] ,
@@ -71,11 +59,8 @@ module gw_gao(
     \dac_data_in_q1[2] ,
     \dac_data_in_q1[1] ,
     \dac_data_in_q1[0] ,
-    sys_clk,
     rst_n,
     rx_clk_in_p,
-    rx_frame_in_p,
-    data_clk,
     \rx_data_out[7] ,
     \rx_data_out[6] ,
     \rx_data_out[5] ,
@@ -92,14 +77,6 @@ module gw_gao(
     \tx_data_in[2] ,
     \tx_data_in[1] ,
     \tx_data_in[0] ,
-    \test_data_cnt[7] ,
-    \test_data_cnt[6] ,
-    \test_data_cnt[5] ,
-    \test_data_cnt[4] ,
-    \test_data_cnt[3] ,
-    \test_data_cnt[2] ,
-    \test_data_cnt[1] ,
-    \test_data_cnt[0] ,
     rx_data_valid,
     rx_data_missing,
     tx_data_valid,
@@ -111,6 +88,21 @@ module gw_gao(
     \u_rf_rxt/bit_clk ,
     \u_rf_rxt/demod_bit_clk ,
     test_clk,
+    \eth_rx_data[7] ,
+    \eth_rx_data[6] ,
+    \eth_rx_data[5] ,
+    \eth_rx_data[4] ,
+    \eth_rx_data[3] ,
+    \eth_rx_data[2] ,
+    \eth_rx_data[1] ,
+    \eth_rx_data[0] ,
+    eth_rx_frame_start,
+    eth_rx_frame_end,
+    eth_rx_data_valid,
+    \u_rf_data_processor/rd_state[1] ,
+    \u_rf_data_processor/rd_state[0] ,
+    \u_rf_data_processor/rf_tx_clk ,
+    data_clk,
     tms_pad_i,
     tck_pad_i,
     tdi_pad_i,
@@ -129,18 +121,6 @@ input \rx_data_in[3] ;
 input \rx_data_in[2] ;
 input \rx_data_in[1] ;
 input \rx_data_in[0] ;
-input \sine[11] ;
-input \sine[10] ;
-input \sine[9] ;
-input \sine[8] ;
-input \sine[7] ;
-input \sine[6] ;
-input \sine[5] ;
-input \sine[4] ;
-input \sine[3] ;
-input \sine[2] ;
-input \sine[1] ;
-input \sine[0] ;
 input \adc_data_out_i1[11] ;
 input \adc_data_out_i1[10] ;
 input \adc_data_out_i1[9] ;
@@ -189,11 +169,8 @@ input \dac_data_in_q1[3] ;
 input \dac_data_in_q1[2] ;
 input \dac_data_in_q1[1] ;
 input \dac_data_in_q1[0] ;
-input sys_clk;
 input rst_n;
 input rx_clk_in_p;
-input rx_frame_in_p;
-input data_clk;
 input \rx_data_out[7] ;
 input \rx_data_out[6] ;
 input \rx_data_out[5] ;
@@ -210,14 +187,6 @@ input \tx_data_in[3] ;
 input \tx_data_in[2] ;
 input \tx_data_in[1] ;
 input \tx_data_in[0] ;
-input \test_data_cnt[7] ;
-input \test_data_cnt[6] ;
-input \test_data_cnt[5] ;
-input \test_data_cnt[4] ;
-input \test_data_cnt[3] ;
-input \test_data_cnt[2] ;
-input \test_data_cnt[1] ;
-input \test_data_cnt[0] ;
 input rx_data_valid;
 input rx_data_missing;
 input tx_data_valid;
@@ -229,6 +198,21 @@ input \u_rf_rxt/demod_data[0] ;
 input \u_rf_rxt/bit_clk ;
 input \u_rf_rxt/demod_bit_clk ;
 input test_clk;
+input \eth_rx_data[7] ;
+input \eth_rx_data[6] ;
+input \eth_rx_data[5] ;
+input \eth_rx_data[4] ;
+input \eth_rx_data[3] ;
+input \eth_rx_data[2] ;
+input \eth_rx_data[1] ;
+input \eth_rx_data[0] ;
+input eth_rx_frame_start;
+input eth_rx_frame_end;
+input eth_rx_data_valid;
+input \u_rf_data_processor/rd_state[1] ;
+input \u_rf_data_processor/rd_state[0] ;
+input \u_rf_data_processor/rf_tx_clk ;
+input data_clk;
 input tms_pad_i;
 input tck_pad_i;
 input tdi_pad_i;
@@ -246,18 +230,6 @@ wire \rx_data_in[3] ;
 wire \rx_data_in[2] ;
 wire \rx_data_in[1] ;
 wire \rx_data_in[0] ;
-wire \sine[11] ;
-wire \sine[10] ;
-wire \sine[9] ;
-wire \sine[8] ;
-wire \sine[7] ;
-wire \sine[6] ;
-wire \sine[5] ;
-wire \sine[4] ;
-wire \sine[3] ;
-wire \sine[2] ;
-wire \sine[1] ;
-wire \sine[0] ;
 wire \adc_data_out_i1[11] ;
 wire \adc_data_out_i1[10] ;
 wire \adc_data_out_i1[9] ;
@@ -306,11 +278,8 @@ wire \dac_data_in_q1[3] ;
 wire \dac_data_in_q1[2] ;
 wire \dac_data_in_q1[1] ;
 wire \dac_data_in_q1[0] ;
-wire sys_clk;
 wire rst_n;
 wire rx_clk_in_p;
-wire rx_frame_in_p;
-wire data_clk;
 wire \rx_data_out[7] ;
 wire \rx_data_out[6] ;
 wire \rx_data_out[5] ;
@@ -327,14 +296,6 @@ wire \tx_data_in[3] ;
 wire \tx_data_in[2] ;
 wire \tx_data_in[1] ;
 wire \tx_data_in[0] ;
-wire \test_data_cnt[7] ;
-wire \test_data_cnt[6] ;
-wire \test_data_cnt[5] ;
-wire \test_data_cnt[4] ;
-wire \test_data_cnt[3] ;
-wire \test_data_cnt[2] ;
-wire \test_data_cnt[1] ;
-wire \test_data_cnt[0] ;
 wire rx_data_valid;
 wire rx_data_missing;
 wire tx_data_valid;
@@ -346,6 +307,21 @@ wire \u_rf_rxt/demod_data[0] ;
 wire \u_rf_rxt/bit_clk ;
 wire \u_rf_rxt/demod_bit_clk ;
 wire test_clk;
+wire \eth_rx_data[7] ;
+wire \eth_rx_data[6] ;
+wire \eth_rx_data[5] ;
+wire \eth_rx_data[4] ;
+wire \eth_rx_data[3] ;
+wire \eth_rx_data[2] ;
+wire \eth_rx_data[1] ;
+wire \eth_rx_data[0] ;
+wire eth_rx_frame_start;
+wire eth_rx_frame_end;
+wire eth_rx_data_valid;
+wire \u_rf_data_processor/rd_state[1] ;
+wire \u_rf_data_processor/rd_state[0] ;
+wire \u_rf_data_processor/rf_tx_clk ;
+wire data_clk;
 wire tms_pad_i;
 wire tck_pad_i;
 wire tdi_pad_i;
@@ -419,8 +395,8 @@ gw_con_top  u_icon_top(
 
 ao_top_0  u_la0_top(
     .control(control0[9:0]),
-    .trig0_i(data_clk),
-    .data_i({\rx_data_in[11] ,\rx_data_in[10] ,\rx_data_in[9] ,\rx_data_in[8] ,\rx_data_in[7] ,\rx_data_in[6] ,\rx_data_in[5] ,\rx_data_in[4] ,\rx_data_in[3] ,\rx_data_in[2] ,\rx_data_in[1] ,\rx_data_in[0] ,\sine[11] ,\sine[10] ,\sine[9] ,\sine[8] ,\sine[7] ,\sine[6] ,\sine[5] ,\sine[4] ,\sine[3] ,\sine[2] ,\sine[1] ,\sine[0] ,\adc_data_out_i1[11] ,\adc_data_out_i1[10] ,\adc_data_out_i1[9] ,\adc_data_out_i1[8] ,\adc_data_out_i1[7] ,\adc_data_out_i1[6] ,\adc_data_out_i1[5] ,\adc_data_out_i1[4] ,\adc_data_out_i1[3] ,\adc_data_out_i1[2] ,\adc_data_out_i1[1] ,\adc_data_out_i1[0] ,\adc_data_out_q1[11] ,\adc_data_out_q1[10] ,\adc_data_out_q1[9] ,\adc_data_out_q1[8] ,\adc_data_out_q1[7] ,\adc_data_out_q1[6] ,\adc_data_out_q1[5] ,\adc_data_out_q1[4] ,\adc_data_out_q1[3] ,\adc_data_out_q1[2] ,\adc_data_out_q1[1] ,\adc_data_out_q1[0] ,\dac_data_in_i1[11] ,\dac_data_in_i1[10] ,\dac_data_in_i1[9] ,\dac_data_in_i1[8] ,\dac_data_in_i1[7] ,\dac_data_in_i1[6] ,\dac_data_in_i1[5] ,\dac_data_in_i1[4] ,\dac_data_in_i1[3] ,\dac_data_in_i1[2] ,\dac_data_in_i1[1] ,\dac_data_in_i1[0] ,\dac_data_in_q1[11] ,\dac_data_in_q1[10] ,\dac_data_in_q1[9] ,\dac_data_in_q1[8] ,\dac_data_in_q1[7] ,\dac_data_in_q1[6] ,\dac_data_in_q1[5] ,\dac_data_in_q1[4] ,\dac_data_in_q1[3] ,\dac_data_in_q1[2] ,\dac_data_in_q1[1] ,\dac_data_in_q1[0] ,sys_clk,rst_n,rx_clk_in_p,rx_frame_in_p,data_clk,\rx_data_out[7] ,\rx_data_out[6] ,\rx_data_out[5] ,\rx_data_out[4] ,\rx_data_out[3] ,\rx_data_out[2] ,\rx_data_out[1] ,\rx_data_out[0] ,\tx_data_in[7] ,\tx_data_in[6] ,\tx_data_in[5] ,\tx_data_in[4] ,\tx_data_in[3] ,\tx_data_in[2] ,\tx_data_in[1] ,\tx_data_in[0] ,\test_data_cnt[7] ,\test_data_cnt[6] ,\test_data_cnt[5] ,\test_data_cnt[4] ,\test_data_cnt[3] ,\test_data_cnt[2] ,\test_data_cnt[1] ,\test_data_cnt[0] ,rx_data_valid,rx_data_missing,tx_data_valid,tx_data_ready,\u_rf_rxt/tx_data_iq[1] ,\u_rf_rxt/tx_data_iq[0] ,\u_rf_rxt/demod_data[1] ,\u_rf_rxt/demod_data[0] ,\u_rf_rxt/bit_clk ,\u_rf_rxt/demod_bit_clk ,test_clk}),
+    .trig0_i(tx_data_valid),
+    .data_i({\rx_data_in[11] ,\rx_data_in[10] ,\rx_data_in[9] ,\rx_data_in[8] ,\rx_data_in[7] ,\rx_data_in[6] ,\rx_data_in[5] ,\rx_data_in[4] ,\rx_data_in[3] ,\rx_data_in[2] ,\rx_data_in[1] ,\rx_data_in[0] ,\adc_data_out_i1[11] ,\adc_data_out_i1[10] ,\adc_data_out_i1[9] ,\adc_data_out_i1[8] ,\adc_data_out_i1[7] ,\adc_data_out_i1[6] ,\adc_data_out_i1[5] ,\adc_data_out_i1[4] ,\adc_data_out_i1[3] ,\adc_data_out_i1[2] ,\adc_data_out_i1[1] ,\adc_data_out_i1[0] ,\adc_data_out_q1[11] ,\adc_data_out_q1[10] ,\adc_data_out_q1[9] ,\adc_data_out_q1[8] ,\adc_data_out_q1[7] ,\adc_data_out_q1[6] ,\adc_data_out_q1[5] ,\adc_data_out_q1[4] ,\adc_data_out_q1[3] ,\adc_data_out_q1[2] ,\adc_data_out_q1[1] ,\adc_data_out_q1[0] ,\dac_data_in_i1[11] ,\dac_data_in_i1[10] ,\dac_data_in_i1[9] ,\dac_data_in_i1[8] ,\dac_data_in_i1[7] ,\dac_data_in_i1[6] ,\dac_data_in_i1[5] ,\dac_data_in_i1[4] ,\dac_data_in_i1[3] ,\dac_data_in_i1[2] ,\dac_data_in_i1[1] ,\dac_data_in_i1[0] ,\dac_data_in_q1[11] ,\dac_data_in_q1[10] ,\dac_data_in_q1[9] ,\dac_data_in_q1[8] ,\dac_data_in_q1[7] ,\dac_data_in_q1[6] ,\dac_data_in_q1[5] ,\dac_data_in_q1[4] ,\dac_data_in_q1[3] ,\dac_data_in_q1[2] ,\dac_data_in_q1[1] ,\dac_data_in_q1[0] ,rst_n,rx_clk_in_p,\rx_data_out[7] ,\rx_data_out[6] ,\rx_data_out[5] ,\rx_data_out[4] ,\rx_data_out[3] ,\rx_data_out[2] ,\rx_data_out[1] ,\rx_data_out[0] ,\tx_data_in[7] ,\tx_data_in[6] ,\tx_data_in[5] ,\tx_data_in[4] ,\tx_data_in[3] ,\tx_data_in[2] ,\tx_data_in[1] ,\tx_data_in[0] ,rx_data_valid,rx_data_missing,tx_data_valid,tx_data_ready,\u_rf_rxt/tx_data_iq[1] ,\u_rf_rxt/tx_data_iq[0] ,\u_rf_rxt/demod_data[1] ,\u_rf_rxt/demod_data[0] ,\u_rf_rxt/bit_clk ,\u_rf_rxt/demod_bit_clk ,test_clk,\eth_rx_data[7] ,\eth_rx_data[6] ,\eth_rx_data[5] ,\eth_rx_data[4] ,\eth_rx_data[3] ,\eth_rx_data[2] ,\eth_rx_data[1] ,\eth_rx_data[0] ,eth_rx_frame_start,eth_rx_frame_end,eth_rx_data_valid,\u_rf_data_processor/rd_state[1] ,\u_rf_data_processor/rd_state[0] ,\u_rf_data_processor/rf_tx_clk }),
     .clk_i(data_clk)
 );
 
