@@ -189,6 +189,7 @@ wire                                    test_clk = test_clk_reg    ;
 wire                                    rx_data_out                ;
 wire                                    rx_data_valid              ;
 wire                                    rx_data_missing            ;
+wire                                    rx_clk_out                 ;
 
 wire                   [   7:0]         tx_data_in                 ;
 wire                                    tx_data_valid              ;
@@ -204,7 +205,7 @@ wire                                    tx_data_ready              ;
         
         // RX DATA Port
     .rx_data_out                       (rx_data_out               ),
-    .rx_clk_in                         (clk_250k                  ),
+    .rx_clk_out                        (rx_clk_out                ),
     .rx_data_valid                     (rx_data_valid             ),
     .rx_data_missing                   (rx_data_missing           ),
         
@@ -322,7 +323,7 @@ rf_data_depacketizer #(
     .TIMEOUT_CNT        (32'd125000)
 ) u_rf_data_depacketizer (
     // RF RX clock domain
-    .rf_rx_clk          (test_clk),
+    .rf_rx_clk          (rx_clk_out),
     .rf_rx_rst_n        (rst_n),
     .rf_rx_data         (rx_data_out),
     .rf_rx_valid        (rx_data_valid),

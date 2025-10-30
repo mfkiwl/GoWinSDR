@@ -87,7 +87,7 @@
    },
    {
     "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/top.v",
-    "InstLine" : 200,
+    "InstLine" : 201,
     "InstName" : "u_rf_rxt",
     "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/rf_rxt.v",
     "ModuleLine" : 1,
@@ -95,7 +95,7 @@
     "SubInsts" : [
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/rf_rxt.v",
-      "InstLine" : 112,
+      "InstLine" : 148,
       "InstName" : "fifo_tx_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/fifo_top/fifo_top.v",
       "ModuleLine" : 430,
@@ -113,7 +113,7 @@
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/rf_rxt.v",
-      "InstLine" : 219,
+      "InstLine" : 256,
       "InstName" : "fifo_rx_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/fifo_top_rx/fifo_top_rx.v",
       "ModuleLine" : 418,
@@ -133,7 +133,7 @@
    },
    {
     "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/top.v",
-    "InstLine" : 265,
+    "InstLine" : 266,
     "InstName" : "eth_inst",
     "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_transceiver.v",
     "ModuleLine" : 1,
@@ -185,7 +185,7 @@
    },
    {
     "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/top.v",
-    "InstLine" : 298,
+    "InstLine" : 299,
     "InstName" : "u_rf_data_processor",
     "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_frame_gene.v",
     "ModuleLine" : 1,
@@ -213,7 +213,7 @@
    },
    {
     "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/top.v",
-    "InstLine" : 323,
+    "InstLine" : 324,
     "InstName" : "u_rf_data_depacketizer",
     "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_pack.v",
     "ModuleLine" : 1,
@@ -221,7 +221,7 @@
     "SubInsts" : [
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_pack.v",
-      "InstLine" : 177,
+      "InstLine" : 95,
       "InstName" : "fifo_eth_tx_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/fifo_eth_tx/fifo_eth_tx.v",
       "ModuleLine" : 409,

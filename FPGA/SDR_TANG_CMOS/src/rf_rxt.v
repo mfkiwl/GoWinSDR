@@ -7,8 +7,8 @@ module rf_rxt #(
     input                               sample_clk                 ,
 
     // RX DATA Port
-    output                              rx_data_out                ,
-    input                               rx_clk_in                  ,
+    output         reg                  rx_data_out                ,
+    output                              rx_clk_out                 ,
     output                              rx_data_valid              ,
     output                              rx_data_missing            ,
 
@@ -35,6 +35,7 @@ reg             signed [  11:0]         qpsk_i_reg, qpsk_q_reg     ;
 reg                                     qpsk_valid                 ;
 
 reg                                     bit_clk                    ;
+reg                                     bit_clk_m2                 ;
 reg                    [  31:0]         bit_counter                ;
 localparam                              BIT_CLK_DIV = SAMPLE_RATE / BIT_RATE;
 
@@ -48,8 +49,31 @@ always @(posedge sample_clk or negedge rst_n) begin
             bit_counter <= 32'd0;
             bit_clk <= ~bit_clk;
         end
+        else if (bit_counter >= (BIT_CLK_DIV / 2 - 1)) begin
+            bit_counter <= bit_counter + 1'd1;
+        end
         else begin
             bit_counter <= bit_counter + 1'd1;
+        end
+    end
+end
+
+// Generate bit_clk_m2 (double frequency of bit_clk)
+reg                    [  31:0]         bit_counter_m2             ;
+localparam                              BIT_CLK_M2_DIV = SAMPLE_RATE / (BIT_RATE * 2);
+
+always @(posedge sample_clk or negedge rst_n) begin
+    if (!rst_n) begin
+        bit_counter_m2 <= 32'd0;
+        bit_clk_m2 <= 1'b0;
+    end
+    else begin
+        if (bit_counter_m2 >= (BIT_CLK_M2_DIV - 1)) begin
+            bit_counter_m2 <= 32'd0;
+            bit_clk_m2 <= ~bit_clk_m2;
+        end
+        else begin
+            bit_counter_m2 <= bit_counter_m2 + 1'd1;
         end
     end
 end
@@ -76,21 +100,33 @@ always @(posedge bit_clk) begin
     endcase
 end
 
+reg qpsk_idle_flag;
+reg qpsk_idle_flag_reg;
+always @(posedge bit_clk or negedge rst_n) begin
+    if (!rst_n) begin
+        qpsk_idle_flag <= 1'b1;
+        qpsk_idle_flag_reg <= 1'b1;
+    end
+    else if (empty_flag) begin
+        qpsk_idle_flag_reg <= 1'b1;
+        qpsk_idle_flag <= qpsk_idle_flag_reg;
+    end
+    else begin
+        qpsk_idle_flag_reg <= 1'b0;
+        qpsk_idle_flag <= 1'b0;
+    end
+end
+
 always @(posedge sample_clk or negedge rst_n) begin
     if (!rst_n) begin
         qpsk_i_reg <= 12'd0;
         qpsk_q_reg <= 12'd0;
         qpsk_valid <= 1'b0;
     end
-    else if (tx_data_valid == 1'b0) begin
+    else if (qpsk_idle_flag) begin
         qpsk_i_reg <= 12'd0;
         qpsk_q_reg <= 12'd0;
-        qpsk_valid <= 1'b0;
-    end
-    else if (empty_flag) begin
-        qpsk_i_reg <= qpsk_i_reg;
-        qpsk_q_reg <= qpsk_q_reg;
-        qpsk_valid <= 1'b0;
+        qpsk_valid <= 1'b1;
     end
     else begin
         qpsk_i_reg <= qpsk_i;
@@ -110,7 +146,7 @@ wire                                    tx_fifo_full               ;
 assign tx_data_ready = ~tx_fifo_full;
 
     fifo_tx fifo_tx_u0(
-    .Data                              (tx_data_in                ),//input [7:0] Data
+    .Data                              ({tx_data_in[1:0], tx_data_in[3:2], tx_data_in[5:4], tx_data_in[7:6]} ),//input [7:0] Data
     .WrClk                             (tx_clk_in                 ),//input WrClk
     .RdClk                             (bit_clk                   ),//input RdClk
     .WrEn                              (tx_data_valid             ),//input WrEn
@@ -213,19 +249,41 @@ reg                                     integrate_ready            ;
     end
 
 wire                                    rx_fifo_empty              ;
+assign rx_clk_out = bit_clk_m2;
 
 assign rx_data_valid = ~rx_fifo_empty;
     // FIFO for demodulated data output
     fifo_rx fifo_rx_u0(
     .Data                              (demod_data                ),//input [1:0] Data
     .WrClk                             (demod_bit_clk             ),//input WrClk
-    .RdClk                             (rx_clk_in                 ),//input RdClk
+    .RdClk                             (bit_clk_m2                ),//input RdClk
     .WrEn                              (demod_valid               ),//input WrEn
     .RdEn                              (1'b1                      ),//input RdEn
-    .Q                                 (rx_data_out               ),//output [0:0] Q
+    .Q                                 (               ),//output [0:0] Q
     .Empty                             (rx_fifo_empty             ),//output Empty
     .Full                              (rx_data_missing           ) //output Full
     );
 
+reg cnt_bits;
+reg [1:0] demod_data_reg;
+
+always @(posedge bit_clk_m2 or negedge rst_n) begin
+    if (!rst_n) begin
+        rx_data_out <= 1'b0;
+        cnt_bits <= 1'b0;
+    end
+    else begin
+        if (cnt_bits == 1'b0) begin
+
+            rx_data_out <= demod_data_reg[1];
+            cnt_bits <= 1'b1;
+        end
+        else begin
+            demod_data_reg <= demod_data;
+            rx_data_out <= demod_data_reg[0];
+            cnt_bits <= 1'b0;
+        end
+    end
+end
 
 endmodule

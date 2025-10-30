@@ -96,7 +96,7 @@ module rf_data_processor #(
                     temp_data2 <= temp_data1;
                     fifo_wr_data <= temp_data2;
                     fifo_wr_en <= 1'b1;
-                    state <= IDLE;
+                    state <= SEND_LAST1;
                 end
 
                 SEND_LAST1: begin

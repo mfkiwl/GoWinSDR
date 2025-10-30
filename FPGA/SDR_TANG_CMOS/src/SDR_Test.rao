@@ -120,6 +120,56 @@
             </Bus>
             <Signal capture_enable="true">u_rf_data_processor/rf_tx_clk</Signal>
             <Signal capture_enable="true">rx_data_out</Signal>
+            <Signal capture_enable="true">u_rf_rxt/bit_clk_m2</Signal>
+            <Bus capture_enable="true" name="u_rf_data_depacketizer/pack_state[2:0]">
+                <Signal>u_rf_data_depacketizer/pack_state[2]</Signal>
+                <Signal>u_rf_data_depacketizer/pack_state[1]</Signal>
+                <Signal>u_rf_data_depacketizer/pack_state[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_data_depacketizer/bit_shift_reg[31:0]">
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[31]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[30]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[29]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[28]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[27]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[26]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[25]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[24]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[23]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[22]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[21]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[20]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[19]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[18]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[17]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[16]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[15]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[14]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[13]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[12]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[11]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[10]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[9]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[8]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[7]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[6]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[5]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[4]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[3]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[2]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[1]</Signal>
+                <Signal>u_rf_data_depacketizer/bit_shift_reg[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_data_depacketizer/fifo_wr_data[7:0]">
+                <Signal>u_rf_data_depacketizer/fifo_wr_data[7]</Signal>
+                <Signal>u_rf_data_depacketizer/fifo_wr_data[6]</Signal>
+                <Signal>u_rf_data_depacketizer/fifo_wr_data[5]</Signal>
+                <Signal>u_rf_data_depacketizer/fifo_wr_data[4]</Signal>
+                <Signal>u_rf_data_depacketizer/fifo_wr_data[3]</Signal>
+                <Signal>u_rf_data_depacketizer/fifo_wr_data[2]</Signal>
+                <Signal>u_rf_data_depacketizer/fifo_wr_data[1]</Signal>
+                <Signal>u_rf_data_depacketizer/fifo_wr_data[0]</Signal>
+            </Bus>
         </SignalList>
         <Triggers>
             <Trigger index="0">
@@ -165,5 +215,5 @@
             <Expression>M0</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>1111100110011010</GAO_ID>
+    <GAO_ID>0100100000110011</GAO_ID>
 </GAO_CONFIG>
