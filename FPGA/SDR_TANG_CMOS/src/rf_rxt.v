@@ -7,7 +7,7 @@ module rf_rxt #(
     input                               sample_clk                 ,
 
     // RX DATA Port
-    output         reg                  rx_data_out                ,
+    output                           rx_data_out                ,
     output                              rx_clk_out                 ,
     output                              rx_data_valid              ,
     output                              rx_data_missing            ,
@@ -254,36 +254,36 @@ assign rx_clk_out = bit_clk_m2;
 assign rx_data_valid = ~rx_fifo_empty;
     // FIFO for demodulated data output
     fifo_rx fifo_rx_u0(
-    .Data                              (demod_data                ),//input [1:0] Data
+    .Data                              ({demod_data[0], demod_data[1]}),//input [1:0] Data
     .WrClk                             (demod_bit_clk             ),//input WrClk
     .RdClk                             (bit_clk_m2                ),//input RdClk
     .WrEn                              (demod_valid               ),//input WrEn
     .RdEn                              (1'b1                      ),//input RdEn
-    .Q                                 (               ),//output [0:0] Q
+    .Q                                 (rx_data_out               ),//output [0:0] Q
     .Empty                             (rx_fifo_empty             ),//output Empty
     .Full                              (rx_data_missing           ) //output Full
     );
 
-reg cnt_bits;
-reg [1:0] demod_data_reg;
+// reg cnt_bits;
+// reg [1:0] demod_data_reg;
 
-always @(posedge bit_clk_m2 or negedge rst_n) begin
-    if (!rst_n) begin
-        rx_data_out <= 1'b0;
-        cnt_bits <= 1'b0;
-    end
-    else begin
-        if (cnt_bits == 1'b0) begin
+// always @(posedge bit_clk_m2 or negedge rst_n) begin
+//     if (!rst_n) begin
+//         rx_data_out <= 1'b0;
+//         cnt_bits <= 1'b0;
+//     end
+//     else begin
+//         if (cnt_bits == 1'b0) begin
 
-            rx_data_out <= demod_data_reg[1];
-            cnt_bits <= 1'b1;
-        end
-        else begin
-            demod_data_reg <= demod_data;
-            rx_data_out <= demod_data_reg[0];
-            cnt_bits <= 1'b0;
-        end
-    end
-end
+//             rx_data_out <= demod_data_reg[1];
+//             cnt_bits <= 1'b1;
+//         end
+//         else begin
+//             demod_data_reg <= demod_data;
+//             rx_data_out <= demod_data_reg[0];
+//             cnt_bits <= 1'b0;
+//         end
+//     end
+// end
 
 endmodule

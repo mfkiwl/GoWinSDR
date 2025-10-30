@@ -143,7 +143,7 @@ reg                                     led_blink                  ;
 
     // generate 100 kHz test clock from sys_clk
 localparam                              integer SYS_CLK_FREQ_HZ = 50_000_000;// adjust if sys_clk differs
-localparam                              integer TEST_CLK_FREQ_HZ = 125_000;
+localparam                              integer TEST_CLK_FREQ_HZ = 200_000;
 localparam                              integer DIV_HALF = SYS_CLK_FREQ_HZ / (2 * TEST_CLK_FREQ_HZ);// toggle every DIV_HALF cycles
 
 reg                    [  31:0]         test_div_cnt               ;
@@ -329,7 +329,7 @@ rf_data_depacketizer #(
     .rf_rx_valid        (rx_data_valid),
     
     // Ethernet TX clock domain
-    .eth_tx_clk         (RGMII_RXCLK),
+    .eth_tx_clk         (RGMII_GTXCLK),
     .eth_tx_rst_n       (rst_n),
     .tx_data            (eth_tx_data),
     .tx_data_valid      (eth_tx_data_valid),

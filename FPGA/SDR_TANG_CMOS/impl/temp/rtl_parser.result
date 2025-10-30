@@ -221,7 +221,7 @@
     "SubInsts" : [
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/eth_pack.v",
-      "InstLine" : 95,
+      "InstLine" : 135,
       "InstName" : "fifo_eth_tx_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/fifo_eth_tx/fifo_eth_tx.v",
       "ModuleLine" : 409,
