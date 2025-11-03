@@ -3,7 +3,7 @@
 <title>Static Call Graph - [GoWinSDR\GoWinSDR.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image GoWinSDR\GoWinSDR.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Oct 29 23:55:04 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Nov 03 00:11:44 2025
 <BR><P>
 <H3>Maximum Stack Usage =       1160 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1152,9 +1152,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_writem
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_check_cal_done
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;do_div
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_set_rate
 </UL>
@@ -1164,9 +1164,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_read
 <LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_int_loopback_fix_ch_cross
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_hdl_loopback
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_dig_tune
 </UL>
@@ -1174,8 +1174,8 @@ Global Symbols
 <P><STRONG><a name="[f0]"></a>ad9361_bist_prbs</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, ad9361.o(i.ad9361_bist_prbs))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = ad9361_bist_prbs &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_dig_tune
 </UL>
@@ -1184,9 +1184,9 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 144 + In Cycle
 <LI>Call Chain = ad9361_calculate_rf_clock_chain &rArr;  ad9361_calculate_rf_clock_chain (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_calculate_rf_clock_chain
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_tx_sampling_freq
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_rx_sampling_freq
@@ -1227,9 +1227,9 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = ad9361_clk_mux_set_parent &rArr; ad9361_trx_ext_lo_control &rArr; __ad9361_spi_writef &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_trx_ext_lo_control
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_ensm_restore_prev_state
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_ensm_force_state
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
 </UL>
@@ -1238,7 +1238,6 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 768<LI>Call Chain = ad9361_dig_tune &rArr; ad9361_set_trx_clock_chain_freq &rArr; ad9361_set_trx_clock_chain &rArr;  ad9361_dig_tune (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_read
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;axiadc_write
 <LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;axiadc_set_pnsel
@@ -1256,6 +1255,7 @@ Global Symbols
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_ensm_force_state
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_bist_prbs
 <LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_bist_loopback
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_post_setup
 <LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_validate_enable_fir
@@ -1267,12 +1267,12 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_tx_quad_calib
 <LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rf_dc_offset_calib
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_get_rate
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_tracking_control
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_from_clk
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_ensm_restore_prev_state
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_ensm_force_state
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rfpll_set_rate
 </UL>
@@ -1302,9 +1302,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_read
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_readf
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_post_setup
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_dig_tune
@@ -1318,8 +1318,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = ad9361_ensm_restore_prev_state &rArr; ad9361_spi_read &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_read
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_post_setup
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_dig_tune
@@ -1336,11 +1336,11 @@ Global Symbols
 <LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_trx_vco_cal_control
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_check_cal_done
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;udelay
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_get_rate
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_en_state_machine_mode
 <LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
@@ -1377,8 +1377,8 @@ Global Symbols
 <LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_get_split_table_gain
 <LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_get_full_table_gain
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_readf
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_get_rx_rf_gain
 </UL>
@@ -1405,10 +1405,10 @@ Global Symbols
 <P><STRONG><a name="[124]"></a>ad9361_get_rx_rf_gain</STRONG> (Thumb, 72 bytes, Stack size 56 bytes, ad9361_api.o(i.ad9361_get_rx_rf_gain))
 <BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = ad9361_get_rx_rf_gain &rArr; ad9361_get_rx_gain &rArr; ad9361_get_full_table_gain &rArr; clk_get_rate &rArr; ad9361_rfpll_recalc_rate &rArr; ad9361_rfpll_int_recalc_rate &rArr; ad9361_fastlock_readval &rArr; ad9361_spi_read &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_get_rx_gain
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_1rx1tx_channel_map
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rx2_rf_gain
 <LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rx1_rf_gain
@@ -1436,9 +1436,9 @@ Global Symbols
 <P><STRONG><a name="[128]"></a>ad9361_get_tx_attenuation</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, ad9361_api.o(i.ad9361_get_tx_attenuation))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = ad9361_get_tx_attenuation &rArr; ad9361_get_tx_atten &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_get_tx_atten
+<BR>[Calls]<UL><LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_get_tx_atten
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_1rx1tx_channel_map
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_tx2_attenuation
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_tx1_attenuation
@@ -1485,7 +1485,6 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 832<LI>Call Chain = ad9361_init &rArr; axiadc_post_setup &rArr; ad9361_post_setup &rArr; ad9361_dig_tune &rArr; ad9361_set_trx_clock_chain_freq &rArr; ad9361_set_trx_clock_chain &rArr;  ad9361_dig_tune (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_read
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zmalloc
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;axiadc_read
 <LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;axiadc_post_setup
@@ -1495,6 +1494,7 @@ Global Symbols
 <LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_reset
 <LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_init_gain_tables
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1512,11 +1512,11 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_readf
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_ensm_restore_prev_state
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_ensm_force_state
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_tx_fir_config
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_rx_fir_config
@@ -1538,11 +1538,11 @@ Global Symbols
 <P><STRONG><a name="[12e]"></a>ad9361_reset</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, ad9361.o(i.ad9361_reset))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = ad9361_reset &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mdelay
+<BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mdelay
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set_value
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_is_valid
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_init
 </UL>
@@ -1551,8 +1551,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = ad9361_rf_port_setup &rArr; ad9361_txmon_control &rArr; __ad9361_spi_writef &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_txmon_control
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_tx_rf_port_output
 <LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
@@ -1574,12 +1574,12 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_fastlock_readval
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_readf
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;do_div
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_to_clk
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_readm
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_clk_register
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_set_rate
@@ -1590,8 +1590,8 @@ Global Symbols
 <P><STRONG><a name="[141]"></a>ad9361_rfpll_int_round_rate</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, ad9361.o(i.ad9361_rfpll_int_round_rate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = ad9361_rfpll_int_round_rate &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_from_clk
+<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_from_clk
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_set_rate
 <LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rfpll_round_rate
@@ -1608,9 +1608,9 @@ Global Symbols
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_check_cal_done
 <LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_calc_rfpll_int_divder
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_from_clk
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_set_rate
 <LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rfpll_set_rate
@@ -1639,11 +1639,11 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 456<LI>Call Chain = ad9361_rfpll_set_rate &rArr; ad9361_do_calib_run &rArr; ad9361_tx_quad_calib &rArr; ad9361_tx_quad_phase_search &rArr; __ad9361_tx_quad_calib &rArr; ad9361_run_calibration &rArr; ad9361_check_cal_done &rArr; __ad9361_spi_readf &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_load_gt
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rfpll_int_set_rate
 <LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rfpll_dummy_set_rate
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_from_clk
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_do_calib_run
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_set_rate
 </UL>
@@ -1651,8 +1651,8 @@ Global Symbols
 <P><STRONG><a name="[14b]"></a>ad9361_set_dcxo_tune</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, ad9361.o(i.ad9361_set_dcxo_tune))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = ad9361_set_dcxo_tune &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
 </UL>
@@ -1681,10 +1681,10 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = ad9361_set_gain_ctrl_mode &rArr; ad9361_gc_update &rArr; clk_get_rate &rArr; ad9361_rfpll_recalc_rate &rArr; ad9361_rfpll_int_recalc_rate &rArr; ad9361_fastlock_readval &rArr; ad9361_spi_read &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_gc_update
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_readm
 <LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_en_dis_rx
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_rx_gain_control_mode
 </UL>
@@ -1719,9 +1719,9 @@ Global Symbols
 <P><STRONG><a name="[154]"></a>ad9361_set_rx_gain_control_mode</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, ad9361_api.o(i.ad9361_set_rx_gain_control_mode))
 <BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = ad9361_set_rx_gain_control_mode &rArr; ad9361_set_gain_ctrl_mode &rArr; ad9361_gc_update &rArr; clk_get_rate &rArr; ad9361_rfpll_recalc_rate &rArr; ad9361_rfpll_int_recalc_rate &rArr; ad9361_fastlock_readval &rArr; ad9361_spi_read &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_gain_ctrl_mode
+<BR>[Calls]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_gain_ctrl_mode
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_1rx1tx_channel_map
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_rx2_gc_mode
 <LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_rx1_gc_mode
@@ -1748,10 +1748,10 @@ Global Symbols
 <P><STRONG><a name="[15a]"></a>ad9361_set_rx_rf_gain</STRONG> (Thumb, 70 bytes, Stack size 56 bytes, ad9361_api.o(i.ad9361_set_rx_rf_gain))
 <BR><BR>[Stack]<UL><LI>Max Depth = 312<LI>Call Chain = ad9361_set_rx_rf_gain &rArr; ad9361_set_rx_gain &rArr; set_full_table_gain &rArr; clk_get_rate &rArr; ad9361_rfpll_recalc_rate &rArr; ad9361_rfpll_int_recalc_rate &rArr; ad9361_fastlock_readval &rArr; ad9361_spi_read &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_rx_gain
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_1rx1tx_channel_map
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_rx2_rf_gain
 <LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_rx1_rf_gain
@@ -1776,11 +1776,11 @@ Global Symbols
 <LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_gc_update
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_auxadc_setup
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_set_rate
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_get_rate
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_dig_tune
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_post_setup
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_tx_sampling_freq
@@ -1804,8 +1804,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_writem
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_tx_attenuation
 <LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_tx_mute
@@ -1815,9 +1815,9 @@ Global Symbols
 <P><STRONG><a name="[15e]"></a>ad9361_set_tx_attenuation</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, ad9361_api.o(i.ad9361_set_tx_attenuation))
 <BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = ad9361_set_tx_attenuation &rArr; ad9361_set_tx_atten &rArr; __ad9361_spi_writef &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_tx_atten
+<BR>[Calls]<UL><LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_tx_atten
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_1rx1tx_channel_map
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_tx2_attenuation
@@ -1899,7 +1899,6 @@ Global Symbols
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_auxadc_setup
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_readf
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_set_rate
 <LI><a href="#[166]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_prepare_enable
@@ -1918,6 +1917,7 @@ Global Symbols
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_en_dis_tx
 <LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_en_dis_rx
 <LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_clk_mux_set_parent
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_init
 </UL>
@@ -1950,8 +1950,8 @@ Global Symbols
 <P><STRONG><a name="[cc]"></a>ad9361_spi_readm</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, ad9361.o(i.ad9361_spi_readm))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_write_then_read
+<BR>[Calls]<UL><LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_write_then_read
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_read
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
@@ -1965,8 +1965,8 @@ Global Symbols
 <P><STRONG><a name="[ce]"></a>ad9361_spi_write</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, ad9361.o(i.ad9361_spi_write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_write_then_read
+<BR>[Calls]<UL><LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_write_then_read
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_txrx_synth_cp_calib
 <LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_txmon_setup
@@ -2023,9 +2023,9 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = ad9361_tracking_control &rArr; __ad9361_spi_writef &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_update_rf_bandwidth
 <LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
@@ -2060,13 +2060,13 @@ Global Symbols
 <P><STRONG><a name="[150]"></a>ad9361_validate_enable_fir</STRONG> (Thumb, 432 bytes, Stack size 88 bytes, ad9361.o(i.ad9361_validate_enable_fir))
 <BR><BR>[Stack]<UL><LI>Max Depth = 856<LI>Call Chain = ad9361_validate_enable_fir &rArr; ad9361_dig_tune &rArr; ad9361_set_trx_clock_chain_freq &rArr; ad9361_set_trx_clock_chain &rArr;  ad9361_dig_tune (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_get_rate
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_dig_tune
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_update_rf_bandwidth
 <LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_trx_clock_chain
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_calculate_rf_clock_chain
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_tx_fir_en_dis
 <LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_rx_fir_en_dis
@@ -2712,8 +2712,8 @@ Global Symbols
 <LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_TogglePin
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
@@ -2740,8 +2740,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = register_clocks &rArr; ad9361_clk_register &rArr; ad9361_rfpll_recalc_rate &rArr; ad9361_rfpll_int_recalc_rate &rArr; ad9361_fastlock_readval &rArr; ad9361_spi_read &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_clk_register
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_init
 </UL>
@@ -3198,8 +3198,8 @@ Local Symbols
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rx_tia_calib
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rx_bb_analog_filter_calib
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rx_adc_setup
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_get_rate
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_tx_quad_calib
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_update_rf_bandwidth
@@ -3208,9 +3208,9 @@ Local Symbols
 <P><STRONG><a name="[e2]"></a>ad9361_auxadc_setup</STRONG> (Thumb, 138 bytes, Stack size 24 bytes, ad9361.o(i.ad9361_auxadc_setup))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = ad9361_auxadc_setup &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ilog2
+<BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ilog2
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
 <LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_trx_clock_chain
@@ -3220,9 +3220,9 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = ad9361_auxdac_set &rArr; __ad9361_spi_writef &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_auxdac_setup
 </UL>
@@ -3232,9 +3232,9 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_auxdac_set
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
 </UL>
@@ -3252,9 +3252,9 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = ad9361_check_cal_done &rArr; __ad9361_spi_readf &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_readf
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;udelay
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_txrx_synth_cp_calib
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_run_calibration
@@ -3266,14 +3266,14 @@ Local Symbols
 <P><STRONG><a name="[ff]"></a>ad9361_clk_register</STRONG> (Thumb, 214 bytes, Stack size 24 bytes, ad9361.o(i.ad9361_clk_register))
 <BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = ad9361_clk_register &rArr; ad9361_rfpll_recalc_rate &rArr; ad9361_rfpll_int_recalc_rate &rArr; ad9361_fastlock_readval &rArr; ad9361_spi_read &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ERR_PTR
+<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ERR_PTR
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rfpll_recalc_rate
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rfpll_int_recalc_rate
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_clk_factor_recalc_rate
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_bbpll_recalc_rate
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;register_clocks
 </UL>
@@ -3283,9 +3283,9 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_trx_vco_cal_control
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rfpll_int_set_rate
 </UL>
@@ -3304,10 +3304,10 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_gc_update
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ilog2
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
 </UL>
@@ -3362,8 +3362,8 @@ Local Symbols
 <P><STRONG><a name="[12b]"></a>ad9361_gpo_setup</STRONG> (Thumb, 192 bytes, Stack size 16 bytes, ad9361.o(i.ad9361_gpo_setup))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = ad9361_gpo_setup &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
 </UL>
@@ -3393,9 +3393,9 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_gt_tableindex
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rfpll_set_rate
 </UL>
@@ -3403,8 +3403,8 @@ Local Symbols
 <P><STRONG><a name="[138]"></a>ad9361_load_mixer_gm_subtable</STRONG> (Thumb, 190 bytes, Stack size 24 bytes, ad9361.o(i.ad9361_load_mixer_gm_subtable))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = ad9361_load_mixer_gm_subtable &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
 </UL>
@@ -3413,9 +3413,9 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = ad9361_pp_port_setup &rArr; __ad9361_spi_writef &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
 </UL>
@@ -3428,8 +3428,8 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = ad9361_rf_dc_offset_calib &rArr; ad9361_run_calibration &rArr; ad9361_check_cal_done &rArr; __ad9361_spi_readf &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_run_calibration
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_do_calib_run
@@ -3439,10 +3439,10 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = ad9361_rfpll_vco_init &rArr; __ad9361_spi_writef &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;do_div
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rfpll_int_set_rate
 </UL>
@@ -3450,9 +3450,9 @@ Local Symbols
 <P><STRONG><a name="[148]"></a>ad9361_rssi_setup</STRONG> (Thumb, 464 bytes, Stack size 64 bytes, ad9361.o(i.ad9361_rssi_setup))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = ad9361_rssi_setup &rArr; clk_get_rate &rArr; ad9361_rfpll_recalc_rate &rArr; ad9361_rfpll_int_recalc_rate &rArr; ad9361_fastlock_readval &rArr; ad9361_spi_read &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_get_rate
+<BR>[Calls]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_get_rate
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
 <LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_trx_clock_chain
@@ -3462,8 +3462,8 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = ad9361_run_calibration &rArr; ad9361_check_cal_done &rArr; __ad9361_spi_readf &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_check_cal_done
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_tx_bb_analog_filter_calib
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rx_bb_analog_filter_calib
@@ -3476,10 +3476,10 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = ad9361_rx_adc_setup &rArr; ad9361_spi_read &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_read
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;int_sqrt
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;do_div
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_update_rf_bandwidth
 <LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
@@ -3490,9 +3490,9 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_run_calibration
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_update_rf_bandwidth
 <LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
@@ -3502,9 +3502,9 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = ad9361_rx_tia_calib &rArr; ad9361_spi_read &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_read
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;do_div
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_update_rf_bandwidth
 <LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
@@ -3525,9 +3525,9 @@ Local Symbols
 <P><STRONG><a name="[eb]"></a>ad9361_spi_writem</STRONG> (Thumb, 102 bytes, Stack size 32 bytes, ad9361.o(i.ad9361_spi_writem))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = ad9361_spi_writem &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<BR>[Calls]<UL><LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_write_then_read
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_tx_atten
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rfpll_int_set_rate
@@ -3543,9 +3543,9 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_readf
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_clk_mux_set_parent
 </UL>
@@ -3554,8 +3554,8 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = ad9361_trx_vco_cal_control &rArr; __ad9361_spi_writef &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_fastlock_prepare
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rfpll_int_set_rate
@@ -3567,9 +3567,9 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_run_calibration
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_update_rf_bandwidth
 <LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
@@ -3578,9 +3578,9 @@ Local Symbols
 <P><STRONG><a name="[d8]"></a>ad9361_tx_bb_second_filter_calib</STRONG> (Thumb, 246 bytes, Stack size 40 bytes, ad9361.o(i.ad9361_tx_bb_second_filter_calib))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = ad9361_tx_bb_second_filter_calib &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;do_div
+<BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;do_div
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_update_rf_bandwidth
 <LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
@@ -3595,10 +3595,10 @@ Local Symbols
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_tx_quad_calib
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_readf
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_get_rate
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_update_rf_bandwidth
 <LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
@@ -3609,8 +3609,8 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 312<LI>Call Chain = ad9361_tx_quad_phase_search &rArr; __ad9361_tx_quad_calib &rArr; ad9361_run_calibration &rArr; ad9361_check_cal_done &rArr; __ad9361_spi_readf &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_tx_quad_calib
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_find_opt
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_tx_quad_calib
 </UL>
@@ -3619,8 +3619,8 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = ad9361_txmon_control &rArr; __ad9361_spi_writef &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_rf_port_setup
 </UL>
@@ -3628,9 +3628,9 @@ Local Symbols
 <P><STRONG><a name="[168]"></a>ad9361_txmon_setup</STRONG> (Thumb, 160 bytes, Stack size 16 bytes, ad9361.o(i.ad9361_txmon_setup))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = ad9361_txmon_setup &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ilog2
+<BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ilog2
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
 </UL>
@@ -3640,9 +3640,9 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_check_cal_done
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_spi_write
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_setup
 </UL>
@@ -3660,10 +3660,10 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_gt_tableindex
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_get_rate
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_from_clk
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_rx_gain
 </UL>
@@ -3672,8 +3672,8 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = set_split_table_gain &rArr; __ad9361_spi_writef &rArr; ad9361_spi_write &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ad9361_spi_writef
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;find_first_bit
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_set_rx_gain
 </UL>
@@ -3681,12 +3681,12 @@ Local Symbols
 <P><STRONG><a name="[10f]"></a>ad9361_dig_tune_iodelay</STRONG> (Thumb, 198 bytes, Stack size 96 bytes, ad9361_conv.o(i.ad9361_dig_tune_iodelay))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = ad9361_dig_tune_iodelay &rArr; ad9361_find_opt
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;axiadc_write
+<BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;axiadc_write
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_iodelay_set
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;axiadc_read
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mdelay
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_find_opt
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_dig_tune
 </UL>
@@ -3694,8 +3694,8 @@ Local Symbols
 <P><STRONG><a name="[10d]"></a>ad9361_dig_tune_verbose_print</STRONG> (Thumb, 118 bytes, Stack size 24 bytes, ad9361_conv.o(i.ad9361_dig_tune_verbose_print))
 <BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = ad9361_dig_tune_verbose_print &rArr; clk_get_rate &rArr; ad9361_rfpll_recalc_rate &rArr; ad9361_rfpll_int_recalc_rate &rArr; ad9361_fastlock_readval &rArr; ad9361_spi_read &rArr; ad9361_spi_readm &rArr; spi_write_then_read &rArr; Soft_SPI_TransferBuffer &rArr; Soft_SPI_TransferByte &rArr; Soft_SPI_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_get_rate
+<BR>[Calls]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clk_get_rate
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ad9361_dig_tune
 </UL>
@@ -3736,11 +3736,11 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[ca]"></a>_printf_core</STRONG> (Thumb, 1704 bytes, Stack size 136 bytes, printfa.o(i._printf_core), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<BR><BR>[Calls]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf
 </UL>

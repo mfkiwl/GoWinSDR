@@ -10,6 +10,10 @@
    "Type" : "verilog"
   },
   {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/costas.v",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_TANG_CMOS/src/crc.v",
    "Type" : "verilog"
   },

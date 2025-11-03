@@ -24,6 +24,7 @@
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_TANG_CMOS\src\pll_init.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_TANG_CMOS\src\rf_rxt.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_TANG_CMOS\src\top.v" type="verilog"/>
+        <File path="D:\Code\git\GoWinSDR\FPGA\SDR_TANG_CMOS\src\costas.v" type="verilog"/>
         <File path="E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_crc32.v" type="gao"/>
         <File path="E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v" type="gao"/>
         <File path="E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v" type="gao"/>

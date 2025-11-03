@@ -46,6 +46,34 @@
                 <Signal>adc_data_out_q1[1]</Signal>
                 <Signal>adc_data_out_q1[0]</Signal>
             </Bus>
+            <Bus capture_enable="true" name="u_rf_rxt/costas_out_i[11:0]">
+                <Signal>u_rf_rxt/costas_out_i[11]</Signal>
+                <Signal>u_rf_rxt/costas_out_i[10]</Signal>
+                <Signal>u_rf_rxt/costas_out_i[9]</Signal>
+                <Signal>u_rf_rxt/costas_out_i[8]</Signal>
+                <Signal>u_rf_rxt/costas_out_i[7]</Signal>
+                <Signal>u_rf_rxt/costas_out_i[6]</Signal>
+                <Signal>u_rf_rxt/costas_out_i[5]</Signal>
+                <Signal>u_rf_rxt/costas_out_i[4]</Signal>
+                <Signal>u_rf_rxt/costas_out_i[3]</Signal>
+                <Signal>u_rf_rxt/costas_out_i[2]</Signal>
+                <Signal>u_rf_rxt/costas_out_i[1]</Signal>
+                <Signal>u_rf_rxt/costas_out_i[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_rxt/costas_out_q[11:0]">
+                <Signal>u_rf_rxt/costas_out_q[11]</Signal>
+                <Signal>u_rf_rxt/costas_out_q[10]</Signal>
+                <Signal>u_rf_rxt/costas_out_q[9]</Signal>
+                <Signal>u_rf_rxt/costas_out_q[8]</Signal>
+                <Signal>u_rf_rxt/costas_out_q[7]</Signal>
+                <Signal>u_rf_rxt/costas_out_q[6]</Signal>
+                <Signal>u_rf_rxt/costas_out_q[5]</Signal>
+                <Signal>u_rf_rxt/costas_out_q[4]</Signal>
+                <Signal>u_rf_rxt/costas_out_q[3]</Signal>
+                <Signal>u_rf_rxt/costas_out_q[2]</Signal>
+                <Signal>u_rf_rxt/costas_out_q[1]</Signal>
+                <Signal>u_rf_rxt/costas_out_q[0]</Signal>
+            </Bus>
             <Bus capture_enable="true" name="dac_data_in_i1[11:0]">
                 <Signal>dac_data_in_i1[11]</Signal>
                 <Signal>dac_data_in_i1[10]</Signal>
@@ -236,5 +264,5 @@
             <Expression>M0</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>1111110000110010</GAO_ID>
+    <GAO_ID>0110111111110100</GAO_ID>
 </GAO_CONFIG>

@@ -7,7 +7,7 @@ module rf_rxt #(
     input                               sample_clk                 ,
 
     // RX DATA Port
-    output                           rx_data_out                ,
+    output                              rx_data_out                ,
     output                              rx_clk_out                 ,
     output                              rx_data_valid              ,
     output                              rx_data_missing            ,
@@ -27,6 +27,19 @@ module rf_rxt #(
     output             [  11:0]         dac_data_out_i1            ,
     output             [  11:0]         dac_data_out_q1            ,
     output                              dac_out_valid               
+);
+
+
+wire signed [11:0] costas_out_i;
+wire signed [11:0] costas_out_q;
+
+costas costas_u0 (
+    .rst_n(rst_n),
+    .sample_clk(sample_clk),
+    .sample_i1(adc_data_in_i1),
+    .sample_q1(adc_data_in_q1),
+    .data_out_i(costas_out_i),
+    .data_out_q(costas_out_q)
 );
 
 // QPSK Modulation
@@ -196,15 +209,15 @@ reg                                     integrate_ready            ;
         else if (adc_in_valid) begin
             if (sample_counter < SAMPLES_PER_BIT - 1) begin
                 // Accumulate samples
-                integrate_i <= integrate_i + {{12{adc_data_in_i1[11]}}, adc_data_in_i1};
-                integrate_q <= integrate_q + {{12{adc_data_in_q1[11]}}, adc_data_in_q1};
+                integrate_i <= integrate_i + {{12{costas_out_i[11]}}, costas_out_i};
+                integrate_q <= integrate_q + {{12{costas_out_q[11]}}, costas_out_q};
                 sample_counter <= sample_counter + 1'd1;
                 integrate_ready <= 1'b0;
             end
             else begin
                 // Last sample in period, signal ready
-                integrate_i <= integrate_i + {{12{adc_data_in_i1[11]}}, adc_data_in_i1};
-                integrate_q <= integrate_q + {{12{adc_data_in_q1[11]}}, adc_data_in_q1};
+                integrate_i <= integrate_i + {{12{costas_out_i[11]}}, costas_out_i};
+                integrate_q <= integrate_q + {{12{costas_out_q[11]}}, costas_out_q};
                 sample_counter <= 32'd0;
                 integrate_ready <= 1'b1;
             end
@@ -223,8 +236,8 @@ reg                                     integrate_ready            ;
             demod_q <= 12'd0;
         end
         else if (adc_in_valid) begin
-            demod_i <= adc_data_in_i1;
-            demod_q <= adc_data_in_q1;
+            demod_i <= costas_out_i;
+            demod_q <= costas_out_q;
         end
     end
 

@@ -6,11 +6,11 @@
 #include "stm32f4xx_hal.h" 
 
 /* 软件SPI引脚定义 */
-#define SOFT_SPI_SCK_PIN       GPIO_PIN_14
+#define SOFT_SPI_SCK_PIN       GPIO_PIN_10
 #define SOFT_SPI_SCK_PORT      GPIOB
 #define SOFT_SPI_SCK_CLK()     __HAL_RCC_GPIOB_CLK_ENABLE()
 
-#define SOFT_SPI_MISO_PIN      GPIO_PIN_10
+#define SOFT_SPI_MISO_PIN      GPIO_PIN_14
 #define SOFT_SPI_MISO_PORT     GPIOB
 #define SOFT_SPI_MISO_CLK()    __HAL_RCC_GPIOB_CLK_ENABLE()
 
