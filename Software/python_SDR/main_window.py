@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import (QMainWindow, QWidget, QHBoxLayout, QVBoxLayout,
                              QSplitter, QTabWidget)
-from PyQt6.QtCore import QThread, Qt, QTimer, pyqtSlot  # <-- 导入 pyqtSlot
+from PyQt6.QtCore import QThread, Qt, QTimer, pyqtSlot
 from config_widget import ConfigWidget
 from params_widget import ParamsWidget
 from file_widget import FileWidget
@@ -33,10 +33,10 @@ class MainWindow(QMainWindow):
         self.setup_audio_thread()
 
     def init_ui(self):
-        # (UI 布局保持不变)
+        # (UI 布局保持不变, 宽度已调整)
         left_panel = QWidget()
         left_layout = QVBoxLayout(left_panel)
-        left_panel.setMaximumWidth(335)
+        left_panel.setMaximumWidth(380)  # 保持你上次调整的宽度
         self.config_widget = ConfigWidget()
         self.ethernet_widget = EthernetWidget()
         self.params_widget = ParamsWidget()
@@ -81,19 +81,18 @@ class MainWindow(QMainWindow):
         self.serial_worker.finished.connect(self.serial_worker.deleteLater)
         self.serial_thread.finished.connect(self.serial_thread.deleteLater)
 
-        # 连接 ConfigWidget 信号到 Worker 槽 (这些通常是安全的直接连接)
+        # 连接 ConfigWidget 信号到 Worker 槽
         self.config_widget.connect_clicked.connect(self.serial_worker.connect_serial)
         self.config_widget.disconnect_clicked.connect(self.serial_worker.disconnect_serial)
 
-        # --- 关键修改: 使用中间槽 ---
         # 连接 ParamsWidget 信号到 MainWindow 的中间槽
         self.params_widget.send_command_signal.connect(self._handle_param_set_command)
-        # --- 结束修改 ---
         self.params_widget.query_all_signal.connect(self.query_all_parameters)
 
-        # 连接 FileWidget 信号到 Worker 槽
-        self.file_widget.send_file_clicked.connect(self.serial_worker.send_file)
-        self.file_widget.send_text_clicked.connect(self.serial_worker.send_data)
+        # --- 修改: 移除 FileWidget 的串口连接 ---
+        # self.file_widget.send_file_clicked.connect(self.serial_worker.send_file) # 已移除
+        # self.file_widget.send_text_clicked.connect(self.serial_worker.send_data) # 已移除
+        # --- 结束修改 ---
 
         self.serial_thread.start()
 
@@ -106,14 +105,11 @@ class MainWindow(QMainWindow):
         """
         print(f"[MainWindow] Intermediate slot received: {command_str}") # 添加调试打印
         if self.serial_worker:
-            # 直接调用 worker 的方法，Qt 会自动处理跨线程排队
             self.serial_worker.send_data(command_str)
         else:
-             self.log_widget.append_log("[错误] 无法发送命令: SerialWorker 不存在")
-    # --- 结束新增 ---
+            self.log_widget.append_log("[错误] 无法发送命令: SerialWorker 不存在")
 
     def setup_ethernet_thread(self):
-        # (保持不变)
         self.eth_thread = QThread()
         self.eth_worker = EthernetWorker()
         self.eth_worker.moveToThread(self.eth_thread)
@@ -131,34 +127,52 @@ class MainWindow(QMainWindow):
         self.ethernet_widget.send_command_clicked.connect(
             self.eth_worker.send_command, Qt.ConnectionType.QueuedConnection
         )
+
+        # --- 新增: 连接 FileWidget 信号到 EthernetWorker ---
+        self.file_widget.send_text_clicked.connect(self.eth_worker.send_command)
+        self.file_widget.send_file_clicked.connect(self.eth_worker.send_file_udp)
+        # (音频在 setup_audio_thread 中单独连接)
+        # --- 结束新增 ---
+
         self.eth_thread.start()
         self.log_widget.append_log("网络线程启动")
 
     def setup_audio_thread(self):
-        # (保持不变)
         self.audio_worker = AudioWorker()
         self.file_widget.start_audio_recording.connect(self.audio_worker.start_recording)
         self.file_widget.stop_audio_recording.connect(self.audio_worker.stop_recording)
-        self.audio_worker.audio_recorded.connect(self.send_audio_data)
+
+        # --- 修改: 音频数据现在连接到 eth_worker ---
+        self.audio_worker.audio_recorded.connect(self.send_audio_data)  # send_audio_data 内部逻辑已修改
+        # --- 结束修改 ---
+
         self.audio_worker.error_occurred.connect(self.log_widget.append_log)
 
-    def send_audio_data(self, audio_data):
-        # (保持不变)
-        self.log_widget.append_log("音频录制完成，正在发送...")
-        if self.serial_worker and self.serial_worker.serial and self.serial_worker.serial.is_open:
+    def send_audio_data(self, audio_data: bytes):
+        """
+        修改: 此函数现在通过 EthernetWorker 发送音频。
+        """
+        self.log_widget.append_log("音频录制完成，正在通过UDP发送...")
+
+        # --- 修改: 切换到 eth_worker ---
+        if self.eth_worker:
             try:
-                self.serial_worker.send_data(f"AUDIO_DATA_LEN:{len(audio_data)}")
-                self.log_widget.append_log("音频数据发送成功。")
+                # eth_worker 期望原始字节
+                self.eth_worker.send_audio_udp(audio_data)
+                # self.log_widget.append_log("音频数据发送成功。") # log 已在 worker 中
             except Exception as e:
                 self.log_widget.append_log(f"音频数据发送失败: {e}")
         else:
-            self.log_widget.append_log("没有活动的串口连接，无法发送音频数据。")
+            self.log_widget.append_log("没有活动的网络连接，无法发送音频数据。")
+        # --- 结束修改 ---
 
     def on_serial_connected(self, message):
         self.log_widget.append_log(message)
         self.config_widget.set_connection_state(True)
         self.params_widget.set_enabled(True)
-        self.file_widget.set_enabled(True)
+        # --- 修改: 移除 FileWidget ---
+        # self.file_widget.set_enabled(True) # 已移除
+        # --- 结束修改 ---
         self.log_widget.append_log("连接成功, 正在查询 AD9363 参数...")
         QTimer.singleShot(100, self.query_all_parameters)
 
@@ -166,7 +180,9 @@ class MainWindow(QMainWindow):
         self.log_widget.append_log("串口已断开")
         self.config_widget.set_connection_state(False)
         self.params_widget.set_enabled(False)
-        self.file_widget.set_enabled(False)
+        # --- 修改: 移除 FileWidget ---
+        # self.file_widget.set_enabled(False) # 已移除
+        # --- 结束修改 ---
         self.params_widget.clear_all_fields()
         self.query_list.clear()
 
@@ -176,17 +192,20 @@ class MainWindow(QMainWindow):
             self.on_serial_disconnected()
 
     def on_eth_started(self):
-        # (保持不变)
         self.log_widget.append_log("UDP 监听已开始")
         self.ethernet_widget.set_connection_state(True)
+        # --- 新增: FileWidget 由网络控制 ---
+        self.file_widget.set_enabled(True)
+        # --- 结束新增 ---
 
     def on_eth_stopped(self):
-        # (保持不变)
         self.log_widget.append_log("UDP 监听已停止")
         self.ethernet_widget.set_connection_state(False)
+        # --- 新增: FileWidget 由网络控制 ---
+        self.file_widget.set_enabled(False)
+        # --- 结束新增 ---
 
     def on_eth_error(self, message):
-        # (保持不变)
         self.log_widget.append_log(f"[网络错误] {message}")
         if "绑定失败" in message:
             self.on_eth_stopped()
@@ -213,23 +232,39 @@ class MainWindow(QMainWindow):
     def on_param_response(self, command, value):
         self.log_widget.append_log(f"[响应]: {command} = {value}")
         # (映射逻辑保持不变)
-        if command == "tx_lo_freq": self.params_widget.update_tx_lo_freq(value)
-        elif command == "tx_samp_freq": self.params_widget.update_tx_samp_freq(value)
-        elif command == "tx_rf_bandwidth": self.params_widget.update_tx_rf_bw(value)
-        elif command == "tx1_attenuation": self.params_widget.update_tx1_atten(value)
-        elif command == "tx2_attenuation": self.params_widget.update_tx2_atten(value)
-        elif command == "tx_fir_en": self.params_widget.update_tx_fir_en(value)
-        elif command == "rx_lo_freq": self.params_widget.update_rx_lo_freq(value)
-        elif command == "rx_samp_freq": self.params_widget.update_rx_samp_freq(value)
-        elif command == "rx_rf_bandwidth": self.params_widget.update_rx_rf_bw(value)
-        elif command == "rx1_gc_mode": self.params_widget.update_rx1_gc_mode(value)
-        elif command == "rx2_gc_mode": self.params_widget.update_rx2_gc_mode(value)
-        elif command == "rx1_rf_gain": self.params_widget.update_rx1_rf_gain(value)
-        elif command == "rx2_rf_gain": self.params_widget.update_rx2_rf_gain(value)
-        elif command == "rx_fir_en": self.params_widget.update_rx_fir_en(value)
-        elif command == "dds_tx1_tone1_freq": self.params_widget.update_dds_tx1_t1_freq(value)
-        elif command == "dds_tx2_tone1_freq": self.params_widget.update_dds_tx2_t1_freq(value)
-        QTimer.singleShot(10, self.send_next_query) # 触发下一个查询
+        if command == "tx_lo_freq":
+            self.params_widget.update_tx_lo_freq(value)
+        elif command == "tx_samp_freq":
+            self.params_widget.update_tx_samp_freq(value)
+        elif command == "tx_rf_bandwidth":
+            self.params_widget.update_tx_rf_bw(value)
+        elif command == "tx1_attenuation":
+            self.params_widget.update_tx1_atten(value)
+        elif command == "tx2_attenuation":
+            self.params_widget.update_tx2_atten(value)
+        elif command == "tx_fir_en":
+            self.params_widget.update_tx_fir_en(value)
+        elif command == "rx_lo_freq":
+            self.params_widget.update_rx_lo_freq(value)
+        elif command == "rx_samp_freq":
+            self.params_widget.update_rx_samp_freq(value)
+        elif command == "rx_rf_bandwidth":
+            self.params_widget.update_rx_rf_bw(value)
+        elif command == "rx1_gc_mode":
+            self.params_widget.update_rx1_gc_mode(value)
+        elif command == "rx2_gc_mode":
+            self.params_widget.update_rx2_gc_mode(value)
+        elif command == "rx1_rf_gain":
+            self.params_widget.update_rx1_rf_gain(value)
+        elif command == "rx2_rf_gain":
+            self.params_widget.update_rx2_rf_gain(value)
+        elif command == "rx_fir_en":
+            self.params_widget.update_rx_fir_en(value)
+        elif command == "dds_tx1_tone1_freq":
+            self.params_widget.update_dds_tx1_t1_freq(value)
+        elif command == "dds_tx2_tone1_freq":
+            self.params_widget.update_dds_tx2_t1_freq(value)
+        QTimer.singleShot(10, self.send_next_query)
 
     def closeEvent(self, event):
         # (保持不变)
@@ -241,7 +276,8 @@ class MainWindow(QMainWindow):
             if not self.serial_thread.wait(2000): self.serial_thread.terminate()
         try:
             if hasattr(self, 'eth_worker'): self.eth_worker.stop_listening()
-        except Exception: pass
+        except Exception:
+            pass
         if hasattr(self, "eth_thread") and self.eth_thread.isRunning():
             self.eth_thread.quit()
             if not self.eth_thread.wait(2000):
