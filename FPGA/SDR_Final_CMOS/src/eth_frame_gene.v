@@ -1,5 +1,5 @@
 module rf_data_processor #(
-    parameter FRAME_HEAD = 16'hEB90,  // 帧头标识
+    parameter FRAME_HEAD = 32'hEB90CAD3,  // 帧头标识
     parameter FRAME_TAIL = 16'h55AA   // 帧尾标识
 )(
     // 以太网接收时钟域
@@ -21,20 +21,26 @@ module rf_data_processor #(
     // ========================================
     // 1. 以太网接收侧状态机 (添加帧头帧尾)
     // ========================================
-    localparam IDLE       = 3'd0;
-    localparam SEND_HEAD1 = 3'd1;
-    localparam SEND_HEAD2 = 3'd2;
-    localparam SEND_DATA  = 3'd3;
-    localparam SEND_TAIL1 = 3'd4;
-    localparam SEND_TAIL2 = 3'd5;
-    localparam SEND_LAST1 = 3'd6;
-    localparam SEND_LAST2 = 3'd7;
-    
-    reg [2:0]  state;
+    localparam IDLE       = 4'd0;
+    localparam SEND_HEAD1 = 4'd1;
+    localparam SEND_HEAD2 = 4'd2;
+    localparam SEND_HEAD3 = 4'd3;
+    localparam SEND_HEAD4 = 4'd4;
+    localparam SEND_DATA  = 4'd5;
+    localparam SEND_TAIL1 = 4'd6;
+    localparam SEND_TAIL2 = 4'd7;
+    localparam SEND_LAST1 = 4'd8;
+    localparam SEND_LAST2 = 4'd9;
+    localparam SEND_LAST3 = 4'd10;
+    localparam SEND_LAST4 = 4'd11;
+
+    reg [3:0]  state;
     reg [7:0]  fifo_wr_data;
     reg        fifo_wr_en;
     reg [7:0] temp_data1;
     reg [7:0] temp_data2;
+    reg [7:0] temp_data3;
+    reg [7:0] temp_data4;
     
     // 状态机：添加帧头和帧尾
     always @(posedge eth_rx_clk or negedge eth_rx_rst_n) begin
@@ -44,6 +50,8 @@ module rf_data_processor #(
             fifo_wr_en <= 1'b0;
             temp_data1 <= 8'd0;
             temp_data2 <= 8'd0;
+            temp_data3 <= 8'd0;
+            temp_data4 <= 8'd0;
         end else begin
             case (state)
                 IDLE: begin
@@ -54,25 +62,46 @@ module rf_data_processor #(
                 end
                 
                 SEND_HEAD1: begin
-                    fifo_wr_data <= FRAME_HEAD[15:8];  // 帧头高字节
+                    fifo_wr_data <= FRAME_HEAD[31:24];  // 帧头高字节
                     fifo_wr_en <= 1'b1;
                     temp_data1 <= rx_data;
                     state <= SEND_HEAD2;
                 end
                 
                 SEND_HEAD2: begin
-                    fifo_wr_data <= FRAME_HEAD[7:0];   // 帧头低字节
+                    fifo_wr_data <= FRAME_HEAD[23:16];   // 帧头低字节
                     fifo_wr_en <= 1'b1;
                     temp_data1 <= rx_data;
                     temp_data2 <= temp_data1;
+                    state <= SEND_HEAD3;
+                end
+
+                SEND_HEAD3: begin
+                    fifo_wr_data <= FRAME_HEAD[15:8];  // 帧头次高字节
+                    fifo_wr_en <= 1'b1;
+                    temp_data1 <= rx_data;
+                    temp_data2 <= temp_data1;
+                    temp_data3 <= temp_data2;
+                    state <= SEND_HEAD4;
+                end
+
+                SEND_HEAD4: begin
+                    fifo_wr_data <= FRAME_HEAD[7:0];   // 帧头次低字节
+                    fifo_wr_en <= 1'b1;
+                    temp_data1 <= rx_data;
+                    temp_data2 <= temp_data1;
+                    temp_data3 <= temp_data2;
+                    temp_data4 <= temp_data3;
                     state <= SEND_DATA;
                 end
-                
+
                 SEND_DATA: begin
                     if (rx_data_valid) begin
                         temp_data1 <= rx_data;
                         temp_data2 <= temp_data1;
-                        fifo_wr_data <= temp_data2;
+                        temp_data3 <= temp_data2;
+                        temp_data4 <= temp_data3;
+                        fifo_wr_data <= temp_data4;
                         fifo_wr_en <= 1'b1;
                     end else begin
                         fifo_wr_en <= 1'b0;
@@ -86,7 +115,9 @@ module rf_data_processor #(
                 SEND_TAIL1: begin
                     temp_data1 <= FRAME_TAIL[15:8];  // 帧尾高字节
                     temp_data2 <= temp_data1;
-                    fifo_wr_data <= temp_data2;
+                    temp_data3 <= temp_data2;
+                    temp_data4 <= temp_data3;
+                    fifo_wr_data <= temp_data4;
                     fifo_wr_en <= 1'b1;
                     state <= SEND_TAIL2;
                 end
@@ -94,7 +125,9 @@ module rf_data_processor #(
                 SEND_TAIL2: begin
                     temp_data1 <= FRAME_TAIL[7:0];   // 帧尾低字节
                     temp_data2 <= temp_data1;
-                    fifo_wr_data <= temp_data2;
+                    temp_data3 <= temp_data2;
+                    temp_data4 <= temp_data3;
+                    fifo_wr_data <= temp_data4;
                     fifo_wr_en <= 1'b1;
                     state <= SEND_LAST1;
                 end
@@ -102,14 +135,33 @@ module rf_data_processor #(
                 SEND_LAST1: begin
                     temp_data1 <= 8'd0;
                     temp_data2 <= temp_data1;
-                    fifo_wr_data <= temp_data2;
+                    temp_data3 <= temp_data2;
+                    temp_data4 <= temp_data3;
+                    fifo_wr_data <= temp_data4;
                     fifo_wr_en <= 1'b1;
                     state <= SEND_LAST2;
                 end
 
                 SEND_LAST2: begin
                     temp_data2 <= 8'd0;
-                    fifo_wr_data <= temp_data2;
+                    temp_data3 <= temp_data2;
+                    temp_data4 <= temp_data3;
+                    fifo_wr_data <= temp_data4;
+                    fifo_wr_en <= 1'b1;
+                    state <= SEND_LAST3;
+                end
+
+                SEND_LAST3: begin
+                    temp_data3 <= 8'd0;
+                    temp_data4 <= temp_data3;
+                    fifo_wr_data <= temp_data4;
+                    fifo_wr_en <= 1'b1;
+                    state <= SEND_LAST4;
+                end
+
+                SEND_LAST4: begin
+                    temp_data4 <= 8'd0;
+                    fifo_wr_data <= temp_data4;
                     fifo_wr_en <= 1'b1;
                     state <= IDLE;
                 end

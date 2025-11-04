@@ -1,5 +1,5 @@
 module rf_data_depacketizer #(
-    parameter FRAME_HEAD = 16'hEB90,  // 帧头标识（需与封包模块一致）
+    parameter FRAME_HEAD = 32'hEB90CAD3,  // 帧头标识（需与封包模块一致）
     parameter FRAME_TAIL = 16'h55AA,  // 帧尾标识
     parameter TIMEOUT_CNT = 32'd125  // 超时计数器，假设125MHz时钟，1ms超时
 )(
@@ -30,16 +30,19 @@ module rf_data_depacketizer #(
     localparam WAIT_SEND = 3'd2;
 
     reg [2:0]  pack_state;
-    reg [31:0] bit_shift_reg;   
+    reg [47:0] bit_shift_reg;   
     reg [7:0]  byte_count;
     reg [31:0] timeout_counter;
     reg [15:0] payload_byte_cnt;  // 统计payload字节数
     reg        frame_done;         // 帧完成标志
     reg find_head_flag;
+
+    wire  [31:0] head_window;
+    assign head_window = bit_shift_reg[47:16];
     
     always @(posedge rf_rx_clk or negedge rf_rx_rst_n) begin
         if (!rf_rx_rst_n) begin
-            bit_shift_reg <= 32'd0;
+            bit_shift_reg <= 48'd0;
             pack_state <= FIND_HEAD;
             fifo_wen <= 1'b0;
             fifo_wr_data <= 8'd0;
@@ -64,8 +67,8 @@ module rf_data_depacketizer #(
                     frame_length <= 16'd0;
                     find_head_flag <= 1'b1;
                     if (rf_rx_valid) begin
-                        bit_shift_reg <= {bit_shift_reg[30:0], rf_rx_data};
-                        if (bit_shift_reg[31:16] == FRAME_HEAD) begin
+                        bit_shift_reg <= {bit_shift_reg[46:0], rf_rx_data};
+                        if (head_window == FRAME_HEAD) begin
                             pack_state <= PAYLOAD;
                         end
                     end
@@ -75,7 +78,7 @@ module rf_data_depacketizer #(
                     timeout_counter <= timeout_counter + 1'b1;
                     find_head_flag <= 1'b0;
                     if (rf_rx_valid) begin
-                        bit_shift_reg <= {bit_shift_reg[30:0], rf_rx_data};
+                        bit_shift_reg <= {bit_shift_reg[46:0], rf_rx_data};
                         
                         if (byte_count != 8'd7) begin
                             byte_count <= byte_count + 1'b1;

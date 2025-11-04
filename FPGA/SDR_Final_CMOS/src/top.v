@@ -276,7 +276,7 @@ eth_transceiver #(
     .RGMII_TXEN         (RGMII_TXEN     ),
     .RGMII_RST_N        (RGMII_RST_N    ),
     
-    .tx_data            (eth_tx_data    ),  // 回环：接收数据直接发送
+    .tx_data            (eth_tx_data    ),  
     .tx_data_valid      (eth_tx_data_valid),
     .tx_frame_start     (eth_tx_frame_start),
     .tx_ready           (eth_tx_ready   ),
@@ -294,7 +294,7 @@ eth_transceiver #(
 wire        fifo_almost_full;
 
 rf_data_processor #(
-    .FRAME_HEAD(16'hEB90),
+    .FRAME_HEAD(32'hEB90CAD3),
     .FRAME_TAIL(16'h55AA)
 ) u_rf_data_processor (
     // Ethernet RX clock domain
@@ -318,9 +318,9 @@ wire        depack_frame_error;
 wire [15:0] depack_frame_length;
 
 rf_data_depacketizer #(
-    .FRAME_HEAD         (16'hEB90),
+    .FRAME_HEAD         (32'hEB90CAD3),
     .FRAME_TAIL         (16'h55AA),
-    .TIMEOUT_CNT        (32'd125)
+    .TIMEOUT_CNT        (32'd4096)
 ) u_rf_data_depacketizer (
     // RF RX clock domain
     .rf_rx_clk          (rx_clk_out),

@@ -9,8 +9,8 @@ Running placement......
 [30%] Placement Phase 2 completed
 WARN  (TA1132) :  'rx_clk_in_p' was determined to be a clock but was not created.
 WARN  (TA1132) :  'tck_pad_i' was determined to be a clock but was not created.
-WARN  (TA1132) :  'u_rf_rxt_28_4' was determined to be a clock but was not created.
-WARN  (TA1132) :  'u_rf_rxt_29_4' was determined to be a clock but was not created.
+WARN  (TA1132) :  'u_rf_rxt_4_4' was determined to be a clock but was not created.
+WARN  (TA1132) :  'u_rf_rxt_5_4' was determined to be a clock but was not created.
 WARN  (TA1132) :  'u_rf_data_processor_2_6' was determined to be a clock but was not created.
 WARN  (TA1132) :  'rx_clk_out' was determined to be a clock but was not created.
 [50%] Placement Phase 3 completed
@@ -32,5 +32,5 @@ Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.p
 Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.rpt.html" completed
 Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.rpt.txt" completed
 Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.tr.html" completed
-Tue Nov  4 13:40:16 2025
+Tue Nov  4 20:08:18 2025
 

@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="fifo_eth_rx" Register="64" Alu="7" Lut="51" Bsram="1" T_Register="64(64)" T_Alu="7(7)" T_Lut="51(51)" T_Bsram="1(1)"/>
+<Module name="fifo_eth_rx" Register="104" Alu="12" Lut="86" Bsram="2" T_Register="104(104)" T_Alu="12(12)" T_Lut="86(86)" T_Bsram="2(2)"/>
