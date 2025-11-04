@@ -66,8 +66,15 @@ class MainWindow(QMainWindow):
 
         # 3. 按顺序添加到布局中
         file_tab_layout.addWidget(self.text_audio_widget)
-        file_tab_layout.addWidget(self.file_send_widget)
-        file_tab_layout.addWidget(self.file_receive_widget)
+
+        file_horizontal_container = QWidget()
+        file_horizontal_layout = QHBoxLayout(file_horizontal_container)
+        file_horizontal_layout.addWidget(self.file_send_widget)
+        file_horizontal_layout.addWidget(self.file_receive_widget)
+        file_horizontal_layout.setSpacing(10)
+        file_horizontal_layout.setContentsMargins(0, 0, 0, 0)
+        file_tab_layout.addWidget(file_horizontal_container)
+
         file_tab_layout.addStretch()  # 占满剩余空间
 
         # 4. 实例化视频控件

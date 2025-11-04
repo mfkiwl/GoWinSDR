@@ -16,6 +16,7 @@ class TextAudioWidget(QWidget):
         super().__init__(parent)
         self.is_enabled = False # 内部状态
         self.init_ui()
+        self.setFixedHeight(150)
 
     def init_ui(self):
         # --- 修改: 组标题 ---
