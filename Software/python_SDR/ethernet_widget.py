@@ -24,13 +24,13 @@ class EthernetWidget(QWidget):
         layout_fpga = QGridLayout(group_fpga)
 
         layout_fpga.addWidget(QLabel("FPGA IP:"), 0, 0)
-        self.txt_fpga_ip = QLineEdit("192.168.1.100")
+        self.txt_fpga_ip = QLineEdit("192.168.3.2")
         layout_fpga.addWidget(self.txt_fpga_ip, 0, 1)
 
         layout_fpga.addWidget(QLabel("FPGA 端口:"), 1, 0)
         self.spin_fpga_port = QSpinBox()
         self.spin_fpga_port.setRange(1, 65535)
-        self.spin_fpga_port.setValue(8080)
+        self.spin_fpga_port.setValue(32768)
         layout_fpga.addWidget(self.spin_fpga_port, 1, 1)
 
         # --- 本地监听设置 (用于接收视频) ---
@@ -38,13 +38,13 @@ class EthernetWidget(QWidget):
         layout_local = QGridLayout(group_local)
 
         layout_local.addWidget(QLabel("本地 IP:"), 0, 0)
-        self.txt_listen_ip = QLineEdit("0.0.0.0")
+        self.txt_listen_ip = QLineEdit("192.168.3.3")
         layout_local.addWidget(self.txt_listen_ip, 0, 1)
 
         layout_local.addWidget(QLabel("本地端口:"), 1, 0)
         self.spin_listen_port = QSpinBox()
         self.spin_listen_port.setRange(1, 65535)
-        self.spin_listen_port.setValue(8081)
+        self.spin_listen_port.setValue(32768)
         layout_local.addWidget(self.spin_listen_port, 1, 1)
 
         # --- 控制按钮 ---
@@ -65,7 +65,7 @@ class EthernetWidget(QWidget):
         self.btn_start.clicked.connect(self.on_start_click)
         self.btn_stop.clicked.connect(self.on_stop_click)
         self.btn_send_cmd.clicked.connect(
-            lambda: self.send_command_clicked.emit("TEST_CMD_FROM_APP")
+            lambda: self.send_command_clicked.emit("TEST")
         )
 
     def on_start_click(self):
