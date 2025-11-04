@@ -96,7 +96,7 @@ end
 
 // QPSK mapping: 00->(-1,-1), 01->(-1,1), 10->(1,-1), 11->(1,1)
 always @(posedge bit_clk) begin
-    case(tx_data_iq)
+    case(tx_data_iq_diff)
         2'b00: begin
             qpsk_i = -12'd1448;                                     // -1/sqrt(2) * 2048
             qpsk_q = -12'd1448;
@@ -139,7 +139,7 @@ always @(posedge sample_clk or negedge rst_n) begin
         qpsk_q_reg <= 12'd0;
         qpsk_valid <= 1'b0;
     end
-    else if (qpsk_idle_flag) begin
+    else if (!tx_encoder_valid) begin
         qpsk_i_reg <= 12'd0;
         qpsk_q_reg <= 12'd0;
         qpsk_valid <= 1'b1;
@@ -159,7 +159,7 @@ assign dac_out_valid = qpsk_valid;
 wire                   [   1:0]         tx_data_iq                 ;
 wire                                    empty_flag                 ;
 wire                                    tx_fifo_full               ;
-assign tx_data_ready = ~tx_fifo_full;
+assign tx_data_ready = 1'b1;
 
     fifo_tx fifo_tx_u0(
     .Data                              ({tx_data_in[1:0], tx_data_in[3:2], tx_data_in[5:4], tx_data_in[7:6]} ),//input [7:0] Data
@@ -170,6 +170,19 @@ assign tx_data_ready = ~tx_fifo_full;
     .Q                                 (tx_data_iq                ),//output [1:0] Q
     .Empty                             (empty_flag                ),//output Empty
     .Full                              (tx_fifo_full              ) //output Full
+    );
+
+wire [1:0] tx_data_iq_diff;
+wire tx_encoder_valid;
+
+    qpsk_differential_encoder qpsk_diff_encoder_u0 (
+        .clk(bit_clk),
+        .rst_n(rst_n),
+        .data_in(tx_data_iq),
+        .data_valid(~qpsk_idle_flag),
+        .i_out(tx_data_iq_diff[0]),
+        .q_out(tx_data_iq_diff[1]),
+        .out_valid(tx_encoder_valid)
     );
 
     // QPSK Demodulation
@@ -270,7 +283,7 @@ assign rx_clk_out = bit_clk_m2;
 assign rx_data_valid = ~rx_fifo_empty;
     // FIFO for demodulated data output
     fifo_rx fifo_rx_u0(
-    .Data                              ({demod_data[0], demod_data[1]}),//input [1:0] Data
+    .Data                              ({decoded_data[0], decoded_data[1]}),//input [1:0] Data
     .WrClk                             (demod_bit_clk             ),//input WrClk
     .RdClk                             (bit_clk_m2                ),//input RdClk
     .WrEn                              (demod_valid               ),//input WrEn
@@ -279,6 +292,19 @@ assign rx_data_valid = ~rx_fifo_empty;
     .Empty                             (rx_fifo_empty             ),//output Empty
     .Full                              (rx_data_missing           ) //output Full
     );
+
+wire [1:0] decoded_data;
+wire decoded_valid;
+
+qpsk_differential_decoder qpsk_diff_decoder_u0 (
+    .clk(demod_bit_clk),
+    .rst_n(rst_n),
+    .i_in(demod_data[0]),
+    .q_in(demod_data[1]),
+    .data_valid(demod_valid),
+    .data_out(decoded_data),
+    .out_valid(decoded_valid)
+);
 
 // reg cnt_bits;
 // reg [1:0] demod_data_reg;

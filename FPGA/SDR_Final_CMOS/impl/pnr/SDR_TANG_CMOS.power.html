@@ -89,7 +89,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Created Time</td>
-<td>Mon Nov  3 17:12:14 2025
+<td>Tue Nov  4 13:40:16 2025
 </td>
 </tr>
 <tr>
@@ -161,7 +161,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <table class="summary_table">
 <tr>
 <td class="label">Total Power (mW)</td>
-<td>256.937</td>
+<td>256.944</td>
 </tr>
 <tr>
 <td class="label">Quiescent Power (mW)</td>
@@ -169,7 +169,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Dynamic Power (mW)</td>
-<td>184.044</td>
+<td>184.051</td>
 </tr>
 </table>
 <h2><a name="Thermal_Info">Thermal Information:</a></h2>
@@ -199,9 +199,9 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td>VCC</td>
 <td>0.900</td>
-<td>193.618</td>
+<td>193.626</td>
 <td>64.020</td>
-<td>231.874</td>
+<td>231.882</td>
 </tr>
 <tr>
 <td>VCCX</td>
@@ -236,9 +236,9 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td>Logic</td>
-<td>1.232</td>
+<td>1.240</td>
 <td>NA</td>
-<td>11.050</td>
+<td>11.032</td>
 </tr>
 <tr>
 <td>IO</td>
@@ -268,16 +268,16 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td>top</td>
-<td>172.651</td>
-<td>172.651(172.626)</td>
+<td>172.658</td>
+<td>172.658(172.633)</td>
 <tr>
 <td>top/eth_inst/</td>
-<td>16.802</td>
-<td>16.802(9.671)</td>
+<td>16.810</td>
+<td>16.810(9.681)</td>
 <tr>
 <td>top/eth_inst/crc_inst/</td>
-<td>0.033</td>
-<td>0.033(0.000)</td>
+<td>0.044</td>
+<td>0.044(0.000)</td>
 <tr>
 <td>top/eth_inst/pll_inst/</td>
 <td>9.637</td>
@@ -288,16 +288,16 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>9.637(0.000)</td>
 <tr>
 <td>top/gw_gao_inst_0/</td>
-<td>134.027</td>
-<td>134.027(134.027)</td>
+<td>134.030</td>
+<td>134.030(134.030)</td>
 <tr>
 <td>top/gw_gao_inst_0/u_icon_top/</td>
 <td>0.002</td>
 <td>0.002(0.000)</td>
 <tr>
 <td>top/gw_gao_inst_0/u_la0_top/</td>
-<td>134.025</td>
-<td>134.025(133.952)</td>
+<td>134.029</td>
+<td>134.029(133.954)</td>
 <tr>
 <td>top/gw_gao_inst_0/u_la0_top/u_ao_crc32/</td>
 <td>0.004</td>
@@ -308,12 +308,12 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>0.001(0.000)</td>
 <tr>
 <td>top/gw_gao_inst_0/u_la0_top/u_ao_mem_ctrl/</td>
-<td>133.947</td>
-<td>133.947(0.000)</td>
+<td>133.949</td>
+<td>133.949(0.000)</td>
 <tr>
 <td>top/u_rf_data_depacketizer/</td>
-<td>5.874</td>
-<td>5.874(5.821)</td>
+<td>5.866</td>
+<td>5.866(5.821)</td>
 <tr>
 <td>top/u_rf_data_depacketizer/fifo_eth_tx_u0/</td>
 <td>5.821</td>
@@ -336,8 +336,8 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>5.824(0.000)</td>
 <tr>
 <td>top/u_rf_rxt/</td>
-<td>10.071</td>
-<td>10.071(10.047)</td>
+<td>10.075</td>
+<td>10.075(10.052)</td>
 <tr>
 <td>top/u_rf_rxt/fifo_rx_u0/</td>
 <td>4.869</td>
@@ -354,6 +354,14 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>top/u_rf_rxt/fifo_tx_u0/fifo_inst/</td>
 <td>5.178</td>
 <td>5.178(0.000)</td>
+<tr>
+<td>top/u_rf_rxt/qpsk_diff_decoder_u0/</td>
+<td>0.001</td>
+<td>0.001(0.000)</td>
+<tr>
+<td>top/u_rf_rxt/qpsk_diff_encoder_u0/</td>
+<td>0.003</td>
+<td>0.003(0.000)</td>
 </table>
 <h2><a name="By_Clock_Domain">Power By Clock Domain:</a></h2>
 <table class="detail_table">
@@ -363,19 +371,34 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <th class="label">Total Dynamic Power(mW)</th>
 </tr>
 <tr>
-<td>rx_clk_in_p</td>
-<td>100.000</td>
-<td>111.700</td>
-</tr>
-<tr>
 <td>tck_pad_i</td>
 <td>20.000</td>
-<td>22.368</td>
+<td>22.369</td>
+</tr>
+<tr>
+<td>rx_clk_in_p</td>
+<td>100.000</td>
+<td>111.702</td>
+</tr>
+<tr>
+<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>125.000</td>
+<td>10.268</td>
+</tr>
+<tr>
+<td>RX_CLK_125M</td>
+<td>125.000</td>
+<td>3.426</td>
 </tr>
 <tr>
 <td>u_rf_rxt_28_4</td>
 <td>100.000</td>
-<td>2.594</td>
+<td>2.597</td>
+</tr>
+<tr>
+<td>u_rf_rxt_29_4</td>
+<td>100.000</td>
+<td>2.439</td>
 </tr>
 <tr>
 <td>u_rf_data_processor_2_6</td>
@@ -383,24 +406,9 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>5.183</td>
 </tr>
 <tr>
-<td>u_rf_rxt_29_4</td>
-<td>100.000</td>
-<td>2.438</td>
-</tr>
-<tr>
 <td>rx_clk_out</td>
 <td>100.000</td>
-<td>5.073</td>
-</tr>
-<tr>
-<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
-<td>125.000</td>
-<td>10.255</td>
-</tr>
-<tr>
-<td>RX_CLK_125M</td>
-<td>125.000</td>
-<td>3.430</td>
+<td>5.065</td>
 </tr>
 <tr>
 <td>sys_clk</td>

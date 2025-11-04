@@ -215,6 +215,10 @@
             </Bus>
             <Signal capture_enable="true">u_rf_data_depacketizer/fifo_empty</Signal>
             <Signal capture_enable="true">u_rf_data_depacketizer/tx_ready</Signal>
+            <Bus capture_enable="true" name="u_rf_rxt/decoded_data[1:0]">
+                <Signal>u_rf_rxt/decoded_data[1]</Signal>
+                <Signal>u_rf_rxt/decoded_data[0]</Signal>
+            </Bus>
         </SignalList>
         <Triggers>
             <Trigger index="0">
@@ -264,5 +268,5 @@
             <Expression>M0</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>0110111111110100</GAO_ID>
+    <GAO_ID>1101110100011111</GAO_ID>
 </GAO_CONFIG>

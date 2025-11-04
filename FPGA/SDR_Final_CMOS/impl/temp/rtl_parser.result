@@ -121,7 +121,15 @@
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
-      "InstLine" : 272,
+      "InstLine" : 178,
+      "InstName" : "qpsk_diff_encoder_u0",
+      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_diff_encode.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "qpsk_differential_encoder"
+     },
+     {
+      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
+      "InstLine" : 285,
       "InstName" : "fifo_rx_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top_rx/fifo_top_rx.v",
       "ModuleLine" : 418,
@@ -136,6 +144,14 @@
         "ModuleName" : "~fifo.fifo_rx"
        }
       ]
+     },
+     {
+      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
+      "InstLine" : 299,
+      "InstName" : "qpsk_diff_decoder_u0",
+      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_diff_decode.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "qpsk_differential_decoder"
      }
     ]
    },

@@ -320,7 +320,7 @@ wire [15:0] depack_frame_length;
 rf_data_depacketizer #(
     .FRAME_HEAD         (16'hEB90),
     .FRAME_TAIL         (16'h55AA),
-    .TIMEOUT_CNT        (32'd125000)
+    .TIMEOUT_CNT        (32'd125)
 ) u_rf_data_depacketizer (
     // RF RX clock domain
     .rf_rx_clk          (rx_clk_out),

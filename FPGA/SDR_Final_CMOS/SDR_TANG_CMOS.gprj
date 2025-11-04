@@ -24,6 +24,8 @@
         <File path="src/gowin_pll_eth/gowin_pll_eth.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pll_eth/gowin_pll_eth_mod.v" type="file.verilog" enable="1"/>
         <File path="src/pll_init.v" type="file.verilog" enable="1"/>
+        <File path="src/rf_diff_decode.v" type="file.verilog" enable="1"/>
+        <File path="src/rf_diff_encode.v" type="file.verilog" enable="1"/>
         <File path="src/rf_rxt.v" type="file.verilog" enable="1"/>
         <File path="src/top.v" type="file.verilog" enable="1"/>
         <File path="src/SDR_Test.cst" type="file.cst" enable="1"/>
