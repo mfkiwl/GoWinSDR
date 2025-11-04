@@ -3,7 +3,11 @@ from PyQt6.QtWidgets import (QMainWindow, QWidget, QHBoxLayout, QVBoxLayout,
 from PyQt6.QtCore import QThread, Qt, QTimer, pyqtSlot
 from config_widget import ConfigWidget
 from params_widget import ParamsWidget
-from file_widget import FileWidget
+# --- 修改: 导入新控件 ---
+from text_audio_widget import TextAudioWidget  # 原 file_widget.py
+from file_send_widget import FileSendWidget
+from file_receive_widget import FileReceiveWidget
+# --- 结束修改 ---
 from log_widget import LogWidget
 from serial_worker import SerialWorker
 
@@ -33,10 +37,10 @@ class MainWindow(QMainWindow):
         self.setup_audio_thread()
 
     def init_ui(self):
-        # (UI 布局保持不变, 宽度已调整)
+        # (左侧面板保持不变)
         left_panel = QWidget()
         left_layout = QVBoxLayout(left_panel)
-        left_panel.setMaximumWidth(380)  # 保持你上次调整的宽度
+        left_panel.setMaximumWidth(380)
         self.config_widget = ConfigWidget()
         self.ethernet_widget = EthernetWidget()
         self.params_widget = ParamsWidget()
@@ -44,19 +48,43 @@ class MainWindow(QMainWindow):
         left_layout.addWidget(self.ethernet_widget)
         left_layout.addWidget(self.params_widget)
         left_layout.addStretch()
+
         right_panel = QWidget()
         right_layout = QVBoxLayout(right_panel)
+
         self.tab_widget = QTabWidget()
-        self.file_widget = FileWidget()
+
+        # --- 修改: 重构文件传输 Tab ---
+        # 1. 创建一个新的父控件和布局
+        self.file_tab_content = QWidget()
+        file_tab_layout = QVBoxLayout(self.file_tab_content)
+
+        # 2. 实例化三个新控件
+        self.text_audio_widget = TextAudioWidget()
+        self.file_send_widget = FileSendWidget()
+        self.file_receive_widget = FileReceiveWidget()
+
+        # 3. 按顺序添加到布局中
+        file_tab_layout.addWidget(self.text_audio_widget)
+        file_tab_layout.addWidget(self.file_send_widget)
+        file_tab_layout.addWidget(self.file_receive_widget)
+        file_tab_layout.addStretch()  # 占满剩余空间
+
+        # 4. 实例化视频控件
         self.video_widget = VideoWidget()
-        self.tab_widget.addTab(self.file_widget, "文件、文本及语音传输")
+
+        # 5. 将父控件添加到 Tab
+        self.tab_widget.addTab(self.file_tab_content, "文件、文本及语音")
         self.tab_widget.addTab(self.video_widget, "网络视频监控 (UDP)")
+        # --- 结束修改 ---
+
         self.log_widget = LogWidget()
         splitter = QSplitter(Qt.Orientation.Vertical)
         splitter.addWidget(self.tab_widget)
         splitter.addWidget(self.log_widget)
         splitter.setSizes([500, 300])
         right_layout.addWidget(splitter)
+
         main_widget = QWidget()
         main_layout = QHBoxLayout(main_widget)
         main_layout.addWidget(left_panel)
@@ -64,46 +92,29 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(main_widget)
 
     def setup_serial_thread(self):
+        # (此方法保持不变)
         self.serial_thread = QThread()
         self.serial_worker = SerialWorker()
         self.serial_worker.moveToThread(self.serial_thread)
-
-        # 连接 Worker 信号到 MainWindow 槽
         self.serial_worker.connected.connect(self.on_serial_connected)
         self.serial_worker.disconnected.connect(self.on_serial_disconnected)
         self.serial_worker.log_received.connect(self.log_widget.append_log)
         self.serial_worker.error_occurred.connect(self.on_serial_error)
         self.serial_worker.param_response_received.connect(self.on_param_response)
-
-        # 连接线程管理
         self.serial_thread.started.connect(lambda: self.log_widget.append_log("串口线程启动"))
         self.serial_worker.finished.connect(self.serial_thread.quit)
         self.serial_worker.finished.connect(self.serial_worker.deleteLater)
         self.serial_thread.finished.connect(self.serial_thread.deleteLater)
-
-        # 连接 ConfigWidget 信号到 Worker 槽
         self.config_widget.connect_clicked.connect(self.serial_worker.connect_serial)
         self.config_widget.disconnect_clicked.connect(self.serial_worker.disconnect_serial)
-
-        # 连接 ParamsWidget 信号到 MainWindow 的中间槽
         self.params_widget.send_command_signal.connect(self._handle_param_set_command)
         self.params_widget.query_all_signal.connect(self.query_all_parameters)
-
-        # --- 修改: 移除 FileWidget 的串口连接 ---
-        # self.file_widget.send_file_clicked.connect(self.serial_worker.send_file) # 已移除
-        # self.file_widget.send_text_clicked.connect(self.serial_worker.send_data) # 已移除
-        # --- 结束修改 ---
-
         self.serial_thread.start()
 
-    # --- 新增: 中间槽函数 ---
-    @pyqtSlot(str) # 明确标记为槽函数，接受一个字符串参数
+    @pyqtSlot(str)
     def _handle_param_set_command(self, command_str):
-        """
-        这个槽函数在主 GUI 线程中被调用。
-        它负责将命令转发给工作线程。
-        """
-        print(f"[MainWindow] Intermediate slot received: {command_str}") # 添加调试打印
+        # (此方法保持不变)
+        print(f"[MainWindow] Intermediate slot received: {command_str}")
         if self.serial_worker:
             self.serial_worker.send_data(command_str)
         else:
@@ -118,6 +129,10 @@ class MainWindow(QMainWindow):
         self.eth_worker.log_received.connect(self.log_widget.append_log)
         self.eth_worker.video_frame_ready.connect(self.video_widget.update_frame)
         self.eth_worker.error_occurred.connect(self.on_eth_error)
+
+        # --- 新增: 文件接收信号 ---
+        self.eth_worker.file_received.connect(self.file_receive_widget.add_received_file)
+
         self.ethernet_widget.start_listening_clicked.connect(
             self.eth_worker.start_listening, Qt.ConnectionType.QueuedConnection
         )
@@ -128,51 +143,42 @@ class MainWindow(QMainWindow):
             self.eth_worker.send_command, Qt.ConnectionType.QueuedConnection
         )
 
-        # --- 新增: 连接 FileWidget 信号到 EthernetWorker ---
-        self.file_widget.send_text_clicked.connect(self.eth_worker.send_command)
-        self.file_widget.send_file_clicked.connect(self.eth_worker.send_file_udp)
-        # (音频在 setup_audio_thread 中单独连接)
-        # --- 结束新增 ---
+        # --- 修改: 连接新控件的信号 ---
+        self.text_audio_widget.send_text_clicked.connect(self.eth_worker.send_command)
+        self.file_send_widget.send_file_clicked.connect(self.eth_worker.send_file_udp)
+        self.file_receive_widget.enable_reception_changed.connect(self.eth_worker.set_file_reception_enabled)
+        # --- 结束修改 ---
 
         self.eth_thread.start()
         self.log_widget.append_log("网络线程启动")
 
     def setup_audio_thread(self):
         self.audio_worker = AudioWorker()
-        self.file_widget.start_audio_recording.connect(self.audio_worker.start_recording)
-        self.file_widget.stop_audio_recording.connect(self.audio_worker.stop_recording)
 
-        # --- 修改: 音频数据现在连接到 eth_worker ---
-        self.audio_worker.audio_recorded.connect(self.send_audio_data)  # send_audio_data 内部逻辑已修改
+        # --- 修改: 连接来自 TextAudioWidget 的信号 ---
+        self.text_audio_widget.start_audio_recording.connect(self.audio_worker.start_recording)
+        self.text_audio_widget.stop_audio_recording.connect(self.audio_worker.stop_recording)
         # --- 结束修改 ---
 
+        self.audio_worker.audio_recorded.connect(self.send_audio_data)
         self.audio_worker.error_occurred.connect(self.log_widget.append_log)
 
     def send_audio_data(self, audio_data: bytes):
-        """
-        修改: 此函数现在通过 EthernetWorker 发送音频。
-        """
+        # (此方法保持不变, 它已正确连接到 eth_worker)
         self.log_widget.append_log("音频录制完成，正在通过UDP发送...")
-
-        # --- 修改: 切换到 eth_worker ---
         if self.eth_worker:
             try:
-                # eth_worker 期望原始字节
                 self.eth_worker.send_audio_udp(audio_data)
-                # self.log_widget.append_log("音频数据发送成功。") # log 已在 worker 中
             except Exception as e:
                 self.log_widget.append_log(f"音频数据发送失败: {e}")
         else:
             self.log_widget.append_log("没有活动的网络连接，无法发送音频数据。")
-        # --- 结束修改 ---
 
     def on_serial_connected(self, message):
         self.log_widget.append_log(message)
         self.config_widget.set_connection_state(True)
         self.params_widget.set_enabled(True)
-        # --- 修改: 移除 FileWidget ---
-        # self.file_widget.set_enabled(True) # 已移除
-        # --- 结束修改 ---
+        # (FileWidget 已移除)
         self.log_widget.append_log("连接成功, 正在查询 AD9363 参数...")
         QTimer.singleShot(100, self.query_all_parameters)
 
@@ -180,9 +186,7 @@ class MainWindow(QMainWindow):
         self.log_widget.append_log("串口已断开")
         self.config_widget.set_connection_state(False)
         self.params_widget.set_enabled(False)
-        # --- 修改: 移除 FileWidget ---
-        # self.file_widget.set_enabled(False) # 已移除
-        # --- 结束修改 ---
+        # (FileWidget 已移除)
         self.params_widget.clear_all_fields()
         self.query_list.clear()
 
@@ -194,16 +198,20 @@ class MainWindow(QMainWindow):
     def on_eth_started(self):
         self.log_widget.append_log("UDP 监听已开始")
         self.ethernet_widget.set_connection_state(True)
-        # --- 新增: FileWidget 由网络控制 ---
-        self.file_widget.set_enabled(True)
-        # --- 结束新增 ---
+        # --- 修改: 启用所有新控件 ---
+        self.text_audio_widget.set_enabled(True)
+        self.file_send_widget.set_enabled(True)
+        self.file_receive_widget.set_enabled(True)
+        # --- 结束修改 ---
 
     def on_eth_stopped(self):
         self.log_widget.append_log("UDP 监听已停止")
         self.ethernet_widget.set_connection_state(False)
-        # --- 新增: FileWidget 由网络控制 ---
-        self.file_widget.set_enabled(False)
-        # --- 结束新增 ---
+        # --- 修改: 禁用所有新控件 ---
+        self.text_audio_widget.set_enabled(False)
+        self.file_send_widget.set_enabled(False)
+        self.file_receive_widget.set_enabled(False)
+        # --- 结束修改 ---
 
     def on_eth_error(self, message):
         self.log_widget.append_log(f"[网络错误] {message}")
