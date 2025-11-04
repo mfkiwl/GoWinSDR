@@ -94,7 +94,7 @@ WARN  (EX2565) : Input 'mdclk' on this instance is undriven. Assigning to 0, sim
 Compiling module 'rf_data_processor'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\eth_frame_gene.v":1)
 Compiling module 'fifo_eth_rx'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\fifo_eth_rx\fifo_top.v":662)
 Compiling module '**'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\fifo_eth_rx\fifo_top.v":661)
-Compiling module 'rf_data_depacketizer(TIMEOUT_CNT=32'd4096)'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\eth_pack.v":1)
+Compiling module 'rf_data_depacketizer'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\eth_pack.v":1)
 Compiling module 'fifo_eth_tx'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\fifo_eth_tx\fifo_eth_tx.v":662)
 Compiling module '**'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\fifo_eth_tx\fifo_eth_tx.v":661)
 Compiling module 'gw_gao'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v":1)

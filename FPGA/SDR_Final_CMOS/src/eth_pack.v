@@ -1,7 +1,7 @@
 module rf_data_depacketizer #(
     parameter FRAME_HEAD = 32'hEB90CAD3,  // 帧头标识（需与封包模块一致）
     parameter FRAME_TAIL = 16'h55AA,  // 帧尾标识
-    parameter TIMEOUT_CNT = 32'd125  // 超时计数器，假设125MHz时钟，1ms超时
+    parameter TIMEOUT_CNT = 32'd32768  // 超时计数器，假设125MHz时钟，1ms超时
 )(
     // 射频解调时钟域
     input  wire        rf_rx_clk,
