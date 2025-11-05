@@ -1,4 +1,5 @@
 create_clock -name {RX_CLK_125M} -period 8.000 [get_ports {RGMII_RXCLK}]
+create_clock -name {sys_clk} -period 8.000 [get_ports {sys_clk}]
 
 set_input_delay -clock {RX_CLK_125M} -max 3.500 [get_ports {RGMII_RXD[*] RGMII_RXDV}]
 

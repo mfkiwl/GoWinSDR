@@ -34,6 +34,58 @@
   ]
  },
  {
+  "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll.v",
+  "InstLine" : 1,
+  "InstName" : "Gowin_PLL",
+  "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll.v",
+  "ModuleLine" : 1,
+  "ModuleName" : "Gowin_PLL",
+  "SubInsts" : [
+   {
+    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll.v",
+    "InstLine" : 21,
+    "InstName" : "u_pll",
+    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll_mod.v",
+    "ModuleLine" : 10,
+    "ModuleName" : "Gowin_PLL_MOD"
+   },
+   {
+    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll.v",
+    "InstLine" : 34,
+    "InstName" : "u_pll_init",
+    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/pll_init.v",
+    "ModuleLine" : 4,
+    "ModuleName" : "PLL_INIT"
+   }
+  ]
+ },
+ {
+  "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/sys_pll/sys_pll.v",
+  "InstLine" : 1,
+  "InstName" : "sys_pll",
+  "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/sys_pll/sys_pll.v",
+  "ModuleLine" : 1,
+  "ModuleName" : "sys_pll",
+  "SubInsts" : [
+   {
+    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/sys_pll/sys_pll.v",
+    "InstLine" : 21,
+    "InstName" : "u_pll",
+    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/sys_pll/sys_pll_mod.v",
+    "ModuleLine" : 10,
+    "ModuleName" : "sys_pll_MOD"
+   },
+   {
+    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/sys_pll/sys_pll.v",
+    "InstLine" : 34,
+    "InstName" : "u_pll_init",
+    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/pll_init.v",
+    "ModuleLine" : 4,
+    "ModuleName" : "PLL_INIT"
+   }
+  ]
+ },
+ {
   "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/top.v",
   "InstLine" : 1,
   "InstName" : "top",
@@ -41,32 +93,6 @@
   "ModuleLine" : 1,
   "ModuleName" : "top",
   "SubInsts" : [
-   {
-    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/top.v",
-    "InstLine" : 35,
-    "InstName" : "pll0",
-    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll.v",
-    "ModuleLine" : 1,
-    "ModuleName" : "Gowin_PLL",
-    "SubInsts" : [
-     {
-      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll.v",
-      "InstLine" : 21,
-      "InstName" : "u_pll",
-      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll_mod.v",
-      "ModuleLine" : 10,
-      "ModuleName" : "Gowin_PLL_MOD"
-     },
-     {
-      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll.v",
-      "InstLine" : 34,
-      "InstName" : "u_pll_init",
-      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/pll_init.v",
-      "ModuleLine" : 4,
-      "ModuleName" : "PLL_INIT"
-     }
-    ]
-   },
    {
     "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/top.v",
     "InstLine" : 77,
@@ -245,7 +271,7 @@
     "SubInsts" : [
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_pack.v",
-      "InstLine" : 138,
+      "InstLine" : 136,
       "InstName" : "fifo_eth_tx_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_eth_tx/fifo_eth_tx.v",
       "ModuleLine" : 662,

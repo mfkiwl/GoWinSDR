@@ -1,13 +1,13 @@
 module rf_data_depacketizer #(
-    parameter FRAME_HEAD = 32'hEB90CAD3,  // 帧头标识（需与封包模块一致）
+    parameter FRAME_HEAD = 32'hEB90CAD3,  // 帧头标识
     parameter FRAME_TAIL = 16'h55AA,  // 帧尾标识
-    parameter TIMEOUT_CNT = 32'd32768  // 超时计数器，假设125MHz时钟，1ms超时
+    parameter TIMEOUT_CNT = 32'd32768  // 超时计数器
 )(
     // 射频解调时钟域
     input  wire        rf_rx_clk,
     input  wire        rf_rx_rst_n,
-    input  wire        rf_rx_data,      // 串行比特流输入
-    input  wire        rf_rx_valid,     // 比特流有效信号
+    input  wire        rf_rx_data,      
+    input  wire        rf_rx_valid,    
     
     // 以太网发送时钟域
     input  wire        eth_tx_clk,
@@ -17,14 +17,12 @@ module rf_data_depacketizer #(
     output reg         tx_frame_start,
     input  wire        tx_ready,
     
-    // 状态指示
+
     output reg         frame_error,      // 帧错误指示
-    output reg [15:0]  frame_length      // 当前帧长度（仅用于统计）
+    output reg [15:0]  frame_length     
 );
 
-    // ========================================
-    // 射频接收侧 - 帧解析
-    // ========================================
+
     localparam FIND_HEAD = 3'd0;
     localparam PAYLOAD   = 3'd1;
     localparam WAIT_SEND = 3'd2;
@@ -33,8 +31,8 @@ module rf_data_depacketizer #(
     reg [47:0] bit_shift_reg;   
     reg [7:0]  byte_count;
     reg [31:0] timeout_counter;
-    reg [15:0] payload_byte_cnt;  // 统计payload字节数
-    reg        frame_done;         // 帧完成标志
+    reg [15:0] payload_byte_cnt;  
+    reg        frame_done;        
     reg find_head_flag;
 
     wire  [31:0] head_window;

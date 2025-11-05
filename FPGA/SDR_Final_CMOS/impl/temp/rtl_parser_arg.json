@@ -78,11 +78,7 @@
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/top.v",
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_diff_decode.v",
    "Type" : "verilog"
   },
   {
@@ -90,7 +86,19 @@
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_diff_decode.v",
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/sys_pll/sys_pll.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/sys_pll/sys_pll_mod.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/top.v",
    "Type" : "verilog"
   }
  ],

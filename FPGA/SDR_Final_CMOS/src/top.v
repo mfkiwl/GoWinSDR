@@ -30,13 +30,13 @@
     output                              led                         
     );
 
-wire                                    clk_40M                    ;
+//  wire                                    clk_40M                    ;
 
-    Gowin_PLL pll0(
-    .clkin                             (sys_clk                   ),//input  clkin
-    .clkout0                           (clk_40M                   ),//output  clkout0
-    .mdclk                             (sys_clk                   ) //input  mdclk
-    );
+    // Gowin_PLL pll0(
+    // .clkin                             (sys_clk                   ),//input  clkin
+    // .clkout0                           (clk_40M                   ),//output  clkout0
+    // .mdclk                             (sys_clk                   ) //input  mdclk
+    // );
 
 
     assign gclk_div = sys_clk;                                      //50Mhz  
@@ -55,23 +55,23 @@ wire                                    dac_in_valid               ;
     assign      dac_r1_mode = 1'b1        ;
     assign      adc_r1_mode = 1'b1        ;
 
-    // 30分频方波 (divide-by-30) from clk_40M -> data_clk
-reg                    [   4:0]         div_cnt_30                 ;
-reg                                     data_clk_r                 ;
+//     // 30分频方波 (divide-by-30) from clk_40M -> data_clk
+// reg                    [   4:0]         div_cnt_30                 ;
+// reg                                     data_clk_r                 ;
 
-    always @(posedge clk_40M or negedge rst_n) begin
-        if (!rst_n) begin
-            div_cnt_30  <= 5'd0;
-            data_clk_r  <= 1'b0;
-        end else begin
-            if (div_cnt_30 == 5'd14) begin
-                div_cnt_30 <= 5'd0;
-                data_clk_r <= ~data_clk_r;                          // toggle every 15 cycles -> period = 30 cycles
-            end else begin
-                div_cnt_30 <= div_cnt_30 + 1'b1;
-            end
-        end
-    end
+//     always @(posedge clk_40M or negedge rst_n) begin
+//         if (!rst_n) begin
+//             div_cnt_30  <= 5'd0;
+//             data_clk_r  <= 1'b0;
+//         end else begin
+//             if (div_cnt_30 == 5'd14) begin
+//                 div_cnt_30 <= 5'd0;
+//                 data_clk_r <= ~data_clk_r;                          // toggle every 15 cycles -> period = 30 cycles
+//             end else begin
+//                 div_cnt_30 <= div_cnt_30 + 1'b1;
+//             end
+//         end
+//     end
 
 
     ad9363_dev_cmos u_ad9363_dev_cmos(

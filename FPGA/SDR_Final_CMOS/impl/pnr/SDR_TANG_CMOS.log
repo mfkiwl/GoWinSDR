@@ -13,6 +13,7 @@ WARN  (TA1132) :  'u_rf_rxt_4_4' was determined to be a clock but was not create
 WARN  (TA1132) :  'u_rf_rxt_5_4' was determined to be a clock but was not created.
 WARN  (TA1132) :  'u_rf_data_processor_2_6' was determined to be a clock but was not created.
 WARN  (TA1132) :  'rx_clk_out' was determined to be a clock but was not created.
+WARN  (TA1118) : the clock "sys_clk"'s frequency does not match eth_inst/pll_inst/u_pll/PLLA_inst's param "FCLKIN = "50""
 [50%] Placement Phase 3 completed
 Running routing......
 [60%] Routing Phase 0 completed
@@ -32,5 +33,5 @@ Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.p
 Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.rpt.html" completed
 Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.rpt.txt" completed
 Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.tr.html" completed
-Tue Nov  4 20:18:12 2025
+Wed Nov  5 18:40:28 2025
 
