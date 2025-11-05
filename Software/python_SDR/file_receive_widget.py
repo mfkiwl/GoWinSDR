@@ -43,6 +43,7 @@ class FileReceiveWidget(QWidget):
         # --- 保存按钮 ---
         self.btn_save = QPushButton("保存选中的文件")
         self.btn_save.setEnabled(False)
+        self.btn_save.setMinimumHeight(35)
         layout.addWidget(self.btn_save)
 
         # 设置主布局
