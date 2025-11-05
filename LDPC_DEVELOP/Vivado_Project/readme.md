@@ -1,0 +1,1 @@
+vivado version=2024.2
