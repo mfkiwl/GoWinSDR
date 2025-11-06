@@ -24,9 +24,9 @@ module top_sec_decode(
     input clk,
     input rst_n,
 
-    // serial 8-bit input (from channel)
+    // serial 9-bit input (from channel)
     input i_valid_serial,
-    input [7:0] i_data_serial,
+    input [8:0] i_data_serial,
 
     // 8-bit parallel output (one byte per valid)
     output reg o_valid_byte,
@@ -41,9 +41,10 @@ module top_sec_decode(
     wire [71:0] rec_codeword;
     wire rec_valid_parral;
 
-    // instantiate serial->parallel (72->8) to collect incoming bytes
-    ser_parral_trans #(.SERIAL_WIDTH(8), .PARRAL_WIDTH(72)) s2p (
+    // instantiate serial->parallel (72->9) to collect incoming words
+    ser_parral_trans #(.SERIAL_WIDTH(9), .PARRAL_WIDTH(72)) s2p (
         .clk(clk),
+        .rst_n(rst_n),
         .o_data_parral(rec_codeword),
         .o_valid_parral_data(rec_valid_parral),
         .i_valid_serial_data(i_valid_serial),
@@ -66,57 +67,70 @@ module top_sec_decode(
     );
 
     // output bytes from decoder when dec_valid_out (or dec_uncorrectable) pulses.
-    // To avoid races, latch decoder outputs when they are registered, then start
-    // streaming from the next clock cycle.
-    reg [2:0] out_idx;
-    reg [63:0] out_buffer;
-    reg start_stream;
-    reg frame_uncorr;
+    // Use P2S module to convert 64-bit decoded data to 8-bit serial stream
+    reg [63:0] out_buffer_reg;
+    reg out_buffer_valid;
+    reg out_buffer_uncorr;
 
+    // Latch decoder output and prepare for P2S
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            o_valid_byte <= 1'b0;
-            o_data_byte <= 8'b0;
-            o_uncorrectable <= 1'b0;
-            out_idx <= 3'd0;
-            out_buffer <= 64'b0;
-            start_stream <= 1'b0;
-            frame_uncorr <= 1'b0;
+            out_buffer_reg <= 64'b0;
+            out_buffer_valid <= 1'b0;
+            out_buffer_uncorr <= 1'b0;
         end else begin
-            // default
-            o_valid_byte <= 1'b0;
-
-            // when decoder registers a frame (either valid or uncorrectable), latch and
-            // prepare to stream starting next cycle
+            // When decoder produces output, latch it for P2S
             if (dec_valid_out || dec_uncorrectable) begin
-                out_buffer <= dec_data;
-                out_idx <= 3'd0;
-                start_stream <= 1'b1; // begin streaming next cycle
-                frame_uncorr <= dec_uncorrectable;
-            end else if (start_stream) begin
-                // begin/continue streaming bytes
-                o_data_byte <= out_buffer[out_idx*8 +: 8];
-                o_valid_byte <= 1'b1;
-                o_uncorrectable <= frame_uncorr;
-                if (out_idx == 3'd7) begin
-                    start_stream <= 1'b0;
-                    out_idx <= 3'd0;
-                    frame_uncorr <= 1'b0;
-                end else begin
-                    out_idx <= out_idx + 1'b1;
-                end
+                out_buffer_reg <= dec_data;
+                out_buffer_valid <= 1'b1;
+                out_buffer_uncorr <= dec_uncorrectable;
             end else begin
-                // idle
-                o_uncorrectable <= 1'b0;
+                out_buffer_valid <= 1'b0;
             end
         end
     end
 
-    // debug prints
-    always @(posedge clk) begin
-        if (rec_valid_parral) $display("[top_sec_decode] rec_codeword ready at %0t code=0x%0h", $time, rec_codeword);
-        if (dec_valid_out) $display("[top_sec_decode] decoder valid at %0t data=0x%0h", $time, dec_data);
-        if (o_valid_byte) $display("[top_sec_decode] out byte 0x%0h at %0t uncorr=%b", o_data_byte, $time, o_uncorrectable);
+    // Use P2S to convert 64-bit to 8-bit serial
+    wire p2s_valid_serial;
+    wire [7:0] p2s_data_serial;
+    
+    parral_ser_trans #(.PARRAL_WIDTH(64), .SERIAL_WIDTH(8)) output_p2s (
+        .clk(clk),
+        .rst_n(rst_n),
+        .i_valid_parral(out_buffer_valid),
+        .i_data_parral(out_buffer_reg),
+        .o_valid_serial(p2s_valid_serial),
+        .o_data_serial(p2s_data_serial),
+        .error()
+    );
+
+    // Capture P2S output and add uncorrectable flag
+    reg uncorr_sr;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            uncorr_sr <= 1'b0;
+        end else begin
+            // Latch uncorrectable flag when P2S starts outputting
+            if (out_buffer_valid && !p2s_valid_serial) begin
+                uncorr_sr <= out_buffer_uncorr;
+            end else if (!p2s_valid_serial) begin
+                uncorr_sr <= 1'b0;
+            end
+        end
     end
+
+    // Connect P2S output to module output
+    always @(posedge clk) begin
+        o_valid_byte <= p2s_valid_serial;
+        o_data_byte <= p2s_data_serial;
+        o_uncorrectable <= (p2s_valid_serial) ? uncorr_sr : 1'b0;
+    end
+
+    // // debug prints
+    // always @(posedge clk) begin
+    //     if (rec_valid_parral) $display("[top_sec_decode] rec_codeword ready at %0t code=0x%0h", $time, rec_codeword);
+    //     if (dec_valid_out) $display("[top_sec_decode] decoder valid at %0t data=0x%0h", $time, dec_data);
+    //     if (o_valid_byte) $display("[top_sec_decode] out byte 0x%0h at %0t uncorr=%b", o_data_byte, $time, o_uncorrectable);
+    // end
 
 endmodule

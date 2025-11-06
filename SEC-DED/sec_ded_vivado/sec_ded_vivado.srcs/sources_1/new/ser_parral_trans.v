@@ -19,56 +19,69 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
-module ser_parral_trans
-#(
+module ser_parral_trans #(
     parameter SERIAL_WIDTH = 8,
-    parameter PARRAL_WIDTH = 64
-)
-(
-    input clk
+    parameter PARRAL_WIDTH = 72
+) (
+    input                         clk,
+    input                         rst_n,
 
-,   output reg [PARRAL_WIDTH-1:0] o_data_parral
-,   output reg o_valid_parral_data
+    output reg [PARRAL_WIDTH-1:0] o_data_parral,
+    output                        o_valid_parral_data,
 
-,   input i_valid_serial_data
-,   input [SERIAL_WIDTH-1:0] i_data_serial
+    input                         i_valid_serial_data,
+    input  [SERIAL_WIDTH-1:0]     i_data_serial
 );
-        // Simple parameterized serial->parallel converter.
-        // Assumes PARRAL_WIDTH is integer multiple of SERIAL_WIDTH.
 
-        localparam integer WORDS = PARRAL_WIDTH / SERIAL_WIDTH;
+// 参数检查
+initial begin
+    if (PARRAL_WIDTH % SERIAL_WIDTH != 0) begin
+        $error("PARRAL_WIDTH must be divisible by SERIAL_WIDTH!");
+    end
+end
 
-        // function for clog2
-        function integer clog2; input integer value; integer i; begin clog2 = 0; for (i = value - 1; i > 0; i = i >> 1) clog2 = clog2 + 1; end endfunction
+localparam NUM_CHUNKS = PARRAL_WIDTH / SERIAL_WIDTH;
+localparam CNT_WIDTH  = $clog2(NUM_CHUNKS);
 
-        reg [PARRAL_WIDTH-1:0] buffer;
-        reg [clog2(WORDS)-1:0] idx;
+reg [PARRAL_WIDTH-1:0] shift_reg;
+reg [CNT_WIDTH-1:0]    cnt;
+reg valid_sr;
 
-        initial begin
-            buffer = {PARRAL_WIDTH{1'b0}};
-            idx = 0;
-            o_data_parral = {PARRAL_WIDTH{1'b0}};
-            o_valid_parral_data = 1'b0;
-        end
+// 输出 valid
+assign o_valid_parral_data = valid_sr;
 
-        always @(posedge clk) begin
-            // default
-            o_valid_parral_data <= 1'b0;
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        shift_reg <= {PARRAL_WIDTH{1'b0}};
+        cnt       <= {CNT_WIDTH{1'b0}};
+        o_data_parral <= {PARRAL_WIDTH{1'b0}};
+        valid_sr  <= 1'b0;
+    end else begin
+        // Default: valid拉低
+        valid_sr <= 1'b0;
 
-                    if (i_valid_serial_data) begin
-                        // capture incoming serial word into buffer at current index (blocking so buffer updated immediately)
-                        buffer[idx*SERIAL_WIDTH +: SERIAL_WIDTH] = i_data_serial;
-                        $display("[ser_parral_trans] capture at %0t idx=%0d data=0x%0h", $time, idx, i_data_serial);
-                        if (idx == WORDS - 1) begin
-                            // completed the whole parallel word -> present buffer
-                            o_data_parral <= buffer;
-                            o_valid_parral_data <= 1'b1;
-                            idx <= 0;
-                        end else begin
-                            idx <= idx + 1;
-                        end
+        if (i_valid_serial_data) begin
+            // 将新串行数据放入高位，其他数据右移
+            shift_reg <= {i_data_serial, shift_reg[PARRAL_WIDTH - 1 : SERIAL_WIDTH]};
+
+            if (cnt == NUM_CHUNKS - 1) begin
+                // 这是最后一个数据块
+                o_data_parral <= {i_data_serial, shift_reg[PARRAL_WIDTH - 1 : SERIAL_WIDTH]};
+                valid_sr <= 1'b1;
+                cnt <= {CNT_WIDTH{1'b0}}; // 回绕到0，准备下一组
+                $display("[S2P] Output complete at %0t: 0x%0h", $time, {i_data_serial, shift_reg[PARRAL_WIDTH - 1 : SERIAL_WIDTH]});
+            end else begin
+                // 继续积累
+                cnt <= cnt + 1;
+                $display("[S2P] Accumulating byte %0d/8 at %0t: data=0x%03h", cnt, $time, i_data_serial);
+            end
+        end else begin
+            // 无有效输入时，计数器不变
+            if (cnt > 0) begin
+                $display("[S2P] No input but cnt=%0d (waiting for more data)", cnt);
             end
         end
+    end
+end
 
-    endmodule
+endmodule

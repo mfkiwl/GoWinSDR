@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_serpara_trans_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_serpara_trans" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,083.001 ns"></ZoomEndTime>
+      <Cursor1Time time="90.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="431"></NameColumnWidth>
+      <ValueColumnWidth column_width="144"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="9" />
+   <wvobject fp_name="/tb_serpara_trans/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_serpara_trans/rst_n" type="logic">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_serpara_trans/i_valid_parral" type="logic">
+      <obj_property name="ElementShortName">i_valid_parral</obj_property>
+      <obj_property name="ObjectShortName">i_valid_parral</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_serpara_trans/i_data_parral" type="array">
+      <obj_property name="ElementShortName">i_data_parral[71:0]</obj_property>
+      <obj_property name="ObjectShortName">i_data_parral[71:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_serpara_trans/o_valid_serial" type="logic">
+      <obj_property name="ElementShortName">o_valid_serial</obj_property>
+      <obj_property name="ObjectShortName">o_valid_serial</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_serpara_trans/o_data_serial" type="array">
+      <obj_property name="ElementShortName">o_data_serial[7:0]</obj_property>
+      <obj_property name="ObjectShortName">o_data_serial[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_serpara_trans/o_data_parral" type="array">
+      <obj_property name="ElementShortName">o_data_parral[71:0]</obj_property>
+      <obj_property name="ObjectShortName">o_data_parral[71:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_serpara_trans/o_valid_parral_data" type="logic">
+      <obj_property name="ElementShortName">o_valid_parral_data</obj_property>
+      <obj_property name="ObjectShortName">o_valid_parral_data</obj_property>
+   </wvobject>
+   <wvobject fp_name="group12" type="group">
+      <wvobject fp_name="/tb_serpara_trans/p2s/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_serpara_trans/p2s/rst_n" type="logic">
+         <obj_property name="ElementShortName">rst_n</obj_property>
+         <obj_property name="ObjectShortName">rst_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_serpara_trans/p2s/i_valid_parral" type="logic">
+         <obj_property name="ElementShortName">i_valid_parral</obj_property>
+         <obj_property name="ObjectShortName">i_valid_parral</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_serpara_trans/p2s/i_data_parral" type="array">
+         <obj_property name="ElementShortName">i_data_parral[71:0]</obj_property>
+         <obj_property name="ObjectShortName">i_data_parral[71:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_serpara_trans/p2s/o_valid_serial" type="logic">
+         <obj_property name="ElementShortName">o_valid_serial</obj_property>
+         <obj_property name="ObjectShortName">o_valid_serial</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_serpara_trans/p2s/o_data_serial" type="array">
+         <obj_property name="ElementShortName">o_data_serial[7:0]</obj_property>
+         <obj_property name="ObjectShortName">o_data_serial[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_serpara_trans/p2s/error" type="logic">
+         <obj_property name="ElementShortName">error</obj_property>
+         <obj_property name="ObjectShortName">error</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_serpara_trans/p2s/shift_reg" type="array">
+         <obj_property name="ElementShortName">shift_reg[71:0]</obj_property>
+         <obj_property name="ObjectShortName">shift_reg[71:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_serpara_trans/p2s/cnt" type="array">
+         <obj_property name="ElementShortName">cnt[3:0]</obj_property>
+         <obj_property name="ObjectShortName">cnt[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_serpara_trans/p2s/busy" type="logic">
+         <obj_property name="ElementShortName">busy</obj_property>
+         <obj_property name="ObjectShortName">busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_serpara_trans/p2s/PARRAL_WIDTH" type="array">
+         <obj_property name="ElementShortName">PARRAL_WIDTH[31:0]</obj_property>
+         <obj_property name="ObjectShortName">PARRAL_WIDTH[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_serpara_trans/p2s/SERIAL_WIDTH" type="array">
+         <obj_property name="ElementShortName">SERIAL_WIDTH[31:0]</obj_property>
+         <obj_property name="ObjectShortName">SERIAL_WIDTH[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_serpara_trans/p2s/NUM_CHUNKS" type="array">
+         <obj_property name="ElementShortName">NUM_CHUNKS[31:0]</obj_property>
+         <obj_property name="ObjectShortName">NUM_CHUNKS[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_serpara_trans/p2s/CNT_WIDTH" type="array">
+         <obj_property name="ElementShortName">CNT_WIDTH[31:0]</obj_property>
+         <obj_property name="ObjectShortName">CNT_WIDTH[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

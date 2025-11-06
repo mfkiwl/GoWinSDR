@@ -1,0 +1,179 @@
+Time resolution is 1 ps
+
+================================================================================
+PRESSURE TEST: Continuous 8-bit stream through SEC-ECC with S/P conversion
+================================================================================
+
+[S2P] Accumulating byte 0/8 at 75000: data=0x000
+[top_sec_encode] recv byte 0x0 at 75000
+[S2P] Accumulating byte 1/8 at 85000: data=0x001
+[top_sec_encode] recv byte 0x1 at 85000
+[S2P] Accumulating byte 2/8 at 95000: data=0x002
+[top_sec_encode] recv byte 0x2 at 95000
+[S2P] Accumulating byte 3/8 at 105000: data=0x003
+[top_sec_encode] recv byte 0x3 at 105000
+[S2P] Accumulating byte 4/8 at 115000: data=0x004
+[top_sec_encode] recv byte 0x4 at 115000
+[S2P] Accumulating byte 5/8 at 125000: data=0x005
+[top_sec_encode] recv byte 0x5 at 125000
+[S2P] Accumulating byte 6/8 at 135000: data=0x006
+[top_sec_encode] recv byte 0x6 at 135000
+[S2P] Output complete at 145000: 0x706050403020100
+[top_sec_encode] recv byte 0x7 at 145000
+[S2P] Accumulating byte 0/8 at 155000: data=0x008
+[sec_encoder] time=155000 data=0x706050403020100 code=0x34181410060409001
+[top_sec_encode] assembled 64-bit at 155000 data=0x706050403020100
+[top_sec_encode] recv byte 0x8 at 155000
+[S2P] Accumulating byte 1/8 at 165000: data=0x009
+[top_sec_encode] recv byte 0x9 at 165000
+[S2P] Accumulating byte 2/8 at 175000: data=0x00a
+[P2S] START: input=0x034181410060409001
+[top_sec_encode] recv byte 0xa at 175000
+[S2P] Accumulating byte 0/8 at 185000: data=0x001
+[S2P] Accumulating byte 3/8 at 185000: data=0x00b
+[top_sec_encode] recv byte 0xb at 185000
+[S2P] Accumulating byte 1/8 at 195000: data=0x048
+[S2P] Accumulating byte 4/8 at 195000: data=0x00c
+[top_sec_encode] recv byte 0xc at 195000
+[S2P] Accumulating byte 2/8 at 205000: data=0x010
+[S2P] Accumulating byte 5/8 at 205000: data=0x00d
+[top_sec_encode] recv byte 0xd at 205000
+[S2P] Accumulating byte 3/8 at 215000: data=0x00c
+[S2P] Accumulating byte 6/8 at 215000: data=0x00e
+[top_sec_encode] recv byte 0xe at 215000
+[S2P] Accumulating byte 4/8 at 225000: data=0x010
+[S2P] Output complete at 225000: 0xf0e0d0c0b0a0908
+[top_sec_encode] recv byte 0xf at 225000
+[S2P] Accumulating byte 5/8 at 235000: data=0x00a
+[S2P] Accumulating byte 0/8 at 235000: data=0x010
+[sec_encoder] time=235000 data=0xf0e0d0c0b0a0908 code=0x87c3834302614190c9
+[top_sec_encode] assembled 64-bit at 235000 data=0xf0e0d0c0b0a0908
+[top_sec_encode] recv byte 0x10 at 235000
+[S2P] Accumulating byte 6/8 at 245000: data=0x106
+[S2P] Accumulating byte 1/8 at 245000: data=0x011
+[top_sec_encode] recv byte 0x11 at 245000
+[S2P] Output complete at 255000: 0x34181410060409001
+[S2P] Accumulating byte 2/8 at 255000: data=0x012
+[P2S] SWITCH: new input=0x87c3834302614190c9
+[top_sec_encode] recv byte 0x12 at 255000
+[S2P] Accumulating byte 0/8 at 265000: data=0x0c9
+[sec_decoder] time=265000 rec=0x34181410060409001 syndrome=0x0 overall=0 uncorr=0
+   parity pos 1 (pow2=1): recv=1 calc=0
+   parity pos 2 (pow2=2): recv=0 calc=0
+   parity pos 4 (pow2=4): recv=0 calc=0
+   parity pos 8 (pow2=8): recv=0 calc=0
+   parity pos 16 (pow2=16): recv=1 calc=0
+   parity pos 32 (pow2=32): recv=0 calc=0
+   parity pos 64 (pow2=64): recv=0 calc=0
+[S2P] Accumulating byte 3/8 at 265000: data=0x013
+[top_sec_encode] recv byte 0x13 at 265000
+[S2P] Accumulating byte 1/8 at 275000: data=0x0c8
+[S2P] Accumulating byte 4/8 at 275000: data=0x014
+[top_sec_encode] recv byte 0x14 at 275000
+[S2P] Accumulating byte 2/8 at 285000: data=0x050
+[P2S] START: input=0x0706050403020100
+[S2P] Accumulating byte 5/8 at 285000: data=0x015
+[top_sec_encode] recv byte 0x15 at 285000
+[S2P] Accumulating byte 3/8 at 295000: data=0x04c
+[S2P] Accumulating byte 6/8 at 295000: data=0x016
+[top_sec_encode] recv byte 0x16 at 295000
+TB@305000: RX byte[0] = 0x00 (uncorr=0)
+[S2P] Accumulating byte 4/8 at 305000: data=0x030
+[S2P] Output complete at 305000: 0x1716151413121110
+[top_sec_encode] recv byte 0x17 at 305000
+TB@315000: RX byte[1] = 0x01 (uncorr=0)
+[S2P] Accumulating byte 5/8 at 315000: data=0x01a
+[S2P] Accumulating byte 0/8 at 315000: data=0x018
+[sec_encoder] time=315000 data=0x1716151413121110 code=0x8bc585450462429108
+[top_sec_encode] assembled 64-bit at 315000 data=0x1716151413121110
+[top_sec_encode] recv byte 0x18 at 315000
+TB@325000: RX byte[2] = 0x02 (uncorr=0)
+[S2P] Accumulating byte 6/8 at 325000: data=0x10e
+[S2P] Accumulating byte 1/8 at 325000: data=0x019
+[top_sec_encode] recv byte 0x19 at 325000
+TB@335000: RX byte[3] = 0x03 (uncorr=0)
+[S2P] Output complete at 335000: 0x87c3834302614190c9
+[S2P] Accumulating byte 2/8 at 335000: data=0x01a
+[P2S] SWITCH: new input=0x8bc585450462429108
+[top_sec_encode] recv byte 0x1a at 335000
+TB@345000: RX byte[4] = 0x04 (uncorr=0)
+[S2P] Accumulating byte 0/8 at 345000: data=0x108
+[sec_decoder] time=345000 rec=0x87c3834302614190c9 syndrome=0x0 overall=0 uncorr=0
+   parity pos 1 (pow2=1): recv=1 calc=0
+   parity pos 2 (pow2=2): recv=0 calc=0
+   parity pos 4 (pow2=4): recv=1 calc=0
+   parity pos 8 (pow2=8): recv=1 calc=0
+   parity pos 16 (pow2=16): recv=1 calc=0
+   parity pos 32 (pow2=32): recv=0 calc=0
+   parity pos 64 (pow2=64): recv=1 calc=0
+[S2P] Accumulating byte 3/8 at 345000: data=0x01b
+[top_sec_encode] recv byte 0x1b at 345000
+TB@355000: RX byte[5] = 0x05 (uncorr=0)
+[S2P] Accumulating byte 1/8 at 355000: data=0x148
+[S2P] Accumulating byte 4/8 at 355000: data=0x01c
+[top_sec_encode] recv byte 0x1c at 355000
+TB@365000: RX byte[6] = 0x06 (uncorr=0)
+[S2P] Accumulating byte 2/8 at 365000: data=0x090
+[P2S] SWITCH: new input=0x0f0e0d0c0b0a0908
+[S2P] Accumulating byte 5/8 at 365000: data=0x01d
+[top_sec_encode] recv byte 0x1d at 365000
+TB@375000: RX byte[7] = 0x07 (uncorr=0)
+[S2P] Accumulating byte 3/8 at 375000: data=0x08c
+[S2P] Accumulating byte 6/8 at 375000: data=0x01e
+[top_sec_encode] recv byte 0x1e at 375000
+
+Waiting for pipeline to drain...
+TB@385000: RX byte[8] = 0x08 (uncorr=0)
+[S2P] Accumulating byte 4/8 at 385000: data=0x050
+[S2P] Output complete at 385000: 0x1f1e1d1c1b1a1918
+[top_sec_encode] recv byte 0x1f at 385000
+TB@395000: RX byte[9] = 0x09 (uncorr=0)
+[S2P] Accumulating byte 5/8 at 395000: data=0x02a
+[sec_encoder] time=395000 data=0x1f1e1d1c1b1a1918 code=0xf47874706634391c0
+[top_sec_encode] assembled 64-bit at 395000 data=0x1f1e1d1c1b1a1918
+TB@405000: RX byte[10] = 0x0a (uncorr=0)
+[S2P] Accumulating byte 6/8 at 405000: data=0x116
+TB@415000: RX byte[11] = 0x0b (uncorr=0)
+[S2P] Output complete at 415000: 0x8bc585450462429108
+[P2S] SWITCH: new input=0x0f47874706634391c0
+TB@425000: RX byte[12] = 0x0c (uncorr=0)
+[S2P] Accumulating byte 0/8 at 425000: data=0x1c0
+[sec_decoder] time=425000 rec=0x8bc585450462429108 syndrome=0x0 overall=0 uncorr=0
+   parity pos 1 (pow2=1): recv=0 calc=0
+   parity pos 2 (pow2=2): recv=0 calc=0
+   parity pos 4 (pow2=4): recv=1 calc=0
+   parity pos 8 (pow2=8): recv=0 calc=0
+   parity pos 16 (pow2=16): recv=1 calc=0
+   parity pos 32 (pow2=32): recv=0 calc=0
+   parity pos 64 (pow2=64): recv=1 calc=0
+TB@435000: RX byte[13] = 0x0d (uncorr=0)
+[S2P] Accumulating byte 1/8 at 435000: data=0x1c8
+TB@445000: RX byte[14] = 0x0e (uncorr=0)
+[S2P] Accumulating byte 2/8 at 445000: data=0x0d0
+[P2S] SWITCH: new input=0x1716151413121110
+TB@455000: RX byte[15] = 0x0f (uncorr=0)
+[S2P] Accumulating byte 3/8 at 455000: data=0x0cc
+TB@465000: RX byte[16] = 0x10 (uncorr=0)
+[S2P] Accumulating byte 4/8 at 465000: data=0x070
+TB@475000: RX byte[17] = 0x11 (uncorr=0)
+[S2P] Accumulating byte 5/8 at 475000: data=0x03a
+TB@485000: RX byte[18] = 0x12 (uncorr=0)
+[S2P] Accumulating byte 6/8 at 485000: data=0x11e
+TB@495000: RX byte[19] = 0x13 (uncorr=0)
+[S2P] Output complete at 495000: 0xf47874706634391c0
+[P2S] DONE at cnt=7
+
+TB@505000: RX byte[20] = 0x14 (uncorr=0)
+TB@505000: [enc_valid=0 enc_ser=0x01e] [dec_valid=1 dec_byte=0x14]
+[sec_decoder] time=505000 rec=0xf47874706634391c0 syndrome=0x0 overall=0 uncorr=0
+   parity pos 1 (pow2=1): recv=0 calc=0
+   parity pos 2 (pow2=2): recv=0 calc=0
+   parity pos 4 (pow2=4): recv=0 calc=0
+   parity pos 8 (pow2=8): recv=1 calc=0
+   parity pos 16 (pow2=16): recv=1 calc=0
+   parity pos 32 (pow2=32): recv=0 calc=0
+   parity pos 64 (pow2=64): recv=0 calc=0
+[P2S] DONE at cnt=7
+
+TB@515000: RX byte[21] = 0x15 (uncorr=0)
+[P2S] DON

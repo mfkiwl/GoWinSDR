@@ -53,23 +53,20 @@ module sec_decoder
         rec = i_data_crypt;
         syndrome_bits = 7'b0;
         // compute syndrome bits (p=0..6 -> parity positions 1,2,4...)
+        // Each syndrome bit tells us if parity at position pow2 is wrong
         for (p = 0; p < 7; p = p + 1) begin:compute_syndrome_bits
             integer pow2;
             reg parity_check;
             pow2 = 1 << p;
             parity_check = 1'b0;
-            for (pos = 1; pos <= 72; pos = pos + 1) begin
-                // skip parity positions and overall parity (pos==72)
-                if (pos == pow2 || pos == 72 || (pos & (pos - 1)) == 0) begin
-                    // skip
-                end else begin
-                    if ((pos & pow2) != 0) begin
-                        parity_check = parity_check ^ rec[pos-1];
-                    end
+            // XOR all positions where this bit is set (1..71, excluding overall parity at pos 72)
+            for (pos = 1; pos <= 71; pos = pos + 1) begin
+                if ((pos & pow2) != 0) begin
+                    parity_check = parity_check ^ rec[pos-1];
                 end
             end
-            // syndrome bit = parity computed from data positions XOR received parity bit
-            syndrome_bits[p] = parity_check ^ rec[pow2-1];
+            // syndrome bit = 1 if parity is wrong
+            syndrome_bits[p] = parity_check;
         end
 
         // convert syndrome bits into numeric position (1-based)
@@ -133,11 +130,8 @@ module sec_decoder
                 for (pp = 0; pp < 7; pp = pp + 1) begin
                     pow2_debug = 1 << pp;
                     parity_check_dbg = 1'b0;
-                    for (pos = 1; pos <= 72; pos = pos + 1) begin
-                        if (pos == pow2_debug || pos == 72 || (pos & (pos - 1)) == 0) begin
-                        end else begin
-                            if ((pos & pow2_debug) != 0) parity_check_dbg = parity_check_dbg ^ rec[pos-1];
-                        end
+                    for (pos = 1; pos <= 71; pos = pos + 1) begin
+                        if ((pos & pow2_debug) != 0) parity_check_dbg = parity_check_dbg ^ rec[pos-1];
                     end
                     $display("   parity pos %0d (pow2=%0d): recv=%b calc=%b", pow2_debug, pow2_debug, rec[pow2_debug-1], parity_check_dbg);
                 end

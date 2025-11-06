@@ -48,17 +48,15 @@ module sec_encoder_comb(
             end
         end
 
-        // compute Hamming parity bits using only data positions
+        // compute Hamming parity bits using standard SEC-DED scheme
+        // Parity bit at position pow2 covers all positions where bit p is set
         for (p = 0; p < 7; p = p + 1) begin
             integer pow2;
             pow2 = 1 << p;
             parity_bit = 1'b0;
             for (pos = 1; pos <= 71; pos = pos + 1) begin
-                if (pos == 72 || (pos & (pos - 1)) == 0) begin
-                    // skip parity positions and overall parity
-                end else begin
-                    if ((pos & pow2) != 0) parity_bit = parity_bit ^ tmp[pos-1];
-                end
+                // XOR all positions where this bit is set (excluding position 72 overall parity)
+                if ((pos & pow2) != 0) parity_bit = parity_bit ^ tmp[pos-1];
             end
             tmp[pow2-1] = parity_bit;
         end

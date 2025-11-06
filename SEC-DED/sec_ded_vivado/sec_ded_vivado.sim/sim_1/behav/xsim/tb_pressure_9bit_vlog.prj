@@ -6,7 +6,7 @@ verilog xil_defaultlib  \
 "../../../../sec_ded_vivado.srcs/sources_1/new/ser_parral_trans.v" \
 "../../../../sec_ded_vivado.srcs/sources_1/new/top_sec_decode.v" \
 "../../../../sec_ded_vivado.srcs/sources_1/new/top_sec_encode.v" \
-"../../../../sec_ded_vivado.srcs/sim_1/new/tb_top_encdec.v" \
+"../../../../sec_ded_vivado.srcs/sim_1/new/tb_pressure_9bit.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"

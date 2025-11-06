@@ -28,17 +28,25 @@ module top_sec_encode(
     input i_valid_byte,
     input [7:0] i_data_byte,
 
-    // 8-bit serial output (valid indicates output byte on each cycle)
+    // 9-bit serial output (valid indicates output word on each cycle)
     output wire o_valid_serial,
-    output wire [7:0] o_data_serial
+    output wire [8:0] o_data_serial
     );
 
-    // Assemble 8 bytes -> 64-bit word, then feed sec_encoder -> 72-bit codeword -> parral_ser_trans
+    // Assemble 8 bytes into 64-bit word using S2P, then feed sec_encoder -> 72-bit codeword -> P2S converts to 9-bit stream
 
-    reg [2:0] byte_cnt;
-    reg [63:0] data64;
-    reg assembled; // one-cycle pulse to encoder
-    reg assembled_req; // request set when last byte arrives, presented as assembled next cycle
+    wire [63:0] data64;
+    wire data64_valid;
+
+    // Use S2P to assemble 8 input bytes (8-bit) into 64-bit word
+    ser_parral_trans #(.SERIAL_WIDTH(8), .PARRAL_WIDTH(64)) input_s2p (
+        .clk(clk),
+        .rst_n(rst_n),
+        .o_data_parral(data64),
+        .o_valid_parral_data(data64_valid),
+        .i_valid_serial_data(i_valid_byte),
+        .i_data_serial(i_data_byte)
+    );
 
     // encoder wires
     wire enc_valid_out;
@@ -49,68 +57,52 @@ module top_sec_encode(
         .clk(clk),
         .rst_n(rst_n),
         .i_data(data64),
-        .i_valid_datain(assembled),
+        .i_valid_datain(data64_valid),
         .i_valid_dataout(enc_valid_out),
         .o_data_crypt(enc_codeword)
     );
 
-    // instantiate parallel->serial to split 72-bit into 8-bit words
-    // We will present the parral->serial with a registered version of encoder outputs
-    // to avoid any combinational race between encoder's registered outputs and the
-    // p2s module which expects a stable data input when i_valid_parral is asserted.
+    // Register encoder outputs for stable timing to P2S
     reg [71:0] enc_codeword_r;
     reg enc_valid_r;
 
-    parral_ser_trans #(.PARRAL_WIDTH(72), .SERIAL_WIDTH(8)) p2s (
+    // Use P2S to convert 72-bit codeword into 9-bit serial stream
+    wire p2s_valid_serial;
+    wire [8:0] p2s_data_serial;
+    
+    parral_ser_trans #(.PARRAL_WIDTH(72), .SERIAL_WIDTH(9)) output_p2s (
         .clk(clk),
+        .rst_n(rst_n),
         .i_valid_parral(enc_valid_r),
         .i_data_parral(enc_codeword_r),
-        .o_valid_serial(o_valid_serial),
-        .o_data_serial(o_data_serial)
+        .o_valid_serial(p2s_valid_serial),
+        .o_data_serial(p2s_data_serial),
+        .error()
     );
 
-    // capture bytes and set assembled flag for one cycle when full
+    // Connect P2S output to module output
+    assign o_valid_serial = p2s_valid_serial;
+    assign o_data_serial = p2s_data_serial;
+
+    // Capture encoder output and forward to P2S for serialization
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            byte_cnt <= 3'd0;
-            data64 <= 64'b0;
-            assembled <= 1'b0;
-            assembled_req <= 1'b0;
             enc_codeword_r <= 72'b0;
             enc_valid_r <= 1'b0;
         end else begin
-            // default: assembled follows assembled_req (one-cycle delayed pulse)
-            assembled <= assembled_req;
-            // clear assembled_req after it has been presented
-            if (assembled) assembled_req <= 1'b0;
-
-            // register encoder outputs when they become valid so p2s sees stable inputs
             if (enc_valid_out) begin
                 enc_codeword_r <= enc_codeword;
-                // present a one-cycle valid to p2s next cycle by setting enc_valid_r
                 enc_valid_r <= 1'b1;
             end else begin
-                // clear register-valid after one cycle
                 enc_valid_r <= 1'b0;
-            end
-
-            if (i_valid_byte) begin
-                data64[byte_cnt*8 +: 8] <= i_data_byte;
-                if (byte_cnt == 3'd7) begin
-                    // collected 8 bytes, request encoder on next cycle by setting assembled_req
-                    assembled_req <= 1'b1;
-                    byte_cnt <= 3'd0;
-                end else begin
-                    byte_cnt <= byte_cnt + 1'b1;
-                end
             end
         end
     end
 
     // debug display
     always @(posedge clk) begin
-        if (assembled) $display("[top_sec_encode] assembled at %0t data64=0x%0h", $time, data64);
-        if (i_valid_byte) $display("[top_sec_encode] recv byte 0x%0h cnt=%0d at %0t", i_data_byte, byte_cnt, $time);
+        if (data64_valid) $display("[top_sec_encode] assembled 64-bit at %0t data=0x%0h", $time, data64);
+        if (i_valid_byte) $display("[top_sec_encode] recv byte 0x%0h at %0t", i_data_byte, $time);
     end
 
 endmodule

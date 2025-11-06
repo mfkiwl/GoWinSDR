@@ -1,0 +1,4 @@
+Running: xsim.dir/tb_pressure_9bit_behav/xsimk.exe -simmode gui -wdb tb_pressure_9bit_behav.wdb -simrunnum 0 -socket 14889
+Design successfully loaded
+Design Loading Memory Usage: 29968 KB (Peak: 29968 KB)
+Design Loading CPU Usage: 359 ms

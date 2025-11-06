@@ -9,9 +9,9 @@ module tb_top_encdec;
     reg i_valid_byte;
     reg [7:0] i_data_byte;
 
-    // serial channel wires
+    // serial channel wires (9-bit chunks)
     wire o_valid_serial;
-    wire [7:0] o_data_serial;
+    wire [8:0] o_data_serial;
 
     // decoder side outputs
     wire o_valid_byte_dec;
