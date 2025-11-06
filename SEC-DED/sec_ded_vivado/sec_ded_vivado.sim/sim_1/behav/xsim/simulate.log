@@ -176,4 +176,193 @@ TB@505000: [enc_valid=0 enc_ser=0x01e] [dec_valid=1 dec_byte=0x14]
 [P2S] DONE at cnt=7
 
 TB@515000: RX byte[21] = 0x15 (uncorr=0)
-[P2S] DON
+[P2S] DONE at cnt=7
+
+TB@525000: RX byte[22] = 0x16 (uncorr=0)
+[P2S] SWITCH: new input=0x1f1e1d1c1b1a1918
+[P2S] DONE at cnt=7
+
+TB@535000: RX byte[23] = 0x17 (uncorr=0)
+[P2S] DONE at cnt=7
+
+TB@545000: RX byte[24] = 0x18 (uncorr=0)
+[P2S] DONE at cnt=7
+
+TB@555000: RX byte[25] = 0x19 (uncorr=0)
+[P2S] DONE at cnt=7
+
+TB@565000: RX byte[26] = 0x1a (uncorr=0)
+[P2S] DONE at cnt=7
+
+TB@575000: RX byte[27] = 0x1b (uncorr=0)
+[P2S] DONE at cnt=7
+
+TB@585000: RX byte[28] = 0x1c (uncorr=0)
+[P2S] DONE at cnt=7
+
+TB@595000: RX byte[29] = 0x1d (uncorr=0)
+[P2S] DONE at cnt=7
+
+TB@605000: RX byte[30] = 0x1e (uncorr=0)
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+TB@615000: RX byte[31] = 0x1f (uncorr=0)
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+TB@915000: [enc_valid=0 enc_ser=0x01e] [dec_valid=0 dec_byte=0x1f]
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
+[P2S] DONE at cnt=7
+
