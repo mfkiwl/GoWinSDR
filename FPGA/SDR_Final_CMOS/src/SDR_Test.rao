@@ -74,7 +74,6 @@
                 <Signal>dac_data_in_q1[1]</Signal>
                 <Signal>dac_data_in_q1[0]</Signal>
             </Bus>
-            <Signal capture_enable="true">rst_n</Signal>
             <Bus capture_enable="true" name="tx_data_in[7:0]">
                 <Signal>tx_data_in[7]</Signal>
                 <Signal>tx_data_in[6]</Signal>
@@ -316,5 +315,5 @@
             <Expression>M1</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>0110010000000011</GAO_ID>
+    <GAO_ID>0010100011100110</GAO_ID>
 </GAO_CONFIG>
