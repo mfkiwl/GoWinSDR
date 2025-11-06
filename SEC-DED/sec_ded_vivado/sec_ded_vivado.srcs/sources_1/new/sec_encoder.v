@@ -94,6 +94,7 @@ module sec_encoder
             if (i_valid_datain) begin
                 o_data_crypt <= tmp;
                 i_valid_dataout <= 1'b1;
+                $display("[sec_encoder] time=%0t data=0x%0h code=0x%0h", $time, i_data, tmp);
             end else begin
                 i_valid_dataout <= 1'b0;
             end

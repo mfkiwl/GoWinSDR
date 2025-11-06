@@ -4,4 +4,11 @@ Nov  8 2024
 22:36:57
 E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.sim/sim_1/behav/xsim/glbl.v,1724786425,verilog,,,,glbl,,,,,,,,
 E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sim_1/new/tb_sec_enc.v,1762400959,verilog,,,,tb_sec_enc,,,,,,,,
-E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sources_1/new/sec_encoder.v,1762409735,verilog,,E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sim_1/new/tb_sec_enc.v,,sec_encoder,,,,,,,,
+E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sim_1/new/tb_serpara_trans.v,1762413657,verilog,,,,tb_serpara_trans,,,,,,,,
+E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sim_1/new/tb_top_encdec.v,1762414439,verilog,,,,tb_top_encdec,,,,,,,,
+E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sources_1/new/parral_ser_trans.v,1762413508,verilog,,E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sources_1/new/sec_decoder.v,,parral_ser_trans,,,,,,,,
+E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sources_1/new/sec_decoder.v,1762416146,verilog,,E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sources_1/new/sec_encoder.v,,sec_decoder,,,,,,,,
+E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sources_1/new/sec_encoder.v,1762409735,verilog,,E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sources_1/new/ser_parral_trans.v,,sec_encoder,,,,,,,,
+E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sources_1/new/ser_parral_trans.v,1762413487,verilog,,E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sources_1/new/top_sec_decode.v,,ser_parral_trans,,,,,,,,
+E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sources_1/new/top_sec_decode.v,1762414439,verilog,,E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sources_1/new/top_sec_encode.v,,top_sec_decode,,,,,,,,
+E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sources_1/new/top_sec_encode.v,1762414439,verilog,,E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sim_1/new/tb_top_encdec.v,,top_sec_encode,,,,,,,,
