@@ -34,6 +34,24 @@
   ]
  },
  {
+  "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top_rx/fifo_top_rx.v",
+  "InstLine" : 647,
+  "InstName" : "fifo_rx",
+  "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top_rx/fifo_top_rx.v",
+  "ModuleLine" : 647,
+  "ModuleName" : "fifo_rx",
+  "SubInsts" : [
+   {
+    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top_rx/fifo_top_rx.v",
+    "InstLine" : 668,
+    "InstName" : "fifo_inst",
+    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top_rx/fifo_top_rx.v",
+    "ModuleLine" : 13,
+    "ModuleName" : "~fifo.fifo_rx"
+   }
+  ]
+ },
+ {
   "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_ddr/gowin_ddr.v",
   "InstLine" : 9,
   "InstName" : "ETH_DDR",
@@ -140,12 +158,12 @@
       "InstLine" : 137,
       "InstName" : "fifo_tx_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top/fifo_top.v",
-      "ModuleLine" : 568,
+      "ModuleLine" : 711,
       "ModuleName" : "fifo_tx",
       "SubInsts" : [
        {
         "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top/fifo_top.v",
-        "InstLine" : 589,
+        "InstLine" : 732,
         "InstName" : "fifo_inst",
         "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top/fifo_top.v",
         "ModuleLine" : 13,
@@ -160,24 +178,6 @@
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_diff_encode.v",
       "ModuleLine" : 1,
       "ModuleName" : "qpsk_differential_encoder"
-     },
-     {
-      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
-      "InstLine" : 262,
-      "InstName" : "fifo_rx_u0",
-      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top_rx/fifo_top_rx.v",
-      "ModuleLine" : 647,
-      "ModuleName" : "fifo_rx",
-      "SubInsts" : [
-       {
-        "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top_rx/fifo_top_rx.v",
-        "InstLine" : 668,
-        "InstName" : "fifo_inst",
-        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top_rx/fifo_top_rx.v",
-        "ModuleLine" : 13,
-        "ModuleName" : "~fifo.fifo_rx"
-       }
-      ]
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
@@ -251,7 +251,7 @@
     "SubInsts" : [
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_frame_gene.v",
-      "InstLine" : 204,
+      "InstLine" : 228,
       "InstName" : "fifo_eth_rx_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_eth_rx/fifo_top.v",
       "ModuleLine" : 662,
@@ -279,7 +279,7 @@
     "SubInsts" : [
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_pack.v",
-      "InstLine" : 164,
+      "InstLine" : 178,
       "InstName" : "fifo_eth_tx_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_eth_tx/fifo_eth_tx.v",
       "ModuleLine" : 662,

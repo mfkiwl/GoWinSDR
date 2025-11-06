@@ -255,20 +255,20 @@ reg                                     integrate_ready            ;
     end
 
 wire                                    rx_fifo_empty              ;
-assign rx_clk_out = bit_clk;
-
-assign rx_data_valid = ~rx_fifo_empty;
-    // FIFO for demodulated data output
-    fifo_rx fifo_rx_u0(
-    .Data                              (decoded_data[0]),//input [0:0] Data
-    .WrClk                             (demod_bit_clk             ),//input WrClk
-    .RdClk                             (bit_clk                   ),//input RdClk
-    .WrEn                              (demod_valid               ),//input WrEn
-    .RdEn                              (1'b1                      ),//input RdEn
-    .Q                                 (rx_data_out               ),//output [0:0] Q
-    .Empty                             (rx_fifo_empty             ),//output Empty
-    .Full                              (rx_data_missing           ) //output Full
-    );
+assign rx_clk_out = demod_bit_clk;
+assign rx_data_out = decoded_data[0];
+assign rx_data_valid = decoded_valid;
+    // // FIFO for demodulated data output
+    // fifo_rx fifo_rx_u0(
+    // .Data                              (decoded_data[0]),//input [0:0] Data
+    // .WrClk                             (demod_bit_clk             ),//input WrClk
+    // .RdClk                             (bit_clk                   ),//input RdClk
+    // .WrEn                              (demod_valid               ),//input WrEn
+    // .RdEn                              (1'b1                      ),//input RdEn
+    // .Q                                 (rx_data_out               ),//output [0:0] Q
+    // .Empty                             (rx_fifo_empty             ),//output Empty
+    // .Full                              (rx_data_missing           ) //output Full
+    // );
 
 wire [1:0] decoded_data;
 wire decoded_valid;

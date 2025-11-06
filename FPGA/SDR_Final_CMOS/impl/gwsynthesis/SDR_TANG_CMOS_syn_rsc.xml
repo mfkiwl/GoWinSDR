@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="top" Register="33" Lut="55" T_Register="2292(33)" T_Alu="158(0)" T_Lut="1946(55)" T_Bsram="68(0)">
+<Module name="top" Register="31" Lut="54" T_Register="2206(31)" T_Alu="149(0)" T_Lut="1924(54)" T_Bsram="68(0)">
  <SubModule name="u_ad9363_dev_cmos"/>
- <SubModule name="gw_gao_inst_0" Register="1218" Alu="15" Lut="679" Bsram="61" T_Register="1218(1218)" T_Alu="15(15)" T_Lut="679(679)" T_Bsram="61(61)"/>
- <SubModule name="u_rf_rxt" Register="23" Lut="27" T_Register="216(23)" T_Alu="21(0)" T_Lut="197(27)" T_Bsram="2(0)">
-  <SubModule name="fifo_tx_u0" Register="83" Alu="9" Lut="80" Bsram="1" T_Register="83(83)" T_Alu="9(9)" T_Lut="80(80)" T_Bsram="1(1)"/>
+ <SubModule name="gw_gao_inst_0" Register="1218" Alu="15" Lut="667" Bsram="61" T_Register="1218(1218)" T_Alu="15(15)" T_Lut="667(667)" T_Bsram="61(61)"/>
+ <SubModule name="u_rf_rxt" Register="17" Lut="12" T_Register="131(17)" T_Alu="12(0)" T_Lut="112(12)" T_Bsram="2(0)">
+  <SubModule name="fifo_tx_u0" Register="107" Alu="12" Lut="96" Bsram="2" T_Register="107(107)" T_Alu="12(12)" T_Lut="96(96)" T_Bsram="2(2)"/>
   <SubModule name="qpsk_diff_encoder_u0" Register="4" Lut="3" T_Register="4(4)" T_Lut="3(3)"/>
-  <SubModule name="fifo_rx_u0" Register="104" Alu="12" Lut="86" Bsram="1" T_Register="104(104)" T_Alu="12(12)" T_Lut="86(86)" T_Bsram="1(1)"/>
-  <SubModule name="qpsk_diff_decoder_u0" Register="2" Lut="1" T_Register="2(2)" T_Lut="1(1)"/>
+  <SubModule name="qpsk_diff_decoder_u0" Register="3" Lut="1" T_Register="3(3)" T_Lut="1(1)"/>
  </SubModule>
- <SubModule name="eth_inst" Register="417" Alu="98" Lut="596" Bsram="1" T_Register="449(417)" T_Alu="98(98)" T_Lut="651(596)" T_Bsram="1(1)">
+ <SubModule name="eth_inst" Register="417" Alu="98" Lut="593" Bsram="1" T_Register="449(417)" T_Alu="98(98)" T_Lut="653(593)" T_Bsram="1(1)">
   <SubModule name="pll_inst">
    <SubModule name="u_pll"/>
   </SubModule>
-  <SubModule name="crc_inst" Register="32" Lut="55" T_Register="32(32)" T_Lut="55(55)"/>
+  <SubModule name="crc_inst" Register="32" Lut="60" T_Register="32(32)" T_Lut="60(60)"/>
   <SubModule name="gmii2rgmii_inst"/>
  </SubModule>
- <SubModule name="u_rf_data_processor" Register="65" Lut="83" T_Register="169(65)" T_Alu="12(0)" T_Lut="169(83)" T_Bsram="2(0)">
+ <SubModule name="u_rf_data_processor" Register="65" Lut="88" T_Register="169(65)" T_Alu="12(0)" T_Lut="174(88)" T_Bsram="2(0)">
   <SubModule name="fifo_eth_rx_u0" Register="104" Alu="12" Lut="86" Bsram="2" T_Register="104(104)" T_Alu="12(12)" T_Lut="86(86)" T_Bsram="2(2)"/>
  </SubModule>
- <SubModule name="u_rf_data_depacketizer" Register="103" Lut="109" T_Register="207(103)" T_Alu="12(0)" T_Lut="195(109)" T_Bsram="2(0)">
+ <SubModule name="u_rf_data_depacketizer" Register="104" Lut="178" T_Register="208(104)" T_Alu="12(0)" T_Lut="264(178)" T_Bsram="2(0)">
   <SubModule name="fifo_eth_tx_u0" Register="104" Alu="12" Lut="86" Bsram="2" T_Register="104(104)" T_Alu="12(12)" T_Lut="86(86)" T_Bsram="2(2)"/>
  </SubModule>
 </Module>

@@ -143,7 +143,7 @@ reg                                     led_blink                  ;
 
 
 localparam                              integer SYS_CLK_FREQ_HZ = 50_000_000;// adjust if sys_clk differs
-localparam                              integer TEST_CLK_FREQ_HZ = 500_000;
+localparam                              integer TEST_CLK_FREQ_HZ = 2_000_000;
 localparam                              integer DIV_HALF = SYS_CLK_FREQ_HZ / (2 * TEST_CLK_FREQ_HZ);// toggle every DIV_HALF cycles
 
 reg                    [  31:0]         test_div_cnt               ;
@@ -176,7 +176,7 @@ wire                                    tx_data_ready              ;
 
     rf_rxt #(
     .SAMPLE_RATE                       (32'd30720000              ),
-    .BIT_RATE                          (32'd1000000               ) // 1Mbps for testing
+    .BIT_RATE                          (32'd10000000               ) // 10Mbps for testing
     ) u_rf_rxt (
     .clk                               (sys_clk                   ),
     .rst_n                             (rst_n                     ),
@@ -255,7 +255,7 @@ wire        fifo_almost_full;
 
 rf_data_processor #(
     .FRAME_HEAD(32'hEB90CAD3),
-    .FRAME_TAIL(16'h55AA)
+    .FRAME_TAIL(32'h55AA5C4B)
 ) u_rf_data_processor (
     // Ethernet RX clock domain
     .eth_rx_clk         (RGMII_RXCLK),
@@ -279,8 +279,8 @@ wire [15:0] depack_frame_length;
 
 rf_data_depacketizer #(
     .FRAME_HEAD         (32'hEB90CAD3),
-    .FRAME_TAIL         (16'h55AA),
-    .TIMEOUT_CNT        (32'd32768)
+    .FRAME_TAIL         (32'h55AA5C4B),
+    .TIMEOUT_CNT        (32'd65535)
 ) u_rf_data_depacketizer (
     // RF RX clock domain
     .rf_rx_clk          (rx_clk_out),

@@ -1,6 +1,6 @@
 module rf_data_depacketizer #(
     parameter FRAME_HEAD = 32'hEB90CAD3,  // 帧头标识
-    parameter FRAME_TAIL = 16'h55AA,  // 帧尾标识
+    parameter FRAME_TAIL = 32'h55AA5C4B,  // 帧尾标识
     parameter TIMEOUT_CNT = 32'd32768  // 超时计数器
 )(
     // 射频解调时钟域
@@ -48,10 +48,14 @@ module rf_data_depacketizer #(
                                   head_window[2],  head_window[3],  head_window[0], head_window[1]};
     assign head_window = bit_shift_reg[47:16];
 
-    wire [15:0] tail_window;
-    assign tail_window = bit_shift_reg[23:8];
-    wire [15:0] tail_window_swapped;
-    assign tail_window_swapped = {tail_window[14], tail_window[15], tail_window[12], tail_window[13],
+    wire [31:0] tail_window;
+    assign tail_window = bit_shift_reg[31:0];
+    wire [31:0] tail_window_swapped;
+    assign tail_window_swapped = {tail_window[30], tail_window[31], tail_window[28], tail_window[29],
+                                 tail_window[26], tail_window[27], tail_window[24], tail_window[25],
+                                 tail_window[22], tail_window[23], tail_window[20], tail_window[21],
+                                 tail_window[18], tail_window[19], tail_window[16], tail_window[17],
+                                 tail_window[14], tail_window[15], tail_window[12], tail_window[13],
                                  tail_window[10], tail_window[11], tail_window[8],  tail_window[9],
                                  tail_window[6],  tail_window[7],  tail_window[4],  tail_window[5],
                                  tail_window[2],  tail_window[3],  tail_window[0], tail_window[1]};
@@ -85,13 +89,27 @@ module rf_data_depacketizer #(
                     if (rf_rx_valid) begin
                         bit_shift_reg <= {bit_shift_reg[46:0], rf_rx_data};
                         if (head_window == FRAME_HEAD) begin
-                            pack_state <= PAYLOAD;
+                            pack_state <= WAIT_SEND;
                             iq_swap_flag <= 1'b0;
                         end
                         else if (head_window_swapped == FRAME_HEAD) begin
-                            pack_state <= PAYLOAD;
+                            pack_state <= WAIT_SEND;
                             iq_swap_flag <= 1'b1;
                         end
+                    end
+                end
+
+                WAIT_SEND: begin
+                    fifo_wen <= 1'b0;
+                    fifo_wr_data <= 8'd0;
+                    timeout_counter <= 32'd0;
+                    find_head_flag <= 1'b0;
+                    bit_shift_reg <= {bit_shift_reg[46:0], rf_rx_data};
+                    if (byte_count != 8'd7) begin
+                        byte_count <= byte_count + 1'b1;
+                    end else begin
+                        byte_count <= 8'd0;
+                        pack_state <= PAYLOAD;
                     end
                 end
 
@@ -116,10 +134,10 @@ module rf_data_depacketizer #(
                                 byte_count <= 8'd0;
                                 fifo_wen <= 1'b1;
                                 if (!iq_swap_flag) begin
-                                    fifo_wr_data <= bit_shift_reg[23:16];
+                                    fifo_wr_data <= bit_shift_reg[31:24];
                                 end else begin
-                                    fifo_wr_data <= {bit_shift_reg[22], bit_shift_reg[23], bit_shift_reg[20], bit_shift_reg[21],
-                                                     bit_shift_reg[18], bit_shift_reg[19], bit_shift_reg[16], bit_shift_reg[17]};
+                                    fifo_wr_data <= {bit_shift_reg[30], bit_shift_reg[31], bit_shift_reg[28], bit_shift_reg[29],
+                                                     bit_shift_reg[26], bit_shift_reg[27], bit_shift_reg[24], bit_shift_reg[25]};
                                 end
                                 payload_byte_cnt <= payload_byte_cnt + 1'b1;
                             end
@@ -138,11 +156,7 @@ module rf_data_depacketizer #(
                     end
                 end
 
-                WAIT_SEND: begin
-                    if (eth_state == ETH_FRAME_END) begin
-                        pack_state <= FIND_HEAD;
-                    end
-                end
+
                 
                 default: begin
                     pack_state <= FIND_HEAD;

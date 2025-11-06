@@ -1,6 +1,6 @@
 module rf_data_processor #(
     parameter FRAME_HEAD = 32'hEB90CAD3,  // 帧头标识
-    parameter FRAME_TAIL = 16'h55AA   // 帧尾标识
+    parameter FRAME_TAIL = 32'h55AA5C4B   // 帧尾标识
 )(
     // 以太网接收时钟域
     input  wire        eth_rx_clk,
@@ -29,11 +29,13 @@ module rf_data_processor #(
     localparam SEND_DATA  = 4'd5;
     localparam SEND_TAIL1 = 4'd6;
     localparam SEND_TAIL2 = 4'd7;
-    localparam SEND_LAST1 = 4'd8;
-    localparam SEND_LAST2 = 4'd9;
-    localparam SEND_LAST3 = 4'd10;
-    localparam SEND_LAST4 = 4'd11;
-    localparam SEND_LAST5 = 4'd12;
+    localparam SEND_TAIL3 = 4'd8;
+    localparam SEND_TAIL4 = 4'd9;
+    localparam SEND_LAST1 = 4'd10;
+    localparam SEND_LAST2 = 4'd11;
+    localparam SEND_LAST3 = 4'd12;
+    localparam SEND_LAST4 = 4'd13;
+    localparam SEND_LAST5 = 4'd14;
 
     reg [3:0]  state;
     reg [7:0]  fifo_wr_data;
@@ -119,7 +121,7 @@ module rf_data_processor #(
                 end
                 
                 SEND_TAIL1: begin
-                    temp_data1 <= FRAME_TAIL[15:8];  // 帧尾高字节
+                    temp_data1 <= FRAME_TAIL[31:24];  // 帧尾高字节
                     temp_data2 <= temp_data1;
                     temp_data3 <= temp_data2;
                     temp_data4 <= temp_data3;
@@ -130,7 +132,29 @@ module rf_data_processor #(
                 end
                 
                 SEND_TAIL2: begin
-                    temp_data1 <= FRAME_TAIL[7:0];   // 帧尾低字节
+                    temp_data1 <= FRAME_TAIL[23:16];   // 帧尾次低字节
+                    temp_data2 <= temp_data1;
+                    temp_data3 <= temp_data2;
+                    temp_data4 <= temp_data3;
+                    temp_data5 <= temp_data4;
+                    fifo_wr_data <= temp_data5;
+                    fifo_wr_en <= 1'b1;
+                    state <= SEND_TAIL3;
+                end
+
+                SEND_TAIL3: begin
+                    temp_data1 <= FRAME_TAIL[15:8];  // 帧尾次高字节
+                    temp_data2 <= temp_data1;
+                    temp_data3 <= temp_data2;
+                    temp_data4 <= temp_data3;
+                    temp_data5 <= temp_data4;
+                    fifo_wr_data <= temp_data5;
+                    fifo_wr_en <= 1'b1;
+                    state <= SEND_TAIL4;
+                end
+
+                SEND_TAIL4: begin
+                    temp_data1 <= FRAME_TAIL[7:0];   // 帧尾次低字节
                     temp_data2 <= temp_data1;
                     temp_data3 <= temp_data2;
                     temp_data4 <= temp_data3;
