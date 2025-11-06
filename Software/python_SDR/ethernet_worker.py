@@ -4,7 +4,7 @@ import os
 import time
 import struct  # --- 新增: 用于打包和解包头部
 import zlib  # --- 新增: 用于 CRC32 校验
-from PyQt6.QtCore import QObject, pyqtSignal
+from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
 from PyQt6.QtGui import QImage
 
 # --- 修改: 增加 CHUNK_SIZE 以提高效率 ---
@@ -14,14 +14,20 @@ CHUNK_SIZE = 256
 PREFIX_TEXT = b'\x00'
 PREFIX_VIDEO = b'\x01'
 PREFIX_FILE_DATA = b'\x02'
-PREFIX_AUDIO_DATA = b'\x03'
+PREFIX_AUDIO_DATA = b'\x03'  # <-- 这是你用于 "录制-发送" 的可靠音频
 PREFIX_FILE_INFO = b'\x0F'
+
+# --- [!! 新增 !!] ---
+# 为 "实时流" 定义一个全新的前缀，以避免与你现有的可靠音频(0x03)冲突
+PREFIX_AUDIO_STREAM = b'\x04'
+# --- [!! 结束新增 !!] ---
+
 
 # --- 新增: 可靠传输所需的新前缀和常量 ---
 PREFIX_ACK = b'\xAA'  # 确认包 (ACK)
 
 RETRY_COUNT = 15  # 最大重试次数
-ACK_TIMEOUT = 0.01  # ACK 超时时间 (秒) - 你可以根据链路质量调整
+ACK_TIMEOUT = 0.1  # ACK 超时时间 (秒) - 你可以根据链路质量调整
 
 # 定义包头结构: 1B Prefix + 4B SequenceNumber
 # '!' = 网络字节序 (big-endian)
@@ -39,6 +45,7 @@ class EthernetWorker(QObject):
     - 实现了 Stop-and-Wait ARQ (序列号 + ACK) 来处理丢包问题。
     - 修复了协议前缀的 Bug。
     - 修改了序列号管理:每次完整传输任务后重置序列号。
+    - [!! 新增 !!] 增加了对 PREFIX_AUDIO_STREAM (0x04) 的不可靠实时流支持。
     """
 
     # 信号 (保持不变)
@@ -50,13 +57,19 @@ class EthernetWorker(QObject):
     finished = pyqtSignal()
     file_received = pyqtSignal(str, bytes)
 
+    # --- [!! 新增 !!] ---
+    # 用于接收实时音频流的专用信号 (字节)
+    audio_chunk_received = pyqtSignal(bytes)
+
+    # --- [!! 结束新增 !!] ---
+
     def __init__(self):
         super().__init__()
         self.sock = None
         self._running = False
         self.fpga_addr = None
         self._recv_thread = None
-        self._lock = threading.Lock()
+        self._lock = threading.Lock()  # (保持你现有的锁,用于可靠传输)
 
         # --- 文件接收状态 (保持不变) ---
         self.is_receiving_file = False
@@ -93,10 +106,11 @@ class EthernetWorker(QObject):
 
     def _recv_loop(self, listen_ip, listen_port):
         """
-        [重大修改]
+        [修改]
         在独立的 Python 线程中执行接收循环。
         实现了 CRC 校验、ACK 发送和序列号检查。
         修改了序列号处理逻辑,支持任务完成后序列号重置。
+        增加了对 PREFIX_AUDIO_STREAM (0x04) 的处理。
         """
         try:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -112,6 +126,7 @@ class EthernetWorker(QObject):
                 try:
                     data, addr = self.sock.recvfrom(65536)
 
+                    # (你现有的逻辑: 检查包长 - 保持不变)
                     if not data or len(data) < (HEADER_SIZE + CRC_SIZE):
                         self.log_received.emit(f"[UDP 警告] 收到过短的包 (len={len(data)}),已丢弃")
                         continue
@@ -131,14 +146,15 @@ class EthernetWorker(QObject):
                     prefix = bytes([prefix_byte])
                     payload = data_without_crc[HEADER_SIZE:]
 
-                    # --- 3. 处理 ACK 包 (它确认了 *我们* 发送的包) ---
+                    # --- 3. 处理 ACK 包  ---
                     if prefix == PREFIX_ACK:
                         self.last_received_ack_seq = seq_num
                         self.ack_event.set()
                         continue
 
-                    # --- 4. 处理视频包 (不可靠) ---
-                    # 视频不检查序列号,也不发送 ACK,直接显示
+                    # --- 4. 处理不可靠包 (视频 和 实时音频) ---
+
+                    # (视频逻辑 - 保持不变)
                     if prefix == PREFIX_VIDEO:
                         image = QImage()
                         if image.loadFromData(payload, "JPEG"):
@@ -146,6 +162,14 @@ class EthernetWorker(QObject):
                         else:
                             self.log_received.emit(f"[UDP 警告] 收到损坏的视频包 (JPEG?)")
                         continue
+
+                    # --- [!! 新增 !!] ---
+                    # (实时音频流逻辑 - 像视频一样处理)
+                    # 它使用新前缀 0x04，不检查序列号，也不发送 ACK
+                    if prefix == PREFIX_AUDIO_STREAM:
+                        self.audio_chunk_received.emit(payload)
+                        continue  # 处理完毕，进入下一次循环
+                    # --- [!! 结束新增 !!] ---
 
                     # --- 5. 处理可靠包 (所有其他类型) ---
 
@@ -228,13 +252,16 @@ class EthernetWorker(QObject):
                             self.log_received.emit(f"[UDP 警告] 收到文件数据 (SEQ={seq_num}),但未在接收文件状态")
                             # 不推进序列号,等待正确的包
 
+                    # (你现有的 PREFIX_AUDIO_DATA (可靠录音) 逻辑 - 保持不变)
                     elif prefix == PREFIX_AUDIO_DATA:
                         self.log_received.emit(f"[UDP 消息] 收到一个音频包 (SEQ={seq_num}) (暂不处理)")
                         # --- 修改: 如果音频是多包传输,需要根据实际协议处理 ---
                         # 这里假设音频可能是多包传输,推进序列号
                         # 如果需要检测音频传输结束,需要添加额外的协议标记
                         self.expected_recv_seq += 1
-                        # 注意: 如果音频有结束标记,在检测到结束时应重置为 0
+                        # (注意：你现有的逻辑在这里没有结束标记, 序列号不会重置为0,
+                        #  除非对方停止发送并且你也重启监听。
+                        #  我们保持这个逻辑不变。)
 
                     else:
                         self.log_received.emit(f"[UDP 警告] 收到未知前缀的包: 0x{prefix.hex()}")
@@ -297,10 +324,6 @@ class EthernetWorker(QObject):
             self.error_occurred.emit("发送失败: 目标地址未设置")
             return False
 
-        # --- 补偿逻辑已移除 ---
-        # 之前用于补偿 FPGA Bug 的 b'\x00' 字节已被移除。
-        # 我们现在直接发送 raw_bytes。
-
         try:
             # UDP 发送是原子的,不需要临时套接字
             if self.sock:
@@ -320,11 +343,6 @@ class EthernetWorker(QObject):
         # ACK 包也需要打包和校验,以防 ACK 丢失或损坏
         # ACK 包的 Payload 为空
         ack_packet = self._pack_data(PREFIX_ACK, seq_num_to_ack, b'')
-
-        # --- 补偿逻辑已移除 ---
-        # 之前用于补偿 FPGA Bug 的 b'\x00' 字节已被移除。
-        # 我们现在直接发送 ack_packet。
-
         try:
             if self.sock:
                 self.sock.sendto(ack_packet, target_addr)
@@ -362,6 +380,19 @@ class EthernetWorker(QObject):
 
         self.error_occurred.emit(f"包 {seq_num} (Prefix 0x{prefix.hex()}) 发送失败 {RETRY_COUNT} 次,已放弃")
         return False
+
+    # --- [!! 新增 !!] ---
+    def _send_unreliable_payload(self, prefix: bytes, payload: bytes) -> bool:
+        """ 
+        [新增] 发送一个不可靠包 (但仍有 Header 和 CRC, 序列号为0) 
+        此方法 *不* 使用锁，以允许高吞吐量。
+        """
+        # 使用一个 "dummy" 序列号 0, 接收方会忽略它
+        # (因为接收方的 _recv_loop 会先检查 PREFIX_AUDIO_STREAM)
+        packet = self._pack_data(prefix, 0, payload)
+        return self._send_udp_payload(packet)
+
+    # --- [!! 结束新增 !!] ---
 
     # --- 公共发送槽函数 ---
 
@@ -417,7 +448,6 @@ class EthernetWorker(QObject):
                             return
                         self.log_received.emit(f"-> [UDP发送 文件块] SEQ={seq_num}, 大小={len(chunk)} 字节")
 
-
                 self.log_received.emit(f"-> [UDP发送 文件]: {filename} 完成,序列号已重置")
                 # 注意: 序列号会在下一次发送任务时重置为 0
 
@@ -427,7 +457,8 @@ class EthernetWorker(QObject):
                 self.error_occurred.emit(f"文件发送失败: {e}")
 
     def send_audio_udp(self, audio_bytes: bytes):
-        """ [重大修改] 使用可靠发送,单次音频传输内自增序列号,完成后重置 """
+        # (此方法是你旧的 "录制-发送" 功能 - 保持不变)
+        # (它使用 PREFIX_AUDIO_DATA (0x03) 进行可靠传输)
         with self._lock:
             if not self.fpga_addr:
                 self.error_occurred.emit("发送失败: 目标地址未设置")
@@ -455,3 +486,19 @@ class EthernetWorker(QObject):
 
             except Exception as e:
                 self.error_occurred.emit(f"音频发送失败: {e}")
+
+    # --- [!! 新增 !!] ---
+    @pyqtSlot(bytes)
+    def send_audio_chunk(self, audio_data: bytes):
+        """
+        [公共槽] 发送一个实时音频块 (不可靠)
+        此方法 *不* 使用锁 (self._lock), 以避免阻塞
+        它使用新的 PREFIX_AUDIO_STREAM (0x04)
+        """
+        if not self.fpga_addr:
+            return  # 静默失败
+
+        # 使用新的不可靠方法
+        if not self._send_unreliable_payload(PREFIX_AUDIO_STREAM, audio_data):
+            pass  # 丢包, 忽略
+    # --- [!! 结束新增 !!] ---
