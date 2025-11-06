@@ -62,13 +62,15 @@ module sec_encoder
         end
 
         // compute Hamming parity bits for positions 1,2,4,8,16,32,64
-        for (p = 0; p < 7; p = p + 1) begin
+        // Only XOR data bit positions (skip all parity positions and overall parity at pos 72)
+        for (p = 0; p < 7; p = p + 1) begin:Hamming_parity_compute
             integer pow2;
             pow2 = 1 << p; // parity position (1-based)
             parity_bit = 1'b0;
             for (pos = 1; pos <= 72; pos = pos + 1) begin
-                if (pos == pow2) begin
-                    // skip the parity position itself
+                // skip parity positions and overall parity
+                if (pos == pow2 || pos == 72 || (pos & (pos - 1)) == 0) begin
+                    // skip parity/overall parity positions
                 end else begin
                     if ((pos & pow2) != 0) begin
                         parity_bit = parity_bit ^ tmp[pos-1];

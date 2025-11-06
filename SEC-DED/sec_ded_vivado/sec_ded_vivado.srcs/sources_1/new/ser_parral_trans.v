@@ -51,18 +51,26 @@ module ser_parral_trans
     always @(*) begin
         rec = i_data_crypt;
         syndrome_bits = 7'b0;
-        // compute syndrome bits (p=0..6 -> parity positions 1,2,4...)
+        // compute syndrome bits based on data positions only (skip parity positions and overall parity)
         for (p = 0; p < 7; p = p + 1) begin
             integer pow2;
-            reg parity_check;
+            reg parity_expected;
+            reg parity_mismatch;
             pow2 = 1 << p;
-            parity_check = 1'b0;
-            for (pos = 1; pos <= 72; pos = pos + 1) begin
-                if ((pos & pow2) != 0) begin
-                    parity_check = parity_check ^ rec[pos-1];
+            parity_expected = 1'b0;
+            for (pos = 1; pos <= 71; pos = pos + 1) begin
+                // skip parity positions and overall parity (71 is last data position index)
+                if (pos == 72 || (pos & (pos - 1)) == 0) begin
+                    // skip
+                end else begin
+                    if ((pos & pow2) != 0) begin
+                        parity_expected = parity_expected ^ rec[pos-1];
+                    end
                 end
             end
-            syndrome_bits[p] = parity_check; // 1 if mismatch
+            // compare expected parity (from data) with received parity bit at pow2
+            parity_mismatch = parity_expected ^ rec[pow2-1];
+            syndrome_bits[p] = parity_mismatch; // 1 if mismatch
         end
 
         // convert syndrome bits into numeric position (1-based)

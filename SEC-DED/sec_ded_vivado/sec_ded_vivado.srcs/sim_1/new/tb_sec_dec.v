@@ -20,11 +20,6 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module tb_sec_dec(
-
-    );
-endmodule
-
 // Testbench for encoder + decoder with error injection
 `timescale 1ns / 1ps
 
@@ -99,21 +94,29 @@ module tb_sec_dec;
         reg [71:0] cw_double_err;
         integer b1, b2;
         begin
-            // drive encoder
-            @(negedge clk);
+            // drive encoder (stable data before posedge, assert valid at negedge so posedge samples it)
+            @(posedge clk);
             i_data = data;
+            @(negedge clk);
             i_valid_datain = 1;
-            @(posedge clk); // encoder samples
+            @(posedge clk); // encoder samples and registers outputs
+            #1;
             i_valid_datain = 0;
             #1;
             cw = enc_cw;
             $display("TEST: data=0x%016h -> codeword=0x%018h (enc_valid=%b)", data, cw, enc_valid);
+            // compute and display syndrome/overall parity in TB for debugging
+            compute_syndrome_and_parity(cw);
+            check_encoder_parity(cw);
 
             // 1) no error
-            @(negedge clk);
+            // present codeword to decoder and assert valid around next posedge
+            @(posedge clk);
             dec_cw_in = cw;
+            @(negedge clk);
             dec_valid_in = 1;
             @(posedge clk);
+            #1;
             dec_valid_in = 0;
             #1;
             if (dec_valid_out && dec_data_out == data) begin
@@ -126,10 +129,13 @@ module tb_sec_dec;
             cw_single_err = cw;
             b1 = 10; // flip bit 10
             cw_single_err[b1] = ~cw_single_err[b1];
-            @(negedge clk);
+            // single-bit error injection: present at negedge before posedge sampling
+            @(posedge clk);
             dec_cw_in = cw_single_err;
+            @(negedge clk);
             dec_valid_in = 1;
             @(posedge clk);
+            #1;
             dec_valid_in = 0;
             #1;
             if (dec_valid_out && dec_data_out == data) begin
@@ -143,10 +149,13 @@ module tb_sec_dec;
             b1 = 12; b2 = 25;
             cw_double_err[b1] = ~cw_double_err[b1];
             cw_double_err[b2] = ~cw_double_err[b2];
-            @(negedge clk);
+            // double-bit error injection
+            @(posedge clk);
             dec_cw_in = cw_double_err;
+            @(negedge clk);
             dec_valid_in = 1;
             @(posedge clk);
+            #1;
             dec_valid_in = 0;
             #1;
             if (!dec_valid_out) begin
@@ -156,6 +165,55 @@ module tb_sec_dec;
             end
 
             #20;
+        end
+    endtask
+
+    // helper: compute syndrome and overall parity for given codeword and display
+    task compute_syndrome_and_parity(input [71:0] cw_in);
+        integer p, pos;
+        reg [6:0] synb;
+        integer sval;
+        reg overall;
+        begin
+            synb = 7'b0;
+            for (p = 0; p < 7; p = p + 1) begin
+                integer pow2;
+                integer pos2;
+                reg pc;
+                pow2 = 1 << p;
+                pc = 1'b0;
+                for (pos2 = 1; pos2 <= 72; pos2 = pos2 + 1) begin
+                    if ((pos2 & pow2) != 0) pc = pc ^ cw_in[pos2-1];
+                end
+                synb[p] = pc;
+            end
+            sval = 0;
+            for (p = 0; p < 7; p = p + 1) if (synb[p]) sval = sval + (1<<p);
+            overall = ^cw_in;
+            $display("    TB SYNDROME: bits=%b value=%0d overall_parity=%b", synb, sval, overall);
+        end
+    endtask
+
+    // Compute expected parity bits from data positions and compare to parity bits embedded in codeword
+    task check_encoder_parity(input [71:0] cw_in);
+        integer p, pos;
+        integer pow2;
+        reg expected;
+        begin
+            $display("    TB PARITY CHECK: parity positions (pos:value) and expected from data");
+            for (p = 0; p < 7; p = p + 1) begin
+                pow2 = 1 << p;
+                expected = 1'b0;
+                for (pos = 1; pos <= 72; pos = pos + 1) begin
+                    // only data positions (skip parity positions and pos72)
+                    if (pos == 72 || (pos & (pos - 1)) == 0) begin
+                        // skip
+                    end else begin
+                        if ((pos & pow2) != 0) expected = expected ^ cw_in[pos-1];
+                    end
+                end
+                $display("      pos%0d: enc=%b expected=%b", pow2, cw_in[pow2-1], expected);
+            end
         end
     endtask
 

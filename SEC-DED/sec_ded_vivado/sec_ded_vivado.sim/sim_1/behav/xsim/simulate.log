@@ -1,0 +1,6 @@
+Time resolution is 1 ps
+ENCODE: data=0x0123456789abcdef -> codeword=0x8048d159e23579defc (valid=1)
+ENCODE: data=0xffffffffffffffff -> codeword=0xffffffffffffffffff (valid=1)
+ENCODE: data=0x0000000000000000 -> codeword=0x000000000000000000 (valid=1)
+tb_sec_enc finished
+$finish called at time : 127 ns : File "E:/GIT/GoWinSDR/SEC-DED/sec_ded_vivado/sec_ded_vivado.srcs/sim_1/new/tb_sec_enc.v" Line 49

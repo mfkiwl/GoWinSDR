@@ -52,10 +52,13 @@ module tb_sec_enc;
     task send_and_capture(input [63:0] data);
         reg [71:0] cw;
         begin
-            @(negedge clk);
+            // drive data, then assert valid around the next positive edge (assert at negedge before the posedge)
+            @(posedge clk);
             i_data = data;
+            @(negedge clk);
             i_valid_datain = 1;
-            @(posedge clk); // encoder samples and will produce outputs at this posedge
+            @(posedge clk); // encoder will sample at this posedge and register outputs
+            #1;
             i_valid_datain = 0;
             #1;
             cw = o_data_crypt;
