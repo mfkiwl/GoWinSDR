@@ -34,10 +34,27 @@ module rf_data_depacketizer #(
     reg [15:0] payload_byte_cnt;  
     reg        frame_done;        
     reg find_head_flag;
+    reg iq_swap_flag;
 
     wire  [31:0] head_window;
+    wire  [31:0] head_window_swapped;
+    assign head_window_swapped = {head_window[30], head_window[31], head_window[28], head_window[29],
+                                  head_window[26], head_window[27], head_window[24], head_window[25],
+                                  head_window[22], head_window[23], head_window[20], head_window[21],
+                                  head_window[18], head_window[19], head_window[16], head_window[17],
+                                  head_window[14], head_window[15], head_window[12], head_window[13],
+                                  head_window[10], head_window[11], head_window[8],  head_window[9],
+                                  head_window[6],  head_window[7],  head_window[4], head_window[5],
+                                  head_window[2],  head_window[3],  head_window[0], head_window[1]};
     assign head_window = bit_shift_reg[47:16];
-    
+
+    wire [15:0] tail_window;
+    assign tail_window = bit_shift_reg[23:8];
+    wire [15:0] tail_window_swapped;
+    assign tail_window_swapped = {tail_window[14], tail_window[15], tail_window[12], tail_window[13],
+                                 tail_window[10], tail_window[11], tail_window[8],  tail_window[9],
+                                 tail_window[6],  tail_window[7],  tail_window[4],  tail_window[5],
+                                 tail_window[2],  tail_window[3],  tail_window[0], tail_window[1]};
     always @(posedge rf_rx_clk or negedge rf_rx_rst_n) begin
         if (!rf_rx_rst_n) begin
             bit_shift_reg <= 48'd0;
@@ -51,6 +68,7 @@ module rf_data_depacketizer #(
             frame_error <= 1'b0;
             frame_length <= 16'd0;
             find_head_flag <= 1'b0;
+            iq_swap_flag <= 1'b0;
         end else begin
             frame_done <= 1'b0;  // 默认清除
             
@@ -68,6 +86,11 @@ module rf_data_depacketizer #(
                         bit_shift_reg <= {bit_shift_reg[46:0], rf_rx_data};
                         if (head_window == FRAME_HEAD) begin
                             pack_state <= PAYLOAD;
+                            iq_swap_flag <= 1'b0;
+                        end
+                        else if (head_window_swapped == FRAME_HEAD) begin
+                            pack_state <= PAYLOAD;
+                            iq_swap_flag <= 1'b1;
                         end
                     end
                 end
@@ -82,8 +105,8 @@ module rf_data_depacketizer #(
                             byte_count <= byte_count + 1'b1;
                             fifo_wen <= 1'b0;
                         end else begin
-                            
-                            if (bit_shift_reg[23:8] == FRAME_TAIL) begin
+
+                            if (((tail_window == FRAME_TAIL) & (iq_swap_flag == 1'b0)) | ((tail_window_swapped == FRAME_TAIL) & (iq_swap_flag == 1'b1))) begin
                                 pack_state <= FIND_HEAD;
                                 frame_length <= payload_byte_cnt;
                                 frame_done <= 1'b1;
@@ -92,7 +115,12 @@ module rf_data_depacketizer #(
                             else begin
                                 byte_count <= 8'd0;
                                 fifo_wen <= 1'b1;
-                                fifo_wr_data <= bit_shift_reg[23:16];
+                                if (!iq_swap_flag) begin
+                                    fifo_wr_data <= bit_shift_reg[23:16];
+                                end else begin
+                                    fifo_wr_data <= {bit_shift_reg[22], bit_shift_reg[23], bit_shift_reg[20], bit_shift_reg[21],
+                                                     bit_shift_reg[18], bit_shift_reg[19], bit_shift_reg[16], bit_shift_reg[17]};
+                                end
                                 payload_byte_cnt <= payload_byte_cnt + 1'b1;
                             end
                         end

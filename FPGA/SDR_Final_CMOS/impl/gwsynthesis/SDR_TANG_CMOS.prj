@@ -17,6 +17,7 @@
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\fifo_eth_tx\fifo_eth_tx.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\fifo_top\fifo_top.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\fifo_top_rx\fifo_top_rx.v" type="verilog"/>
+        <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_ddr\gowin_ddr.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_ddr_GMII2RGMII\GMII2RGMII.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_pll\gowin_pll.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_pll\gowin_pll_mod.v" type="verilog"/>

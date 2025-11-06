@@ -74,6 +74,12 @@ end
 reg [7:0] gmii_rxd_reg;
 reg gmii_rxdv_reg;
 
+// ETH_DDR ETH_DDR_u0(
+//     .din(RGMII_RXD), //input [3:0] din
+//     .clk(RGMII_RXCLK), //input clk
+//     .q(gmii_rxd_reg) //output [7:0] q
+// );
+
 always @(posedge RGMII_RXCLK) begin
     gmii_rxd_reg  <= {rxd_falling, rxd_rising};
     gmii_rxdv_reg <= rxdv_rising;

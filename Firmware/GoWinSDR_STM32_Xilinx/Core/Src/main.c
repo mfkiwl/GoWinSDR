@@ -264,8 +264,8 @@ AD9361_InitParam default_init_param = {
 	0,		//delay_rx_data *** adi,delay-rx-data
 	15,		//rx_data_clock_delay *** adi,rx-data-clock-delay
 	0,		//rx_data_delay *** adi,rx-data-delay
-	14,		//tx_fb_clock_delay *** adi,tx-fb-clock-delay
-	0,		//tx_data_delay *** adi,tx-data-delay
+	7,		//tx_fb_clock_delay *** adi,tx-fb-clock-delay
+	10,		//tx_data_delay *** adi,tx-data-delay
 	150,	//lvds_bias_mV *** adi,lvds-bias-mV
 	1,		//lvds_rx_onchip_termination_enable *** adi,lvds-rx-onchip-termination-enable 
 	0,		//rx1rx2_phase_inversion_en *** adi,rx1-rx2-phase-inversion-enable

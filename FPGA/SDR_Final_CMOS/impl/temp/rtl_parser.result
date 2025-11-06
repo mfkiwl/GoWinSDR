@@ -34,6 +34,14 @@
   ]
  },
  {
+  "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_ddr/gowin_ddr.v",
+  "InstLine" : 9,
+  "InstName" : "ETH_DDR",
+  "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_ddr/gowin_ddr.v",
+  "ModuleLine" : 9,
+  "ModuleName" : "ETH_DDR"
+ },
+ {
   "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll.v",
   "InstLine" : 1,
   "InstName" : "Gowin_PLL",
@@ -217,7 +225,7 @@
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_transceiver.v",
-      "InstLine" : 325,
+      "InstLine" : 331,
       "InstName" : "crc_inst",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/crc.v",
       "ModuleLine" : 3,
@@ -225,7 +233,7 @@
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_transceiver.v",
-      "InstLine" : 540,
+      "InstLine" : 546,
       "InstName" : "gmii2rgmii_inst",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_ddr_GMII2RGMII/GMII2RGMII.v",
       "ModuleLine" : 9,
@@ -243,7 +251,7 @@
     "SubInsts" : [
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_frame_gene.v",
-      "InstLine" : 185,
+      "InstLine" : 204,
       "InstName" : "fifo_eth_rx_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_eth_rx/fifo_top.v",
       "ModuleLine" : 662,
@@ -271,7 +279,7 @@
     "SubInsts" : [
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_pack.v",
-      "InstLine" : 136,
+      "InstLine" : 164,
       "InstName" : "fifo_eth_tx_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_eth_tx/fifo_eth_tx.v",
       "ModuleLine" : 662,

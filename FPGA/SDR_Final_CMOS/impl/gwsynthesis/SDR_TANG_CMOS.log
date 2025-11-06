@@ -13,6 +13,7 @@ Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\fifo_eth_rx
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\fifo_eth_tx\fifo_eth_tx.v'
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\fifo_top\fifo_top.v'
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\fifo_top_rx\fifo_top_rx.v'
+Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_ddr\gowin_ddr.v'
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_ddr_GMII2RGMII\GMII2RGMII.v'
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_pll\gowin_pll.v'
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_pll\gowin_pll_mod.v'
@@ -83,7 +84,7 @@ Compiling module 'fifo_rx'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\fifo_to
 Compiling module '**'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\fifo_top_rx\fifo_top_rx.v":417)
 Compiling module 'qpsk_differential_decoder'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\rf_diff_decode.v":1)
 Compiling module 'eth_transceiver(BOARD_IP=32'b11000000101010000000001100000010)'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\eth_transceiver.v":1)
-Extracting RAM for identifier 'tx_buffer'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\eth_transceiver.v":311)
+Extracting RAM for identifier 'tx_buffer'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\eth_transceiver.v":317)
 Compiling module 'GMII_PLL'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_pll_eth\gowin_pll_eth.v":1)
 Compiling module 'GMII_PLL_MOD'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_pll_eth\gowin_pll_eth_mod.v":10)
 Compiling module 'PLL_INIT(MULTI_FAC=15)'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\pll_init.v":4)

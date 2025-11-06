@@ -33,6 +33,7 @@ module rf_data_processor #(
     localparam SEND_LAST2 = 4'd9;
     localparam SEND_LAST3 = 4'd10;
     localparam SEND_LAST4 = 4'd11;
+    localparam SEND_LAST5 = 4'd12;
 
     reg [3:0]  state;
     reg [7:0]  fifo_wr_data;
@@ -41,6 +42,7 @@ module rf_data_processor #(
     reg [7:0] temp_data2;
     reg [7:0] temp_data3;
     reg [7:0] temp_data4;
+    reg [7:0] temp_data5;
     
     // 状态机：添加帧头和帧尾
     always @(posedge eth_rx_clk or negedge eth_rx_rst_n) begin
@@ -52,12 +54,14 @@ module rf_data_processor #(
             temp_data2 <= 8'd0;
             temp_data3 <= 8'd0;
             temp_data4 <= 8'd0;
+            temp_data5 <= 8'd0;
         end else begin
             case (state)
                 IDLE: begin
                     fifo_wr_en <= 1'b0;
                     if (rx_data_valid) begin
                         state <= SEND_HEAD1;
+                        temp_data1 <= rx_data;
                     end
                 end
                 
@@ -65,6 +69,7 @@ module rf_data_processor #(
                     fifo_wr_data <= FRAME_HEAD[31:24];  // 帧头高字节
                     fifo_wr_en <= 1'b1;
                     temp_data1 <= rx_data;
+                    temp_data2 <= temp_data1;
                     state <= SEND_HEAD2;
                 end
                 
@@ -73,6 +78,7 @@ module rf_data_processor #(
                     fifo_wr_en <= 1'b1;
                     temp_data1 <= rx_data;
                     temp_data2 <= temp_data1;
+                    temp_data3 <= temp_data2;
                     state <= SEND_HEAD3;
                 end
 
@@ -82,6 +88,7 @@ module rf_data_processor #(
                     temp_data1 <= rx_data;
                     temp_data2 <= temp_data1;
                     temp_data3 <= temp_data2;
+                    temp_data4 <= temp_data3;
                     state <= SEND_HEAD4;
                 end
 
@@ -92,22 +99,21 @@ module rf_data_processor #(
                     temp_data2 <= temp_data1;
                     temp_data3 <= temp_data2;
                     temp_data4 <= temp_data3;
+                    temp_data5 <= temp_data4;
                     state <= SEND_DATA;
                 end
 
                 SEND_DATA: begin
-                    if (rx_data_valid) begin
+                    if (!rx_frame_end) begin
                         temp_data1 <= rx_data;
                         temp_data2 <= temp_data1;
                         temp_data3 <= temp_data2;
                         temp_data4 <= temp_data3;
-                        fifo_wr_data <= temp_data4;
+                        temp_data5 <= temp_data4;
+                        fifo_wr_data <= temp_data5;
                         fifo_wr_en <= 1'b1;
                     end else begin
                         fifo_wr_en <= 1'b0;
-                    end
-                    
-                    if (rx_frame_end) begin
                         state <= SEND_TAIL1;
                     end
                 end
@@ -117,7 +123,8 @@ module rf_data_processor #(
                     temp_data2 <= temp_data1;
                     temp_data3 <= temp_data2;
                     temp_data4 <= temp_data3;
-                    fifo_wr_data <= temp_data4;
+                    temp_data5 <= temp_data4;
+                    fifo_wr_data <= temp_data5;
                     fifo_wr_en <= 1'b1;
                     state <= SEND_TAIL2;
                 end
@@ -127,7 +134,8 @@ module rf_data_processor #(
                     temp_data2 <= temp_data1;
                     temp_data3 <= temp_data2;
                     temp_data4 <= temp_data3;
-                    fifo_wr_data <= temp_data4;
+                    temp_data5 <= temp_data4;
+                    fifo_wr_data <= temp_data5;
                     fifo_wr_en <= 1'b1;
                     state <= SEND_LAST1;
                 end
@@ -137,7 +145,8 @@ module rf_data_processor #(
                     temp_data2 <= temp_data1;
                     temp_data3 <= temp_data2;
                     temp_data4 <= temp_data3;
-                    fifo_wr_data <= temp_data4;
+                    temp_data5 <= temp_data4;
+                    fifo_wr_data <= temp_data5;
                     fifo_wr_en <= 1'b1;
                     state <= SEND_LAST2;
                 end
@@ -146,7 +155,8 @@ module rf_data_processor #(
                     temp_data2 <= 8'd0;
                     temp_data3 <= temp_data2;
                     temp_data4 <= temp_data3;
-                    fifo_wr_data <= temp_data4;
+                    temp_data5 <= temp_data4;
+                    fifo_wr_data <= temp_data5;
                     fifo_wr_en <= 1'b1;
                     state <= SEND_LAST3;
                 end
@@ -154,14 +164,23 @@ module rf_data_processor #(
                 SEND_LAST3: begin
                     temp_data3 <= 8'd0;
                     temp_data4 <= temp_data3;
-                    fifo_wr_data <= temp_data4;
+                    temp_data5 <= temp_data4;
+                    fifo_wr_data <= temp_data5;
                     fifo_wr_en <= 1'b1;
                     state <= SEND_LAST4;
                 end
 
                 SEND_LAST4: begin
                     temp_data4 <= 8'd0;
-                    fifo_wr_data <= temp_data4;
+                    temp_data5 <= temp_data4;
+                    fifo_wr_data <= temp_data5;
+                    fifo_wr_en <= 1'b1;
+                    state <= SEND_LAST5;
+                end
+
+                SEND_LAST5: begin
+                    temp_data5 <= 8'd0;
+                    fifo_wr_data <= temp_data5;
                     fifo_wr_en <= 1'b1;
                     state <= IDLE;
                 end
