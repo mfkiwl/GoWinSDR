@@ -247,7 +247,7 @@ class QCLDPCEncoder:
 
 def main():
     """
-    主函数：读取origindata.txt，进行编码，输出到encodedata.txt
+    主函数：读取origindata.txt，进行编码，输出到encodedata.txt和scode.txt
     """
     try:
         # 初始化编码器
@@ -256,6 +256,7 @@ def main():
         # 读取输入数据
         input_file = 'origindata.txt'
         output_file = 'encodedata.txt'
+        scode_file = 'scode.txt'
         
         print(f"\n从 {input_file} 读取数据...")
         with open(input_file, 'r') as f:
@@ -265,6 +266,8 @@ def main():
         
         # 编码每一行数据
         encoded_data = []
+        parity_data = []
+        
         for i, hex_data in enumerate(input_data):
             print(f"\n编码第 {i+1}/{len(input_data)} 行数据...")
             
@@ -275,9 +278,17 @@ def main():
             # 648 bits = 162 hex characters
             hex_codeword = hex(int(codeword, 2))[2:].zfill(162)
             
+            # 提取奇偶校验码部分（后108比特）
+            # 648 bits: 前540 bits是信息位，后108 bits是校验码
+            # 16进制: 前135字符 (540/4) 是信息位，后27字符 (108/4) 是校验码
+            parity_hex = hex_codeword[135:162]  # 最后27个16进制字符
+            
             encoded_data.append(hex_codeword)
+            parity_data.append(parity_hex)
+            
             print(f"输入  (16进制): {hex_data}")
             print(f"输出  (16进制): {hex_codeword}")
+            print(f"校验码 (16进制): {parity_hex}")
         
         # 保存编码数据到文件
         print(f"\n保存编码数据到 {output_file}...")
@@ -285,8 +296,17 @@ def main():
             for hex_codeword in encoded_data:
                 f.write(hex_codeword + '\n')
         
-        print(f"完成！编码后的数据已保存到 {output_file}")
+        # 保存校验码到文件
+        print(f"保存校验码数据到 {scode_file}...")
+        with open(scode_file, 'w') as f:
+            for parity_hex in parity_data:
+                f.write(parity_hex + '\n')
+        
+        print(f"\n完成！")
+        print(f"编码后的数据已保存到 {output_file}")
         print(f"每行16进制数据长度: {len(encoded_data[0])} 字符 (648 bits)")
+        print(f"校验码已保存到 {scode_file}")
+        print(f"每行校验码长度: {len(parity_data[0])} 字符 (108 bits)")
         
     except Exception as e:
         print(f"错误: {e}")

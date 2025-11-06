@@ -1,13 +1,13 @@
 import random
 import sys
 
-def add_random_bit_flips(hex_data, max_flips=6):
+def add_random_bit_flips(hex_data, max_flips=4):
     """
     在16进制数据中随机翻转不超过指定数量的比特
     
     Args:
         hex_data: 16进制字符串
-        max_flips: 最多翻转的比特数（默认6）
+        max_flips: 最多翻转的比特数（默认4）
         
     Returns:
         翻转后的16进制字符串

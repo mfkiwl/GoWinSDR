@@ -14,7 +14,7 @@ class QCLDPCDecoder:
         self.info_length = 540  # 信息比特长度 (648 * 5/6)
         self.parity_length = 108  # 奇偶校验比特长度 (648 * 1/6)
         self.Z = 27  # 扩展因子（基于648）
-        self.max_iterations = 6  # 最大迭代次数
+        self.max_iterations = 2  # 最大迭代次数
         
         # 加载原型矩阵
         self.proto_matrix = self.load_proto_matrix(proto_mat_file)
