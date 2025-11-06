@@ -2,7 +2,7 @@
 <GAO_CONFIG>
     <Version>3.0</Version>
     <Mode>Standard</Mode>
-    <AoCore index="0" sample_clock="data_clk" trig_type="0" storage_depth="1024" window_num="1" capture_amount="1024" implementation="0" trigger_pos="0" module_name="top" force_trigger_by_falling_edge="false" capture_init_data_enabled="false">
+    <AoCore index="0" sample_clock="data_clk" trig_type="0" storage_depth="4096" window_num="1" capture_amount="4096" implementation="0" trigger_pos="0" module_name="top" force_trigger_by_falling_edge="false" capture_init_data_enabled="false">
         <SignalList>
             <Bus capture_enable="true" name="adc_data_out_i1[11:0]">
                 <Signal>adc_data_out_i1[11]</Signal>
@@ -75,11 +75,12 @@
                 <Signal>u_demod_433/magnitude[1]</Signal>
                 <Signal>u_demod_433/magnitude[0]</Signal>
             </Bus>
+            <Signal capture_enable="true">trig_in</Signal>
         </SignalList>
         <Triggers>
             <Trigger index="0">
                 <SignalList>
-                    <Signal>data_clk</Signal>
+                    <Signal>trig_in</Signal>
                 </SignalList>
             </Trigger>
             <Trigger index="1"/>
@@ -120,5 +121,5 @@
             <Expression>M0</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>1111110001110001</GAO_ID>
+    <GAO_ID>1101000001000101</GAO_ID>
 </GAO_CONFIG>

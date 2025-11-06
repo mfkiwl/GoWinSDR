@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="top" Register="26" Lut="46" T_Register="519(26)" T_Alu="25(0)" T_Lut="550(46)" T_Bsram="4(0)">
+<Module name="top" Register="26" Lut="46" T_Register="535(26)" T_Alu="27(0)" T_Lut="600(46)" T_Bsram="16(0)">
  <SubModule name="u_ad9363_dev_cmos"/>
- <SubModule name="gw_gao_inst_0" Register="480" Alu="13" Lut="470" Bsram="4" T_Register="480(480)" T_Alu="13(13)" T_Lut="470(470)" T_Bsram="4(4)"/>
+ <SubModule name="gw_gao_inst_0" Register="496" Alu="15" Lut="520" Bsram="16" T_Register="496(496)" T_Alu="15(15)" T_Lut="520(520)" T_Bsram="16(16)"/>
  <SubModule name="u_demod_433" Register="13" Alu="12" Lut="34" T_Register="13(13)" T_Alu="12(12)" T_Lut="34(34)"/>
 </Module>

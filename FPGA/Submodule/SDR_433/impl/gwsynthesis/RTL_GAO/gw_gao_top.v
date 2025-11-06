@@ -60,6 +60,7 @@ module gw_gao(
     \u_demod_433/magnitude[2] ,
     \u_demod_433/magnitude[1] ,
     \u_demod_433/magnitude[0] ,
+    trig_in,
     data_clk,
     tms_pad_i,
     tck_pad_i,
@@ -128,6 +129,7 @@ input \u_demod_433/magnitude[3] ;
 input \u_demod_433/magnitude[2] ;
 input \u_demod_433/magnitude[1] ;
 input \u_demod_433/magnitude[0] ;
+input trig_in;
 input data_clk;
 input tms_pad_i;
 input tck_pad_i;
@@ -195,6 +197,7 @@ wire \u_demod_433/magnitude[3] ;
 wire \u_demod_433/magnitude[2] ;
 wire \u_demod_433/magnitude[1] ;
 wire \u_demod_433/magnitude[0] ;
+wire trig_in;
 wire data_clk;
 wire tms_pad_i;
 wire tck_pad_i;
@@ -269,8 +272,8 @@ gw_con_top  u_icon_top(
 
 ao_top_0  u_la0_top(
     .control(control0[9:0]),
-    .trig0_i(data_clk),
-    .data_i({\adc_data_out_i1[11] ,\adc_data_out_i1[10] ,\adc_data_out_i1[9] ,\adc_data_out_i1[8] ,\adc_data_out_i1[7] ,\adc_data_out_i1[6] ,\adc_data_out_i1[5] ,\adc_data_out_i1[4] ,\adc_data_out_i1[3] ,\adc_data_out_i1[2] ,\adc_data_out_i1[1] ,\adc_data_out_i1[0] ,\adc_data_out_q1[11] ,\adc_data_out_q1[10] ,\adc_data_out_q1[9] ,\adc_data_out_q1[8] ,\adc_data_out_q1[7] ,\adc_data_out_q1[6] ,\adc_data_out_q1[5] ,\adc_data_out_q1[4] ,\adc_data_out_q1[3] ,\adc_data_out_q1[2] ,\adc_data_out_q1[1] ,\adc_data_out_q1[0] ,\u_ad9363_dev_cmos/dac_data_in_i1[11] ,\u_ad9363_dev_cmos/dac_data_in_i1[10] ,\u_ad9363_dev_cmos/dac_data_in_i1[9] ,\u_ad9363_dev_cmos/dac_data_in_i1[8] ,\u_ad9363_dev_cmos/dac_data_in_i1[7] ,\u_ad9363_dev_cmos/dac_data_in_i1[6] ,\u_ad9363_dev_cmos/dac_data_in_i1[5] ,\u_ad9363_dev_cmos/dac_data_in_i1[4] ,\u_ad9363_dev_cmos/dac_data_in_i1[3] ,\u_ad9363_dev_cmos/dac_data_in_i1[2] ,\u_ad9363_dev_cmos/dac_data_in_i1[1] ,\u_ad9363_dev_cmos/dac_data_in_i1[0] ,\u_ad9363_dev_cmos/dac_data_in_q1[11] ,\u_ad9363_dev_cmos/dac_data_in_q1[10] ,\u_ad9363_dev_cmos/dac_data_in_q1[9] ,\u_ad9363_dev_cmos/dac_data_in_q1[8] ,\u_ad9363_dev_cmos/dac_data_in_q1[7] ,\u_ad9363_dev_cmos/dac_data_in_q1[6] ,\u_ad9363_dev_cmos/dac_data_in_q1[5] ,\u_ad9363_dev_cmos/dac_data_in_q1[4] ,\u_ad9363_dev_cmos/dac_data_in_q1[3] ,\u_ad9363_dev_cmos/dac_data_in_q1[2] ,\u_ad9363_dev_cmos/dac_data_in_q1[1] ,\u_ad9363_dev_cmos/dac_data_in_q1[0] ,\u_demod_433/magnitude[12] ,\u_demod_433/magnitude[11] ,\u_demod_433/magnitude[10] ,\u_demod_433/magnitude[9] ,\u_demod_433/magnitude[8] ,\u_demod_433/magnitude[7] ,\u_demod_433/magnitude[6] ,\u_demod_433/magnitude[5] ,\u_demod_433/magnitude[4] ,\u_demod_433/magnitude[3] ,\u_demod_433/magnitude[2] ,\u_demod_433/magnitude[1] ,\u_demod_433/magnitude[0] }),
+    .trig0_i(trig_in),
+    .data_i({\adc_data_out_i1[11] ,\adc_data_out_i1[10] ,\adc_data_out_i1[9] ,\adc_data_out_i1[8] ,\adc_data_out_i1[7] ,\adc_data_out_i1[6] ,\adc_data_out_i1[5] ,\adc_data_out_i1[4] ,\adc_data_out_i1[3] ,\adc_data_out_i1[2] ,\adc_data_out_i1[1] ,\adc_data_out_i1[0] ,\adc_data_out_q1[11] ,\adc_data_out_q1[10] ,\adc_data_out_q1[9] ,\adc_data_out_q1[8] ,\adc_data_out_q1[7] ,\adc_data_out_q1[6] ,\adc_data_out_q1[5] ,\adc_data_out_q1[4] ,\adc_data_out_q1[3] ,\adc_data_out_q1[2] ,\adc_data_out_q1[1] ,\adc_data_out_q1[0] ,\u_ad9363_dev_cmos/dac_data_in_i1[11] ,\u_ad9363_dev_cmos/dac_data_in_i1[10] ,\u_ad9363_dev_cmos/dac_data_in_i1[9] ,\u_ad9363_dev_cmos/dac_data_in_i1[8] ,\u_ad9363_dev_cmos/dac_data_in_i1[7] ,\u_ad9363_dev_cmos/dac_data_in_i1[6] ,\u_ad9363_dev_cmos/dac_data_in_i1[5] ,\u_ad9363_dev_cmos/dac_data_in_i1[4] ,\u_ad9363_dev_cmos/dac_data_in_i1[3] ,\u_ad9363_dev_cmos/dac_data_in_i1[2] ,\u_ad9363_dev_cmos/dac_data_in_i1[1] ,\u_ad9363_dev_cmos/dac_data_in_i1[0] ,\u_ad9363_dev_cmos/dac_data_in_q1[11] ,\u_ad9363_dev_cmos/dac_data_in_q1[10] ,\u_ad9363_dev_cmos/dac_data_in_q1[9] ,\u_ad9363_dev_cmos/dac_data_in_q1[8] ,\u_ad9363_dev_cmos/dac_data_in_q1[7] ,\u_ad9363_dev_cmos/dac_data_in_q1[6] ,\u_ad9363_dev_cmos/dac_data_in_q1[5] ,\u_ad9363_dev_cmos/dac_data_in_q1[4] ,\u_ad9363_dev_cmos/dac_data_in_q1[3] ,\u_ad9363_dev_cmos/dac_data_in_q1[2] ,\u_ad9363_dev_cmos/dac_data_in_q1[1] ,\u_ad9363_dev_cmos/dac_data_in_q1[0] ,\u_demod_433/magnitude[12] ,\u_demod_433/magnitude[11] ,\u_demod_433/magnitude[10] ,\u_demod_433/magnitude[9] ,\u_demod_433/magnitude[8] ,\u_demod_433/magnitude[7] ,\u_demod_433/magnitude[6] ,\u_demod_433/magnitude[5] ,\u_demod_433/magnitude[4] ,\u_demod_433/magnitude[3] ,\u_demod_433/magnitude[2] ,\u_demod_433/magnitude[1] ,\u_demod_433/magnitude[0] ,trig_in}),
     .clk_i(data_clk)
 );
 

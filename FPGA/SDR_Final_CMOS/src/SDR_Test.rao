@@ -280,7 +280,15 @@
                     <Signal>eth_inst/gmii_rxdv</Signal>
                 </SignalList>
             </Trigger>
-            <Trigger index="4"/>
+            <Trigger index="4">
+                <SignalList>
+                    <Bus restorename="u_rf_data_depacketizer/pack_state[2:0]">
+                        <Signal>u_rf_data_depacketizer/pack_state[2]</Signal>
+                        <Signal>u_rf_data_depacketizer/pack_state[1]</Signal>
+                        <Signal>u_rf_data_depacketizer/pack_state[0]</Signal>
+                    </Bus>
+                </SignalList>
+            </Trigger>
             <Trigger index="5"/>
             <Trigger index="6"/>
             <Trigger index="7"/>
@@ -298,7 +306,7 @@
             <MatchUnit index="1" enabled="1" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="1" value1="0" trigger="1"/>
             <MatchUnit index="2" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="1" value1="0" trigger="2"/>
             <MatchUnit index="3" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="1" value1="0" trigger="3"/>
-            <MatchUnit index="4" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="4" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="001" value1="000" trigger="4"/>
             <MatchUnit index="5" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
             <MatchUnit index="6" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
             <MatchUnit index="7" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
@@ -315,5 +323,5 @@
             <Expression>M1</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>0010100011100110</GAO_ID>
+    <GAO_ID>1010101001001101</GAO_ID>
 </GAO_CONFIG>

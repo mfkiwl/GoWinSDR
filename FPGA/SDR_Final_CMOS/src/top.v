@@ -27,9 +27,11 @@
     output              RGMII_TXEN,
     output              RGMII_RST_N,
 
-    output                              led                         
+    output                              led           ,
+    output                              trig_out                           
     );
 
+assign trig_out = tx_data_valid;
 //  wire                                    clk_40M                    ;
 
     // Gowin_PLL pll0(

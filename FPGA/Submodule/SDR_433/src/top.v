@@ -6,6 +6,7 @@
     input                               rx_clk_in_p                ,
     input              [  11:0]         rx_data_in                 ,
     input                               rx_frame_in_p              ,
+    input                               trig_in                     ,
 
     // TX Port
     output             [  11:0]         tx_data_out                ,

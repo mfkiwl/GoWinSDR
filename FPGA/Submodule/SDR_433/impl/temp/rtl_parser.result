@@ -9,7 +9,7 @@
   "SubInsts" : [
    {
     "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/SDR_433/src/top.v",
-    "InstLine" : 51,
+    "InstLine" : 52,
     "InstName" : "u_ad9363_dev_cmos",
     "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/SDR_433/src/ad9363_dev_cmos.v",
     "ModuleLine" : 1,
@@ -17,7 +17,7 @@
    },
    {
     "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/SDR_433/src/top.v",
-    "InstLine" : 112,
+    "InstLine" : 113,
     "InstName" : "u_demod_433",
     "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/SDR_433/src/demod_433.v",
     "ModuleLine" : 1,
