@@ -20,8 +20,8 @@ PREFIX_FILE_INFO = b'\x0F'
 # --- 新增: 可靠传输所需的新前缀和常量 ---
 PREFIX_ACK = b'\xAA'  # 确认包 (ACK)
 
-RETRY_COUNT = 10  # 最大重试次数
-ACK_TIMEOUT = 2.0  # ACK 超时时间 (秒) - 你可以根据链路质量调整
+RETRY_COUNT = 15  # 最大重试次数
+ACK_TIMEOUT = 0.01  # ACK 超时时间 (秒) - 你可以根据链路质量调整
 
 # 定义包头结构: 1B Prefix + 4B SequenceNumber
 # '!' = 网络字节序 (big-endian)
