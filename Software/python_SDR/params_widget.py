@@ -1,3 +1,6 @@
+# 文件名: py代码/params_widget.py
+# (已修改：添加了“隐形”LAN按钮)
+
 from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QGridLayout, QLabel,
                              QComboBox, QPushButton, QLineEdit, QGroupBox,
                              QTabWidget, QScrollArea, QFrame, QHBoxLayout)
@@ -10,6 +13,13 @@ class ParamsWidget(QWidget):
     """
     send_command_signal = pyqtSignal(str)
     query_all_signal = pyqtSignal()
+
+    # --- [!! 新增 !!] ---
+    # 定义信号: (bool)
+    # 当 "LAN" 按钮被切换时发出
+    lan_mode_toggled = pyqtSignal(bool)
+
+    # --- [!! 结束新增 !!] ---
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -24,6 +34,40 @@ class ParamsWidget(QWidget):
         self.rx_tab = QScrollArea()
         self.tabs.addTab(self.tx_tab, "TX (发射)")
         self.tabs.addTab(self.rx_tab, "RX (接收)")
+
+        # --- [!! 新增: 添加P2P局域网模式按钮 !!] ---
+        self.btn_lan_mode = QPushButton("LAN")
+        self.btn_lan_mode.setCheckable(True)
+        self.btn_lan_mode.setToolTip("切换到局域网P2P模式 (隐形)")
+        # 设置样式使其 "很不显眼"
+        self.btn_lan_mode.setStyleSheet("""
+            QPushButton {
+                background-color: transparent;
+                border: 1px solid #555; /* 灰色边框 */
+                color: #555; /* 灰色文字 */
+                padding: 1px 4px;
+                max-width: 35px;
+                font-size: 8pt;
+            }
+            QPushButton:hover {
+                background-color: #444;
+                color: #ccc;
+            }
+            QPushButton:checked {
+                background-color: #007bff; /* 激活时变为蓝色 */
+                color: white;
+                border: 1px solid #007bff;
+                font-weight: bold;
+            }
+        """)
+
+        # 将按钮放置在 Tab 控件的右上角 (你画红圈的位置)
+        self.tabs.setCornerWidget(self.btn_lan_mode, Qt.Corner.TopRightCorner)
+
+        # 连接信号
+        self.btn_lan_mode.toggled.connect(self.lan_mode_toggled.emit)
+        # --- [!! 结束新增 !!] ---
+
         self.tx_tab.setWidgetResizable(True)
         self.rx_tab.setWidgetResizable(True)
         self.init_tx_tab()
@@ -36,34 +80,29 @@ class ParamsWidget(QWidget):
         self.set_enabled(False)
 
     def create_param_entry(self, label, command_name):
+        # (此方法保持不变)
         h_layout = QHBoxLayout()
         h_layout.addWidget(QLabel(label))
         line_edit = QLineEdit()
         line_edit.setPlaceholderText("N/A")
         h_layout.addWidget(line_edit)
         btn_set = QPushButton("Set")
-
-        # --- 添加调试打印 1 ---
         print(f"[ParamsWidget] Creating button for: {command_name}, Button Obj: {btn_set}")
-
-        # --- 保持上次的修复: 使用默认参数捕获当前值 ---
         btn_set.clicked.connect(lambda checked=False, cmd=command_name, le=line_edit:
                                 self.emit_set_command(cmd, le.text())
                                 )
-
-        # --- 添加调试打印 2 ---
         print(f"[ParamsWidget] Connected clicked signal for: {command_name}")
-
         h_layout.addWidget(btn_set)
         return h_layout, line_edit
 
     def emit_set_command(self, command, value):
+        # (此方法保持不变)
         command_str = f"{command}={value}"
-        # --- 添加调试打印 3 ---
         print(f"[ParamsWidget] emit_set_command called for: {command_str}")
         self.send_command_signal.emit(command_str)
 
     def init_tx_tab(self):
+        # (此方法保持不变)
         tx_widget = QWidget()
         tx_layout = QVBoxLayout(tx_widget)
         layout, self.le_tx_lo_freq = self.create_param_entry("TX LO Freq (MHz):", "tx_lo_freq")
@@ -86,6 +125,7 @@ class ParamsWidget(QWidget):
         self.tx_tab.setWidget(tx_widget)
 
     def init_rx_tab(self):
+        # (此方法保持不变)
         rx_widget = QWidget()
         rx_layout = QVBoxLayout(rx_widget)
         layout, self.le_rx_lo_freq = self.create_param_entry("RX LO Freq (MHz):", "rx_lo_freq")
@@ -108,38 +148,66 @@ class ParamsWidget(QWidget):
         self.rx_tab.setWidget(rx_widget)
 
     def set_enabled(self, enabled):
-        """
-        [简化版] 由主窗口调用，在连接后启用/禁用所有控件
-        """
-        print(f"[ParamsWidget] set_enabled called with: {enabled}") # 添加调试打印
+        # (此方法保持不变, 它的 findChildren 逻辑会自动包含新按钮)
+        print(f"[ParamsWidget] set_enabled called with: {enabled}")
         self.setEnabled(enabled)
-        # --- 彻底简化逻辑 ---
-        # 遍历所有子控件并统一设置状态
         for child in self.findChildren(QWidget):
-             # 确保我们不会意外地禁用父容器本身
+            # 确保我们不会意外地禁用父容器本身
             if child != self and isinstance(child, (QPushButton, QLineEdit, QComboBox, QTabWidget, QScrollArea)):
                 child.setEnabled(enabled)
         # --- 简化结束 ---
 
     # --- (公共更新方法保持不变) ---
-    def update_tx_lo_freq(self, value): self.le_tx_lo_freq.setText(value)
-    def update_tx_samp_freq(self, value): self.le_tx_samp_freq.setText(value)
-    def update_tx_rf_bw(self, value): self.le_tx_rf_bw.setText(value)
-    def update_tx1_atten(self, value): self.le_tx1_atten.setText(value)
-    def update_tx2_atten(self, value): self.le_tx2_atten.setText(value)
-    def update_tx_fir_en(self, value): self.le_tx_fir_en.setText(value)
-    def update_rx_lo_freq(self, value): self.le_rx_lo_freq.setText(value)
-    def update_rx_samp_freq(self, value): self.le_rx_samp_freq.setText(value)
-    def update_rx_rf_bw(self, value): self.le_rx_rf_bw.setText(value)
-    def update_rx1_gc_mode(self, value): self.le_rx1_gc_mode.setText(value)
-    def update_rx2_gc_mode(self, value): self.le_rx2_gc_mode.setText(value)
-    def update_rx1_rf_gain(self, value): self.le_rx1_rf_gain.setText(value)
-    def update_rx2_rf_gain(self, value): self.le_rx2_rf_gain.setText(value)
-    def update_rx_fir_en(self, value): self.le_rx_fir_en.setText(value)
-    def update_dds_tx1_t1_freq(self, value): self.le_dds_tx1_t1_freq.setText(value)
-    def update_dds_tx2_t1_freq(self, value): self.le_dds_tx2_t1_freq.setText(value)
+    def update_tx_lo_freq(self, value):
+        self.le_tx_lo_freq.setText(value)
+
+    def update_tx_samp_freq(self, value):
+        self.le_tx_samp_freq.setText(value)
+
+    def update_tx_rf_bw(self, value):
+        self.le_tx_rf_bw.setText(value)
+
+    def update_tx1_atten(self, value):
+        self.le_tx1_atten.setText(value)
+
+    def update_tx2_atten(self, value):
+        self.le_tx2_atten.setText(value)
+
+    def update_tx_fir_en(self, value):
+        self.le_tx_fir_en.setText(value)
+
+    def update_rx_lo_freq(self, value):
+        self.le_rx_lo_freq.setText(value)
+
+    def update_rx_samp_freq(self, value):
+        self.le_rx_samp_freq.setText(value)
+
+    def update_rx_rf_bw(self, value):
+        self.le_rx_rf_bw.setText(value)
+
+    def update_rx1_gc_mode(self, value):
+        self.le_rx1_gc_mode.setText(value)
+
+    def update_rx2_gc_mode(self, value):
+        self.le_rx2_gc_mode.setText(value)
+
+    def update_rx1_rf_gain(self, value):
+        self.le_rx1_rf_gain.setText(value)
+
+    def update_rx2_rf_gain(self, value):
+        self.le_rx2_rf_gain.setText(value)
+
+    def update_rx_fir_en(self, value):
+        self.le_rx_fir_en.setText(value)
+
+    def update_dds_tx1_t1_freq(self, value):
+        self.le_dds_tx1_t1_freq.setText(value)
+
+    def update_dds_tx2_t1_freq(self, value):
+        self.le_dds_tx2_t1_freq.setText(value)
+
     def clear_all_fields(self):
+        # (此方法保持不变)
         for le in self.findChildren(QLineEdit):
             le.setText("")
             le.setPlaceholderText("N/A")
-

@@ -1,54 +1,56 @@
+# 文件名: py代码/ethernet_worker.py
+# (已修改：添加“隐形”P2P模式)
+
 import socket
 import threading
 import os
 import time
-import struct  # --- 新增: 用于打包和解包头部
-import zlib  # --- 新增: 用于 CRC32 校验
-from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
+import struct
+import zlib
+from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot  # <-- 导入 pyqtSlot
 from PyQt6.QtGui import QImage
 
-# --- 修改: 增加 CHUNK_SIZE 以提高效率 ---
-CHUNK_SIZE = 256
+# --- [!! 核心修改：在这里设置你的P2P IP !!] ---
+#
+# 这是“隐形”局域网模式的设置。
+# 当你点击"LAN"按钮时，程序将使用这些值，
+# 无论UI上显示什么。
+#
+# LAN_TARGET_IP: 
+#   你 *另一* 台电脑的IP地址 (例如: "192.168.3.20")
+# LAN_LISTEN_IP: 
+#   "0.0.0.0" (这表示"监听本机所有网卡"，不要改)
+# LAN_PORT: 
+#   两台电脑必须使用的 *相同* 端口 (例如: 32768)
+#
+LAN_TARGET_IP = "192.168.43.192"  # <--- 在这里填入你另一台PC的IP
+LAN_LISTEN_IP = "192.168.43.217"
+LAN_PORT = 32768
+# --- [!! 结束核心修改 !!] ---
 
-# --- 协议前缀 (保持不变) ---
+
+CHUNK_SIZE = 1024
 PREFIX_TEXT = b'\x00'
 PREFIX_VIDEO = b'\x01'
 PREFIX_FILE_DATA = b'\x02'
-PREFIX_AUDIO_DATA = b'\x03'  # <-- 这是你用于 "录制-发送" 的可靠音频
+PREFIX_AUDIO_DATA = b'\x03'
 PREFIX_FILE_INFO = b'\x0F'
-
-# --- [!! 新增 !!] ---
-# 为 "实时流" 定义一个全新的前缀，以避免与你现有的可靠音频(0x03)冲突
 PREFIX_AUDIO_STREAM = b'\x04'
-# --- [!! 结束新增 !!] ---
-
-
-# --- 新增: 可靠传输所需的新前缀和常量 ---
-PREFIX_ACK = b'\xAA'  # 确认包 (ACK)
-
-RETRY_COUNT = 15  # 最大重试次数
-ACK_TIMEOUT = 0.1  # ACK 超时时间 (秒) - 你可以根据链路质量调整
-
-# 定义包头结构: 1B Prefix + 4B SequenceNumber
-# '!' = 网络字节序 (big-endian)
-# 'B' = unsigned char (1 byte)
-# 'I' = unsigned int (4 bytes)
+PREFIX_ACK = b'\xAA'
+RETRY_COUNT = 15
+ACK_TIMEOUT = 0.01
 HEADER_FORMAT = '!BI'
-HEADER_SIZE = struct.calcsize(HEADER_FORMAT)  # 5 字节
-CRC_SIZE = struct.calcsize('!I')  # 4 字节
+HEADER_SIZE = struct.calcsize(HEADER_FORMAT)
+CRC_SIZE = struct.calcsize('!I')
 
 
 class EthernetWorker(QObject):
     """
-    网络工作线程 (UDP) - [已升级为可靠传输]
-    - 实现了 CRC32 完整性校验。
-    - 实现了 Stop-and-Wait ARQ (序列号 + ACK) 来处理丢包问题。
-    - 修复了协议前缀的 Bug。
-    - 修改了序列号管理:每次完整传输任务后重置序列号。
-    - [!! 新增 !!] 增加了对 PREFIX_AUDIO_STREAM (0x04) 的不可靠实时流支持。
+    (文档已更新)
+    - 增加了对“隐形”P2P LAN模式的支持。
     """
 
-    # 信号 (保持不变)
+    # (信号保持不变)
     started = pyqtSignal()
     stopped = pyqtSignal()
     log_received = pyqtSignal(str)
@@ -56,12 +58,7 @@ class EthernetWorker(QObject):
     error_occurred = pyqtSignal(str)
     finished = pyqtSignal()
     file_received = pyqtSignal(str, bytes)
-
-    # --- [!! 新增 !!] ---
-    # 用于接收实时音频流的专用信号 (字节)
     audio_chunk_received = pyqtSignal(bytes)
-
-    # --- [!! 结束新增 !!] ---
 
     def __init__(self):
         super().__init__()
@@ -69,69 +66,105 @@ class EthernetWorker(QObject):
         self._running = False
         self.fpga_addr = None
         self._recv_thread = None
-        self._lock = threading.Lock()  # (保持你现有的锁,用于可靠传输)
-
-        # --- 文件接收状态 (保持不变) ---
+        self._lock = threading.Lock()
         self.is_receiving_file = False
         self.current_file_info = {}
         self.file_buffer = bytearray()
         self.enable_file_reception = False
-
-        # --- 新增: 可靠传输状态 ---
         self.ack_event = threading.Event()
         self.last_received_ack_seq = -1
-
-        # 发送序列号 (由发送线程管理) - 不再需要全局序列号
-        # 期望接收的序列号 (由接收线程管理)
         self.expected_recv_seq = 0
 
+        # --- [!! 新增 !!] ---
+        self.is_lan_mode = False
+        # --- [!! 结束新增 !!] ---
+
+    # --- [!! 新增: 公共槽 !!] ---
+    @pyqtSlot(bool)
+    def set_lan_mode(self, enabled):
+        """
+        [公共槽] 由 MainWindow 连接，用于切换“隐形”P2P模式
+        """
+        self.is_lan_mode = enabled
+        if enabled:
+            self.log_received.emit(f"--- [!] 局域网P2P模式已激活 (目标: {LAN_TARGET_IP}:{LAN_PORT}) ---")
+        else:
+            self.log_received.emit("--- [!] 局域网P2P模式已停用 (返回FPGA模式) ---")
+
+    # --- [!! 结束新增 !!] ---
+
     def start_listening(self, listen_ip, listen_port, fpga_ip, fpga_port):
+        """
+        [!! 重大修改 !!]
+        此方法会检查 self.is_lan_mode。
+        如果为 True，它会 *忽略* 传入的参数，并使用硬编码的 LAN_SETTINGS。
+        """
         with self._lock:
             if self._recv_thread and self._recv_thread.is_alive():
                 self.log_received.emit("[警告] 监听已在运行,请先停止。")
                 return
-            self.fpga_addr = (fpga_ip, fpga_port)
 
-            # --- 修改: 重置接收序列号 ---
+            # --- [!! 新增: 隐形切换逻辑 !!] ---
+            local_listen_ip = listen_ip
+            local_listen_port = listen_port
+
+            if self.is_lan_mode:
+                # 模式激活！忽略UI传来的值
+                self.fpga_addr = (LAN_TARGET_IP, LAN_PORT)
+                local_listen_ip = LAN_LISTEN_IP
+                local_listen_port = LAN_PORT
+                self.log_received.emit(f"P2P模式: 目标地址已覆盖为 {self.fpga_addr}")
+            else:
+                # 正常 FPGA 模式
+                self.fpga_addr = (fpga_ip, fpga_port)
+            # --- [!! 结束新增 !!] ---
+
             self.expected_recv_seq = 0
-            # --- 结束修改 ---
-
             self._running = True
+
+            # --- [!! 修改 !!] ---
+            # 使用我们刚刚选择的 local_listen_ip 和 local_listen_port
             self._recv_thread = threading.Thread(
-                target = self._recv_loop, args = (listen_ip, listen_port), daemon = True
+                target=self._recv_loop, args=(local_listen_ip, local_listen_port), daemon=True
             )
+            # --- [!! 结束修改 !!] ---
+
             self._recv_thread.start()
+
         self.started.emit()
-        self.log_received.emit(f"UDP 正在监听 {listen_ip}:{listen_port}...")
+        # --- [!! 修改 !!] ---
+        self.log_received.emit(f"UDP 正在监听 {local_listen_ip}:{local_listen_port}...")
+        # --- [!! 结束修改 !!] ---
 
     def _recv_loop(self, listen_ip, listen_port):
-        """
-        [修改]
-        在独立的 Python 线程中执行接收循环。
-        实现了 CRC 校验、ACK 发送和序列号检查。
-        修改了序列号处理逻辑,支持任务完成后序列号重置。
-        增加了对 PREFIX_AUDIO_STREAM (0x04) 的处理。
-        """
+        # (此方法保持不变)
         try:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+            # --- [!! 新增: 启用广播和地址重用 !!] ---
+            # (这对于P2P和广播模式都是很好的做法)
+            self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            # 允许接收广播包 (如果将来需要)
+            # self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+            # --- [!! 结束新增 !!] ---
+
             self.sock.settimeout(0.5)
 
             try:
                 self.sock.bind((listen_ip, listen_port))
             except Exception as e:
-                self.error_occurred.emit(f"UDP 绑定失败: {e}")
+                self.error_occurred.emit(f"UDP 绑定失败: {e} (地址: {listen_ip}:{listen_port})")
                 return
 
             while self._running:
                 try:
                     data, addr = self.sock.recvfrom(65536)
 
-                    # (你现有的逻辑: 检查包长 - 保持不变)
+                    # (所有后续的接收逻辑保持不变...)
                     if not data or len(data) < (HEADER_SIZE + CRC_SIZE):
-                        self.log_received.emit(f"[UDP 警告] 收到过短的包 (len={len(data)}),已丢弃")
+                        # self.log_received.emit(f"[UDP 警告] 收到过短的包 (len={len(data)}),已丢弃")
                         continue
 
-                    # --- 1. 校验 CRC ---
                     received_crc = struct.unpack('!I', data[-CRC_SIZE:])[0]
                     data_without_crc = data[:-CRC_SIZE]
                     calculated_crc = zlib.crc32(data_without_crc)
@@ -140,21 +173,15 @@ class EthernetWorker(QObject):
                         self.log_received.emit(f"[UDP 错误] 收到 CRC 校验失败的包,已丢弃")
                         continue
 
-                    # --- 2. 解包头 ---
-                    # (我们信任 struct.unpack, 因为已检查过长度)
                     prefix_byte, seq_num = struct.unpack(HEADER_FORMAT, data_without_crc[:HEADER_SIZE])
                     prefix = bytes([prefix_byte])
                     payload = data_without_crc[HEADER_SIZE:]
 
-                    # --- 3. 处理 ACK 包  ---
                     if prefix == PREFIX_ACK:
                         self.last_received_ack_seq = seq_num
                         self.ack_event.set()
                         continue
 
-                    # --- 4. 处理不可靠包 (视频 和 实时音频) ---
-
-                    # (视频逻辑 - 保持不变)
                     if prefix == PREFIX_VIDEO:
                         image = QImage()
                         if image.loadFromData(payload, "JPEG"):
@@ -163,38 +190,23 @@ class EthernetWorker(QObject):
                             self.log_received.emit(f"[UDP 警告] 收到损坏的视频包 (JPEG?)")
                         continue
 
-                    # --- [!! 新增 !!] ---
-                    # (实时音频流逻辑 - 像视频一样处理)
-                    # 它使用新前缀 0x04，不检查序列号，也不发送 ACK
                     if prefix == PREFIX_AUDIO_STREAM:
                         self.audio_chunk_received.emit(payload)
-                        continue  # 处理完毕，进入下一次循环
-                    # --- [!! 结束新增 !!] ---
+                        continue
 
-                    # --- 5. 处理可靠包 (所有其他类型) ---
-
-                    # 检查是否是重复的旧包
                     if seq_num < self.expected_recv_seq:
                         self.log_received.emit(
                             f"[UDP 调试] 收到重复包 {seq_num} (期望 {self.expected_recv_seq}),重发 ACK")
-                        # 重发 ACK,以便发送方知道我们收到了
                         self._send_ack(seq_num, addr)
                         continue
 
-                    # 检查是否是乱序的未来包
                     if seq_num > self.expected_recv_seq:
                         self.log_received.emit(
                             f"[UDP 警告] 收到乱序包 {seq_num} (期望 {self.expected_recv_seq}),已丢弃")
-                        # 我们不 ACK,发送方将超时并重传正确的包
                         continue
 
-                    # --- 此时,seq_num == self.expected_recv_seq ---
-                    # 这是我们期望的包,处理它
-
-                    # A. 首先,立刻发送 ACK
                     self._send_ack(seq_num, addr)
 
-                    # B. 路由包内容
                     if prefix == PREFIX_TEXT:
                         try:
                             text_message = payload.decode('utf-8').strip()
@@ -202,7 +214,6 @@ class EthernetWorker(QObject):
                                 self.log_received.emit(f"[UDP 消息 {addr}]: {text_message}")
                         except Exception:
                             self.log_received.emit(f"[UDP 警告] 收到无法解码的文本包")
-                        # --- 修改: 文本命令是单包传输,完成后重置序列号 ---
                         self.expected_recv_seq = 0
                         self.log_received.emit(f"[UDP 调试] 文本命令接收完成,序列号已重置")
 
@@ -213,46 +224,36 @@ class EthernetWorker(QObject):
                             info_str = payload.decode('utf-8')
                             filename, filesize_str = info_str.split(':', 1)
                             filesize = int(filesize_str)
-
                             self.current_file_info = {"name": filename, "size": filesize}
                             self.file_buffer.clear()
                             self.is_receiving_file = True
                             self.log_received.emit(f"[UDP 文件] (SEQ={seq_num}) 开始接收: {filename} ({filesize} 字节)")
-                            # --- 修改: 推进序列号,等待后续文件数据包 ---
                             self.expected_recv_seq += 1
                         except Exception as e:
                             self.log_received.emit(f"[UDP 错误] 收到损坏的文件头: {e}")
                             self.is_receiving_file = False
-                            # 重置序列号,准备下一次传输
                             self.expected_recv_seq = 0
 
                     elif prefix == PREFIX_FILE_DATA:
                         if self.is_receiving_file:
                             self.file_buffer.extend(payload)
-
-                            # 检查是否接收完毕
                             if len(self.file_buffer) >= self.current_file_info.get("size", -1):
                                 file_data_bytes = self.file_buffer[:self.current_file_info["size"]]
                                 filename = self.current_file_info.get("name", "unknown_file")
                                 self.log_received.emit(f"[UDP 文件] 接收完毕: {filename}")
                                 self.file_received.emit(filename, bytes(file_data_bytes))
-
-                                # 重置状态机
                                 self.is_receiving_file = False
                                 self.file_buffer.clear()
                                 self.current_file_info.clear()
-                                # --- 修改: 文件传输完成,重置序列号 ---
                                 self.expected_recv_seq = 0
                                 self.log_received.emit(f"[UDP 调试] 文件接收完成,序列号已重置")
                             else:
-                                # 还需要更多数据包,推进序列号
-                                self.log_received.emit(f"[UDP 文件] (SEQ={seq_num}) 接收中... 已接收 {len(self.file_buffer)}/{self.current_file_info.get('size', -1)} 字节")
+                                self.log_received.emit(
+                                    f"[UDP 文件] (SEQ={seq_num}) 接收中... 已接收 {len(self.file_buffer)}/{self.current_file_info.get('size', -1)} 字节")
                                 self.expected_recv_seq += 1
                         else:
                             self.log_received.emit(f"[UDP 警告] 收到文件数据 (SEQ={seq_num}),但未在接收文件状态")
-                            # 不推进序列号,等待正确的包
 
-                    # (你现有的 PREFIX_AUDIO_DATA (可靠录音) 逻辑 - 保持不变)
                     elif prefix == PREFIX_AUDIO_DATA:
                         self.log_received.emit(f"[UDP 消息] 收到一个音频包 (SEQ={seq_num}) (暂不处理)")
                         # --- 修改: 如果音频是多包传输,需要根据实际协议处理 ---
@@ -265,7 +266,6 @@ class EthernetWorker(QObject):
 
                     else:
                         self.log_received.emit(f"[UDP 警告] 收到未知前缀的包: 0x{prefix.hex()}")
-                        # 对于未知包,不推进序列号
 
                 except socket.timeout:
                     continue
@@ -275,6 +275,7 @@ class EthernetWorker(QObject):
                     break
 
         finally:
+            # (清理逻辑保持不变)
             try:
                 if self.sock:
                     self.sock.close()
@@ -287,12 +288,13 @@ class EthernetWorker(QObject):
             self.log_received.emit("UDP 监听已停止")
 
     def stop_listening(self):
+        # (保持上次的修复：只设置标志位，防止卡退)
         self._running = False
-        try:
-            if self.sock:
-                self.sock.close()
-        except Exception:
-            pass
+        # try:
+        #     if self.sock:
+        #         self.sock.close()
+        # except Exception:
+        #     pass
         self.log_received.emit("停止请求已发送 -> 正在等待接收线程退出...")
 
     def set_file_reception_enabled(self, enabled: bool):
@@ -308,29 +310,24 @@ class EthernetWorker(QObject):
                 self.current_file_info.clear()
                 self.log_received.emit("[警告] 文件接收已中止")
 
-    # --- 内部发送辅助方法 ---
-
     def _pack_data(self, prefix: bytes, seq_num: int, payload: bytes) -> bytes:
-        """ [新增] 辅助函数:打包 Prefix, SeqNum, Payload, 和 CRC """
+        # (此方法保持不变)
         header = struct.pack(HEADER_FORMAT, prefix[0], seq_num)
         data_without_crc = header + payload
         crc = zlib.crc32(data_without_crc)
         return data_without_crc + struct.pack('!I', crc)
 
     def _send_udp_payload(self, raw_bytes: bytes) -> bool:
-        """ [修改] 内部发送函数,只发送原始字节 """
+        # (此方法保持不变)
         addr = self.fpga_addr
         if not addr:
             self.error_occurred.emit("发送失败: 目标地址未设置")
             return False
-
         try:
-            # UDP 发送是原子的,不需要临时套接字
             if self.sock:
                 self.sock.sendto(raw_bytes, addr)
                 return True
             else:
-                # 备用方案,如果 _recv_loop 尚未启动
                 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as tmp_sock:
                     tmp_sock.sendto(raw_bytes, addr)
                     return True
@@ -339,9 +336,7 @@ class EthernetWorker(QObject):
             return False
 
     def _send_ack(self, seq_num_to_ack: int, target_addr: tuple):
-        """ [新增] 发送一个 ACK 包 """
-        # ACK 包也需要打包和校验,以防 ACK 丢失或损坏
-        # ACK 包的 Payload 为空
+        # (此方法保持不变)
         ack_packet = self._pack_data(PREFIX_ACK, seq_num_to_ack, b'')
         try:
             if self.sock:
@@ -350,59 +345,35 @@ class EthernetWorker(QObject):
             self.log_received.emit(f"发送 ACK {seq_num_to_ack} 失败: {e}")
 
     def _send_reliable_payload(self, prefix: bytes, seq_num: int, payload: bytes) -> bool:
-        """ [新增] 可靠发送 (停止-等待 ARQ) """
-
+        # (此方法保持不变)
         packet = self._pack_data(prefix, seq_num, payload)
-
         for i in range(RETRY_COUNT):
             self.ack_event.clear()
             self.last_received_ack_seq = -1
-
             if not self._send_udp_payload(packet):
                 self.error_occurred.emit("UDP 套接字发送失败,中止重试")
                 return False
-
-            # 等待 ACK
             if self.ack_event.wait(ACK_TIMEOUT):
-                # 被唤醒,检查 ACK 序列号是否正确
                 if self.last_received_ack_seq == seq_num:
-                    # 成功!
                     return True
                 else:
-                    # 收到了错误的 ACK (可能来自上一个包的延迟 ACK)
                     self.log_received.emit(
                         f"[UDP 警告] 收到错误 ACK (Seq={self.last_received_ack_seq}, 期望={seq_num})")
-                    # 继续循环 (相当于超时)
-
-            # 超时
             self.log_received.emit(
                 f"[UDP 重试] 包 {seq_num} (Prefix 0x{prefix.hex()}) 未收到 ACK ({i + 1}/{RETRY_COUNT})")
-
         self.error_occurred.emit(f"包 {seq_num} (Prefix 0x{prefix.hex()}) 发送失败 {RETRY_COUNT} 次,已放弃")
         return False
 
-    # --- [!! 新增 !!] ---
     def _send_unreliable_payload(self, prefix: bytes, payload: bytes) -> bool:
-        """ 
-        [新增] 发送一个不可靠包 (但仍有 Header 和 CRC, 序列号为0) 
-        此方法 *不* 使用锁，以允许高吞吐量。
-        """
-        # 使用一个 "dummy" 序列号 0, 接收方会忽略它
-        # (因为接收方的 _recv_loop 会先检查 PREFIX_AUDIO_STREAM)
+        # (此方法保持不变)
         packet = self._pack_data(prefix, 0, payload)
         return self._send_udp_payload(packet)
 
-    # --- [!! 结束新增 !!] ---
-
-    # --- 公共发送槽函数 ---
-
     def send_command(self, cmd_str: str):
-        """ [重大修改] 使用可靠发送,单次任务从序列号0开始 """
+        # (此方法保持不变)
         with self._lock:
-            # --- 修改: 每次发送命令从序列号 0 开始 ---
             seq_num = 0
             payload = cmd_str.encode('utf-8')
-
             self.log_received.emit(f"-> [UDP发送 文本]: {cmd_str} (SEQ={seq_num})")
             success = self._send_reliable_payload(PREFIX_TEXT, seq_num, payload)
             if success:
@@ -411,94 +382,64 @@ class EthernetWorker(QObject):
                 self.log_received.emit(f"-> [UDP发送 文本]: {cmd_str} 失败")
 
     def send_file_udp(self, file_path: str):
-        """ [重大修改] 使用可靠发送,单次文件传输内自增序列号,完成后重置 """
+        # (此方法保持不变)
         with self._lock:
             if not self.fpga_addr:
                 self.error_occurred.emit("发送失败: 目标地址未设置")
                 return
-
             try:
                 file_size = os.path.getsize(file_path)
                 filename = os.path.basename(file_path)
                 self.log_received.emit(f"-> [UDP发送 文件]: {filename} ({file_size} 字节)")
-
-                # --- 修改: 每次文件传输从序列号 0 开始 ---
                 seq_num = 0
-
-                # --- 1. 发送文件头 ---
                 info_str = f"{filename}:{file_size}"
                 info_payload = info_str.encode('utf-8')
-
                 self.log_received.emit(f"-> [UDP发送 文件头] (SEQ={seq_num})")
                 if not self._send_reliable_payload(PREFIX_FILE_INFO, seq_num, info_payload):
                     self.error_occurred.emit("文件头发送失败,未收到 ACK")
                     return
-
                 self.log_received.emit(f"-> [UDP发送 文件头] 完成")
-
-                # --- 2. 发送文件数据块 ---
                 with open(file_path, 'rb') as f:
                     while True:
                         chunk = f.read(CHUNK_SIZE)
                         if not chunk:
-                            break  # 文件读取完毕
-                        seq_num += 1  # 在当前文件传输中自增序列号
+                            break
+                        seq_num += 1
                         if not self._send_reliable_payload(PREFIX_FILE_DATA, seq_num, chunk):
                             self.error_occurred.emit(f"文件块 {seq_num} 发送失败,已中止")
                             return
                         self.log_received.emit(f"-> [UDP发送 文件块] SEQ={seq_num}, 大小={len(chunk)} 字节")
-
                 self.log_received.emit(f"-> [UDP发送 文件]: {filename} 完成,序列号已重置")
-                # 注意: 序列号会在下一次发送任务时重置为 0
-
             except FileNotFoundError:
                 self.error_occurred.emit(f"文件未找到: {file_path}")
             except Exception as e:
                 self.error_occurred.emit(f"文件发送失败: {e}")
 
     def send_audio_udp(self, audio_bytes: bytes):
-        # (此方法是你旧的 "录制-发送" 功能 - 保持不变)
-        # (它使用 PREFIX_AUDIO_DATA (0x03) 进行可靠传输)
+        # (此方法保持不变 - 可靠的录音发送)
         with self._lock:
             if not self.fpga_addr:
                 self.error_occurred.emit("发送失败: 目标地址未设置")
                 return
-
             self.log_received.emit(f"-> [UDP发送 音频]: {len(audio_bytes)} 字节至 {self.fpga_addr}")
-
             try:
-                # --- 修改: 每次音频传输从序列号 0 开始 ---
                 seq_num = 0
                 idx = 0
-
                 while idx < len(audio_bytes):
                     chunk = audio_bytes[idx: idx + CHUNK_SIZE]
                     idx += CHUNK_SIZE
-
                     if not self._send_reliable_payload(PREFIX_AUDIO_DATA, seq_num, chunk):
                         self.error_occurred.emit("音频发送中断")
                         return
-
-                    seq_num += 1  # 在当前音频传输中自增序列号
-
+                    seq_num += 1
                 self.log_received.emit(f"-> [UDP发送 音频]: 完成,序列号已重置")
-                # 注意: 序列号会在下一次发送任务时重置为 0
-
             except Exception as e:
                 self.error_occurred.emit(f"音频发送失败: {e}")
 
-    # --- [!! 新增 !!] ---
     @pyqtSlot(bytes)
     def send_audio_chunk(self, audio_data: bytes):
-        """
-        [公共槽] 发送一个实时音频块 (不可靠)
-        此方法 *不* 使用锁 (self._lock), 以避免阻塞
-        它使用新的 PREFIX_AUDIO_STREAM (0x04)
-        """
+        # (此方法保持不变 - 不可靠的实时流发送)
         if not self.fpga_addr:
-            return  # 静默失败
-
-        # 使用新的不可靠方法
+            return
         if not self._send_unreliable_payload(PREFIX_AUDIO_STREAM, audio_data):
-            pass  # 丢包, 忽略
-    # --- [!! 结束新增 !!] ---
+            pass
