@@ -5,13 +5,13 @@
 //Part Number: GW5AT-LV60PG484AC1/I0
 //Device: GW5AT-60
 //Device Version: B
-//Created Time: Thu Oct 30 00:48:09 2025
+//Created Time: Fri Nov  7 01:07:04 2025
 
 //Change the instance name and port connections to the signal names
 //--------Copy here to design--------
 
 	fifo_rx your_instance_name(
-		.Data(Data), //input [1:0] Data
+		.Data(Data), //input [0:0] Data
 		.WrClk(WrClk), //input WrClk
 		.RdClk(RdClk), //input RdClk
 		.WrEn(WrEn), //input WrEn

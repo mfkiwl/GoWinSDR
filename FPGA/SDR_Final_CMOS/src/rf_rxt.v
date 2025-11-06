@@ -33,14 +33,6 @@ module rf_rxt #(
 wire signed [11:0] costas_out_i;
 wire signed [11:0] costas_out_q;
 
-// costas costas_u0 (
-//     .rst_n(rst_n),
-//     .sample_clk(sample_clk),
-//     .sample_i1(adc_data_in_i1),
-//     .sample_q1(adc_data_in_q1),
-//     .data_out_i(costas_out_i),
-//     .data_out_q(costas_out_q)
-// );
 
 assign costas_out_i = adc_data_in_i1;
 assign costas_out_q = adc_data_in_q1;
@@ -74,25 +66,6 @@ always @(posedge sample_clk or negedge rst_n) begin
     end
 end
 
-// Generate bit_clk_m2 (double frequency of bit_clk)
-reg                    [  31:0]         bit_counter_m2             ;
-localparam                              BIT_CLK_M2_DIV = SAMPLE_RATE / (BIT_RATE * 2);
-
-always @(posedge sample_clk or negedge rst_n) begin
-    if (!rst_n) begin
-        bit_counter_m2 <= 32'd0;
-        bit_clk_m2 <= 1'b0;
-    end
-    else begin
-        if (bit_counter_m2 >= (BIT_CLK_M2_DIV - 1)) begin
-            bit_counter_m2 <= 32'd0;
-            bit_clk_m2 <= ~bit_clk_m2;
-        end
-        else begin
-            bit_counter_m2 <= bit_counter_m2 + 1'd1;
-        end
-    end
-end
 
 // QPSK mapping: 00->(-1,-1), 01->(-1,1), 10->(1,-1), 11->(1,1)
 always @(posedge bit_clk) begin
@@ -156,18 +129,18 @@ assign dac_data_out_q1 = qpsk_q_reg;
 assign dac_out_valid = qpsk_valid;
 
 
-wire                   [   1:0]         tx_data_iq                 ;
+wire                                    tx_data_iq                 ;
 wire                                    empty_flag                 ;
 wire                                    tx_fifo_full               ;
 assign tx_data_ready = 1'b1;
 
     fifo_tx fifo_tx_u0(
-    .Data                              ({tx_data_in[1:0], tx_data_in[3:2], tx_data_in[5:4], tx_data_in[7:6]} ),//input [7:0] Data
+    .Data                              ({tx_data_in[0], tx_data_in[1], tx_data_in[2], tx_data_in[3],tx_data_in[4],tx_data_in[5],tx_data_in[6],tx_data_in[7]}),//input [7:0] Data
     .WrClk                             (tx_clk_in                 ),//input WrClk
     .RdClk                             (bit_clk                   ),//input RdClk
     .WrEn                              (tx_data_valid             ),//input WrEn
     .RdEn                              (1'b1                      ),//input RdEn
-    .Q                                 (tx_data_iq                ),//output [1:0] Q
+    .Q                                 (tx_data_iq                ),//output [0:0] Q
     .Empty                             (empty_flag                ),//output Empty
     .Full                              (tx_fifo_full              ) //output Full
     );
@@ -178,7 +151,7 @@ wire tx_encoder_valid;
     qpsk_differential_encoder qpsk_diff_encoder_u0 (
         .clk(bit_clk),
         .rst_n(rst_n),
-        .data_in(tx_data_iq),
+        .data_in({tx_data_iq, tx_data_iq}),
         .data_valid(~qpsk_idle_flag),
         .i_out(tx_data_iq_diff[0]),
         .q_out(tx_data_iq_diff[1]),
@@ -187,7 +160,7 @@ wire tx_encoder_valid;
 
     // QPSK Demodulation
 reg             signed [  11:0]         demod_i, demod_q           ;
-reg                    [   1:0]         demod_data                 ;
+reg                                     demod_data                 ;
 reg                                     demod_valid                ;
 reg                    [  31:0]         demod_bit_counter          ;
 reg                                     demod_bit_clk              ;
@@ -260,15 +233,19 @@ reg                                     integrate_ready            ;
     // QPSK decision: determine which quadrant
     always @(posedge demod_bit_clk or negedge rst_n) begin
         if (!rst_n) begin
-            demod_data <= 2'b00;
+            demod_data <= 1'b0;
             demod_valid <= 1'b0;
         end
         else if (adc_in_valid) begin
-            case ({demod_i[11], demod_q[11]})                       // Check sign bits
-                2'b00: demod_data <= 2'b11;                         // I>=0, Q>=0 -> 11
-                2'b01: demod_data <= 2'b10;                         // I>=0, Q<0  -> 10
-                2'b10: demod_data <= 2'b01;                         // I<0,  Q>=0 -> 01
-                2'b11: demod_data <= 2'b00;                         // I<0,  Q<0  -> 00
+            // case ({demod_i[11], demod_q[11]})                       // Check sign bits
+            //     2'b00: demod_data <= 2'b11;                         // I>=0, Q>=0 -> 11
+            //     2'b01: demod_data <= 2'b10;                         // I>=0, Q<0  -> 10
+            //     2'b10: demod_data <= 2'b01;                         // I<0,  Q>=0 -> 01
+            //     2'b11: demod_data <= 2'b00;                         // I<0,  Q<0  -> 00
+            // endcase
+            case (demod_i[11]) 
+                1'b0: demod_data <= 1'b1;
+                1'b1: demod_data <= 1'b0;
             endcase
             demod_valid <= 1'b1;
         end
@@ -278,14 +255,14 @@ reg                                     integrate_ready            ;
     end
 
 wire                                    rx_fifo_empty              ;
-assign rx_clk_out = bit_clk_m2;
+assign rx_clk_out = bit_clk;
 
 assign rx_data_valid = ~rx_fifo_empty;
     // FIFO for demodulated data output
     fifo_rx fifo_rx_u0(
-    .Data                              ({decoded_data[0], decoded_data[1]}),//input [1:0] Data
+    .Data                              (decoded_data[0]),//input [0:0] Data
     .WrClk                             (demod_bit_clk             ),//input WrClk
-    .RdClk                             (bit_clk_m2                ),//input RdClk
+    .RdClk                             (bit_clk                   ),//input RdClk
     .WrEn                              (demod_valid               ),//input WrEn
     .RdEn                              (1'b1                      ),//input RdEn
     .Q                                 (rx_data_out               ),//output [0:0] Q
@@ -299,33 +276,13 @@ wire decoded_valid;
 qpsk_differential_decoder qpsk_diff_decoder_u0 (
     .clk(demod_bit_clk),
     .rst_n(rst_n),
-    .i_in(demod_data[0]),
-    .q_in(demod_data[1]),
+    .i_in(demod_data),
+    .q_in(demod_data),
     .data_valid(demod_valid),
     .data_out(decoded_data),
     .out_valid(decoded_valid)
 );
 
-// reg cnt_bits;
-// reg [1:0] demod_data_reg;
 
-// always @(posedge bit_clk_m2 or negedge rst_n) begin
-//     if (!rst_n) begin
-//         rx_data_out <= 1'b0;
-//         cnt_bits <= 1'b0;
-//     end
-//     else begin
-//         if (cnt_bits == 1'b0) begin
-
-//             rx_data_out <= demod_data_reg[1];
-//             cnt_bits <= 1'b1;
-//         end
-//         else begin
-//             demod_data_reg <= demod_data;
-//             rx_data_out <= demod_data_reg[0];
-//             cnt_bits <= 1'b0;
-//         end
-//     end
-// end
 
 endmodule

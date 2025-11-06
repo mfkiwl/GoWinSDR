@@ -248,11 +248,10 @@ module rf_data_processor #(
                 end
                 
                 RD_WAIT: begin
-                    // FIFO读延迟1拍，此时数据已有效
+
                     rf_tx_data <= fifo_rd_data;
                     rf_tx_valid <= 1'b1;
                     
-                    // 继续读取或等待
                     if (!fifo_empty) begin
                         fifo_rd_en <= 1'b1;
                         rd_state <= RD_WAIT;

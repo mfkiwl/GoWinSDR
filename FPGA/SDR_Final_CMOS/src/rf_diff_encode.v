@@ -31,7 +31,7 @@ reg last_data_valid;
                 out_valid <= 1'b1;
             end else if (last_data_valid && !data_valid) begin
                 out_valid <= 1'b1;
-                i_out <= i_prev ^ 1'b1;
+                i_out <= i_prev ^ 1'b0;
                 q_out <= q_prev ^ 1'b0;
 
                 i_prev <= i_prev ^ 1'b0;
