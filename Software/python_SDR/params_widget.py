@@ -43,20 +43,16 @@ class ParamsWidget(QWidget):
         self.btn_lan_mode.setStyleSheet("""
             QPushButton {
                 background-color: transparent;
-                border: 1px solid #555; /* 灰色边框 */
-                color: #555; /* 灰色文字 */
+                border: 0px solid #555; /* 灰色边框 */
+                color: transparent; /* 灰色文字 */
                 padding: 1px 4px;
                 max-width: 35px;
                 font-size: 8pt;
             }
-            QPushButton:hover {
-                background-color: #444;
-                color: #ccc;
-            }
             QPushButton:checked {
-                background-color: #007bff; /* 激活时变为蓝色 */
-                color: white;
-                border: 1px solid #007bff;
+                background-color: transparent; /* 激活时变为蓝色 */
+                color: transparent;
+                border: 0px solid #007bff;
                 font-weight: bold;
             }
         """)
