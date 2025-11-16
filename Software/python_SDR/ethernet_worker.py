@@ -7,12 +7,15 @@ import os
 import time
 import struct
 import zlib
+import random
 from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
 from PyQt6.QtGui import QImage
 
 # --- [!! 核心修改：在这里设置你的P2P IP !!] ---
-LAN_TARGET_IP = "192.168.43.192"
-LAN_LISTEN_IP = "192.168.43.217"
+# LAN_TARGET_IP = "192.168.43.192"
+# LAN_LISTEN_IP = "192.168.43.217"
+LAN_TARGET_IP = "127.0.0.1"
+LAN_LISTEN_IP = "127.0.0.1"
 LAN_PORT = 32768
 # --- [!! 结束核心修改 !!] ---
 
@@ -96,10 +99,10 @@ class EthernetWorker(QObject):
     def set_lan_mode(self, enabled):
         # (此方法保持不变)
         self.is_lan_mode = enabled
-        if enabled:
-            self.log_received.emit(f"--- [!] 局域网P2P模式已激活 (目标: {LAN_TARGET_IP}:{LAN_PORT}) ---")
-        else:
-            self.log_received.emit("--- [!] 局域网P2P模式已停用 (返回FPGA模式) ---")
+        # if enabled:
+        #     self.log_received.emit(f"--- [!] 局域网P2P模式已激活 (目标: {LAN_TARGET_IP}:{LAN_PORT}) ---")
+        # else:
+        #     self.log_received.emit("--- [!] 局域网P2P模式已停用 (返回FPGA模式) ---")
 
     def start_listening(self, listen_ip, listen_port, fpga_ip, fpga_port):
         # (此方法保持不变)
@@ -319,6 +322,10 @@ class EthernetWorker(QObject):
     def _send_ack(self, seq_num_to_ack: int, target_addr: tuple):
         # (此方法保持不变)
         ack_packet = self._pack_data(PREFIX_ACK, seq_num_to_ack, b'')
+        if self.is_lan_mode:
+            if random.random() < 0.05:  # 5% 概率
+                # self.log_received.emit("人为误码产生")
+                return
         try:
             if self.sock:
                 self.sock.sendto(ack_packet, target_addr)
