@@ -1,10 +1,14 @@
 # 文件名: py代码/main_window.py
-# (已修改：连接“隐形”LAN信号，并移除按钮禁用逻辑)
+# (已修复: 1. 修正了 camera_worker 的 'finished' 信号连接。 2. 确保了 camera_worker 的槽连接类型。)
+# (已修复: 3. 解耦了 audio_chunk_received 和 UI 绘图, 修复了实时音频GUI阻塞问题)
+# (已修复: 4. [新] 修复了因循环依赖导致的 AttributeError)
+
 
 from PyQt6.QtWidgets import (QMainWindow, QWidget, QHBoxLayout, QVBoxLayout,
                              QSplitter, QTabWidget)
 from PyQt6.QtCore import QThread, Qt, QTimer, pyqtSlot
 import numpy as np
+import threading
 
 from config_widget import ConfigWidget
 from params_widget import ParamsWidget
@@ -22,6 +26,12 @@ from audio_stream_worker import AudioInputWorker, AudioOutputWorker
 from audio_stream_worker import DTYPE as AUDIO_STREAM_DTYPE
 from audio_stream_worker import CHANNELS as AUDIO_STREAM_CHANNELS
 
+# --- [!! 新增: 导入新模块 !!] ---
+from realtime_video_widget import RealtimeVideoWidget
+from camera_worker import CameraWorker
+
+# --- [!! 结束新增 !!] ---
+
 try:
     from ad9363_config import AD9363_GET_COMMANDS
 except ImportError:
@@ -35,11 +45,37 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("FPGA 无线通信上位机 (AD9363) - [串口+UDP]")
         self.setGeometry(100, 100, 1200, 800)
         self.query_list = []
+
         self.init_ui()
+
+        # --- [!! 关键修复 4 !!] ---
+        # 1. 先调用所有的 setup 函数, 它们只负责 *创建* worker
         self.setup_serial_thread()
         self.setup_ethernet_thread()
         self.setup_audio_thread()
         self.setup_audio_stream_threads()
+        self.setup_camera_thread()
+
+        # 2. 现在所有的 worker 都已存在,
+        #    在这里集中处理所有 *跨线程* 的信号连接
+        try:
+            # (Ethernet -> Audio Output)
+            self.eth_worker.audio_chunk_received.connect(
+                self.audio_output_worker.receive_and_play_chunk, Qt.ConnectionType.QueuedConnection
+            )
+
+            # (Audio Input -> Ethernet)
+            self.audio_input_worker.chunk_ready_bytes.connect(self.eth_worker.send_audio_chunk)
+
+            # (Camera -> Ethernet)
+            self.camera_worker.jpeg_bytes_ready.connect(self.eth_worker.send_video_frame)
+
+            self.log_widget.append_log("跨线程信号连接成功")
+
+        except AttributeError as e:
+            self.log_widget.append_log(f"[严重错误] 无法连接跨线程信号: {e}")
+            self.log_widget.append_log("这可能是由于某个 Worker 未能正确初始化。")
+        # --- [!! 修复结束 !!] ---
 
     def init_ui(self):
         # (此方法保持不变)
@@ -72,9 +108,11 @@ class MainWindow(QMainWindow):
         file_tab_layout.addStretch()
         self.video_widget = VideoWidget()
         self.realtime_audio_widget = RealtimeAudioWidget()
+        self.realtime_video_widget = RealtimeVideoWidget()
         self.tab_widget.addTab(self.file_tab_content, "文件、文本及录音")
         self.tab_widget.addTab(self.video_widget, "网络视频监控 (UDP)")
         self.tab_widget.addTab(self.realtime_audio_widget, "实时语音")
+        self.tab_widget.addTab(self.realtime_video_widget, "实时视频")
         self.log_widget = LogWidget()
         splitter = QSplitter(Qt.Orientation.Vertical)
         splitter.addWidget(self.tab_widget)
@@ -121,13 +159,21 @@ class MainWindow(QMainWindow):
         self.eth_thread = QThread()
         self.eth_worker = EthernetWorker()
         self.eth_worker.moveToThread(self.eth_thread)
+        # --- 连接内部信号 ---
         self.eth_worker.started.connect(self.on_eth_started)
         self.eth_worker.stopped.connect(self.on_eth_stopped)
         self.eth_worker.log_received.connect(self.log_widget.append_log)
         self.eth_worker.video_frame_ready.connect(self.video_widget.update_frame)
+        self.eth_worker.video_frame_ready.connect(self.realtime_video_widget.on_remote_frame_update)
         self.eth_worker.error_occurred.connect(self.on_eth_error)
         self.eth_worker.file_received.connect(self.file_receive_widget.add_received_file)
-        self.eth_worker.audio_chunk_received.connect(self.on_audio_chunk_received)
+
+        # --- [!! 关键修复 4 !!] ---
+        # 移除了导致 AttributeError 的跨线程连接
+        # self.eth_worker.audio_chunk_received.connect(...)
+        # --- [!! 修复结束 !!] ---
+
+        # --- 连接来自 UI 的信号 ---
         self.ethernet_widget.start_listening_clicked.connect(
             self.eth_worker.start_listening, Qt.ConnectionType.QueuedConnection
         )
@@ -140,11 +186,7 @@ class MainWindow(QMainWindow):
         self.text_audio_widget.send_text_clicked.connect(self.eth_worker.send_command)
         self.file_send_widget.send_file_clicked.connect(self.eth_worker.send_file_udp)
         self.file_receive_widget.enable_reception_changed.connect(self.eth_worker.set_file_reception_enabled)
-
-        # --- [!! 新增: 连接“隐形”LAN信号 !!] ---
-        # 将 params_widget 的信号连接到 ethernet_worker 的新槽
         self.params_widget.lan_mode_toggled.connect(self.eth_worker.set_lan_mode)
-        # --- [!! 结束新增 !!] ---
 
         self.eth_thread.start()
         self.log_widget.append_log("网络线程启动")
@@ -154,42 +196,81 @@ class MainWindow(QMainWindow):
         self.audio_worker = AudioWorker()
         self.text_audio_widget.start_audio_recording.connect(self.audio_worker.start_recording)
         self.text_audio_widget.stop_audio_recording.connect(self.audio_worker.stop_recording)
-        self.audio_worker.audio_recorded.connect(self.send_audio_data)
+        self.audio_worker.audio_recorded.connect(self.send_audio_data)  #
         self.audio_worker.error_occurred.connect(self.log_widget.append_log)
 
     def setup_audio_stream_threads(self):
-        # (此方法保持不变)
+        # (此方法已修改)
         self.audio_input_thread = QThread()
         self.audio_input_worker = AudioInputWorker()
         self.audio_input_worker.moveToThread(self.audio_input_thread)
         self.audio_output_thread = QThread()
         self.audio_output_worker = AudioOutputWorker()
         self.audio_output_worker.moveToThread(self.audio_output_thread)
+
+        # --- 连接 UI 和 内部 信号 ---
         self.realtime_audio_widget.start_tx_streaming.connect(self.audio_input_worker.start_streaming)
         self.realtime_audio_widget.stop_tx_streaming.connect(self.audio_input_worker.stop_streaming)
-        self.audio_input_worker.chunk_ready_bytes.connect(self.eth_worker.send_audio_chunk)
+
+        # --- [!! 关键修复 4 !!] ---
+        # 移除了导致 AttributeError 的跨线程连接
+        # self.audio_input_worker.chunk_ready_bytes.connect(self.eth_worker.send_audio_chunk)
+        # --- [!! 修复结束 !!] ---
+
         self.audio_input_worker.chunk_ready_array.connect(self.realtime_audio_widget.on_tx_waveform_update)
         self.audio_input_worker.error_occurred.connect(self.log_widget.append_log)
         self.realtime_audio_widget.start_rx_playback.connect(self.audio_output_worker.start_playback)
         self.realtime_audio_widget.stop_rx_playback.connect(self.audio_output_worker.stop_playback)
         self.audio_output_worker.error_occurred.connect(self.log_widget.append_log)
+
+        # (连接 'waveform_ready' 信号, 这是 UI 解耦修复的一部分)
+        self.audio_output_worker.waveform_ready.connect(
+            self.realtime_audio_widget.on_rx_waveform_update
+        )
+
         self.audio_input_thread.start()
         self.audio_output_thread.start()
         self.log_widget.append_log("实时音频流线程启动")
 
+    def setup_camera_thread(self):
+        # (此方法已修改)
+        self.camera_thread = QThread()
+        self.camera_worker = CameraWorker()
+        self.camera_worker.moveToThread(self.camera_thread)
+
+        # --- 连接 UI 和 内部 信号 ---
+        self.realtime_video_widget.start_tx_streaming.connect(
+            self.camera_worker.start_streaming, Qt.ConnectionType.QueuedConnection)
+        self.realtime_video_widget.stop_tx_streaming.connect(
+            self.camera_worker.stop_streaming, Qt.ConnectionType.QueuedConnection)
+
+        self.camera_worker.frame_ready.connect(self.realtime_video_widget.on_local_frame_update)
+
+        # --- [!! 关键修复 4 !!] ---
+        # 移除了导致 AttributeError 的跨线程连接
+        # self.camera_worker.jpeg_bytes_ready.connect(self.eth_worker.send_video_frame)
+        # --- [!! 修复结束 !!] ---
+
+        self.camera_worker.error_occurred.connect(self.log_widget.append_log)
+        self.camera_thread.started.connect(lambda: self.log_widget.append_log("摄像头线程启动"))
+
+        # (线程生命周期连接 - 保持不变)
+        self.camera_worker.finished.connect(self.camera_thread.quit)
+        self.camera_thread.finished.connect(self.camera_worker.deleteLater)
+        self.camera_thread.finished.connect(self.camera_thread.deleteLater)
+
+        self.camera_thread.start()
+
+    # (on_audio_chunk_received 方法保持被弃用的状态)
     @pyqtSlot(bytes)
     def on_audio_chunk_received(self, chunk_bytes: bytes):
-        # (此方法保持不变)
-        self.audio_output_worker.play_chunk(chunk_bytes)
-        try:
-            arr = np.frombuffer(chunk_bytes, dtype=AUDIO_STREAM_DTYPE)
-            if arr.size > 0:
-                self.realtime_audio_widget.on_rx_waveform_update(arr)
-        except Exception as e:
-            pass
+        """
+        此方法已被弃用...
+        """
+        pass
 
     def send_audio_data(self, audio_data: bytes):
-        # (此方法保持不变)
+        # (此方法保持不变 - 按照你的要求, 未修复阻塞)
         self.log_widget.append_log("音频录制完成，正在通过UDP发送...")
         if self.eth_worker:
             try:
@@ -222,33 +303,24 @@ class MainWindow(QMainWindow):
             self.on_serial_disconnected()
 
     def on_eth_started(self):
-        # (此方法已修改)
+        # (此方法已修改, 保持不变)
         self.log_widget.append_log("UDP 监听已开始")
         self.ethernet_widget.set_connection_state(True)
         self.text_audio_widget.set_enabled(True)
         self.file_send_widget.set_enabled(True)
         self.file_receive_widget.set_enabled(True)
         self.realtime_audio_widget.set_enabled(True)
-
-        # --- [!! 修改 !!] ---
-        # 移除了禁用 "LAN" 按钮的逻辑
-        # self.params_widget.btn_lan_mode.setEnabled(False)
-        # --- [!! 结束修改 !!] ---
+        self.realtime_video_widget.set_enabled(True)
 
     def on_eth_stopped(self):
-        # (此方法已修改)
+        # (此方法已修改, f保持不变)
         self.log_widget.append_log("UDP 监听已停止")
         self.ethernet_widget.set_connection_state(False)
         self.text_audio_widget.set_enabled(False)
         self.file_send_widget.set_enabled(False)
         self.file_receive_widget.set_enabled(False)
         self.realtime_audio_widget.set_enabled(False)
-
-        # --- [!! 修改 !!] ---
-        # 移除了启用 "LAN" 按钮的逻辑
-        # serial_is_connected = (self.serial_worker and ...
-        # self.params_widget.btn_lan_mode.setEnabled(serial_is_connected)
-        # --- [!! 结束修改 !!] ---
+        self.realtime_video_widget.set_enabled(False)
 
     def on_eth_error(self, message):
         # (此方法保持不变)
@@ -315,14 +387,23 @@ class MainWindow(QMainWindow):
         QTimer.singleShot(10, self.send_next_query)
 
     def closeEvent(self, event):
-        # (此方法保持不变)
+        # (此方法已修改, 保持不变)
         self.log_widget.append_log("正在关闭应用程序...")
         self.query_list.clear()
+
         try:
             if hasattr(self, 'audio_input_worker'): self.audio_input_worker.stop_streaming()
             if hasattr(self, 'audio_output_worker'): self.audio_output_worker.stop_playback()
         except Exception:
             pass
+
+        # --- [!! 新增 !!] ---
+        try:
+            if hasattr(self, 'camera_worker'): self.camera_worker.stop_streaming()
+        except Exception:
+            pass
+        # --- [!! 结束新增 !!] ---
+
         if hasattr(self, 'serial_thread') and self.serial_thread.isRunning():
             self.serial_worker.disconnect_serial()
             self.serial_thread.quit()
@@ -342,4 +423,15 @@ class MainWindow(QMainWindow):
         if hasattr(self, "audio_output_thread") and self.audio_output_thread.isRunning():
             self.audio_output_thread.quit()
             if not self.audio_output_thread.wait(1000): self.audio_output_thread.terminate()
+
+        # --- [!! 新增 !!] ---
+        if hasattr(self, "camera_thread") and self.camera_thread.isRunning():
+            # 确保在退出前停止 worker
+            if hasattr(self, 'camera_worker'): self.camera_worker.stop_streaming()
+            self.camera_thread.quit()
+            if not self.camera_thread.wait(2000):  # 给2秒钟时间让循环停止
+                self.log_widget.append_log("摄像头线程未能正常停止，将强制终止")
+                self.camera_thread.terminate()
+        # --- [!! 结束新增 !!] ---
+
         event.accept()
