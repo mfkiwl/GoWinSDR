@@ -282,18 +282,18 @@ always @(posedge wr_clk or negedge rst_n) begin
         wr_buffer_cnt <= 0;
     end else begin
         if (wr_en && !wr_full) begin
-            // 动态计算位置并写入数据
-            for (i = 0; i < WR_WORDS_PER_DDR; i = i + 1) begin
-                if (wr_buffer_cnt == i) begin
-                    wr_buffer[i*WR_DATA_WIDTH +: WR_DATA_WIDTH] <= wr_data;
-                end
-            end
-            
+            // 当缓冲区满时,先发送当前缓冲区
             if (wr_buffer_full) begin
-                wr_buffer_cnt <= 0; 
-                wr_buffer[0 +: WR_DATA_WIDTH] <= wr_data;
+                // 当前数据作为新缓冲区的第一个数据
+                wr_buffer <= {{(DDR_DATA_WIDTH-WR_DATA_WIDTH){1'b0}}, wr_data};
                 wr_buffer_cnt <= 1;
             end else begin
+                // 动态计算位置并写入数据
+                for (i = 0; i < WR_WORDS_PER_DDR; i = i + 1) begin
+                    if (wr_buffer_cnt == i) begin
+                        wr_buffer[i*WR_DATA_WIDTH +: WR_DATA_WIDTH] <= wr_data;
+                    end
+                end
                 wr_buffer_cnt <= wr_buffer_cnt + 1;
             end
         end
@@ -382,7 +382,7 @@ assign wr_req_fifo_rd = (state == STATE_WRITE_DDR) && cmd_ready && wr_data_rdy &
 assign rd_buf_fifo_wr = (state == STATE_READ_BUFFER) && app_rd_data_valid;
 assign rd_buf_fifo_din = app_rd_data;
 
-localparam RD_BURST_CNT = 4;  // 每次空闲时连续读取4个burst
+localparam RD_BURST_CNT = 8;  // 每次空闲时连续读取8个burst
 reg [2:0] rd_burst_remain;    // 剩余连续读取次数
 reg [4:0] burst_cnt;
 

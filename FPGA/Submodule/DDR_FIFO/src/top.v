@@ -179,8 +179,16 @@ DDR3_LARGE_FIFO #(
 /////////////////////////////////////////////////////////////////////////////////////////
 // 接收数据写入DDR3 FIFO逻辑
 /////////////////////////////////////////////////////////////////////////////////////////
-assign fifo_wr_en = eth_rx_data_valid && !fifo_wr_full && ddr_init_done;
+assign fifo_wr_en = (eth_rx_data_valid_reg || eth_rx_data_valid_reg2 || eth_rx_data_valid_reg3 || eth_rx_data_valid) && !fifo_wr_full && ddr_init_done;
 assign fifo_wr_data = eth_rx_data;
+reg eth_rx_data_valid_reg;
+reg eth_rx_data_valid_reg2;
+reg eth_rx_data_valid_reg3;
+always @(posedge RGMII_GTXCLK) begin
+    eth_rx_data_valid_reg <= eth_rx_data_valid;
+    eth_rx_data_valid_reg2 <= eth_rx_data_valid_reg;
+    eth_rx_data_valid_reg3 <= eth_rx_data_valid_reg2;
+end
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // 从DDR3 FIFO读取数据并发送逻辑
@@ -283,7 +291,23 @@ end
 
 // FIFO读使能
 // assign fifo_rd_en = (tx_state == TX_SEND_DATA) && !fifo_rd_empty;
-assign fifo_rd_en = !fifo_rd_empty && !eth_rx_data_valid;
+// assign fifo_rd_en = !fifo_rd_empty && !eth_rx_data_valid;
+assign fifo_rd_en = fifo_rd_en_reg;   
+reg fifo_rd_en_reg;
+always @(posedge RGMII_GTXCLK or negedge rst_n) begin
+    if (!rst_n) begin
+        fifo_rd_en_reg <= 1'b0;
+    end
+    else begin
+        if (!fifo_rd_empty && !eth_rx_data_valid) begin
+            fifo_rd_en_reg <= 1'b1;
+        end
+        else begin
+            fifo_rd_en_reg <= 1'b0;
+        end
+    end
+end
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // 状态LED指示

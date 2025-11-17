@@ -68,6 +68,7 @@ WARN  (EX3791) : Expression size 10 truncated to fit in target size 9("D:\Code\g
 WARN  (EX3791) : Expression size 10 truncated to fit in target size 9("D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\src\fifo_ddr.v":588)
 WARN  (EX3791) : Expression size 6 truncated to fit in target size 5("D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\src\fifo_ddr.v":297)
 WARN  (EX3791) : Expression size 32 truncated to fit in target size 5("D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\src\fifo_ddr.v":327)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\src\fifo_ddr.v":427)
 WARN  (EX3791) : Expression size 29 truncated to fit in target size 28("D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\src\fifo_ddr.v":445)
 WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\src\fifo_ddr.v":458)
 WARN  (EX3791) : Expression size 29 truncated to fit in target size 28("D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\src\fifo_ddr.v":472)
