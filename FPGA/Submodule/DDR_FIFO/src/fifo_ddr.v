@@ -408,7 +408,7 @@ always @(posedge ddr_clk or negedge rst_n) begin
                 app_en_reg <= 0;
                 app_wdf_wren_reg <= 0;
                 app_wdf_end_reg <= 0;
-                burst_cnt <= 0;
+                burst_cnt <= burst_cnt;
                 
                 if (init_calib_complete) begin
                     // 优先处理写操作
@@ -471,8 +471,13 @@ always @(posedge ddr_clk or negedge rst_n) begin
                     end else begin
                         rd_addr <= rd_addr + 8;
                     end
-                    
-                    state <= STATE_READ_BUFFER;
+                    if (burst_cnt == RD_BURST_CNT - 1) begin
+                        state <= STATE_READ_BUFFER;
+                    end
+                    else begin
+                        burst_cnt <= burst_cnt + 1;
+                        state <= STATE_IDLE;  
+                    end
                     wait_cnt <= 0;
                 end else begin
                     app_en_reg <= 0;
@@ -491,20 +496,19 @@ always @(posedge ddr_clk or negedge rst_n) begin
                 
                 if (app_rd_data_valid) begin
                     data_count <= data_count - 1;
-                    
                     // 检查是否继续连续读取
-                    if (rd_burst_remain > 1 && !rd_buf_fifo_full && data_count > 1) begin
-                        rd_burst_remain <= rd_burst_remain - 1;
-                        state <= STATE_READ_DDR;  // 直接进入下一次读取
+                    if (burst_cnt > 0 && !rd_buf_fifo_full && data_count > 1) begin
+                        burst_cnt <= burst_cnt - 1;
+                        state <= STATE_READ_BUFFER; 
                         wait_cnt <= 0;
                     end else begin
-                        rd_burst_remain <= 0;
+                        burst_cnt <= 0;
                         state <= STATE_IDLE;
                     end
                 end else begin
                     if (wait_cnt >= 255) begin
                         state <= STATE_IDLE;
-                        rd_burst_remain <= 0;
+                        burst_cnt <= 0;
                     end else begin
                         wait_cnt <= wait_cnt + 1;
                     end

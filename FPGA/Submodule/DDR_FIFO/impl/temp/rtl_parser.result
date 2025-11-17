@@ -134,7 +134,7 @@
       "InstLine" : 187,
       "InstName" : "u_wr_req_fifo",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/DDR_FIFO/src/fifo_ddr.v",
-      "ModuleLine" : 527,
+      "ModuleLine" : 531,
       "ModuleName" : "ASYNC_FIFO"
      },
      {
@@ -142,7 +142,7 @@
       "InstLine" : 217,
       "InstName" : "u_rd_buf_fifo",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/DDR_FIFO/src/fifo_ddr.v",
-      "ModuleLine" : 527,
+      "ModuleLine" : 531,
       "ModuleName" : "ASYNC_FIFO"
      }
     ]

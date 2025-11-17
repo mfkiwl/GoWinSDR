@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="eth_ddr3_loopback_top" Register="29" Lut="49" T_Register="5738(29)" T_Alu="284(0)" T_Lut="4245(49)" T_Bsram="77(0)">
- <SubModule name="u_eth_transceiver" Register="416" Alu="98" Lut="606" Bsram="1" T_Register="448(416)" T_Alu="98(98)" T_Lut="662(606)" T_Bsram="1(1)">
+<Module name="eth_ddr3_loopback_top" Register="29" Lut="49" T_Register="5740(29)" T_Alu="284(0)" T_Lut="4237(49)" T_Bsram="77(0)">
+ <SubModule name="u_eth_transceiver" Register="416" Alu="98" Lut="598" Bsram="1" T_Register="448(416)" T_Alu="98(98)" T_Lut="677(598)" T_Bsram="1(1)">
   <SubModule name="pll_inst">
    <SubModule name="u_pll"/>
   </SubModule>
-  <SubModule name="crc_inst" Register="32" Lut="56" T_Register="32(32)" T_Lut="56(56)"/>
+  <SubModule name="crc_inst" Register="32" Lut="79" T_Register="32(32)" T_Lut="79(79)"/>
   <SubModule name="gmii2rgmii_inst"/>
  </SubModule>
- <SubModule name="u_ddr3_fifo" Register="397" Lut="442" T_Register="4075(397)" T_Alu="171(0)" T_Lut="2864(442)" T_Bsram="17(0)">
-  <SubModule name="u_pll" T_Register="101(0)" T_Alu="18(0)" T_Lut="156(0)" T_Bsram="1(0)">
+ <SubModule name="u_ddr3_fifo" Register="399" Lut="445" T_Register="4077(399)" T_Alu="171(0)" T_Lut="2848(445)" T_Bsram="17(0)">
+  <SubModule name="u_pll" T_Register="101(0)" T_Alu="18(0)" T_Lut="151(0)" T_Bsram="1(0)">
    <SubModule name="u_pll"/>
-   <SubModule name="u_pll_init" Register="101" Alu="18" Lut="156" Bsram="1" T_Register="101(101)" T_Alu="18(18)" T_Lut="156(156)" T_Bsram="1(1)"/>
+   <SubModule name="u_pll_init" Register="101" Alu="18" Lut="151" Bsram="1" T_Register="101(101)" T_Alu="18(18)" T_Lut="151(151)" T_Bsram="1(1)"/>
   </SubModule>
   <SubModule name="u_ddr3" Register="3437" Alu="126" Lut="2140" Bsram="8" T_Register="3437(3437)" T_Alu="126(126)" T_Lut="2140(2140)" T_Bsram="8(8)"/>
-  <SubModule name="u_wr_req_fifo" Register="70" Alu="9" Lut="53" Bsram="4" T_Register="70(70)" T_Alu="9(9)" T_Lut="53(53)" T_Bsram="4(4)"/>
-  <SubModule name="u_rd_buf_fifo" Register="70" Alu="18" Lut="73" Bsram="4" T_Register="70(70)" T_Alu="18(18)" T_Lut="73(73)" T_Bsram="4(4)"/>
+  <SubModule name="u_wr_req_fifo" Register="70" Alu="9" Lut="50" Bsram="4" T_Register="70(70)" T_Alu="9(9)" T_Lut="50(50)" T_Bsram="4(4)"/>
+  <SubModule name="u_rd_buf_fifo" Register="70" Alu="18" Lut="62" Bsram="4" T_Register="70(70)" T_Alu="18(18)" T_Lut="62(62)" T_Bsram="4(4)"/>
  </SubModule>
- <SubModule name="gw_gao_inst_0" Register="1186" Alu="15" Lut="670" Bsram="59" T_Register="1186(1186)" T_Alu="15(15)" T_Lut="670(670)" T_Bsram="59(59)"/>
+ <SubModule name="gw_gao_inst_0" Register="1186" Alu="15" Lut="663" Bsram="59" T_Register="1186(1186)" T_Alu="15(15)" T_Lut="663(663)" T_Bsram="59(59)"/>
 </Module>
