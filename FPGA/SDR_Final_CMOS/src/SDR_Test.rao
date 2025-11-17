@@ -2,7 +2,7 @@
 <GAO_CONFIG>
     <Version>3.0</Version>
     <Mode>Standard</Mode>
-    <AoCore index="0" sample_clock="u_rf_rxt/bit_clk" trig_type="0" storage_depth="4096" window_num="1" capture_amount="4096" implementation="0" trigger_pos="0" module_name="top" force_trigger_by_falling_edge="false" capture_init_data_enabled="false">
+    <AoCore index="0" sample_clock="u_rf_rxt/bit_clk" trig_type="0" storage_depth="4" window_num="1" capture_amount="4" implementation="0" trigger_pos="0" module_name="top" force_trigger_by_falling_edge="false" capture_init_data_enabled="false">
         <SignalList>
             <Bus capture_enable="true" name="rx_data_in[11:0]">
                 <Signal>rx_data_in[11]</Signal>
@@ -351,5 +351,5 @@
             <Expression>M1</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>0000011011011011</GAO_ID>
+    <GAO_ID>1011110111111111</GAO_ID>
 </GAO_CONFIG>

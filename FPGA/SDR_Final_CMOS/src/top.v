@@ -143,7 +143,7 @@ reg                                     led_blink                  ;
 
 
 localparam                              integer SYS_CLK_FREQ_HZ = 50_000_000;// adjust if sys_clk differs
-localparam                              integer TEST_CLK_FREQ_HZ = 2_000_000;
+localparam                              integer TEST_CLK_FREQ_HZ = 1_500_000;
 localparam                              integer DIV_HALF = SYS_CLK_FREQ_HZ / (2 * TEST_CLK_FREQ_HZ);// toggle every DIV_HALF cycles
 
 reg                    [  31:0]         test_div_cnt               ;
@@ -176,7 +176,7 @@ wire                                    tx_data_ready              ;
 
     rf_rxt #(
     .SAMPLE_RATE                       (32'd30720000              ),
-    .BIT_RATE                          (32'd10000000               ) // 10Mbps for testing
+    .BIT_RATE                          (32'd8000000               ) // 8Mbps for testing
     ) u_rf_rxt (
     .clk                               (sys_clk                   ),
     .rst_n                             (rst_n                     ),
