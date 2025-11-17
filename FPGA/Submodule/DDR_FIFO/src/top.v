@@ -282,7 +282,8 @@ always @(posedge clk_eth or negedge rst_n) begin
 end
 
 // FIFO读使能
-assign fifo_rd_en = (tx_state == TX_SEND_DATA) && !fifo_rd_empty;
+// assign fifo_rd_en = (tx_state == TX_SEND_DATA) && !fifo_rd_empty;
+assign fifo_rd_en = !fifo_rd_empty && !eth_rx_data_valid;
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // 状态LED指示

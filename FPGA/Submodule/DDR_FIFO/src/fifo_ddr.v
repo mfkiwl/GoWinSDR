@@ -290,8 +290,9 @@ always @(posedge wr_clk or negedge rst_n) begin
             end
             
             if (wr_buffer_full) begin
-                // 缓冲区满,通过异步FIFO发送到DDR时钟域
-                wr_buffer_cnt <= 1;  // 当前数据作为下一个buffer的第一个
+                wr_buffer_cnt <= 0; 
+                wr_buffer[0 +: WR_DATA_WIDTH] <= wr_data;
+                wr_buffer_cnt <= 1;
             end else begin
                 wr_buffer_cnt <= wr_buffer_cnt + 1;
             end
@@ -315,40 +316,35 @@ always @(posedge rd_clk or negedge rst_n) begin
     end else begin
         rd_data_valid <= 0;
         
-        // 提前预装载：当计数为1且有读使能时，提前装载下一个数据块
-        if (rd_buffer_cnt == 1 && rd_en && !rd_empty && !rd_buf_fifo_empty) begin
-            rd_buffer <= rd_buf_fifo_dout;
-            rd_buffer_cnt <= RD_WORDS_PER_DDR;
-        end
-        // 原有的补充逻辑：当缓冲完全为空时装载
-        else if (rd_buffer_empty && !rd_buf_fifo_empty) begin
-            rd_buffer <= rd_buf_fifo_dout;
-            rd_buffer_cnt <= RD_WORDS_PER_DDR;
+        // 先处理读取操作
+        if (rd_en && !rd_empty && rd_buffer_cnt > 0) begin
+            // 从缓冲区读取,动态计算读取位置
+            for (j = 0; j < RD_WORDS_PER_DDR; j = j + 1) begin
+                if (rd_buffer_cnt == RD_WORDS_PER_DDR - j) begin
+                    rd_data <= rd_buffer[j*RD_DATA_WIDTH +: RD_DATA_WIDTH];
+                end
+            end
+            rd_buffer_cnt <= rd_buffer_cnt - 1;
+            rd_data_valid <= 1;
         end
         
-        if (rd_en && !rd_empty) begin
-            if (rd_buffer_cnt > 0) begin
-                // 从缓冲区读取，动态计算读取位置
-                for (j = 0; j < RD_WORDS_PER_DDR; j = j + 1) begin
-                    if (rd_buffer_cnt == RD_WORDS_PER_DDR - j) begin
-                        rd_data <= rd_buffer[j*RD_DATA_WIDTH +: RD_DATA_WIDTH];
-                    end
-                end
-                
-                // 如果刚才已经预装载，则不再递减
-                if (!(rd_buffer_cnt == 1 && !rd_buf_fifo_empty)) begin
-                    rd_buffer_cnt <= rd_buffer_cnt - 1;
-                end
-                
-                rd_data_valid <= 1;
-            end
+        // 再处理装载操作(装载不影响当前周期的读取)
+        // 当缓冲区空了才装载新数据
+        if (rd_buffer_cnt == 0 && !rd_buf_fifo_empty) begin
+            rd_buffer <= rd_buf_fifo_dout;
+            rd_buffer_cnt <= RD_WORDS_PER_DDR;
+        end
+        // 或者当只剩1个数据且正在读取时,提前装载下一批
+        else if (rd_buffer_cnt == 1 && rd_en && !rd_empty && !rd_buf_fifo_empty) begin
+            rd_buffer <= rd_buf_fifo_dout;
+            rd_buffer_cnt <= RD_WORDS_PER_DDR;
         end
     end
 end
 
-assign rd_buf_fifo_rd = (rd_buffer_empty && !rd_buf_fifo_empty) || 
+// 更新FIFO读使能信号
+assign rd_buf_fifo_rd = (rd_buffer_cnt == 0 && !rd_buf_fifo_empty) || 
                         (rd_buffer_cnt == 1 && rd_en && !rd_empty && !rd_buf_fifo_empty);
-
 
 // =====================================================
 // DDR控制状态机(DDR时钟域)
@@ -388,6 +384,7 @@ assign rd_buf_fifo_din = app_rd_data;
 
 localparam RD_BURST_CNT = 4;  // 每次空闲时连续读取4个burst
 reg [2:0] rd_burst_remain;    // 剩余连续读取次数
+reg [4:0] burst_cnt;
 
 always @(posedge ddr_clk or negedge rst_n) begin
     if (~rst_n) begin
@@ -404,12 +401,14 @@ always @(posedge ddr_clk or negedge rst_n) begin
         wait_cnt <= 0;
         ddr_wr_data <= 0;
         rd_burst_remain <= 0;
+        burst_cnt <= 0;
     end else begin
         case (state)
             STATE_IDLE: begin
                 app_en_reg <= 0;
                 app_wdf_wren_reg <= 0;
                 app_wdf_end_reg <= 0;
+                burst_cnt <= 0;
                 
                 if (init_calib_complete) begin
                     // 优先处理写操作
@@ -420,7 +419,7 @@ always @(posedge ddr_clk or negedge rst_n) begin
                         rd_burst_remain <= 0;  // 重置连续读计数
                     end
                     // 按需读取策略：当读缓冲快要空时从DDR读取
-                    else if (rd_buf_almost_empty_sync2 && !rd_buf_fifo_full && data_count > 0) begin
+                    else if (rd_buf_almost_empty_sync2 && !rd_buf_fifo_full && data_count > 0 && rd_en) begin
                         state <= STATE_READ_DDR;
                         wait_cnt <= 0;
                         // 设置连续读取次数
