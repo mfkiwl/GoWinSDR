@@ -27,6 +27,7 @@
             <Signal capture_enable="true">fifo_rd_empty</Signal>
             <Signal capture_enable="true">fifo_rd_almost_empty</Signal>
             <Signal capture_enable="true">fifo_rd_data_valid</Signal>
+            <Signal capture_enable="true">eth_tx_active</Signal>
             <Bus capture_enable="true" name="fifo_count[31:0]">
                 <Signal>fifo_count[31]</Signal>
                 <Signal>fifo_count[30]</Signal>
@@ -256,16 +257,31 @@
             <Signal capture_enable="true">eth_tx_ready</Signal>
             <Signal capture_enable="true">eth_tx_frame_start</Signal>
             <Signal capture_enable="true">fifo_wr_en</Signal>
-            <Signal capture_enable="true">u_ddr3_fifo/wr_buffer_full</Signal>
             <Signal capture_enable="true">u_ddr3_fifo/wr_en_reg</Signal>
             <Signal capture_enable="true">u_ddr3_fifo/wr_en_reg2</Signal>
-            <Bus capture_enable="true" name="u_ddr3_fifo/burst_cnt[4:0]">
-                <Signal>u_ddr3_fifo/burst_cnt[4]</Signal>
-                <Signal>u_ddr3_fifo/burst_cnt[3]</Signal>
-                <Signal>u_ddr3_fifo/burst_cnt[2]</Signal>
-                <Signal>u_ddr3_fifo/burst_cnt[1]</Signal>
-                <Signal>u_ddr3_fifo/burst_cnt[0]</Signal>
+            <Bus capture_enable="true" name="tx_byte_cnt[15:0]">
+                <Signal>tx_byte_cnt[15]</Signal>
+                <Signal>tx_byte_cnt[14]</Signal>
+                <Signal>tx_byte_cnt[13]</Signal>
+                <Signal>tx_byte_cnt[12]</Signal>
+                <Signal>tx_byte_cnt[11]</Signal>
+                <Signal>tx_byte_cnt[10]</Signal>
+                <Signal>tx_byte_cnt[9]</Signal>
+                <Signal>tx_byte_cnt[8]</Signal>
+                <Signal>tx_byte_cnt[7]</Signal>
+                <Signal>tx_byte_cnt[6]</Signal>
+                <Signal>tx_byte_cnt[5]</Signal>
+                <Signal>tx_byte_cnt[4]</Signal>
+                <Signal>tx_byte_cnt[3]</Signal>
+                <Signal>tx_byte_cnt[2]</Signal>
+                <Signal>tx_byte_cnt[1]</Signal>
+                <Signal>tx_byte_cnt[0]</Signal>
             </Bus>
+            <Signal capture_enable="true">led_rx_active</Signal>
+            <Signal capture_enable="true">led_tx_active</Signal>
+            <Signal capture_enable="true">fifo_rd_en_reg</Signal>
+            <Signal capture_enable="true">eth_rx_frame_start</Signal>
+            <Signal capture_enable="true">u_ddr3_fifo/wr_req_fifo_full</Signal>
         </SignalList>
         <Triggers>
             <Trigger index="0">
@@ -273,7 +289,11 @@
                     <Signal>eth_rx_data_valid</Signal>
                 </SignalList>
             </Trigger>
-            <Trigger index="1"/>
+            <Trigger index="1">
+                <SignalList>
+                    <Signal>eth_rx_frame_start</Signal>
+                </SignalList>
+            </Trigger>
             <Trigger index="2"/>
             <Trigger index="3"/>
             <Trigger index="4"/>
@@ -291,7 +311,7 @@
         </Triggers>
         <MatchUnits>
             <MatchUnit index="0" enabled="1" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="1" value1="0" trigger="0"/>
-            <MatchUnit index="1" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="1" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="1" value1="0" trigger="1"/>
             <MatchUnit index="2" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
             <MatchUnit index="3" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
             <MatchUnit index="4" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
@@ -311,5 +331,5 @@
             <Expression>M0</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>1101000111001100</GAO_ID>
+    <GAO_ID>1100101000100110</GAO_ID>
 </GAO_CONFIG>

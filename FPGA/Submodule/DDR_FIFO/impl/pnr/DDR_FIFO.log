@@ -7,7 +7,6 @@ Running placement......
 [10%] Placement Phase 0 completed
 [20%] Placement Phase 1 completed
 [30%] Placement Phase 2 completed
-WARN  (TA1132) :  'RGMII_RXCLK' was determined to be a clock but was not created.
 WARN  (TA1132) :  'tck_pad_i' was determined to be a clock but was not created.
 [50%] Placement Phase 3 completed
 Running routing......
@@ -28,5 +27,5 @@ Generate file "D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\impl\pnr\DDR_FIFO.pi
 Generate file "D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\impl\pnr\DDR_FIFO.rpt.html" completed
 Generate file "D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\impl\pnr\DDR_FIFO.rpt.txt" completed
 Generate file "D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\impl\pnr\DDR_FIFO.tr.html" completed
-Tue Nov 18 17:26:25 2025
+Tue Nov 18 20:54:28 2025
 

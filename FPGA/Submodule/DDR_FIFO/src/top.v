@@ -182,7 +182,7 @@ DDR3_LARGE_FIFO #(
 assign fifo_wr_en = (eth_rx_data_valid_reg || eth_rx_data_valid) && !fifo_wr_full && ddr_init_done;
 assign fifo_wr_data = eth_rx_data;
 reg eth_rx_data_valid_reg;
-always @(posedge RGMII_GTXCLK) begin
+always @(posedge RGMII_RXCLK) begin
     eth_rx_data_valid_reg <= eth_rx_data_valid;
 end
 
@@ -221,65 +221,41 @@ always @(posedge clk_eth or negedge rst_n) begin
             TX_IDLE: begin
                 tx_data_valid_reg <= 1'b0;
                 tx_byte_cnt <= 16'd0;
-                
+                fifo_rd_en_reg <= 1'b0;
                 if (ddr_init_done) begin
                     tx_state <= TX_WAIT_INIT;
                 end
             end
             
             TX_WAIT_INIT: begin
-                // 等待FIFO有足够数据再开始发送(避免频繁发送小包)
-                if (fifo_count >= 32 && eth_tx_ready) begin
+                if (!fifo_rd_empty && !eth_rx_data_valid) begin
                     tx_state <= TX_START_FRAME;
                 end
             end
             
             TX_START_FRAME: begin
-                // 发送帧开始标志
-                tx_frame_start_reg <= 1'b1;
-                tx_byte_cnt <= 16'd0;
-                tx_state <= TX_SEND_DATA;
+                fifo_rd_en_reg <= 1'b1;
+                if (fifo_rd_data_valid) begin
+                    tx_frame_start_reg <= 1'b1;
+                    tx_byte_cnt <= 16'd0;
+                    tx_state <= TX_SEND_DATA;
+                    tx_data_reg <= fifo_rd_data;
+                    tx_data_valid_reg <= fifo_rd_data_valid;
+                end
             end
             
             TX_SEND_DATA: begin
-                if (!fifo_rd_empty) begin
-                    // 从FIFO读取数据
-                    if (fifo_rd_data_valid) begin
-                        tx_data_reg <= fifo_rd_data;
-                        tx_data_valid_reg <= 1'b1;
-                        tx_byte_cnt <= tx_byte_cnt + 1'b1;
-                        
-                        // 发送一定数量后结束当前帧
-                        // 或者FIFO即将空时结束
-                        if (tx_byte_cnt >= 16'd1024 || fifo_count <= 4) begin
-                            tx_state <= TX_WAIT_READY;
-                        end
-                    end
-                    else begin
-                        tx_data_valid_reg <= 1'b0;
-                    end
+                if (fifo_rd_data_valid) begin
+                    fifo_rd_en_reg <= 1'b1;
+                    tx_data_reg <= fifo_rd_data;
+                    tx_data_valid_reg <= fifo_rd_data_valid;
                 end
                 else begin
-                    // FIFO空了,结束发送
+                    fifo_rd_en_reg <= 1'b0;
                     tx_data_valid_reg <= 1'b0;
-                    tx_state <= TX_WAIT_READY;
+                    tx_state <= TX_IDLE;
                 end
-            end
-            
-            TX_WAIT_READY: begin
-                tx_data_valid_reg <= 1'b0;
-                
-                // 等待以太网模块准备好后,检查是否还有数据要发送
-                if (eth_tx_ready) begin
-                    if (fifo_count >= 32) begin
-                        tx_state <= TX_START_FRAME;
-                    end
-                    else begin
-                        tx_state <= TX_WAIT_INIT;
-                    end
-                end
-            end
-            
+            end          
             default: tx_state <= TX_IDLE;
         endcase
     end
@@ -290,19 +266,19 @@ end
 // assign fifo_rd_en = !fifo_rd_empty && !eth_rx_data_valid;
 assign fifo_rd_en = fifo_rd_en_reg;   
 reg fifo_rd_en_reg;
-always @(posedge RGMII_GTXCLK or negedge rst_n) begin
-    if (!rst_n) begin
-        fifo_rd_en_reg <= 1'b0;
-    end
-    else begin
-        if (!fifo_rd_empty && !eth_rx_data_valid) begin
-            fifo_rd_en_reg <= 1'b1;
-        end
-        else begin
-            fifo_rd_en_reg <= 1'b0;
-        end
-    end
-end
+// always @(posedge RGMII_GTXCLK or negedge rst_n) begin
+//     if (!rst_n) begin
+//         fifo_rd_en_reg <= 1'b0;
+//     end
+//     else begin
+//         if (!fifo_rd_empty && !eth_rx_data_valid) begin
+//             fifo_rd_en_reg <= 1'b1;
+//         end
+//         else begin
+//             fifo_rd_en_reg <= 1'b0;
+//         end
+//     end
+// end
 
 
 /////////////////////////////////////////////////////////////////////////////////////////

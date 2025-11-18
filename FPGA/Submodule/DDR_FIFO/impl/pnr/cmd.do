@@ -4,7 +4,7 @@
 -cst D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\src\DDR_FIFO.cst
 -cfg D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\impl\pnr\device.cfg
 -sdc D:\Code\git\GoWinSDR\FPGA\Submodule\DDR_FIFO\src\gw60.sdc
--gao_crc 1101000111001100
+-gao_crc 1100101000100110
 -bit
 -tr
 -ph
