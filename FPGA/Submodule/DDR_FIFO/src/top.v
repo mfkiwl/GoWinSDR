@@ -179,15 +179,11 @@ DDR3_LARGE_FIFO #(
 /////////////////////////////////////////////////////////////////////////////////////////
 // 接收数据写入DDR3 FIFO逻辑
 /////////////////////////////////////////////////////////////////////////////////////////
-assign fifo_wr_en = (eth_rx_data_valid_reg || eth_rx_data_valid_reg2 || eth_rx_data_valid_reg3 || eth_rx_data_valid) && !fifo_wr_full && ddr_init_done;
+assign fifo_wr_en = (eth_rx_data_valid_reg || eth_rx_data_valid) && !fifo_wr_full && ddr_init_done;
 assign fifo_wr_data = eth_rx_data;
 reg eth_rx_data_valid_reg;
-reg eth_rx_data_valid_reg2;
-reg eth_rx_data_valid_reg3;
 always @(posedge RGMII_GTXCLK) begin
     eth_rx_data_valid_reg <= eth_rx_data_valid;
-    eth_rx_data_valid_reg2 <= eth_rx_data_valid_reg;
-    eth_rx_data_valid_reg3 <= eth_rx_data_valid_reg2;
 end
 
 /////////////////////////////////////////////////////////////////////////////////////////

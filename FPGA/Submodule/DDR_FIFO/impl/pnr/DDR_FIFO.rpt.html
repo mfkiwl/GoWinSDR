@@ -83,7 +83,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Created Time</td>
-<td>Tue Nov 18 03:56:14 2025
+<td>Tue Nov 18 17:26:25 2025
 </td>
 </tr>
 <tr>
@@ -98,23 +98,23 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td class="label">Place & Route Process</td>
 <td>Running placement:
    Placement Phase 0: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
-   Placement Phase 1: CPU time = 0h 0m 0.693s, Elapsed time = 0h 0m 0.694s
-   Placement Phase 2: CPU time = 0h 0m 6s, Elapsed time = 0h 0m 6s
-   Placement Phase 3: CPU time = 0h 0m 3s, Elapsed time = 0h 0m 3s
-   Total Placement: CPU time = 0h 0m 13s, Elapsed time = 0h 0m 13s
+   Placement Phase 1: CPU time = 0h 0m 0.559s, Elapsed time = 0h 0m 0.559s
+   Placement Phase 2: CPU time = 0h 0m 5s, Elapsed time = 0h 0m 5s
+   Placement Phase 3: CPU time = 0h 0m 4s, Elapsed time = 0h 0m 4s
+   Total Placement: CPU time = 0h 0m 12s, Elapsed time = 0h 0m 12s
 Running routing:
    Routing Phase 0: CPU time = 0h 0m 0.003s, Elapsed time = 0h 0m 0.003s
-   Routing Phase 1: CPU time = 0h 0m 29s, Elapsed time = 0h 0m 29s
-   Routing Phase 2: CPU time = 0h 0m 0.112s, Elapsed time = 0h 0m 0.112s
+   Routing Phase 1: CPU time = 0h 0m 30s, Elapsed time = 0h 0m 30s
+   Routing Phase 2: CPU time = 0h 0m 0.138s, Elapsed time = 0h 0m 0.138s
    Routing Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s
-   Total Routing: CPU time = 0h 0m 29s, Elapsed time = 0h 0m 29s
+   Total Routing: CPU time = 0h 0m 30s, Elapsed time = 0h 0m 30s
 Generate output files:
    CPU time = 0h 0m 6s, Elapsed time = 0h 0m 6s
 </td>
 </tr>
 <tr>
 <td class="label">Total Time and Memory Usage</td>
-<td>CPU time = 0h 0m 48s, Elapsed time = 0h 0m 48s, Peak memory usage = 2108MB</td>
+<td>CPU time = 0h 0m 48s, Elapsed time = 0h 0m 48s, Peak memory usage = 2121MB</td>
 </tr>
 </table>
 <br/>
@@ -129,12 +129,12 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">Logic</td>
-<td>4552/59904</td>
+<td>4556/59904</td>
 <td>8%</td>
 </tr>
 <tr>
 <td class="label">&nbsp &nbsp --LUT,ALU,ROM16</td>
-<td>4552(4239 LUT, 313 ALU, 0 ROM16)</td>
+<td>4556(4242 LUT, 314 ALU, 0 ROM16)</td>
 <td>-</td>
 </tr>
 <tr>
@@ -144,7 +144,7 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">Register</td>
-<td>5739/60780</td>
+<td>5759/60780</td>
 <td>10%</td>
 </tr>
 <tr>
@@ -154,7 +154,7 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">&nbsp &nbsp --Logic Register as FF</td>
-<td>5735/59904</td>
+<td>5755/59904</td>
 <td>10%</td>
 </tr>
 <tr>
@@ -169,7 +169,7 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">CLS</td>
-<td>4820/29952</td>
+<td>4801/29952</td>
 <td>17%</td>
 </tr>
 <tr>
@@ -204,8 +204,8 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">BSRAM</td>
-<td>84 SDPB<br/>8 SDPX9B<br/>1 pROM<br/></td>
-<td>79%</td>
+<td>85 SDPB<br/>8 SDPX9B<br/>1 pROM<br/></td>
+<td>80%</td>
 </tr>
 </table>
 <h2><a name="I/O_Bank_Usage_Summary">I/O Bank Usage Summary:</a></h2>
@@ -278,8 +278,8 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">LW</td>
-<td>5/8</td>
-<td>63%</td>
+<td>6/8</td>
+<td>75%</td>
 </tr>
 <tr>
 <td class="label">GCLK_PIN</td>
@@ -343,10 +343,15 @@ Generate output files:
 <tr>
 <td class="label">gw_gao_inst_0/control0[0]</td>
 <td>PRIMARY</td>
-<td> PTR0 PTR1 PTR2 PBR0 PBR1</td>
+<td> PTR0 PTR1 PTR2 PBR0 PBR1 PBR2</td>
 </tr>
 <tr>
 <td class="label">RGMII_RST_N_d</td>
+<td>LW</td>
+<td> -</td>
+</tr>
+<tr>
+<td class="label">u_eth_transceiver/n3677_4</td>
 <td>LW</td>
 <td> -</td>
 </tr>
@@ -366,7 +371,7 @@ Generate output files:
 <td> -</td>
 </tr>
 <tr>
-<td class="label">gw_gao_inst_0/u_la0_top/data_out_shift_reg_232_9</td>
+<td class="label">gw_gao_inst_0/u_la0_top/data_out_shift_reg_237_9</td>
 <td>LW</td>
 <td> -</td>
 </tr>

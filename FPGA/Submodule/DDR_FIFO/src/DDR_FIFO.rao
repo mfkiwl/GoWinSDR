@@ -14,7 +14,6 @@
                 <Signal>fifo_wr_data[1]</Signal>
                 <Signal>fifo_wr_data[0]</Signal>
             </Bus>
-            <Signal capture_enable="true">fifo_wr_almost_full</Signal>
             <Bus capture_enable="true" name="fifo_rd_data[7:0]">
                 <Signal>fifo_rd_data[7]</Signal>
                 <Signal>fifo_rd_data[6]</Signal>
@@ -256,9 +255,17 @@
             <Signal capture_enable="true">eth_tx_data_valid</Signal>
             <Signal capture_enable="true">eth_tx_ready</Signal>
             <Signal capture_enable="true">eth_tx_frame_start</Signal>
-            <Signal capture_enable="true">fifo_rd_en</Signal>
             <Signal capture_enable="true">fifo_wr_en</Signal>
             <Signal capture_enable="true">u_ddr3_fifo/wr_buffer_full</Signal>
+            <Signal capture_enable="true">u_ddr3_fifo/wr_en_reg</Signal>
+            <Signal capture_enable="true">u_ddr3_fifo/wr_en_reg2</Signal>
+            <Bus capture_enable="true" name="u_ddr3_fifo/burst_cnt[4:0]">
+                <Signal>u_ddr3_fifo/burst_cnt[4]</Signal>
+                <Signal>u_ddr3_fifo/burst_cnt[3]</Signal>
+                <Signal>u_ddr3_fifo/burst_cnt[2]</Signal>
+                <Signal>u_ddr3_fifo/burst_cnt[1]</Signal>
+                <Signal>u_ddr3_fifo/burst_cnt[0]</Signal>
+            </Bus>
         </SignalList>
         <Triggers>
             <Trigger index="0">
@@ -304,5 +311,5 @@
             <Expression>M0</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>1111100111101110</GAO_ID>
+    <GAO_ID>1101000111001100</GAO_ID>
 </GAO_CONFIG>

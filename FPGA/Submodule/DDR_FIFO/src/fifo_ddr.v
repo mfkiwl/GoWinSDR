@@ -297,10 +297,24 @@ always @(posedge wr_clk or negedge rst_n) begin
                 wr_buffer_cnt <= wr_buffer_cnt + 1;
             end
         end
+        else if(!wr_en && wr_en_reg) begin
+            wr_buffer_cnt <= 0;  
+        end
     end
 end
 
-assign wr_req_fifo_wr = wr_en && !wr_full && wr_buffer_full;
+reg wr_en_reg;
+reg wr_en_reg2;
+always @(posedge wr_clk or negedge rst_n) begin
+    if (~rst_n) begin
+        wr_en_reg <= 0;
+        wr_en_reg2 <= 0;
+    end else begin
+        wr_en_reg <= wr_en;
+        wr_en_reg2 <= wr_en_reg;
+    end
+end
+assign wr_req_fifo_wr = (wr_en && !wr_full && wr_buffer_full) || (wr_en_reg && !wr_en && wr_buffer_cnt == 'h10);
 assign wr_req_fifo_din = wr_buffer;
 
 // =====================================================
