@@ -63,6 +63,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\src\gowin_pll\gowin_pll.
 D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\src\gowin_pll\gowin_pll_mod.v<br>
 D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\src\pll_init.v<br>
 D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\src\top.v<br>
+D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\src\fifo_top\fifo_top.v<br>
 E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_crc32.v<br>
 E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v<br>
 E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v<br>
@@ -94,7 +95,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 </tr>
 <tr>
 <td class="label">Created Time</td>
-<td>Mon Nov  3 15:13:54 2025
+<td>Wed Nov 19 14:37:57 2025
 </td>
 </tr>
 <tr>
@@ -110,11 +111,11 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 </tr>
 <tr>
 <td class="label">Synthesis Process</td>
-<td>Running parser:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0.437s, Elapsed time = 0h 0m 0.49s, Peak memory usage = 308.812MB<br/>Running netlist conversion:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 0MB<br/>Running device independent optimization:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 0: CPU time = 0h 0m 0.25s, Elapsed time = 0h 0m 0.265s, Peak memory usage = 308.812MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 1: CPU time = 0h 0m 0.062s, Elapsed time = 0h 0m 0.055s, Peak memory usage = 308.812MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 2: CPU time = 0h 0m 0.296s, Elapsed time = 0h 0m 0.323s, Peak memory usage = 308.812MB<br/>Running inference:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 0: CPU time = 0h 0m 0.14s, Elapsed time = 0h 0m 0.129s, Peak memory usage = 308.812MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 1: CPU time = 0h 0m 0.015s, Elapsed time = 0h 0m 0.031s, Peak memory usage = 308.812MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 2: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0.01s, Peak memory usage = 308.812MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 3: CPU time = 0h 0m 0.015s, Elapsed time = 0h 0m 0.008s, Peak memory usage = 308.812MB<br/>Running technical mapping:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 0: CPU time = 0h 0m 0.171s, Elapsed time = 0h 0m 0.153s, Peak memory usage = 308.812MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 1: CPU time = 0h 0m 0.125s, Elapsed time = 0h 0m 0.132s, Peak memory usage = 308.812MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 2: CPU time = 0h 0m 0.015s, Elapsed time = 0h 0m 0.018s, Peak memory usage = 308.812MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 3: CPU time = 0h 0m 4s, Elapsed time = 0h 0m 5s, Peak memory usage = 314.926MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 4: CPU time = 0h 0m 0.078s, Elapsed time = 0h 0m 0.11s, Peak memory usage = 314.926MB<br/>Generate output files:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0.078s, Elapsed time = 0h 0m 0.081s, Peak memory usage = 314.926MB<br/></td>
+<td>Running parser:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0.5s, Elapsed time = 0h 0m 0.524s, Peak memory usage = 1999.871MB<br/>Running netlist conversion:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 0MB<br/>Running device independent optimization:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 0: CPU time = 0h 0m 0.281s, Elapsed time = 0h 0m 0.281s, Peak memory usage = 1999.871MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 1: CPU time = 0h 0m 0.062s, Elapsed time = 0h 0m 0.068s, Peak memory usage = 1999.871MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 2: CPU time = 0h 0m 0.359s, Elapsed time = 0h 0m 0.364s, Peak memory usage = 1999.871MB<br/>Running inference:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 0: CPU time = 0h 0m 0.109s, Elapsed time = 0h 0m 0.11s, Peak memory usage = 1999.871MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 1: CPU time = 0h 0m 0.031s, Elapsed time = 0h 0m 0.025s, Peak memory usage = 1999.871MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 2: CPU time = 0h 0m 0.015s, Elapsed time = 0h 0m 0.01s, Peak memory usage = 1999.871MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0.007s, Peak memory usage = 1999.871MB<br/>Running technical mapping:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 0: CPU time = 0h 0m 0.14s, Elapsed time = 0h 0m 0.143s, Peak memory usage = 1999.871MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 1: CPU time = 0h 0m 0.156s, Elapsed time = 0h 0m 0.156s, Peak memory usage = 1999.871MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 2: CPU time = 0h 0m 0.031s, Elapsed time = 0h 0m 0.021s, Peak memory usage = 1999.871MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 3: CPU time = 0h 0m 4s, Elapsed time = 0h 0m 4s, Peak memory usage = 1999.871MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 4: CPU time = 0h 0m 0.125s, Elapsed time = 0h 0m 0.127s, Peak memory usage = 1999.871MB<br/>Generate output files:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0.109s, Elapsed time = 0h 0m 0.106s, Peak memory usage = 1999.871MB<br/></td>
 </tr>
 <tr>
 <td class="label">Total Time and Memory Usage</td>
-<td>CPU time = 0h 0m 5s, Elapsed time = 0h 0m 6s, Peak memory usage = 314.926MB</td>
+<td>CPU time = 0h 0m 5s, Elapsed time = 0h 0m 5s, Peak memory usage = 1999.871MB</td>
 </tr>
 </table>
 <h1><a name="resource">Resource</a></h1>
@@ -142,7 +143,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 </tr>
 <tr>
 <td class="label"><b>Register </b></td>
-<td>983</td>
+<td>1230</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspDFFSE</td>
@@ -150,7 +151,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspDFFRE</td>
-<td>345</td>
+<td>436</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspDFFPE</td>
@@ -158,23 +159,23 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspDFFCE</td>
-<td>592</td>
+<td>748</td>
 </tr>
 <tr>
 <td class="label"><b>LUT </b></td>
-<td>1133</td>
+<td>1233</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspLUT2</td>
-<td>105</td>
+<td>146</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspLUT3</td>
-<td>273</td>
+<td>301</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspLUT4</td>
-<td>755</td>
+<td>786</td>
 </tr>
 <tr>
 <td class="label"><b>MUX </b></td>
@@ -186,19 +187,19 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 </tr>
 <tr>
 <td class="label"><b>ALU </b></td>
-<td>113</td>
+<td>122</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspALU</td>
-<td>113</td>
+<td>122</td>
 </tr>
 <tr>
 <td class="label"><b>INV </b></td>
-<td>12</td>
+<td>13</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspINV</td>
-<td>12</td>
+<td>13</td>
 </tr>
 <tr>
 <td class="label"><b>IOLOGIC </b></td>
@@ -210,11 +211,11 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 </tr>
 <tr>
 <td class="label"><b>BSRAM </b></td>
-<td>16</td>
+<td>31</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspSDPB</td>
-<td>16</td>
+<td>31</td>
 </tr>
 <tr>
 <td class="label"><b>CLOCK </b></td>
@@ -242,13 +243,13 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 </tr>
 <tr>
 <td class="label">Logic</td>
-<td>1266(1153 LUT, 113 ALU) / 59904</td>
+<td>1376(1254 LUT, 122 ALU) / 59904</td>
 <td>3%</td>
 </tr>
 <tr>
 <td class="label">Register</td>
-<td>983 / 60780</td>
-<td>2%</td>
+<td>1230 / 60780</td>
+<td>3%</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp--Register as Latch</td>
@@ -257,13 +258,13 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp--Register as FF</td>
-<td>983 / 60780</td>
-<td>2%</td>
+<td>1230 / 60780</td>
+<td>3%</td>
 </tr>
 <tr>
 <td class="label">BSRAM</td>
-<td>16 / 118</td>
-<td>14%</td>
+<td>31 / 118</td>
+<td>27%</td>
 </tr>
 </table>
 <h1><a name="timing">Timing</a></h1>
@@ -344,8 +345,8 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>1</td>
 <td>RGMII_RXCLK</td>
 <td>100.000(MHz)</td>
-<td>133.623(MHz)</td>
-<td>9</td>
+<td>140.449(MHz)</td>
+<td>8</td>
 <td>TOP</td>
 </tr>
 <tr>
@@ -360,8 +361,8 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>3</td>
 <td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
 <td>125.000(MHz)</td>
-<td>64.133(MHz)</td>
-<td>7</td>
+<td>73.584(MHz)</td>
+<td>6</td>
 <td>TOP</td>
 </tr>
 </table>
@@ -371,11 +372,11 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <table class="summary_table">
 <tr>
 <td class="label">Slack</td>
-<td>-3.796</td>
+<td>-2.795</td>
 </tr>
 <tr>
 <td class="label">Data Arrival Time</td>
-<td>8.419</td>
+<td>7.418</td>
 </tr>
 <tr>
 <td class="label">Data Required Time</td>
@@ -421,7 +422,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>0.281</td>
 <td>tCL</td>
 <td>RR</td>
-<td>449</td>
+<td>587</td>
 <td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
 </tr>
 <tr>
@@ -446,15 +447,15 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/n3100_s36/I0</td>
+<td>eth_inst/n3083_s36/I0</td>
 </tr>
 <tr>
 <td>3.568</td>
 <td>0.526</td>
 <td>tINS</td>
 <td>RR</td>
-<td>2</td>
-<td>eth_inst/n3100_s36/F</td>
+<td>3</td>
+<td>eth_inst/n3083_s36/F</td>
 </tr>
 <tr>
 <td>3.943</td>
@@ -462,82 +463,66 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/gmii_txd_1_s13/I1</td>
+<td>eth_inst/eth_inst_69_s23/I2</td>
 </tr>
 <tr>
-<td>4.459</td>
-<td>0.516</td>
+<td>4.404</td>
+<td>0.461</td>
 <td>tINS</td>
 <td>RR</td>
 <td>5</td>
-<td>eth_inst/gmii_txd_1_s13/F</td>
+<td>eth_inst/eth_inst_69_s23/F</td>
 </tr>
 <tr>
-<td>4.834</td>
+<td>4.779</td>
 <td>0.375</td>
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/crc_inst/CrcNext_0_s1/I1</td>
+<td>eth_inst/crc_inst/CrcNext_6_s1/I2</td>
 </tr>
 <tr>
-<td>5.350</td>
-<td>0.516</td>
+<td>5.240</td>
+<td>0.461</td>
+<td>tINS</td>
+<td>RR</td>
+<td>6</td>
+<td>eth_inst/crc_inst/CrcNext_6_s1/F</td>
+</tr>
+<tr>
+<td>5.615</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/crc_inst/CrcNext_1_s4/I0</td>
+</tr>
+<tr>
+<td>6.141</td>
+<td>0.526</td>
 <td>tINS</td>
 <td>RR</td>
 <td>3</td>
-<td>eth_inst/crc_inst/CrcNext_0_s1/F</td>
+<td>eth_inst/crc_inst/CrcNext_1_s4/F</td>
 </tr>
 <tr>
-<td>5.725</td>
+<td>6.516</td>
 <td>0.375</td>
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/crc_inst/CrcNext_1_s3/I0</td>
+<td>eth_inst/crc_inst/CrcNext_2_s3/I0</td>
 </tr>
 <tr>
-<td>6.252</td>
-<td>0.526</td>
-<td>tINS</td>
-<td>RR</td>
-<td>5</td>
-<td>eth_inst/crc_inst/CrcNext_1_s3/F</td>
-</tr>
-<tr>
-<td>6.627</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/CrcNext_1_s0/I1</td>
-</tr>
-<tr>
-<td>7.143</td>
-<td>0.516</td>
-<td>tINS</td>
-<td>RR</td>
-<td>2</td>
-<td>eth_inst/crc_inst/CrcNext_1_s0/F</td>
-</tr>
-<tr>
-<td>7.518</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/CrcNext_2_s2/I0</td>
-</tr>
-<tr>
-<td>8.044</td>
+<td>7.043</td>
 <td>0.526</td>
 <td>tINS</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/crc_inst/CrcNext_2_s2/F</td>
+<td>eth_inst/crc_inst/CrcNext_2_s3/F</td>
 </tr>
 <tr>
-<td>8.419</td>
+<td>7.418</td>
 <td>0.375</td>
 <td>tNET</td>
 <td>RR</td>
@@ -568,7 +553,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>0.281</td>
 <td>tCL</td>
 <td>FF</td>
-<td>449</td>
+<td>587</td>
 <td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
 </tr>
 <tr>
@@ -600,12 +585,12 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 </tr>
 <tr>
 <td class="label">Logic Level:</td>
-<td>7</td>
+<td>6</td>
 </tr>
 <tr>
 <td class="label">Arrival Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
 <tr>
-<td class="label">Arrival Data Path Delay:</td><td> cell: 3.128, 40.290%; route: 2.625, 33.816%; tC2Q: 2.010, 25.894%</td></tr>
+<td class="label">Arrival Data Path Delay:</td><td> cell: 2.501, 36.994%; route: 2.250, 33.278%; tC2Q: 2.010, 29.728%</td></tr>
 <tr>
 <td class="label">Required Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
 </table>
@@ -615,11 +600,11 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <table class="summary_table">
 <tr>
 <td class="label">Slack</td>
-<td>-3.533</td>
+<td>-2.785</td>
 </tr>
 <tr>
 <td class="label">Data Arrival Time</td>
-<td>8.155</td>
+<td>7.408</td>
 </tr>
 <tr>
 <td class="label">Data Required Time</td>
@@ -631,7 +616,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 </tr>
 <tr>
 <td class="label">To</td>
-<td>eth_inst/crc_inst/Crc_4_s0</td>
+<td>eth_inst/crc_inst/Crc_1_s0</td>
 </tr>
 <tr>
 <td class="label">Launch Clk</td>
@@ -665,7 +650,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>0.281</td>
 <td>tCL</td>
 <td>RR</td>
-<td>449</td>
+<td>587</td>
 <td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
 </tr>
 <tr>
@@ -682,7 +667,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>tC2Q</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/tx_buffer_tx_buffer_0_0_s/DO[7]</td>
+<td>eth_inst/tx_buffer_tx_buffer_0_0_s/DO[1]</td>
 </tr>
 <tr>
 <td>3.042</td>
@@ -690,15 +675,15 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/n3094_s36/I0</td>
+<td>eth_inst/n3083_s36/I0</td>
 </tr>
 <tr>
 <td>3.568</td>
 <td>0.526</td>
 <td>tINS</td>
 <td>RR</td>
-<td>2</td>
-<td>eth_inst/n3094_s36/F</td>
+<td>3</td>
+<td>eth_inst/n3083_s36/F</td>
 </tr>
 <tr>
 <td>3.943</td>
@@ -706,87 +691,71 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/gmii_txd_7_s26/I1</td>
+<td>eth_inst/eth_inst_69_s23/I2</td>
 </tr>
 <tr>
-<td>4.459</td>
-<td>0.516</td>
+<td>4.404</td>
+<td>0.461</td>
 <td>tINS</td>
 <td>RR</td>
-<td>3</td>
-<td>eth_inst/gmii_txd_7_s26/F</td>
+<td>5</td>
+<td>eth_inst/eth_inst_69_s23/F</td>
 </tr>
 <tr>
-<td>4.834</td>
+<td>4.779</td>
 <td>0.375</td>
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/crc_inst/CrcNext_0_s2/I1</td>
+<td>eth_inst/crc_inst/CrcNext_6_s1/I2</td>
 </tr>
 <tr>
-<td>5.350</td>
-<td>0.516</td>
+<td>5.240</td>
+<td>0.461</td>
 <td>tINS</td>
 <td>RR</td>
-<td>8</td>
-<td>eth_inst/crc_inst/CrcNext_0_s2/F</td>
+<td>6</td>
+<td>eth_inst/crc_inst/CrcNext_6_s1/F</td>
 </tr>
 <tr>
-<td>5.725</td>
+<td>5.615</td>
 <td>0.375</td>
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/crc_inst/CrcNext_16_s3/I0</td>
+<td>eth_inst/crc_inst/CrcNext_1_s4/I0</td>
 </tr>
 <tr>
-<td>6.252</td>
+<td>6.141</td>
 <td>0.526</td>
 <td>tINS</td>
 <td>RR</td>
-<td>4</td>
-<td>eth_inst/crc_inst/CrcNext_16_s3/F</td>
+<td>3</td>
+<td>eth_inst/crc_inst/CrcNext_1_s4/F</td>
 </tr>
 <tr>
-<td>6.627</td>
+<td>6.516</td>
 <td>0.375</td>
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/crc_inst/CrcNext_4_s2/I3</td>
+<td>eth_inst/crc_inst/CrcNext_1_s0/I1</td>
 </tr>
 <tr>
-<td>6.889</td>
-<td>0.262</td>
-<td>tINS</td>
-<td>RR</td>
-<td>2</td>
-<td>eth_inst/crc_inst/CrcNext_4_s2/F</td>
-</tr>
-<tr>
-<td>7.264</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/CrcNext_4_s0/I1</td>
-</tr>
-<tr>
-<td>7.780</td>
+<td>7.033</td>
 <td>0.516</td>
 <td>tINS</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/crc_inst/CrcNext_4_s0/F</td>
+<td>eth_inst/crc_inst/CrcNext_1_s0/F</td>
 </tr>
 <tr>
-<td>8.155</td>
+<td>7.408</td>
 <td>0.375</td>
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/crc_inst/Crc_4_s0/D</td>
+<td>eth_inst/crc_inst/Crc_1_s0/D</td>
 </tr>
 </table>
 <b>Data Required Path:</b>
@@ -812,7 +781,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>0.281</td>
 <td>tCL</td>
 <td>FF</td>
-<td>449</td>
+<td>587</td>
 <td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
 </tr>
 <tr>
@@ -821,7 +790,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>tNET</td>
 <td>FF</td>
 <td>1</td>
-<td>eth_inst/crc_inst/Crc_4_s0/CLK</td>
+<td>eth_inst/crc_inst/Crc_1_s0/CLK</td>
 </tr>
 <tr>
 <td>4.623</td>
@@ -829,7 +798,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>tSu</td>
 <td> </td>
 <td>1</td>
-<td>eth_inst/crc_inst/Crc_4_s0</td>
+<td>eth_inst/crc_inst/Crc_1_s0</td>
 </tr>
 </table>
 <b>Path Statistics:</b>
@@ -844,12 +813,12 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 </tr>
 <tr>
 <td class="label">Logic Level:</td>
-<td>7</td>
+<td>6</td>
 </tr>
 <tr>
 <td class="label">Arrival Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
 <tr>
-<td class="label">Arrival Data Path Delay:</td><td> cell: 2.864, 38.190%; route: 2.625, 35.006%; tC2Q: 2.010, 26.804%</td></tr>
+<td class="label">Arrival Data Path Delay:</td><td> cell: 2.491, 36.901%; route: 2.250, 33.327%; tC2Q: 2.010, 29.772%</td></tr>
 <tr>
 <td class="label">Required Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
 </table>
@@ -859,11 +828,467 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <table class="summary_table">
 <tr>
 <td class="label">Slack</td>
-<td>-3.533</td>
+<td>-2.785</td>
 </tr>
 <tr>
 <td class="label">Data Arrival Time</td>
-<td>8.155</td>
+<td>7.408</td>
+</tr>
+<tr>
+<td class="label">Data Required Time</td>
+<td>4.623</td>
+</tr>
+<tr>
+<td class="label">From</td>
+<td>eth_inst/tx_buffer_tx_buffer_0_0_s</td>
+</tr>
+<tr>
+<td class="label">To</td>
+<td>eth_inst/crc_inst/Crc_5_s0</td>
+</tr>
+<tr>
+<td class="label">Launch Clk</td>
+<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk[F]</td>
+</tr>
+<tr>
+<td class="label">Latch Clk</td>
+<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk[R]</td>
+</tr>
+</table>
+<b>Data Arrival Path:</b>
+<table class="summary_table">
+<tr>
+<th>AT</th>
+<th>DELAY</th>
+<th>TYPE</th>
+<th>RF</th>
+<th>FANOUT</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>0.000</td>
+<td>0.000</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>0.281</td>
+<td>0.281</td>
+<td>tCL</td>
+<td>RR</td>
+<td>587</td>
+<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>0.656</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>8</td>
+<td>eth_inst/tx_buffer_tx_buffer_0_0_s/CLKB</td>
+</tr>
+<tr>
+<td>2.667</td>
+<td>2.010</td>
+<td>tC2Q</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/tx_buffer_tx_buffer_0_0_s/DO[1]</td>
+</tr>
+<tr>
+<td>3.042</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/n3083_s36/I0</td>
+</tr>
+<tr>
+<td>3.568</td>
+<td>0.526</td>
+<td>tINS</td>
+<td>RR</td>
+<td>3</td>
+<td>eth_inst/n3083_s36/F</td>
+</tr>
+<tr>
+<td>3.943</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/eth_inst_69_s23/I2</td>
+</tr>
+<tr>
+<td>4.404</td>
+<td>0.461</td>
+<td>tINS</td>
+<td>RR</td>
+<td>5</td>
+<td>eth_inst/eth_inst_69_s23/F</td>
+</tr>
+<tr>
+<td>4.779</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/crc_inst/CrcNext_6_s1/I2</td>
+</tr>
+<tr>
+<td>5.240</td>
+<td>0.461</td>
+<td>tINS</td>
+<td>RR</td>
+<td>6</td>
+<td>eth_inst/crc_inst/CrcNext_6_s1/F</td>
+</tr>
+<tr>
+<td>5.615</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/crc_inst/CrcNext_1_s4/I0</td>
+</tr>
+<tr>
+<td>6.141</td>
+<td>0.526</td>
+<td>tINS</td>
+<td>RR</td>
+<td>3</td>
+<td>eth_inst/crc_inst/CrcNext_1_s4/F</td>
+</tr>
+<tr>
+<td>6.516</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/crc_inst/CrcNext_5_s0/I1</td>
+</tr>
+<tr>
+<td>7.033</td>
+<td>0.516</td>
+<td>tINS</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/crc_inst/CrcNext_5_s0/F</td>
+</tr>
+<tr>
+<td>7.408</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/crc_inst/Crc_5_s0/D</td>
+</tr>
+</table>
+<b>Data Required Path:</b>
+<table class="summary_table">
+<tr>
+<th>AT</th>
+<th>DELAY</th>
+<th>TYPE</th>
+<th>RF</th>
+<th>FANOUT</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>4.000</td>
+<td>0.000</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>4.281</td>
+<td>0.281</td>
+<td>tCL</td>
+<td>FF</td>
+<td>587</td>
+<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>4.631</td>
+<td>0.350</td>
+<td>tNET</td>
+<td>FF</td>
+<td>1</td>
+<td>eth_inst/crc_inst/Crc_5_s0/CLK</td>
+</tr>
+<tr>
+<td>4.623</td>
+<td>-0.009</td>
+<td>tSu</td>
+<td> </td>
+<td>1</td>
+<td>eth_inst/crc_inst/Crc_5_s0</td>
+</tr>
+</table>
+<b>Path Statistics:</b>
+<table class="summary_table">
+<tr>
+<td class="label">Clock Skew:</td>
+<td>-0.025</td>
+</tr>
+<tr>
+<td class="label">Setup Relationship:</td>
+<td>4.000</td>
+</tr>
+<tr>
+<td class="label">Logic Level:</td>
+<td>6</td>
+</tr>
+<tr>
+<td class="label">Arrival Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
+<tr>
+<td class="label">Arrival Data Path Delay:</td><td> cell: 2.491, 36.901%; route: 2.250, 33.327%; tC2Q: 2.010, 29.772%</td></tr>
+<tr>
+<td class="label">Required Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
+</table>
+<br/>
+<h3>Path&nbsp4</h3>
+<b>Path Summary:</b></br>
+<table class="summary_table">
+<tr>
+<td class="label">Slack</td>
+<td>-2.775</td>
+</tr>
+<tr>
+<td class="label">Data Arrival Time</td>
+<td>7.398</td>
+</tr>
+<tr>
+<td class="label">Data Required Time</td>
+<td>4.623</td>
+</tr>
+<tr>
+<td class="label">From</td>
+<td>eth_inst/tx_buffer_tx_buffer_0_0_s</td>
+</tr>
+<tr>
+<td class="label">To</td>
+<td>eth_inst/crc_inst/Crc_10_s0</td>
+</tr>
+<tr>
+<td class="label">Launch Clk</td>
+<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk[F]</td>
+</tr>
+<tr>
+<td class="label">Latch Clk</td>
+<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk[R]</td>
+</tr>
+</table>
+<b>Data Arrival Path:</b>
+<table class="summary_table">
+<tr>
+<th>AT</th>
+<th>DELAY</th>
+<th>TYPE</th>
+<th>RF</th>
+<th>FANOUT</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>0.000</td>
+<td>0.000</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>0.281</td>
+<td>0.281</td>
+<td>tCL</td>
+<td>RR</td>
+<td>587</td>
+<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>0.656</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>8</td>
+<td>eth_inst/tx_buffer_tx_buffer_0_0_s/CLKB</td>
+</tr>
+<tr>
+<td>2.667</td>
+<td>2.010</td>
+<td>tC2Q</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/tx_buffer_tx_buffer_0_0_s/DO[5]</td>
+</tr>
+<tr>
+<td>3.042</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/n3079_s36/I0</td>
+</tr>
+<tr>
+<td>3.568</td>
+<td>0.526</td>
+<td>tINS</td>
+<td>RR</td>
+<td>3</td>
+<td>eth_inst/n3079_s36/F</td>
+</tr>
+<tr>
+<td>3.943</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/eth_inst_65_s19/I2</td>
+</tr>
+<tr>
+<td>4.404</td>
+<td>0.461</td>
+<td>tINS</td>
+<td>RR</td>
+<td>7</td>
+<td>eth_inst/eth_inst_65_s19/F</td>
+</tr>
+<tr>
+<td>4.779</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/crc_inst/CrcNext_3_s6/I1</td>
+</tr>
+<tr>
+<td>5.295</td>
+<td>0.516</td>
+<td>tINS</td>
+<td>RR</td>
+<td>6</td>
+<td>eth_inst/crc_inst/CrcNext_3_s6/F</td>
+</tr>
+<tr>
+<td>5.670</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/crc_inst/CrcNext_7_s2/I2</td>
+</tr>
+<tr>
+<td>6.131</td>
+<td>0.461</td>
+<td>tINS</td>
+<td>RR</td>
+<td>2</td>
+<td>eth_inst/crc_inst/CrcNext_7_s2/F</td>
+</tr>
+<tr>
+<td>6.506</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/crc_inst/CrcNext_10_s0/I1</td>
+</tr>
+<tr>
+<td>7.023</td>
+<td>0.516</td>
+<td>tINS</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/crc_inst/CrcNext_10_s0/F</td>
+</tr>
+<tr>
+<td>7.398</td>
+<td>0.375</td>
+<td>tNET</td>
+<td>RR</td>
+<td>1</td>
+<td>eth_inst/crc_inst/Crc_10_s0/D</td>
+</tr>
+</table>
+<b>Data Required Path:</b>
+<table class="summary_table">
+<tr>
+<th>AT</th>
+<th>DELAY</th>
+<th>TYPE</th>
+<th>RF</th>
+<th>FANOUT</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>4.000</td>
+<td>0.000</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>4.281</td>
+<td>0.281</td>
+<td>tCL</td>
+<td>FF</td>
+<td>587</td>
+<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>4.631</td>
+<td>0.350</td>
+<td>tNET</td>
+<td>FF</td>
+<td>1</td>
+<td>eth_inst/crc_inst/Crc_10_s0/CLK</td>
+</tr>
+<tr>
+<td>4.623</td>
+<td>-0.009</td>
+<td>tSu</td>
+<td> </td>
+<td>1</td>
+<td>eth_inst/crc_inst/Crc_10_s0</td>
+</tr>
+</table>
+<b>Path Statistics:</b>
+<table class="summary_table">
+<tr>
+<td class="label">Clock Skew:</td>
+<td>-0.025</td>
+</tr>
+<tr>
+<td class="label">Setup Relationship:</td>
+<td>4.000</td>
+</tr>
+<tr>
+<td class="label">Logic Level:</td>
+<td>6</td>
+</tr>
+<tr>
+<td class="label">Arrival Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
+<tr>
+<td class="label">Arrival Data Path Delay:</td><td> cell: 2.481, 36.807%; route: 2.250, 33.377%; tC2Q: 2.010, 29.816%</td></tr>
+<tr>
+<td class="label">Required Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
+</table>
+<br/>
+<h3>Path&nbsp5</h3>
+<b>Path Summary:</b></br>
+<table class="summary_table">
+<tr>
+<td class="label">Slack</td>
+<td>-2.720</td>
+</tr>
+<tr>
+<td class="label">Data Arrival Time</td>
+<td>7.343</td>
 </tr>
 <tr>
 <td class="label">Data Required Time</td>
@@ -909,7 +1334,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>0.281</td>
 <td>tCL</td>
 <td>RR</td>
-<td>449</td>
+<td>587</td>
 <td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
 </tr>
 <tr>
@@ -934,15 +1359,15 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/n3096_s36/I0</td>
+<td>eth_inst/n3079_s36/I0</td>
 </tr>
 <tr>
 <td>3.568</td>
 <td>0.526</td>
 <td>tINS</td>
 <td>RR</td>
-<td>2</td>
-<td>eth_inst/n3096_s36/F</td>
+<td>3</td>
+<td>eth_inst/n3079_s36/F</td>
 </tr>
 <tr>
 <td>3.943</td>
@@ -950,82 +1375,66 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/gmii_txd_5_s13/I1</td>
+<td>eth_inst/eth_inst_65_s19/I2</td>
 </tr>
 <tr>
-<td>4.459</td>
-<td>0.516</td>
+<td>4.404</td>
+<td>0.461</td>
 <td>tINS</td>
 <td>RR</td>
-<td>3</td>
-<td>eth_inst/gmii_txd_5_s13/F</td>
+<td>7</td>
+<td>eth_inst/eth_inst_65_s19/F</td>
 </tr>
 <tr>
-<td>4.834</td>
+<td>4.779</td>
 <td>0.375</td>
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/crc_inst/CrcNext_2_s1/I1</td>
+<td>eth_inst/crc_inst/CrcNext_3_s6/I1</td>
 </tr>
 <tr>
-<td>5.350</td>
+<td>5.295</td>
 <td>0.516</td>
 <td>tINS</td>
 <td>RR</td>
 <td>6</td>
-<td>eth_inst/crc_inst/CrcNext_2_s1/F</td>
+<td>eth_inst/crc_inst/CrcNext_3_s6/F</td>
 </tr>
 <tr>
-<td>5.725</td>
+<td>5.670</td>
 <td>0.375</td>
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/crc_inst/CrcNext_3_s3/I0</td>
+<td>eth_inst/crc_inst/CrcNext_7_s2/I2</td>
 </tr>
 <tr>
-<td>6.252</td>
-<td>0.526</td>
+<td>6.131</td>
+<td>0.461</td>
 <td>tINS</td>
 <td>RR</td>
-<td>7</td>
-<td>eth_inst/crc_inst/CrcNext_3_s3/F</td>
-</tr>
-<tr>
-<td>6.627</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/CrcNext_7_s2/I1</td>
-</tr>
-<tr>
-<td>7.143</td>
-<td>0.516</td>
-<td>tINS</td>
-<td>RR</td>
-<td>1</td>
+<td>2</td>
 <td>eth_inst/crc_inst/CrcNext_7_s2/F</td>
 </tr>
 <tr>
-<td>7.518</td>
+<td>6.506</td>
 <td>0.375</td>
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>eth_inst/crc_inst/CrcNext_7_s3/I3</td>
+<td>eth_inst/crc_inst/CrcNext_7_s3/I2</td>
 </tr>
 <tr>
-<td>7.780</td>
-<td>0.262</td>
+<td>6.968</td>
+<td>0.461</td>
 <td>tINS</td>
 <td>RR</td>
 <td>1</td>
 <td>eth_inst/crc_inst/CrcNext_7_s3/F</td>
 </tr>
 <tr>
-<td>8.155</td>
+<td>7.343</td>
 <td>0.375</td>
 <td>tNET</td>
 <td>RR</td>
@@ -1056,7 +1465,7 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 <td>0.281</td>
 <td>tCL</td>
 <td>FF</td>
-<td>449</td>
+<td>587</td>
 <td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
 </tr>
 <tr>
@@ -1088,484 +1497,12 @@ D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\gwsynthesis\RTL_GAO
 </tr>
 <tr>
 <td class="label">Logic Level:</td>
-<td>7</td>
-</tr>
-<tr>
-<td class="label">Arrival Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
-<tr>
-<td class="label">Arrival Data Path Delay:</td><td> cell: 2.864, 38.190%; route: 2.625, 35.006%; tC2Q: 2.010, 26.804%</td></tr>
-<tr>
-<td class="label">Required Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
-</table>
-<br/>
-<h3>Path&nbsp4</h3>
-<b>Path Summary:</b></br>
-<table class="summary_table">
-<tr>
-<td class="label">Slack</td>
-<td>-3.478</td>
-</tr>
-<tr>
-<td class="label">Data Arrival Time</td>
-<td>8.100</td>
-</tr>
-<tr>
-<td class="label">Data Required Time</td>
-<td>4.623</td>
-</tr>
-<tr>
-<td class="label">From</td>
-<td>eth_inst/tx_buffer_tx_buffer_0_0_s</td>
-</tr>
-<tr>
-<td class="label">To</td>
-<td>eth_inst/crc_inst/Crc_26_s0</td>
-</tr>
-<tr>
-<td class="label">Launch Clk</td>
-<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk[F]</td>
-</tr>
-<tr>
-<td class="label">Latch Clk</td>
-<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk[R]</td>
-</tr>
-</table>
-<b>Data Arrival Path:</b>
-<table class="summary_table">
-<tr>
-<th>AT</th>
-<th>DELAY</th>
-<th>TYPE</th>
-<th>RF</th>
-<th>FANOUT</th>
-<th>NODE</th>
-</tr>
-<tr>
-<td>0.000</td>
-<td>0.000</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
-</tr>
-<tr>
-<td>0.281</td>
-<td>0.281</td>
-<td>tCL</td>
-<td>RR</td>
-<td>449</td>
-<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
-</tr>
-<tr>
-<td>0.656</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>8</td>
-<td>eth_inst/tx_buffer_tx_buffer_0_0_s/CLKB</td>
-</tr>
-<tr>
-<td>2.667</td>
-<td>2.010</td>
-<td>tC2Q</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/tx_buffer_tx_buffer_0_0_s/DO[7]</td>
-</tr>
-<tr>
-<td>3.042</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/n3094_s36/I0</td>
-</tr>
-<tr>
-<td>3.568</td>
-<td>0.526</td>
-<td>tINS</td>
-<td>RR</td>
-<td>2</td>
-<td>eth_inst/n3094_s36/F</td>
-</tr>
-<tr>
-<td>3.943</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/gmii_txd_7_s26/I1</td>
-</tr>
-<tr>
-<td>4.459</td>
-<td>0.516</td>
-<td>tINS</td>
-<td>RR</td>
-<td>3</td>
-<td>eth_inst/gmii_txd_7_s26/F</td>
-</tr>
-<tr>
-<td>4.834</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/CrcNext_0_s2/I1</td>
-</tr>
-<tr>
-<td>5.350</td>
-<td>0.516</td>
-<td>tINS</td>
-<td>RR</td>
-<td>8</td>
-<td>eth_inst/crc_inst/CrcNext_0_s2/F</td>
-</tr>
-<tr>
-<td>5.725</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/CrcNext_16_s3/I0</td>
-</tr>
-<tr>
-<td>6.252</td>
-<td>0.526</td>
-<td>tINS</td>
-<td>RR</td>
-<td>4</td>
-<td>eth_inst/crc_inst/CrcNext_16_s3/F</td>
-</tr>
-<tr>
-<td>6.627</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/CrcNext_4_s2/I3</td>
-</tr>
-<tr>
-<td>6.889</td>
-<td>0.262</td>
-<td>tINS</td>
-<td>RR</td>
-<td>2</td>
-<td>eth_inst/crc_inst/CrcNext_4_s2/F</td>
-</tr>
-<tr>
-<td>7.264</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/CrcNext_26_s0/I2</td>
-</tr>
-<tr>
-<td>7.725</td>
-<td>0.461</td>
-<td>tINS</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/CrcNext_26_s0/F</td>
-</tr>
-<tr>
-<td>8.100</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/Crc_26_s0/D</td>
-</tr>
-</table>
-<b>Data Required Path:</b>
-<table class="summary_table">
-<tr>
-<th>AT</th>
-<th>DELAY</th>
-<th>TYPE</th>
-<th>RF</th>
-<th>FANOUT</th>
-<th>NODE</th>
-</tr>
-<tr>
-<td>4.000</td>
-<td>0.000</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
-</tr>
-<tr>
-<td>4.281</td>
-<td>0.281</td>
-<td>tCL</td>
-<td>FF</td>
-<td>449</td>
-<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
-</tr>
-<tr>
-<td>4.631</td>
-<td>0.350</td>
-<td>tNET</td>
-<td>FF</td>
-<td>1</td>
-<td>eth_inst/crc_inst/Crc_26_s0/CLK</td>
-</tr>
-<tr>
-<td>4.623</td>
-<td>-0.009</td>
-<td>tSu</td>
-<td> </td>
-<td>1</td>
-<td>eth_inst/crc_inst/Crc_26_s0</td>
-</tr>
-</table>
-<b>Path Statistics:</b>
-<table class="summary_table">
-<tr>
-<td class="label">Clock Skew:</td>
-<td>-0.025</td>
-</tr>
-<tr>
-<td class="label">Setup Relationship:</td>
-<td>4.000</td>
-</tr>
-<tr>
-<td class="label">Logic Level:</td>
-<td>7</td>
-</tr>
-<tr>
-<td class="label">Arrival Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
-<tr>
-<td class="label">Arrival Data Path Delay:</td><td> cell: 2.809, 37.733%; route: 2.625, 35.264%; tC2Q: 2.010, 27.003%</td></tr>
-<tr>
-<td class="label">Required Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
-</table>
-<br/>
-<h3>Path&nbsp5</h3>
-<b>Path Summary:</b></br>
-<table class="summary_table">
-<tr>
-<td class="label">Slack</td>
-<td>-2.905</td>
-</tr>
-<tr>
-<td class="label">Data Arrival Time</td>
-<td>7.528</td>
-</tr>
-<tr>
-<td class="label">Data Required Time</td>
-<td>4.623</td>
-</tr>
-<tr>
-<td class="label">From</td>
-<td>eth_inst/tx_buffer_tx_buffer_0_0_s</td>
-</tr>
-<tr>
-<td class="label">To</td>
-<td>eth_inst/crc_inst/Crc_6_s0</td>
-</tr>
-<tr>
-<td class="label">Launch Clk</td>
-<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk[F]</td>
-</tr>
-<tr>
-<td class="label">Latch Clk</td>
-<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk[R]</td>
-</tr>
-</table>
-<b>Data Arrival Path:</b>
-<table class="summary_table">
-<tr>
-<th>AT</th>
-<th>DELAY</th>
-<th>TYPE</th>
-<th>RF</th>
-<th>FANOUT</th>
-<th>NODE</th>
-</tr>
-<tr>
-<td>0.000</td>
-<td>0.000</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
-</tr>
-<tr>
-<td>0.281</td>
-<td>0.281</td>
-<td>tCL</td>
-<td>RR</td>
-<td>449</td>
-<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
-</tr>
-<tr>
-<td>0.656</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>8</td>
-<td>eth_inst/tx_buffer_tx_buffer_0_0_s/CLKB</td>
-</tr>
-<tr>
-<td>2.667</td>
-<td>2.010</td>
-<td>tC2Q</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/tx_buffer_tx_buffer_0_0_s/DO[1]</td>
-</tr>
-<tr>
-<td>3.042</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/n3100_s36/I0</td>
-</tr>
-<tr>
-<td>3.568</td>
-<td>0.526</td>
-<td>tINS</td>
-<td>RR</td>
-<td>2</td>
-<td>eth_inst/n3100_s36/F</td>
-</tr>
-<tr>
-<td>3.943</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/gmii_txd_1_s13/I1</td>
-</tr>
-<tr>
-<td>4.459</td>
-<td>0.516</td>
-<td>tINS</td>
-<td>RR</td>
-<td>5</td>
-<td>eth_inst/gmii_txd_1_s13/F</td>
-</tr>
-<tr>
-<td>4.834</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/CrcNext_0_s1/I1</td>
-</tr>
-<tr>
-<td>5.350</td>
-<td>0.516</td>
-<td>tINS</td>
-<td>RR</td>
-<td>3</td>
-<td>eth_inst/crc_inst/CrcNext_0_s1/F</td>
-</tr>
-<tr>
-<td>5.725</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/CrcNext_1_s3/I0</td>
-</tr>
-<tr>
-<td>6.252</td>
-<td>0.526</td>
-<td>tINS</td>
-<td>RR</td>
-<td>5</td>
-<td>eth_inst/crc_inst/CrcNext_1_s3/F</td>
-</tr>
-<tr>
-<td>6.627</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/CrcNext_6_s0/I0</td>
-</tr>
-<tr>
-<td>7.153</td>
-<td>0.526</td>
-<td>tINS</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/CrcNext_6_s0/F</td>
-</tr>
-<tr>
-<td>7.528</td>
-<td>0.375</td>
-<td>tNET</td>
-<td>RR</td>
-<td>1</td>
-<td>eth_inst/crc_inst/Crc_6_s0/D</td>
-</tr>
-</table>
-<b>Data Required Path:</b>
-<table class="summary_table">
-<tr>
-<th>AT</th>
-<th>DELAY</th>
-<th>TYPE</th>
-<th>RF</th>
-<th>FANOUT</th>
-<th>NODE</th>
-</tr>
-<tr>
-<td>4.000</td>
-<td>0.000</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
-</tr>
-<tr>
-<td>4.281</td>
-<td>0.281</td>
-<td>tCL</td>
-<td>FF</td>
-<td>449</td>
-<td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0</td>
-</tr>
-<tr>
-<td>4.631</td>
-<td>0.350</td>
-<td>tNET</td>
-<td>FF</td>
-<td>1</td>
-<td>eth_inst/crc_inst/Crc_6_s0/CLK</td>
-</tr>
-<tr>
-<td>4.623</td>
-<td>-0.009</td>
-<td>tSu</td>
-<td> </td>
-<td>1</td>
-<td>eth_inst/crc_inst/Crc_6_s0</td>
-</tr>
-</table>
-<b>Path Statistics:</b>
-<table class="summary_table">
-<tr>
-<td class="label">Clock Skew:</td>
-<td>-0.025</td>
-</tr>
-<tr>
-<td class="label">Setup Relationship:</td>
-<td>4.000</td>
-</tr>
-<tr>
-<td class="label">Logic Level:</td>
 <td>6</td>
 </tr>
 <tr>
 <td class="label">Arrival Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
 <tr>
-<td class="label">Arrival Data Path Delay:</td><td> cell: 2.611, 38.003%; route: 2.250, 32.745%; tC2Q: 2.010, 29.252%</td></tr>
+<td class="label">Arrival Data Path Delay:</td><td> cell: 2.426, 36.287%; route: 2.250, 33.651%; tC2Q: 2.010, 30.062%</td></tr>
 <tr>
 <td class="label">Required Clock Path Delay:</td><td> cell: 0.000, 0.000%; route: 0.375, 100.000%</td></tr>
 </table>

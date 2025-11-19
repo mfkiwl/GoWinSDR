@@ -83,7 +83,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Created Time</td>
-<td>Mon Nov  3 16:41:08 2025
+<td>Wed Nov 19 14:38:24 2025
 </td>
 </tr>
 <tr>
@@ -97,24 +97,24 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td class="label">Place & Route Process</td>
 <td>Running placement:
-   Placement Phase 0: CPU time = 0h 0m 0.127s, Elapsed time = 0h 0m 0.127s
-   Placement Phase 1: CPU time = 0h 0m 0.391s, Elapsed time = 0h 0m 0.39s
-   Placement Phase 2: CPU time = 0h 0m 0.291s, Elapsed time = 0h 0m 0.291s
-   Placement Phase 3: CPU time = 0h 0m 0.549s, Elapsed time = 0h 0m 0.55s
-   Total Placement: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s
+   Placement Phase 0: CPU time = 0h 0m 0.233s, Elapsed time = 0h 0m 0.233s
+   Placement Phase 1: CPU time = 0h 0m 0.49s, Elapsed time = 0h 0m 0.49s
+   Placement Phase 2: CPU time = 0h 0m 0.345s, Elapsed time = 0h 0m 0.345s
+   Placement Phase 3: CPU time = 0h 0m 0.616s, Elapsed time = 0h 0m 0.616s
+   Total Placement: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
 Running routing:
    Routing Phase 0: CPU time = 0h 0m 0.001s, Elapsed time = 0h 0m 0.001s
-   Routing Phase 1: CPU time = 0h 0m 6s, Elapsed time = 0h 0m 6s
-   Routing Phase 2: CPU time = 0h 0m 0.055s, Elapsed time = 0h 0m 0.055s
+   Routing Phase 1: CPU time = 0h 0m 7s, Elapsed time = 0h 0m 7s
+   Routing Phase 2: CPU time = 0h 0m 0.059s, Elapsed time = 0h 0m 0.059s
    Routing Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s
-   Total Routing: CPU time = 0h 0m 6s, Elapsed time = 0h 0m 6s
+   Total Routing: CPU time = 0h 0m 7s, Elapsed time = 0h 0m 7s
 Generate output files:
-   CPU time = 0h 0m 7s, Elapsed time = 0h 0m 7s
+   CPU time = 0h 0m 6s, Elapsed time = 0h 0m 6s
 </td>
 </tr>
 <tr>
 <td class="label">Total Time and Memory Usage</td>
-<td>CPU time = 0h 0m 14s, Elapsed time = 0h 0m 14s, Peak memory usage = 1873MB</td>
+<td>CPU time = 0h 0m 15s, Elapsed time = 0h 0m 15s, Peak memory usage = 1999MB</td>
 </tr>
 </table>
 <br/>
@@ -129,12 +129,12 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">Logic</td>
-<td>1267/59904</td>
+<td>1378/59904</td>
 <td>3%</td>
 </tr>
 <tr>
 <td class="label">&nbsp &nbsp --LUT,ALU,ROM16</td>
-<td>1267(1145 LUT, 122 ALU, 0 ROM16)</td>
+<td>1378(1246 LUT, 132 ALU, 0 ROM16)</td>
 <td>-</td>
 </tr>
 <tr>
@@ -144,8 +144,8 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">Register</td>
-<td>983/60780</td>
-<td>2%</td>
+<td>1230/60780</td>
+<td>3%</td>
 </tr>
 <tr>
 <td class="label">&nbsp &nbsp --Logic Register as Latch</td>
@@ -154,8 +154,8 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">&nbsp &nbsp --Logic Register as FF</td>
-<td>981/59904</td>
-<td>2%</td>
+<td>1228/59904</td>
+<td>3%</td>
 </tr>
 <tr>
 <td class="label">&nbsp &nbsp --I/O Register as Latch</td>
@@ -169,8 +169,8 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">CLS</td>
-<td>1074/29952</td>
-<td>4%</td>
+<td>1235/29952</td>
+<td>5%</td>
 </tr>
 <tr>
 <td class="label">I/O Port</td>
@@ -204,8 +204,8 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">BSRAM</td>
-<td>16 SDPB<br/></td>
-<td>14%</td>
+<td>31 SDPB<br/></td>
+<td>27%</td>
 </tr>
 </table>
 <h2><a name="I/O_Bank_Usage_Summary">I/O Bank Usage Summary:</a></h2>
@@ -278,8 +278,8 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">LW</td>
-<td>3/8</td>
-<td>38%</td>
+<td>5/8</td>
+<td>63%</td>
 </tr>
 <tr>
 <td class="label">GCLK_PIN</td>
@@ -318,10 +318,15 @@ Generate output files:
 <tr>
 <td class="label">gw_gao_inst_0/control0[0]</td>
 <td>PRIMARY</td>
-<td> PTR1 PTR2</td>
+<td> PTR1 PTR2 PBR1</td>
 </tr>
 <tr>
 <td class="label">RGMII_RST_N_d</td>
+<td>LW</td>
+<td> -</td>
+</tr>
+<tr>
+<td class="label">eth_inst/n3660_4</td>
 <td>LW</td>
 <td> -</td>
 </tr>
@@ -331,7 +336,12 @@ Generate output files:
 <td> -</td>
 </tr>
 <tr>
-<td class="label">gw_gao_inst_0/u_la0_top/rst_ao</td>
+<td class="label">gw_gao_inst_0/u_la0_top/n20_3</td>
+<td>LW</td>
+<td> -</td>
+</tr>
+<tr>
+<td class="label">gw_gao_inst_0/u_la0_top/data_out_shift_reg_111_9</td>
 <td>LW</td>
 <td> -</td>
 </tr>

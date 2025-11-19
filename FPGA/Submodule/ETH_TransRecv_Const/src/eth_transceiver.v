@@ -74,6 +74,12 @@ end
 reg [7:0] gmii_rxd_reg;
 reg gmii_rxdv_reg;
 
+// ETH_DDR ETH_DDR_u0(
+//     .din(RGMII_RXD), //input [3:0] din
+//     .clk(RGMII_RXCLK), //input clk
+//     .q(gmii_rxd_reg) //output [7:0] q
+// );
+
 always @(posedge RGMII_RXCLK) begin
     gmii_rxd_reg  <= {rxd_falling, rxd_rising};
     gmii_rxdv_reg <= rxdv_rising;
@@ -269,7 +275,7 @@ always @(posedge RGMII_RXCLK or negedge rst_n) begin
                     // UDP数据长度 = IP总长 - IP头(20) - UDP头(8)
                     if (rx_cnt >= (rx_payload_len - 16'd29)) begin
                         rx_state          <= RX_END;
-                        rx_data_valid_reg <= 1'b0;
+                        rx_data_valid_reg <= 1'b1;
                     end
                 end
                 else begin
@@ -331,14 +337,18 @@ crc crc_inst(
     .CrcNext    (               )
 );
 
+reg tx_data_valid_r;
+
 // 发送数据缓冲
 always @(posedge clk_125m or negedge rst_n) begin
     if (!rst_n) begin
         tx_wr_ptr    <= 11'd0;
         tx_buf_len   <= 16'd0;
         tx_buf_ready <= 1'b0;
+        tx_data_valid_r <= 1'b0;
     end
     else begin
+        tx_data_valid_r <= tx_data_valid;
         if (tx_frame_start) begin
             tx_wr_ptr    <= 11'd0;
             tx_buf_len   <= 16'd0;
@@ -352,6 +362,7 @@ always @(posedge clk_125m or negedge rst_n) begin
         else if (tx_state == TX_DELAY && tx_cnt[3]) begin
             tx_buf_ready <= 1'b0;
             tx_wr_ptr    <= 11'd0;
+            tx_buf_len   <= 16'd0;
         end
         
         // 判断缓冲区是否准备好发送
@@ -477,7 +488,7 @@ always @(posedge clk_125m or negedge rst_n) begin
             TX_PAYLOAD: begin
                 tx_cnt   <= tx_cnt + 1'b1;
                 gmii_txd <= tx_buffer[tx_cnt];
-                if (tx_cnt == tx_buf_len - 1) begin
+                if (tx_cnt == tx_buf_len) begin
                     tx_state <= TX_CRC;
                     tx_cnt   <= 16'd0;
                     crc_en   <= 1'b0;

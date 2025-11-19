@@ -4,7 +4,7 @@
 -cst D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\src\ETH_TransRecv.cst
 -cfg D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\impl\pnr\device.cfg
 -sdc D:\Code\git\GoWinSDR\FPGA\Submodule\ETH_TransRecv_Const\src\timeconstrain.sdc
--gao_crc 1000000010111001
+-gao_crc 0001101001011110
 -bit
 -tr
 -ph

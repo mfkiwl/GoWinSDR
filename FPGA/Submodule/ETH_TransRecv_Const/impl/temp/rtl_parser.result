@@ -51,7 +51,7 @@
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/eth_transceiver.v",
-      "InstLine" : 325,
+      "InstLine" : 331,
       "InstName" : "crc_inst",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/crc.v",
       "ModuleLine" : 3,
@@ -59,11 +59,29 @@
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/eth_transceiver.v",
-      "InstLine" : 540,
+      "InstLine" : 551,
       "InstName" : "gmii2rgmii_inst",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/gowin_ddr/GMII2RGMII.v",
       "ModuleLine" : 9,
       "ModuleName" : "GMII2RGMII"
+     }
+    ]
+   },
+   {
+    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/top.v",
+    "InstLine" : 83,
+    "InstName" : "fifo_u0",
+    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/fifo_top/fifo_top.v",
+    "ModuleLine" : 517,
+    "ModuleName" : "fifo_top",
+    "SubInsts" : [
+     {
+      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/fifo_top/fifo_top.v",
+      "InstLine" : 538,
+      "InstName" : "fifo_inst",
+      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/fifo_top/fifo_top.v",
+      "ModuleLine" : 13,
+      "ModuleName" : "~fifo.fifo_top"
      }
     ]
    }
