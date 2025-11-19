@@ -104,6 +104,10 @@
   {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/top.v",
    "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/advanced_fir_filter/advanced_fir_filter.v",
+   "Type" : "verilog"
   }
  ],
  "IncludePath" : [

@@ -124,10 +124,37 @@ always @(posedge sample_clk or negedge rst_n) begin
     end
 end
 
-assign dac_data_out_i1 = qpsk_i_reg;
-assign dac_data_out_q1 = qpsk_q_reg;
-assign dac_out_valid = qpsk_valid;
+assign dac_data_out_i1 = rrc_out_i;
+assign dac_data_out_q1 = rrc_out_q;
+assign dac_out_valid = rrc_out_valid;
 
+wire [11:0] rrc_out_i;
+wire [11:0] rrc_out_q;
+wire        rrc_out_valid;
+
+Advanced_FIR_Filter_Top rrc_i(
+    .clk(sample_clk), //input clk
+    .rstn(rst_n), //input rstn
+    .fir_rfi_o( ), //output fir_rfi_o
+    .fir_valid_i(qpsk_valid), //input fir_valid_i
+    .fir_sync_i(1'b1), //input fir_sync_i
+    .fir_data_i(qpsk_i_reg), //input [11:0] fir_data_i
+    .fir_valid_o(rrc_out_valid), //output fir_valid_o
+    .fir_sync_o(    ), //output fir_sync_o
+    .fir_data_o(rrc_out_i) //output [11:0] fir_data_o
+);
+
+Advanced_FIR_Filter_Top rrc_q(
+    .clk(sample_clk), //input clk
+    .rstn(rst_n), //input rstn
+    .fir_rfi_o( ), //output fir_rfi_o
+    .fir_valid_i(qpsk_valid), //input fir_valid_i
+    .fir_sync_i(1'b1), //input fir_sync_i
+    .fir_data_i(qpsk_q_reg), //input [11:0] fir_data_i
+    .fir_valid_o(    ), //output fir_valid_o
+    .fir_sync_o(    ), //output fir_sync_o
+    .fir_data_o(rrc_out_q) //output [11:0] fir_data_o
+);
 
 wire                                    tx_data_iq                 ;
 wire                                    empty_flag                 ;
