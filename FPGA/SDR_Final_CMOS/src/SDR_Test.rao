@@ -4,20 +4,6 @@
     <Mode>Standard</Mode>
     <AoCore index="0" sample_clock="data_clk" trig_type="0" storage_depth="4096" window_num="1" capture_amount="4096" implementation="0" trigger_pos="0" module_name="top" force_trigger_by_falling_edge="false" capture_init_data_enabled="false">
         <SignalList>
-            <Bus capture_enable="true" name="rx_data_in[11:0]">
-                <Signal>rx_data_in[11]</Signal>
-                <Signal>rx_data_in[10]</Signal>
-                <Signal>rx_data_in[9]</Signal>
-                <Signal>rx_data_in[8]</Signal>
-                <Signal>rx_data_in[7]</Signal>
-                <Signal>rx_data_in[6]</Signal>
-                <Signal>rx_data_in[5]</Signal>
-                <Signal>rx_data_in[4]</Signal>
-                <Signal>rx_data_in[3]</Signal>
-                <Signal>rx_data_in[2]</Signal>
-                <Signal>rx_data_in[1]</Signal>
-                <Signal>rx_data_in[0]</Signal>
-            </Bus>
             <Bus capture_enable="true" name="adc_data_out_i1[11:0]">
                 <Signal>adc_data_out_i1[11]</Signal>
                 <Signal>adc_data_out_i1[10]</Signal>
@@ -45,6 +31,48 @@
                 <Signal>adc_data_out_q1[2]</Signal>
                 <Signal>adc_data_out_q1[1]</Signal>
                 <Signal>adc_data_out_q1[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_rxt/rrc_out_i_adc[11:0]">
+                <Signal>u_rf_rxt/rrc_out_i_adc[11]</Signal>
+                <Signal>u_rf_rxt/rrc_out_i_adc[10]</Signal>
+                <Signal>u_rf_rxt/rrc_out_i_adc[9]</Signal>
+                <Signal>u_rf_rxt/rrc_out_i_adc[8]</Signal>
+                <Signal>u_rf_rxt/rrc_out_i_adc[7]</Signal>
+                <Signal>u_rf_rxt/rrc_out_i_adc[6]</Signal>
+                <Signal>u_rf_rxt/rrc_out_i_adc[5]</Signal>
+                <Signal>u_rf_rxt/rrc_out_i_adc[4]</Signal>
+                <Signal>u_rf_rxt/rrc_out_i_adc[3]</Signal>
+                <Signal>u_rf_rxt/rrc_out_i_adc[2]</Signal>
+                <Signal>u_rf_rxt/rrc_out_i_adc[1]</Signal>
+                <Signal>u_rf_rxt/rrc_out_i_adc[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_rxt/rrc_out_q_adc[11:0]">
+                <Signal>u_rf_rxt/rrc_out_q_adc[11]</Signal>
+                <Signal>u_rf_rxt/rrc_out_q_adc[10]</Signal>
+                <Signal>u_rf_rxt/rrc_out_q_adc[9]</Signal>
+                <Signal>u_rf_rxt/rrc_out_q_adc[8]</Signal>
+                <Signal>u_rf_rxt/rrc_out_q_adc[7]</Signal>
+                <Signal>u_rf_rxt/rrc_out_q_adc[6]</Signal>
+                <Signal>u_rf_rxt/rrc_out_q_adc[5]</Signal>
+                <Signal>u_rf_rxt/rrc_out_q_adc[4]</Signal>
+                <Signal>u_rf_rxt/rrc_out_q_adc[3]</Signal>
+                <Signal>u_rf_rxt/rrc_out_q_adc[2]</Signal>
+                <Signal>u_rf_rxt/rrc_out_q_adc[1]</Signal>
+                <Signal>u_rf_rxt/rrc_out_q_adc[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_rxt/qpsk_i_reg[11:0]">
+                <Signal>u_rf_rxt/qpsk_i_reg[11]</Signal>
+                <Signal>u_rf_rxt/qpsk_i_reg[10]</Signal>
+                <Signal>u_rf_rxt/qpsk_i_reg[9]</Signal>
+                <Signal>u_rf_rxt/qpsk_i_reg[8]</Signal>
+                <Signal>u_rf_rxt/qpsk_i_reg[7]</Signal>
+                <Signal>u_rf_rxt/qpsk_i_reg[6]</Signal>
+                <Signal>u_rf_rxt/qpsk_i_reg[5]</Signal>
+                <Signal>u_rf_rxt/qpsk_i_reg[4]</Signal>
+                <Signal>u_rf_rxt/qpsk_i_reg[3]</Signal>
+                <Signal>u_rf_rxt/qpsk_i_reg[2]</Signal>
+                <Signal>u_rf_rxt/qpsk_i_reg[1]</Signal>
+                <Signal>u_rf_rxt/qpsk_i_reg[0]</Signal>
             </Bus>
             <Bus capture_enable="true" name="dac_data_in_i1[11:0]">
                 <Signal>dac_data_in_i1[11]</Signal>
@@ -85,7 +113,6 @@
                 <Signal>tx_data_in[0]</Signal>
             </Bus>
             <Signal capture_enable="true">rx_data_valid</Signal>
-            <Signal capture_enable="true">rx_data_missing</Signal>
             <Signal capture_enable="true">tx_data_valid</Signal>
             <Signal capture_enable="true">tx_data_ready</Signal>
             <Signal capture_enable="true">u_rf_rxt/tx_data_iq</Signal>
@@ -248,20 +275,6 @@
             <Signal capture_enable="true">u_rf_data_processor/fifo_wr_en</Signal>
             <Signal capture_enable="true">test_clk</Signal>
             <Signal capture_enable="true">u_rf_data_processor/fifo_empty</Signal>
-            <Bus capture_enable="true" name="u_rf_rxt/qpsk_i_reg[11:0]">
-                <Signal>u_rf_rxt/qpsk_i_reg[11]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[10]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[9]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[8]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[7]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[6]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[5]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[4]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[3]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[2]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[1]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[0]</Signal>
-            </Bus>
         </SignalList>
         <Triggers>
             <Trigger index="0">
@@ -331,5 +344,5 @@
             <Expression>M2</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>0000100111000110</GAO_ID>
+    <GAO_ID>1010000110100111</GAO_ID>
 </GAO_CONFIG>

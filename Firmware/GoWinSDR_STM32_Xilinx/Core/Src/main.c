@@ -130,8 +130,8 @@ AD9361_InitParam default_init_param = {
 	{8, 5920},	//dcxo_coarse_and_fine_tune[2] *** adi,dcxo-coarse-and-fine-tune
 	CLKOUT_DISABLE,	//clk_output_mode_select *** adi,clk-output-mode-select
 	/* Gain Control */
-	2,		//gc_rx1_mode *** adi,gc-rx1-mode
-	2,		//gc_rx2_mode *** adi,gc-rx2-mode
+	RF_GAIN_MGC,		//gc_rx1_mode *** adi,gc-rx1-mode
+	RF_GAIN_MGC,		//gc_rx2_mode *** adi,gc-rx2-mode
 	58,		//gc_adc_large_overload_thresh *** adi,gc-adc-large-overload-thresh
 	4,		//gc_adc_ovr_sample_size *** adi,gc-adc-ovr-sample-size
 	47,		//gc_adc_small_overload_thresh *** adi,gc-adc-small-overload-thresh
@@ -460,6 +460,7 @@ int main(void)
 
 	int32_t tx_gain = 0;  
 	ad9361_set_tx_attenuation(ad9361_phy, 0, tx_gain);
+	ad9361_set_rx_rf_gain(ad9361_phy, 0, 10);  
 
 	ad9361_set_tx_rf_port_output(ad9361_phy, 0);
 

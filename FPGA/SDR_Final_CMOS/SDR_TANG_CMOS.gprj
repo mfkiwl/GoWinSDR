@@ -19,12 +19,17 @@
         <File path="src/fifo_eth_tx/fifo_eth_tx.v" type="file.verilog" enable="1"/>
         <File path="src/fifo_top/fifo_top.v" type="file.verilog" enable="1"/>
         <File path="src/fifo_top_rx/fifo_top_rx.v" type="file.verilog" enable="1"/>
+        <File path="src/gardner_sync.v" type="file.verilog" enable="1"/>
+        <File path="src/gardner_ted.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_ddr/gowin_ddr.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_ddr_GMII2RGMII/GMII2RGMII.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_mult/gowin_mult.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pll/gowin_pll.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pll/gowin_pll_mod.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pll_eth/gowin_pll_eth.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pll_eth/gowin_pll_eth_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/interpolate_filter.v" type="file.verilog" enable="1"/>
+        <File path="src/nco.v" type="file.verilog" enable="1"/>
         <File path="src/pll_init.v" type="file.verilog" enable="1"/>
         <File path="src/rf_diff_decode.v" type="file.verilog" enable="1"/>
         <File path="src/rf_diff_encode.v" type="file.verilog" enable="1"/>

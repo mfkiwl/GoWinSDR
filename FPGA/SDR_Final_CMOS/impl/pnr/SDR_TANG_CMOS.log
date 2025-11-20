@@ -8,7 +8,7 @@ Running placement......
 [20%] Placement Phase 1 completed
 [30%] Placement Phase 2 completed
 WARN  (TA1132) :  'tck_pad_i' was determined to be a clock but was not created.
-WARN  (TA1132) :  'u_rf_rxt_4_4' was determined to be a clock but was not created.
+WARN  (TA1132) :  'u_rf_rxt_40_4' was determined to be a clock but was not created.
 WARN  (TA1132) :  'rx_clk_out' was determined to be a clock but was not created.
 WARN  (TA1132) :  'u_rf_data_processor_2_6' was determined to be a clock but was not created.
 WARN  (TA1118) : the clock "sys_clk"'s frequency does not match eth_inst/pll_inst/u_pll/PLLA_inst's param "FCLKIN = "50""
@@ -31,5 +31,5 @@ Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.p
 Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.rpt.html" completed
 Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.rpt.txt" completed
 Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.tr.html" completed
-Wed Nov 19 21:42:29 2025
+Thu Nov 20 13:28:07 2025
 
