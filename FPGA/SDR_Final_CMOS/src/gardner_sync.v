@@ -21,9 +21,9 @@ module gardner_sync
     (
         .clk            (clk        ),
         .rst_n          (rst_n      ),
-        .data_in_I      (data_in_I  ),
-        .data_in_Q      (data_in_Q  ),
-        .uk             (uk         ),  //小数间隔，15bit小数位
+        .data_in_I_12   (data_in_I  ),
+        .data_in_Q_12   (data_in_Q  ),
+        .uk             (uk),  //小数间隔，15bit小数位
 
         .I_y            (I_y        ),  //I路插值输出
         .Q_y            (Q_y        )       //Q路插值输出

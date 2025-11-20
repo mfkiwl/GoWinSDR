@@ -52,90 +52,6 @@
   ]
  },
  {
-  "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_sync.v",
-  "InstLine" : 1,
-  "InstName" : "gardner_sync",
-  "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_sync.v",
-  "ModuleLine" : 1,
-  "ModuleName" : "gardner_sync",
-  "SubInsts" : [
-   {
-    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_sync.v",
-    "InstLine" : 20,
-    "InstName" : "interpolate_filter_inst",
-    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
-    "ModuleLine" : 2,
-    "ModuleName" : "interpolate_filter",
-    "SubInsts" : [
-     {
-      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
-      "InstLine" : 96,
-      "InstName" : "mult_interploate_f1_1_I",
-      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
-      "ModuleLine" : 10,
-      "ModuleName" : "Gowin_MULT"
-     },
-     {
-      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
-      "InstLine" : 108,
-      "InstName" : "mult_interploate_f1_2_I",
-      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
-      "ModuleLine" : 10,
-      "ModuleName" : "Gowin_MULT"
-     },
-     {
-      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
-      "InstLine" : 118,
-      "InstName" : "mult_interploate_f2_1_I",
-      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
-      "ModuleLine" : 10,
-      "ModuleName" : "Gowin_MULT"
-     },
-     {
-      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
-      "InstLine" : 133,
-      "InstName" : "mult_interploate_f1_1_Q",
-      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
-      "ModuleLine" : 10,
-      "ModuleName" : "Gowin_MULT"
-     },
-     {
-      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
-      "InstLine" : 145,
-      "InstName" : "mult_interploate_f1_2_Q",
-      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
-      "ModuleLine" : 10,
-      "ModuleName" : "Gowin_MULT"
-     },
-     {
-      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
-      "InstLine" : 155,
-      "InstName" : "mult_interploate_f2_1_Q",
-      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
-      "ModuleLine" : 10,
-      "ModuleName" : "Gowin_MULT"
-     }
-    ]
-   },
-   {
-    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_sync.v",
-    "InstLine" : 34,
-    "InstName" : "gardner_ted_inst",
-    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_ted.v",
-    "ModuleLine" : 3,
-    "ModuleName" : "gardner_ted"
-   },
-   {
-    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_sync.v",
-    "InstLine" : 49,
-    "InstName" : "nco_inst",
-    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/nco.v",
-    "ModuleLine" : 2,
-    "ModuleName" : "nco"
-   }
-  ]
- },
- {
   "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_ddr/gowin_ddr.v",
   "InstLine" : 9,
   "InstName" : "ETH_DDR",
@@ -237,6 +153,126 @@
     "ModuleLine" : 1,
     "ModuleName" : "rf_rxt",
     "SubInsts" : [
+     {
+      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
+      "InstLine" : 46,
+      "InstName" : "rrc_i1",
+      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/advanced_fir_filter/advanced_fir_filter.v",
+      "ModuleLine" : 11548,
+      "ModuleName" : "Advanced_FIR_Filter_Top",
+      "SubInsts" : [
+       {
+        "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/advanced_fir_filter/advanced_fir_filter.v",
+        "InstLine" : 11571,
+        "InstName" : "advanced_fir_filter_inst",
+        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/advanced_fir_filter/advanced_fir_filter.v",
+        "ModuleLine" : 11,
+        "ModuleName" : "advanced_fir_filter/Advanced_FIR_Filter_Top"
+       }
+      ]
+     },
+     {
+      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
+      "InstLine" : 58,
+      "InstName" : "rrc_q1",
+      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/advanced_fir_filter/advanced_fir_filter.v",
+      "ModuleLine" : 11548,
+      "ModuleName" : "Advanced_FIR_Filter_Top",
+      "SubInsts" : [
+       {
+        "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/advanced_fir_filter/advanced_fir_filter.v",
+        "InstLine" : 11571,
+        "InstName" : "advanced_fir_filter_inst",
+        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/advanced_fir_filter/advanced_fir_filter.v",
+        "ModuleLine" : 11,
+        "ModuleName" : "advanced_fir_filter/Advanced_FIR_Filter_Top"
+       }
+      ]
+     },
+     {
+      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
+      "InstLine" : 75,
+      "InstName" : "gardner_sync_u0",
+      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_sync.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "gardner_sync",
+      "SubInsts" : [
+       {
+        "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_sync.v",
+        "InstLine" : 20,
+        "InstName" : "interpolate_filter_inst",
+        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
+        "ModuleLine" : 2,
+        "ModuleName" : "interpolate_filter",
+        "SubInsts" : [
+         {
+          "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
+          "InstLine" : 97,
+          "InstName" : "mult_interploate_f1_1_I",
+          "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
+          "ModuleLine" : 10,
+          "ModuleName" : "Gowin_MULT"
+         },
+         {
+          "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
+          "InstLine" : 109,
+          "InstName" : "mult_interploate_f1_2_I",
+          "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
+          "ModuleLine" : 10,
+          "ModuleName" : "Gowin_MULT"
+         },
+         {
+          "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
+          "InstLine" : 119,
+          "InstName" : "mult_interploate_f2_1_I",
+          "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
+          "ModuleLine" : 10,
+          "ModuleName" : "Gowin_MULT"
+         },
+         {
+          "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
+          "InstLine" : 134,
+          "InstName" : "mult_interploate_f1_1_Q",
+          "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
+          "ModuleLine" : 10,
+          "ModuleName" : "Gowin_MULT"
+         },
+         {
+          "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
+          "InstLine" : 146,
+          "InstName" : "mult_interploate_f1_2_Q",
+          "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
+          "ModuleLine" : 10,
+          "ModuleName" : "Gowin_MULT"
+         },
+         {
+          "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
+          "InstLine" : 156,
+          "InstName" : "mult_interploate_f2_1_Q",
+          "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
+          "ModuleLine" : 10,
+          "ModuleName" : "Gowin_MULT"
+         }
+        ]
+       },
+       {
+        "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_sync.v",
+        "InstLine" : 34,
+        "InstName" : "gardner_ted_inst",
+        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_ted.v",
+        "ModuleLine" : 3,
+        "ModuleName" : "gardner_ted"
+       },
+       {
+        "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_sync.v",
+        "InstLine" : 49,
+        "InstName" : "nco_inst",
+        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/nco.v",
+        "ModuleLine" : 2,
+        "ModuleName" : "nco"
+       }
+      ]
+     },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
       "InstLine" : 180,

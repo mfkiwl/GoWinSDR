@@ -5,14 +5,14 @@
 //Part Number: GW5AT-LV60PG484AC1/I0
 //Device: GW5AT-60
 //Device Version: B
-//Created Time: Wed Nov 19 22:16:09 2025
+//Created Time: Thu Nov 20 22:37:47 2025
 
 //Change the instance name and port connections to the signal names
 //--------Copy here to design--------
 
     Gowin_MULT your_instance_name(
-        .dout(dout), //output [29:0] dout
-        .a(a), //input [13:0] a
+        .dout(dout), //output [32:0] dout
+        .a(a), //input [16:0] a
         .b(b), //input [15:0] b
         .clk(clk), //input clk
         .ce(ce), //input ce

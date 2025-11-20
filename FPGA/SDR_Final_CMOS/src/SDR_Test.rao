@@ -274,7 +274,53 @@
             </Bus>
             <Signal capture_enable="true">u_rf_data_processor/fifo_wr_en</Signal>
             <Signal capture_enable="true">test_clk</Signal>
-            <Signal capture_enable="true">u_rf_data_processor/fifo_empty</Signal>
+            <Signal capture_enable="true">u_rf_rxt/gardner_sync_I</Signal>
+            <Signal capture_enable="true">u_rf_rxt/gardner_sync_Q</Signal>
+            <Signal capture_enable="true">u_rf_rxt/gardner_sync_flag</Signal>
+            <Bus capture_enable="true" name="u_rf_rxt/gardner_sync_u0/I_y[19:0]">
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[19]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[18]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[17]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[16]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[15]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[14]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[13]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[12]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[11]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[10]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[9]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[8]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[7]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[6]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[5]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[4]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[3]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[2]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[1]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/I_y[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_rxt/gardner_sync_u0/Q_y[19:0]">
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[19]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[18]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[17]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[16]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[15]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[14]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[13]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[12]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[11]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[10]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[9]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[8]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[7]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[6]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[5]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[4]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[3]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[2]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[1]</Signal>
+                <Signal>u_rf_rxt/gardner_sync_u0/Q_y[0]</Signal>
+            </Bus>
         </SignalList>
         <Triggers>
             <Trigger index="0">
@@ -344,5 +390,5 @@
             <Expression>M2</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>1010000110100111</GAO_ID>
+    <GAO_ID>0110011001100110</GAO_ID>
 </GAO_CONFIG>

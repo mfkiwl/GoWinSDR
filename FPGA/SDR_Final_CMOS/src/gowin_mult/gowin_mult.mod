@@ -10,11 +10,11 @@
 -path D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/
 -type MULT
 -file_type vlg
--width_a 14
+-width_a 17
 -width_b 16
 -data_signed_a 1
 -data_signed_b 1
--width_out 30
+-width_out 33
 -en_padd 0
 -reset_mode sync
 -ina_reg_clk 1

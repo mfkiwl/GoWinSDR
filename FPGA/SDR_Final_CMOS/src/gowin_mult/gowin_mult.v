@@ -5,18 +5,18 @@
 //Part Number: GW5AT-LV60PG484AC1/I0
 //Device: GW5AT-60
 //Device Version: B
-//Created Time: Wed Nov 19 22:16:08 2025
+//Created Time: Thu Nov 20 22:37:47 2025
 
 module Gowin_MULT (dout, a, b, clk, ce, reset);
 
-output [29:0] dout;
-input [13:0] a;
+output [32:0] dout;
+input [16:0] a;
 input [15:0] b;
 input clk;
 input ce;
 input reset;
 
-wire [17:0] dout_w;
+wire [14:0] dout_w;
 wire [47:0] caso;
 wire [26:0] soa;
 wire gw_gnd;
@@ -24,10 +24,10 @@ wire gw_gnd;
 assign gw_gnd = 1'b0;
 
 MULTALU27X18 multalu27x18_inst (
-    .DOUT({dout_w[17:0],dout[29:0]}),
+    .DOUT({dout_w[14:0],dout[32:0]}),
     .CASO(caso),
     .SOA(soa),
-    .A({a[13],a[13],a[13],a[13],a[13],a[13],a[13],a[13],a[13],a[13],a[13],a[13],a[13],a[13:0]}),
+    .A({a[16],a[16],a[16],a[16],a[16],a[16],a[16],a[16],a[16],a[16],a[16:0]}),
     .B({b[15],b[15],b[15:0]}),
     .C({gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd}),
     .D({gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd,gw_gnd}),

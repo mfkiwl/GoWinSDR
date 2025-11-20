@@ -43,44 +43,44 @@ wire [11:0] rrc_out_i_adc;
 wire [11:0] rrc_out_q_adc;
 wire        rrc_out_valid_adc;
 
-// Advanced_FIR_Filter_Top rrc_i1(
-//     .clk(sample_clk), //input clk
-//     .rstn(rst_n), //input rstn
-//     .fir_rfi_o( ), //output fir_rfi_o
-//     .fir_valid_i(adc_in_valid), //input fir_valid_i
-//     .fir_sync_i(1'b1), //input fir_sync_i
-//     .fir_data_i(adc_data_in_i1), //input [11:0] fir_data_i
-//     .fir_valid_o(rrc_out_valid_adc), //output fir_valid_o
-//     .fir_sync_o(    ), //output fir_sync_o
-//     .fir_data_o(rrc_out_i_adc) //output [11:0] fir_data_o
-// );
+Advanced_FIR_Filter_Top rrc_i1(
+    .clk(sample_clk), //input clk
+    .rstn(rst_n), //input rstn
+    .fir_rfi_o( ), //output fir_rfi_o
+    .fir_valid_i(adc_in_valid), //input fir_valid_i
+    .fir_sync_i(1'b1), //input fir_sync_i
+    .fir_data_i(adc_data_in_i1), //input [11:0] fir_data_i
+    .fir_valid_o(rrc_out_valid_adc), //output fir_valid_o
+    .fir_sync_o(    ), //output fir_sync_o
+    .fir_data_o(rrc_out_i_adc) //output [11:0] fir_data_o
+);
 
-// Advanced_FIR_Filter_Top rrc_q1(
-//     .clk(sample_clk), //input clk
-//     .rstn(rst_n), //input rstn
-//     .fir_rfi_o( ), //output fir_rfi_o
-//     .fir_valid_i(adc_in_valid), //input fir_valid_i
-//     .fir_sync_i(1'b1), //input fir_sync_i
-//     .fir_data_i(adc_data_in_q1), //input [11:0] fir_data_i
-//     .fir_valid_o(    ), //output fir_valid_o
-//     .fir_sync_o(    ), //output fir_sync_o
-//     .fir_data_o(rrc_out_q_adc) //output [11:0] fir_data_o
-// );
+Advanced_FIR_Filter_Top rrc_q1(
+    .clk(sample_clk), //input clk
+    .rstn(rst_n), //input rstn
+    .fir_rfi_o( ), //output fir_rfi_o
+    .fir_valid_i(adc_in_valid), //input fir_valid_i
+    .fir_sync_i(1'b1), //input fir_sync_i
+    .fir_data_i(adc_data_in_q1), //input [11:0] fir_data_i
+    .fir_valid_o(    ), //output fir_valid_o
+    .fir_sync_o(    ), //output fir_sync_o
+    .fir_data_o(rrc_out_q_adc) //output [11:0] fir_data_o
+);
 
 // // Gardner Timing Synchronization
-// wire gardner_sync_I;
-// wire gardner_sync_Q;
-// wire gardner_sync_flag;
+wire gardner_sync_I;
+wire gardner_sync_Q;
+wire gardner_sync_flag;
 
-// gardner_sync gardner_sync_u0 (
-//     .clk(sample_clk),
-//     .rst_n(rst_n),
-//     .data_in_I(costas_out_i),
-//     .data_in_Q(costas_out_q),
-//     .sync_out_I(gardner_sync_I),
-//     .sync_out_Q(gardner_sync_Q),
-//     .sync_flag(gardner_sync_flag)
-// );
+gardner_sync gardner_sync_u0 (
+    .clk(sample_clk),
+    .rst_n(rst_n),
+    .data_in_I(rrc_out_i_adc),
+    .data_in_Q(rrc_out_q_adc),
+    .sync_out_I(gardner_sync_I),
+    .sync_out_Q(gardner_sync_Q),
+    .sync_flag(gardner_sync_flag)
+);
 
 // QPSK Modulation
 reg             signed [  11:0]         qpsk_i, qpsk_q             ;
