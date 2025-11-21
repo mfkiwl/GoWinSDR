@@ -9,8 +9,10 @@
         <File path="src/advanced_fir_filter/advanced_fir_filter.v" type="file.verilog" enable="1"/>
         <File path="src/arp_responder.v" type="file.verilog" enable="1"/>
         <File path="src/costas.v" type="file.verilog" enable="1"/>
+        <File path="src/costas_loop_filter.v" type="file.verilog" enable="1"/>
         <File path="src/crc.v" type="file.verilog" enable="1"/>
         <File path="src/dds_ii/dds_ii.v" type="file.verilog" enable="1"/>
+        <File path="src/dds_ii_costas/dds_ii.v" type="file.verilog" enable="1"/>
         <File path="src/eth_frame_buf/eth_frame_buf.v" type="file.verilog" enable="1"/>
         <File path="src/eth_frame_gene.v" type="file.verilog" enable="1"/>
         <File path="src/eth_pack.v" type="file.verilog" enable="1"/>
@@ -24,12 +26,14 @@
         <File path="src/gowin_ddr/gowin_ddr.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_ddr_GMII2RGMII/GMII2RGMII.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_mult/gowin_mult.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_mult_1212/gowin_mult.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pll/gowin_pll.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pll/gowin_pll_mod.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pll_eth/gowin_pll_eth.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pll_eth/gowin_pll_eth_mod.v" type="file.verilog" enable="1"/>
         <File path="src/interpolate_filter.v" type="file.verilog" enable="1"/>
         <File path="src/nco.v" type="file.verilog" enable="1"/>
+        <File path="src/phase_detector.v" type="file.verilog" enable="1"/>
         <File path="src/pll_init.v" type="file.verilog" enable="1"/>
         <File path="src/rf_diff_decode.v" type="file.verilog" enable="1"/>
         <File path="src/rf_diff_encode.v" type="file.verilog" enable="1"/>

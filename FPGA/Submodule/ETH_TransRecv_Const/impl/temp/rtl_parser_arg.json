@@ -14,6 +14,10 @@
    "Type" : "verilog"
   },
   {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/fifo_top/fifo_top.v",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/gowin_ddr/GMII2RGMII.v",
    "Type" : "verilog"
   },
@@ -31,10 +35,6 @@
   },
   {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/top.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/fifo_top/fifo_top.v",
    "Type" : "verilog"
   }
  ],

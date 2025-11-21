@@ -8,14 +8,6 @@
   "ModuleName" : "arp_responder"
  },
  {
-  "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas.v",
-  "InstLine" : 1,
-  "InstName" : "costas",
-  "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas.v",
-  "ModuleLine" : 1,
-  "ModuleName" : "costas"
- },
- {
   "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_frame_buf/eth_frame_buf.v",
   "InstLine" : 760,
   "InstName" : "eth_frame_buf",
@@ -84,6 +76,14 @@
     "ModuleName" : "PLL_INIT"
    }
   ]
+ },
+ {
+  "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/phase_detector.v",
+  "InstLine" : 10,
+  "InstName" : "phase_detector",
+  "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/phase_detector.v",
+  "ModuleLine" : 10,
+  "ModuleName" : "phase_detector"
  },
  {
   "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/sys_pll/sys_pll.v",
@@ -191,7 +191,75 @@
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
-      "InstLine" : 75,
+      "InstLine" : 73,
+      "InstName" : "costas_u0",
+      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "costas",
+      "SubInsts" : [
+       {
+        "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas.v",
+        "InstLine" : 21,
+        "InstName" : "dds_costas_u0",
+        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/dds_ii_costas/dds_ii.v",
+        "ModuleLine" : 1853,
+        "ModuleName" : "DDS_Costas",
+        "SubInsts" : [
+         {
+          "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/dds_ii_costas/dds_ii.v",
+          "InstLine" : 1872,
+          "InstName" : "u_dds_compiler_core",
+          "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/dds_ii_costas/dds_ii.v",
+          "ModuleLine" : 10,
+          "ModuleName" : "~dds_ii_core.DDS_Costas"
+         }
+        ]
+       },
+       {
+        "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas.v",
+        "InstLine" : 36,
+        "InstName" : "mul_u0",
+        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult_1212/gowin_mult.v",
+        "ModuleLine" : 10,
+        "ModuleName" : "Gowin_MULT_1212"
+       },
+       {
+        "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas.v",
+        "InstLine" : 45,
+        "InstName" : "mul_u1",
+        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult_1212/gowin_mult.v",
+        "ModuleLine" : 10,
+        "ModuleName" : "Gowin_MULT_1212"
+       },
+       {
+        "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas.v",
+        "InstLine" : 53,
+        "InstName" : "mul_u2",
+        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult_1212/gowin_mult.v",
+        "ModuleLine" : 10,
+        "ModuleName" : "Gowin_MULT_1212"
+       },
+       {
+        "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas.v",
+        "InstLine" : 62,
+        "InstName" : "mul_u3",
+        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult_1212/gowin_mult.v",
+        "ModuleLine" : 10,
+        "ModuleName" : "Gowin_MULT_1212"
+       },
+       {
+        "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas.v",
+        "InstLine" : 91,
+        "InstName" : "costas_loop_filter_inst",
+        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas_loop_filter.v",
+        "ModuleLine" : 13,
+        "ModuleName" : "costas_loop_filter"
+       }
+      ]
+     },
+     {
+      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
+      "InstLine" : 87,
       "InstName" : "gardner_sync_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_sync.v",
       "ModuleLine" : 1,
@@ -275,7 +343,7 @@
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
-      "InstLine" : 180,
+      "InstLine" : 205,
       "InstName" : "rrc_i",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/advanced_fir_filter/advanced_fir_filter.v",
       "ModuleLine" : 11548,
@@ -293,7 +361,7 @@
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
-      "InstLine" : 192,
+      "InstLine" : 217,
       "InstName" : "rrc_q",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/advanced_fir_filter/advanced_fir_filter.v",
       "ModuleLine" : 11548,
@@ -311,7 +379,7 @@
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
-      "InstLine" : 209,
+      "InstLine" : 234,
       "InstName" : "fifo_tx_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top/fifo_top.v",
       "ModuleLine" : 711,
@@ -329,7 +397,7 @@
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
-      "InstLine" : 223,
+      "InstLine" : 248,
       "InstName" : "qpsk_diff_encoder_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_diff_encode.v",
       "ModuleLine" : 1,
@@ -337,7 +405,7 @@
      },
      {
       "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
-      "InstLine" : 348,
+      "InstLine" : 373,
       "InstName" : "qpsk_diff_decoder_u0",
       "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_diff_decode.v",
       "ModuleLine" : 1,

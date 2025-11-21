@@ -67,6 +67,18 @@ Advanced_FIR_Filter_Top rrc_q1(
     .fir_data_o(rrc_out_q_adc) //output [11:0] fir_data_o
 );
 
+wire signed [11:0] costas_out_i_dbg;
+wire signed [11:0] costas_out_q_dbg;
+
+costas costas_u0 (
+    .rst_n      (rst_n        ),
+    .sample_clk (sample_clk   ),
+    .sample_i1  (rrc_out_i_adc),
+    .sample_q1  (rrc_out_q_adc),
+    .data_out_i (costas_out_i_dbg ),
+    .data_out_q (costas_out_q_dbg )
+);
+
 // // Gardner Timing Synchronization
 wire gardner_sync_I;
 wire gardner_sync_Q;
@@ -75,8 +87,8 @@ wire gardner_sync_flag;
 gardner_sync gardner_sync_u0 (
     .clk(sample_clk),
     .rst_n(rst_n),
-    .data_in_I(rrc_out_i_adc),
-    .data_in_Q(rrc_out_q_adc),
+    .data_in_I(costas_out_i_dbg),
+    .data_in_Q(costas_out_q_dbg),
     .sync_out_I(gardner_sync_I),
     .sync_out_Q(gardner_sync_Q),
     .sync_flag(gardner_sync_flag)
@@ -111,27 +123,40 @@ always @(posedge sample_clk or negedge rst_n) begin
     end
 end
 
-
+reg sync_cnt;
 // QPSK mapping: 00->(-1,-1), 01->(-1,1), 10->(1,-1), 11->(1,1)
 always @(posedge bit_clk) begin
-    case(tx_data_iq_diff)
-        2'b00: begin
-            qpsk_i = -12'd1448;                                     // -1/sqrt(2) * 2048
-            qpsk_q = -12'd1448;
-        end
-        2'b01: begin
+    if (tx_encoder_valid) begin
+        case(tx_data_iq_diff)
+            2'b00: begin
+                qpsk_i = -12'd1448;                                     // -1/sqrt(2) * 2048
+                qpsk_q = -12'd1448;
+            end
+            2'b01: begin
+                qpsk_i = -12'd1448;
+                qpsk_q = 12'd1448;                                      // 1/sqrt(2) * 2048
+            end
+            2'b10: begin
+                qpsk_i = 12'd1448;
+                qpsk_q = -12'd1448;
+            end
+            2'b11: begin
+                qpsk_i = 12'd1448;
+                qpsk_q = 12'd1448;
+            end
+        endcase
+    end
+    else begin
+        if (sync_cnt) begin
             qpsk_i = -12'd1448;
-            qpsk_q = 12'd1448;                                      // 1/sqrt(2) * 2048
-        end
-        2'b10: begin
-            qpsk_i = 12'd1448;
             qpsk_q = -12'd1448;
         end
-        2'b11: begin
+        else begin
             qpsk_i = 12'd1448;
             qpsk_q = 12'd1448;
         end
-    endcase
+        sync_cnt = ~sync_cnt;
+    end
 end
 
 reg qpsk_idle_flag;
@@ -157,11 +182,11 @@ always @(posedge sample_clk or negedge rst_n) begin
         qpsk_q_reg <= 12'd0;
         qpsk_valid <= 1'b0;
     end
-    else if (!tx_encoder_valid) begin
-        qpsk_i_reg <= 12'd0;
-        qpsk_q_reg <= 12'd0;
-        qpsk_valid <= 1'b1;
-    end
+    // else if (!tx_encoder_valid) begin
+    //     qpsk_i_reg <= 12'd0;
+    //     qpsk_q_reg <= 12'd0;
+    //     qpsk_valid <= 1'b1;
+    // end
     else begin
         qpsk_i_reg <= qpsk_i;
         qpsk_q_reg <= qpsk_q;
@@ -348,8 +373,8 @@ wire decoded_valid;
 qpsk_differential_decoder qpsk_diff_decoder_u0 (
     .clk(demod_bit_clk),
     .rst_n(rst_n),
-    .i_in(demod_data),
-    .q_in(demod_data),
+    .i_in(gardner_sync_I),
+    .q_in(gardner_sync_Q),
     .data_valid(demod_valid),
     .data_out(decoded_data),
     .out_valid(decoded_valid)

@@ -32,34 +32,6 @@
                 <Signal>adc_data_out_q1[1]</Signal>
                 <Signal>adc_data_out_q1[0]</Signal>
             </Bus>
-            <Bus capture_enable="true" name="u_rf_rxt/rrc_out_i_adc[11:0]">
-                <Signal>u_rf_rxt/rrc_out_i_adc[11]</Signal>
-                <Signal>u_rf_rxt/rrc_out_i_adc[10]</Signal>
-                <Signal>u_rf_rxt/rrc_out_i_adc[9]</Signal>
-                <Signal>u_rf_rxt/rrc_out_i_adc[8]</Signal>
-                <Signal>u_rf_rxt/rrc_out_i_adc[7]</Signal>
-                <Signal>u_rf_rxt/rrc_out_i_adc[6]</Signal>
-                <Signal>u_rf_rxt/rrc_out_i_adc[5]</Signal>
-                <Signal>u_rf_rxt/rrc_out_i_adc[4]</Signal>
-                <Signal>u_rf_rxt/rrc_out_i_adc[3]</Signal>
-                <Signal>u_rf_rxt/rrc_out_i_adc[2]</Signal>
-                <Signal>u_rf_rxt/rrc_out_i_adc[1]</Signal>
-                <Signal>u_rf_rxt/rrc_out_i_adc[0]</Signal>
-            </Bus>
-            <Bus capture_enable="true" name="u_rf_rxt/rrc_out_q_adc[11:0]">
-                <Signal>u_rf_rxt/rrc_out_q_adc[11]</Signal>
-                <Signal>u_rf_rxt/rrc_out_q_adc[10]</Signal>
-                <Signal>u_rf_rxt/rrc_out_q_adc[9]</Signal>
-                <Signal>u_rf_rxt/rrc_out_q_adc[8]</Signal>
-                <Signal>u_rf_rxt/rrc_out_q_adc[7]</Signal>
-                <Signal>u_rf_rxt/rrc_out_q_adc[6]</Signal>
-                <Signal>u_rf_rxt/rrc_out_q_adc[5]</Signal>
-                <Signal>u_rf_rxt/rrc_out_q_adc[4]</Signal>
-                <Signal>u_rf_rxt/rrc_out_q_adc[3]</Signal>
-                <Signal>u_rf_rxt/rrc_out_q_adc[2]</Signal>
-                <Signal>u_rf_rxt/rrc_out_q_adc[1]</Signal>
-                <Signal>u_rf_rxt/rrc_out_q_adc[0]</Signal>
-            </Bus>
             <Bus capture_enable="true" name="u_rf_rxt/qpsk_i_reg[11:0]">
                 <Signal>u_rf_rxt/qpsk_i_reg[11]</Signal>
                 <Signal>u_rf_rxt/qpsk_i_reg[10]</Signal>
@@ -135,144 +107,6 @@
             </Bus>
             <Signal capture_enable="true">eth_rx_frame_end</Signal>
             <Signal capture_enable="true">eth_rx_data_valid</Signal>
-            <Bus capture_enable="true" name="u_rf_data_processor/rd_state[1:0]">
-                <Signal>u_rf_data_processor/rd_state[1]</Signal>
-                <Signal>u_rf_data_processor/rd_state[0]</Signal>
-            </Bus>
-            <Signal capture_enable="true">u_rf_data_processor/rf_tx_clk</Signal>
-            <Bus capture_enable="true" name="u_rf_data_depacketizer/pack_state[2:0]">
-                <Signal>u_rf_data_depacketizer/pack_state[2]</Signal>
-                <Signal>u_rf_data_depacketizer/pack_state[1]</Signal>
-                <Signal>u_rf_data_depacketizer/pack_state[0]</Signal>
-            </Bus>
-            <Bus capture_enable="true" name="u_rf_data_depacketizer/fifo_wr_data[7:0]">
-                <Signal>u_rf_data_depacketizer/fifo_wr_data[7]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_wr_data[6]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_wr_data[5]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_wr_data[4]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_wr_data[3]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_wr_data[2]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_wr_data[1]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_wr_data[0]</Signal>
-            </Bus>
-            <Bus capture_enable="true" name="u_rf_data_depacketizer/eth_state[2:0]">
-                <Signal>u_rf_data_depacketizer/eth_state[2]</Signal>
-                <Signal>u_rf_data_depacketizer/eth_state[1]</Signal>
-                <Signal>u_rf_data_depacketizer/eth_state[0]</Signal>
-            </Bus>
-            <Bus capture_enable="true" name="u_rf_data_depacketizer/fifo_rd_data[7:0]">
-                <Signal>u_rf_data_depacketizer/fifo_rd_data[7]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_rd_data[6]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_rd_data[5]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_rd_data[4]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_rd_data[3]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_rd_data[2]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_rd_data[1]</Signal>
-                <Signal>u_rf_data_depacketizer/fifo_rd_data[0]</Signal>
-            </Bus>
-            <Signal capture_enable="true">u_rf_data_depacketizer/fifo_empty</Signal>
-            <Signal capture_enable="true">u_rf_data_depacketizer/tx_ready</Signal>
-            <Bus capture_enable="true" name="u_rf_data_depacketizer/bit_shift_reg[47:0]">
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[47]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[46]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[45]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[44]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[43]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[42]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[41]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[40]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[39]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[38]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[37]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[36]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[35]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[34]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[33]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[32]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[31]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[30]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[29]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[28]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[27]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[26]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[25]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[24]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[23]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[22]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[21]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[20]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[19]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[18]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[17]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[16]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[15]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[14]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[13]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[12]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[11]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[10]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[9]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[8]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[7]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[6]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[5]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[4]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[3]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[2]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[1]</Signal>
-                <Signal>u_rf_data_depacketizer/bit_shift_reg[0]</Signal>
-            </Bus>
-            <Bus capture_enable="true" name="u_rf_data_depacketizer/head_window[31:0]">
-                <Signal>u_rf_data_depacketizer/head_window[31]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[30]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[29]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[28]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[27]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[26]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[25]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[24]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[23]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[22]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[21]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[20]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[19]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[18]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[17]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[16]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[15]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[14]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[13]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[12]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[11]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[10]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[9]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[8]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[7]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[6]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[5]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[4]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[3]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[2]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[1]</Signal>
-                <Signal>u_rf_data_depacketizer/head_window[0]</Signal>
-            </Bus>
-            <Bus capture_enable="true" name="u_rf_data_processor/state[3:0]">
-                <Signal>u_rf_data_processor/state[3]</Signal>
-                <Signal>u_rf_data_processor/state[2]</Signal>
-                <Signal>u_rf_data_processor/state[1]</Signal>
-                <Signal>u_rf_data_processor/state[0]</Signal>
-            </Bus>
-            <Bus capture_enable="true" name="u_rf_data_processor/fifo_wr_data[7:0]">
-                <Signal>u_rf_data_processor/fifo_wr_data[7]</Signal>
-                <Signal>u_rf_data_processor/fifo_wr_data[6]</Signal>
-                <Signal>u_rf_data_processor/fifo_wr_data[5]</Signal>
-                <Signal>u_rf_data_processor/fifo_wr_data[4]</Signal>
-                <Signal>u_rf_data_processor/fifo_wr_data[3]</Signal>
-                <Signal>u_rf_data_processor/fifo_wr_data[2]</Signal>
-                <Signal>u_rf_data_processor/fifo_wr_data[1]</Signal>
-                <Signal>u_rf_data_processor/fifo_wr_data[0]</Signal>
-            </Bus>
-            <Signal capture_enable="true">u_rf_data_processor/fifo_wr_en</Signal>
             <Signal capture_enable="true">test_clk</Signal>
             <Signal capture_enable="true">u_rf_rxt/gardner_sync_I</Signal>
             <Signal capture_enable="true">u_rf_rxt/gardner_sync_Q</Signal>
@@ -320,6 +154,168 @@
                 <Signal>u_rf_rxt/gardner_sync_u0/Q_y[2]</Signal>
                 <Signal>u_rf_rxt/gardner_sync_u0/Q_y[1]</Signal>
                 <Signal>u_rf_rxt/gardner_sync_u0/Q_y[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_rxt/costas_u0/sum_a[24:0]">
+                <Signal>u_rf_rxt/costas_u0/sum_a[24]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[23]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[22]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[21]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[20]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[19]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[18]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[17]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[16]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[15]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[14]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[13]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[12]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[11]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[10]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[9]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[8]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[7]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[6]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[5]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[4]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[3]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[2]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[1]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_a[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_rxt/costas_u0/sum_b[24:0]">
+                <Signal>u_rf_rxt/costas_u0/sum_b[24]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[23]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[22]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[21]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[20]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[19]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[18]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[17]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[16]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[15]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[14]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[13]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[12]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[11]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[10]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[9]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[8]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[7]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[6]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[5]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[4]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[3]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[2]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[1]</Signal>
+                <Signal>u_rf_rxt/costas_u0/sum_b[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_rxt/costas_u0/loop_flt_in[25:0]">
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[25]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[24]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[23]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[22]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[21]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[20]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[19]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[18]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[17]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[16]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[15]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[14]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[13]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[12]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[11]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[10]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[9]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[8]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[7]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[6]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[5]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[4]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[3]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[2]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[1]</Signal>
+                <Signal>u_rf_rxt/costas_u0/loop_flt_in[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_rxt/costas_u0/pd[23:0]">
+                <Signal>u_rf_rxt/costas_u0/pd[23]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[22]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[21]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[20]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[19]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[18]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[17]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[16]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[15]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[14]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[13]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[12]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[11]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[10]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[9]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[8]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[7]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[6]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[5]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[4]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[3]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[2]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[1]</Signal>
+                <Signal>u_rf_rxt/costas_u0/pd[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_rxt/costas_u0/dds_cos[11:0]">
+                <Signal>u_rf_rxt/costas_u0/dds_cos[11]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_cos[10]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_cos[9]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_cos[8]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_cos[7]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_cos[6]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_cos[5]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_cos[4]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_cos[3]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_cos[2]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_cos[1]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_cos[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[23:0]">
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[23]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[22]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[21]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[20]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[19]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[18]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[17]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[16]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[15]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[14]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[13]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[12]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[11]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[10]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[9]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[8]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[7]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[6]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[5]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[4]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[3]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[2]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[1]</Signal>
+                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_rf_rxt/costas_u0/dds_sin[11:0]">
+                <Signal>u_rf_rxt/costas_u0/dds_sin[11]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_sin[10]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_sin[9]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_sin[8]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_sin[7]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_sin[6]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_sin[5]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_sin[4]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_sin[3]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_sin[2]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_sin[1]</Signal>
+                <Signal>u_rf_rxt/costas_u0/dds_sin[0]</Signal>
             </Bus>
         </SignalList>
         <Triggers>
@@ -390,5 +386,5 @@
             <Expression>M2</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>0110011001100110</GAO_ID>
+    <GAO_ID>1000001111000111</GAO_ID>
 </GAO_CONFIG>

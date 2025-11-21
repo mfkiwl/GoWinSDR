@@ -4,7 +4,7 @@
 -cst D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\SDR_Test.cst
 -cfg D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\device.cfg
 -sdc D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\timeconstrain.sdc
--gao_crc 0110011001100110
+-gao_crc 1000001111000111
 -bit
 -tr
 -ph

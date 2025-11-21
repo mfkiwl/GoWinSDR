@@ -18,11 +18,19 @@
    "Type" : "verilog"
   },
   {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas_loop_filter.v",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/crc.v",
    "Type" : "verilog"
   },
   {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/dds_ii/dds_ii.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/dds_ii_costas/dds_ii.v",
    "Type" : "verilog"
   },
   {
@@ -78,6 +86,10 @@
    "Type" : "verilog"
   },
   {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult_1212/gowin_mult.v",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll.v",
    "Type" : "verilog"
   },
@@ -99,6 +111,10 @@
   },
   {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/nco.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/phase_detector.v",
    "Type" : "verilog"
   },
   {
