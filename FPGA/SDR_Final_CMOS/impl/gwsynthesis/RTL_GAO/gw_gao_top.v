@@ -23,18 +23,6 @@ module gw_gao(
     \adc_data_out_q1[2] ,
     \adc_data_out_q1[1] ,
     \adc_data_out_q1[0] ,
-    \u_rf_rxt/qpsk_i_reg[11] ,
-    \u_rf_rxt/qpsk_i_reg[10] ,
-    \u_rf_rxt/qpsk_i_reg[9] ,
-    \u_rf_rxt/qpsk_i_reg[8] ,
-    \u_rf_rxt/qpsk_i_reg[7] ,
-    \u_rf_rxt/qpsk_i_reg[6] ,
-    \u_rf_rxt/qpsk_i_reg[5] ,
-    \u_rf_rxt/qpsk_i_reg[4] ,
-    \u_rf_rxt/qpsk_i_reg[3] ,
-    \u_rf_rxt/qpsk_i_reg[2] ,
-    \u_rf_rxt/qpsk_i_reg[1] ,
-    \u_rf_rxt/qpsk_i_reg[0] ,
     \dac_data_in_i1[11] ,
     \dac_data_in_i1[10] ,
     \dac_data_in_i1[9] ,
@@ -242,30 +230,6 @@ module gw_gao(
     \u_rf_rxt/costas_u0/dds_cos[2] ,
     \u_rf_rxt/costas_u0/dds_cos[1] ,
     \u_rf_rxt/costas_u0/dds_cos[0] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[23] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[22] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[21] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[20] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[19] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[18] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[17] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[16] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[15] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[14] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[13] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[12] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[11] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[10] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[9] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[8] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[7] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[6] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[5] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[4] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[3] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[2] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[1] ,
-    \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[0] ,
     \u_rf_rxt/costas_u0/dds_sin[11] ,
     \u_rf_rxt/costas_u0/dds_sin[10] ,
     \u_rf_rxt/costas_u0/dds_sin[9] ,
@@ -313,18 +277,6 @@ input \adc_data_out_q1[3] ;
 input \adc_data_out_q1[2] ;
 input \adc_data_out_q1[1] ;
 input \adc_data_out_q1[0] ;
-input \u_rf_rxt/qpsk_i_reg[11] ;
-input \u_rf_rxt/qpsk_i_reg[10] ;
-input \u_rf_rxt/qpsk_i_reg[9] ;
-input \u_rf_rxt/qpsk_i_reg[8] ;
-input \u_rf_rxt/qpsk_i_reg[7] ;
-input \u_rf_rxt/qpsk_i_reg[6] ;
-input \u_rf_rxt/qpsk_i_reg[5] ;
-input \u_rf_rxt/qpsk_i_reg[4] ;
-input \u_rf_rxt/qpsk_i_reg[3] ;
-input \u_rf_rxt/qpsk_i_reg[2] ;
-input \u_rf_rxt/qpsk_i_reg[1] ;
-input \u_rf_rxt/qpsk_i_reg[0] ;
 input \dac_data_in_i1[11] ;
 input \dac_data_in_i1[10] ;
 input \dac_data_in_i1[9] ;
@@ -532,30 +484,6 @@ input \u_rf_rxt/costas_u0/dds_cos[3] ;
 input \u_rf_rxt/costas_u0/dds_cos[2] ;
 input \u_rf_rxt/costas_u0/dds_cos[1] ;
 input \u_rf_rxt/costas_u0/dds_cos[0] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[23] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[22] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[21] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[20] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[19] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[18] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[17] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[16] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[15] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[14] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[13] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[12] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[11] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[10] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[9] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[8] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[7] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[6] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[5] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[4] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[3] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[2] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[1] ;
-input \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[0] ;
 input \u_rf_rxt/costas_u0/dds_sin[11] ;
 input \u_rf_rxt/costas_u0/dds_sin[10] ;
 input \u_rf_rxt/costas_u0/dds_sin[9] ;
@@ -602,18 +530,6 @@ wire \adc_data_out_q1[3] ;
 wire \adc_data_out_q1[2] ;
 wire \adc_data_out_q1[1] ;
 wire \adc_data_out_q1[0] ;
-wire \u_rf_rxt/qpsk_i_reg[11] ;
-wire \u_rf_rxt/qpsk_i_reg[10] ;
-wire \u_rf_rxt/qpsk_i_reg[9] ;
-wire \u_rf_rxt/qpsk_i_reg[8] ;
-wire \u_rf_rxt/qpsk_i_reg[7] ;
-wire \u_rf_rxt/qpsk_i_reg[6] ;
-wire \u_rf_rxt/qpsk_i_reg[5] ;
-wire \u_rf_rxt/qpsk_i_reg[4] ;
-wire \u_rf_rxt/qpsk_i_reg[3] ;
-wire \u_rf_rxt/qpsk_i_reg[2] ;
-wire \u_rf_rxt/qpsk_i_reg[1] ;
-wire \u_rf_rxt/qpsk_i_reg[0] ;
 wire \dac_data_in_i1[11] ;
 wire \dac_data_in_i1[10] ;
 wire \dac_data_in_i1[9] ;
@@ -821,30 +737,6 @@ wire \u_rf_rxt/costas_u0/dds_cos[3] ;
 wire \u_rf_rxt/costas_u0/dds_cos[2] ;
 wire \u_rf_rxt/costas_u0/dds_cos[1] ;
 wire \u_rf_rxt/costas_u0/dds_cos[0] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[23] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[22] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[21] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[20] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[19] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[18] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[17] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[16] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[15] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[14] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[13] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[12] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[11] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[10] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[9] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[8] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[7] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[6] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[5] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[4] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[3] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[2] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[1] ;
-wire \u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[0] ;
 wire \u_rf_rxt/costas_u0/dds_sin[11] ;
 wire \u_rf_rxt/costas_u0/dds_sin[10] ;
 wire \u_rf_rxt/costas_u0/dds_sin[9] ;
@@ -940,7 +832,7 @@ ao_top_0  u_la0_top(
     .trig2_i(eth_rx_data_valid),
     .trig3_i(\eth_inst/gmii_rxdv ),
     .trig4_i({\u_rf_data_depacketizer/pack_state[2] ,\u_rf_data_depacketizer/pack_state[1] ,\u_rf_data_depacketizer/pack_state[0] }),
-    .data_i({\adc_data_out_i1[11] ,\adc_data_out_i1[10] ,\adc_data_out_i1[9] ,\adc_data_out_i1[8] ,\adc_data_out_i1[7] ,\adc_data_out_i1[6] ,\adc_data_out_i1[5] ,\adc_data_out_i1[4] ,\adc_data_out_i1[3] ,\adc_data_out_i1[2] ,\adc_data_out_i1[1] ,\adc_data_out_i1[0] ,\adc_data_out_q1[11] ,\adc_data_out_q1[10] ,\adc_data_out_q1[9] ,\adc_data_out_q1[8] ,\adc_data_out_q1[7] ,\adc_data_out_q1[6] ,\adc_data_out_q1[5] ,\adc_data_out_q1[4] ,\adc_data_out_q1[3] ,\adc_data_out_q1[2] ,\adc_data_out_q1[1] ,\adc_data_out_q1[0] ,\u_rf_rxt/qpsk_i_reg[11] ,\u_rf_rxt/qpsk_i_reg[10] ,\u_rf_rxt/qpsk_i_reg[9] ,\u_rf_rxt/qpsk_i_reg[8] ,\u_rf_rxt/qpsk_i_reg[7] ,\u_rf_rxt/qpsk_i_reg[6] ,\u_rf_rxt/qpsk_i_reg[5] ,\u_rf_rxt/qpsk_i_reg[4] ,\u_rf_rxt/qpsk_i_reg[3] ,\u_rf_rxt/qpsk_i_reg[2] ,\u_rf_rxt/qpsk_i_reg[1] ,\u_rf_rxt/qpsk_i_reg[0] ,\dac_data_in_i1[11] ,\dac_data_in_i1[10] ,\dac_data_in_i1[9] ,\dac_data_in_i1[8] ,\dac_data_in_i1[7] ,\dac_data_in_i1[6] ,\dac_data_in_i1[5] ,\dac_data_in_i1[4] ,\dac_data_in_i1[3] ,\dac_data_in_i1[2] ,\dac_data_in_i1[1] ,\dac_data_in_i1[0] ,\dac_data_in_q1[11] ,\dac_data_in_q1[10] ,\dac_data_in_q1[9] ,\dac_data_in_q1[8] ,\dac_data_in_q1[7] ,\dac_data_in_q1[6] ,\dac_data_in_q1[5] ,\dac_data_in_q1[4] ,\dac_data_in_q1[3] ,\dac_data_in_q1[2] ,\dac_data_in_q1[1] ,\dac_data_in_q1[0] ,\tx_data_in[7] ,\tx_data_in[6] ,\tx_data_in[5] ,\tx_data_in[4] ,\tx_data_in[3] ,\tx_data_in[2] ,\tx_data_in[1] ,\tx_data_in[0] ,rx_data_valid,tx_data_valid,tx_data_ready,\u_rf_rxt/tx_data_iq ,rx_data_out,\u_rf_rxt/demod_data ,\u_rf_rxt/decoded_data[1] ,\u_rf_rxt/decoded_data[0] ,\u_rf_rxt/bit_clk ,\eth_rx_data[7] ,\eth_rx_data[6] ,\eth_rx_data[5] ,\eth_rx_data[4] ,\eth_rx_data[3] ,\eth_rx_data[2] ,\eth_rx_data[1] ,\eth_rx_data[0] ,eth_rx_frame_end,eth_rx_data_valid,test_clk,\u_rf_rxt/gardner_sync_I ,\u_rf_rxt/gardner_sync_Q ,\u_rf_rxt/gardner_sync_flag ,\u_rf_rxt/gardner_sync_u0/I_y[19] ,\u_rf_rxt/gardner_sync_u0/I_y[18] ,\u_rf_rxt/gardner_sync_u0/I_y[17] ,\u_rf_rxt/gardner_sync_u0/I_y[16] ,\u_rf_rxt/gardner_sync_u0/I_y[15] ,\u_rf_rxt/gardner_sync_u0/I_y[14] ,\u_rf_rxt/gardner_sync_u0/I_y[13] ,\u_rf_rxt/gardner_sync_u0/I_y[12] ,\u_rf_rxt/gardner_sync_u0/I_y[11] ,\u_rf_rxt/gardner_sync_u0/I_y[10] ,\u_rf_rxt/gardner_sync_u0/I_y[9] ,\u_rf_rxt/gardner_sync_u0/I_y[8] ,\u_rf_rxt/gardner_sync_u0/I_y[7] ,\u_rf_rxt/gardner_sync_u0/I_y[6] ,\u_rf_rxt/gardner_sync_u0/I_y[5] ,\u_rf_rxt/gardner_sync_u0/I_y[4] ,\u_rf_rxt/gardner_sync_u0/I_y[3] ,\u_rf_rxt/gardner_sync_u0/I_y[2] ,\u_rf_rxt/gardner_sync_u0/I_y[1] ,\u_rf_rxt/gardner_sync_u0/I_y[0] ,\u_rf_rxt/gardner_sync_u0/Q_y[19] ,\u_rf_rxt/gardner_sync_u0/Q_y[18] ,\u_rf_rxt/gardner_sync_u0/Q_y[17] ,\u_rf_rxt/gardner_sync_u0/Q_y[16] ,\u_rf_rxt/gardner_sync_u0/Q_y[15] ,\u_rf_rxt/gardner_sync_u0/Q_y[14] ,\u_rf_rxt/gardner_sync_u0/Q_y[13] ,\u_rf_rxt/gardner_sync_u0/Q_y[12] ,\u_rf_rxt/gardner_sync_u0/Q_y[11] ,\u_rf_rxt/gardner_sync_u0/Q_y[10] ,\u_rf_rxt/gardner_sync_u0/Q_y[9] ,\u_rf_rxt/gardner_sync_u0/Q_y[8] ,\u_rf_rxt/gardner_sync_u0/Q_y[7] ,\u_rf_rxt/gardner_sync_u0/Q_y[6] ,\u_rf_rxt/gardner_sync_u0/Q_y[5] ,\u_rf_rxt/gardner_sync_u0/Q_y[4] ,\u_rf_rxt/gardner_sync_u0/Q_y[3] ,\u_rf_rxt/gardner_sync_u0/Q_y[2] ,\u_rf_rxt/gardner_sync_u0/Q_y[1] ,\u_rf_rxt/gardner_sync_u0/Q_y[0] ,\u_rf_rxt/costas_u0/sum_a[24] ,\u_rf_rxt/costas_u0/sum_a[23] ,\u_rf_rxt/costas_u0/sum_a[22] ,\u_rf_rxt/costas_u0/sum_a[21] ,\u_rf_rxt/costas_u0/sum_a[20] ,\u_rf_rxt/costas_u0/sum_a[19] ,\u_rf_rxt/costas_u0/sum_a[18] ,\u_rf_rxt/costas_u0/sum_a[17] ,\u_rf_rxt/costas_u0/sum_a[16] ,\u_rf_rxt/costas_u0/sum_a[15] ,\u_rf_rxt/costas_u0/sum_a[14] ,\u_rf_rxt/costas_u0/sum_a[13] ,\u_rf_rxt/costas_u0/sum_a[12] ,\u_rf_rxt/costas_u0/sum_a[11] ,\u_rf_rxt/costas_u0/sum_a[10] ,\u_rf_rxt/costas_u0/sum_a[9] ,\u_rf_rxt/costas_u0/sum_a[8] ,\u_rf_rxt/costas_u0/sum_a[7] ,\u_rf_rxt/costas_u0/sum_a[6] ,\u_rf_rxt/costas_u0/sum_a[5] ,\u_rf_rxt/costas_u0/sum_a[4] ,\u_rf_rxt/costas_u0/sum_a[3] ,\u_rf_rxt/costas_u0/sum_a[2] ,\u_rf_rxt/costas_u0/sum_a[1] ,\u_rf_rxt/costas_u0/sum_a[0] ,\u_rf_rxt/costas_u0/sum_b[24] ,\u_rf_rxt/costas_u0/sum_b[23] ,\u_rf_rxt/costas_u0/sum_b[22] ,\u_rf_rxt/costas_u0/sum_b[21] ,\u_rf_rxt/costas_u0/sum_b[20] ,\u_rf_rxt/costas_u0/sum_b[19] ,\u_rf_rxt/costas_u0/sum_b[18] ,\u_rf_rxt/costas_u0/sum_b[17] ,\u_rf_rxt/costas_u0/sum_b[16] ,\u_rf_rxt/costas_u0/sum_b[15] ,\u_rf_rxt/costas_u0/sum_b[14] ,\u_rf_rxt/costas_u0/sum_b[13] ,\u_rf_rxt/costas_u0/sum_b[12] ,\u_rf_rxt/costas_u0/sum_b[11] ,\u_rf_rxt/costas_u0/sum_b[10] ,\u_rf_rxt/costas_u0/sum_b[9] ,\u_rf_rxt/costas_u0/sum_b[8] ,\u_rf_rxt/costas_u0/sum_b[7] ,\u_rf_rxt/costas_u0/sum_b[6] ,\u_rf_rxt/costas_u0/sum_b[5] ,\u_rf_rxt/costas_u0/sum_b[4] ,\u_rf_rxt/costas_u0/sum_b[3] ,\u_rf_rxt/costas_u0/sum_b[2] ,\u_rf_rxt/costas_u0/sum_b[1] ,\u_rf_rxt/costas_u0/sum_b[0] ,\u_rf_rxt/costas_u0/loop_flt_in[25] ,\u_rf_rxt/costas_u0/loop_flt_in[24] ,\u_rf_rxt/costas_u0/loop_flt_in[23] ,\u_rf_rxt/costas_u0/loop_flt_in[22] ,\u_rf_rxt/costas_u0/loop_flt_in[21] ,\u_rf_rxt/costas_u0/loop_flt_in[20] ,\u_rf_rxt/costas_u0/loop_flt_in[19] ,\u_rf_rxt/costas_u0/loop_flt_in[18] ,\u_rf_rxt/costas_u0/loop_flt_in[17] ,\u_rf_rxt/costas_u0/loop_flt_in[16] ,\u_rf_rxt/costas_u0/loop_flt_in[15] ,\u_rf_rxt/costas_u0/loop_flt_in[14] ,\u_rf_rxt/costas_u0/loop_flt_in[13] ,\u_rf_rxt/costas_u0/loop_flt_in[12] ,\u_rf_rxt/costas_u0/loop_flt_in[11] ,\u_rf_rxt/costas_u0/loop_flt_in[10] ,\u_rf_rxt/costas_u0/loop_flt_in[9] ,\u_rf_rxt/costas_u0/loop_flt_in[8] ,\u_rf_rxt/costas_u0/loop_flt_in[7] ,\u_rf_rxt/costas_u0/loop_flt_in[6] ,\u_rf_rxt/costas_u0/loop_flt_in[5] ,\u_rf_rxt/costas_u0/loop_flt_in[4] ,\u_rf_rxt/costas_u0/loop_flt_in[3] ,\u_rf_rxt/costas_u0/loop_flt_in[2] ,\u_rf_rxt/costas_u0/loop_flt_in[1] ,\u_rf_rxt/costas_u0/loop_flt_in[0] ,\u_rf_rxt/costas_u0/pd[23] ,\u_rf_rxt/costas_u0/pd[22] ,\u_rf_rxt/costas_u0/pd[21] ,\u_rf_rxt/costas_u0/pd[20] ,\u_rf_rxt/costas_u0/pd[19] ,\u_rf_rxt/costas_u0/pd[18] ,\u_rf_rxt/costas_u0/pd[17] ,\u_rf_rxt/costas_u0/pd[16] ,\u_rf_rxt/costas_u0/pd[15] ,\u_rf_rxt/costas_u0/pd[14] ,\u_rf_rxt/costas_u0/pd[13] ,\u_rf_rxt/costas_u0/pd[12] ,\u_rf_rxt/costas_u0/pd[11] ,\u_rf_rxt/costas_u0/pd[10] ,\u_rf_rxt/costas_u0/pd[9] ,\u_rf_rxt/costas_u0/pd[8] ,\u_rf_rxt/costas_u0/pd[7] ,\u_rf_rxt/costas_u0/pd[6] ,\u_rf_rxt/costas_u0/pd[5] ,\u_rf_rxt/costas_u0/pd[4] ,\u_rf_rxt/costas_u0/pd[3] ,\u_rf_rxt/costas_u0/pd[2] ,\u_rf_rxt/costas_u0/pd[1] ,\u_rf_rxt/costas_u0/pd[0] ,\u_rf_rxt/costas_u0/dds_cos[11] ,\u_rf_rxt/costas_u0/dds_cos[10] ,\u_rf_rxt/costas_u0/dds_cos[9] ,\u_rf_rxt/costas_u0/dds_cos[8] ,\u_rf_rxt/costas_u0/dds_cos[7] ,\u_rf_rxt/costas_u0/dds_cos[6] ,\u_rf_rxt/costas_u0/dds_cos[5] ,\u_rf_rxt/costas_u0/dds_cos[4] ,\u_rf_rxt/costas_u0/dds_cos[3] ,\u_rf_rxt/costas_u0/dds_cos[2] ,\u_rf_rxt/costas_u0/dds_cos[1] ,\u_rf_rxt/costas_u0/dds_cos[0] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[23] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[22] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[21] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[20] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[19] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[18] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[17] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[16] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[15] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[14] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[13] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[12] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[11] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[10] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[9] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[8] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[7] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[6] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[5] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[4] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[3] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[2] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[1] ,\u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[0] ,\u_rf_rxt/costas_u0/dds_sin[11] ,\u_rf_rxt/costas_u0/dds_sin[10] ,\u_rf_rxt/costas_u0/dds_sin[9] ,\u_rf_rxt/costas_u0/dds_sin[8] ,\u_rf_rxt/costas_u0/dds_sin[7] ,\u_rf_rxt/costas_u0/dds_sin[6] ,\u_rf_rxt/costas_u0/dds_sin[5] ,\u_rf_rxt/costas_u0/dds_sin[4] ,\u_rf_rxt/costas_u0/dds_sin[3] ,\u_rf_rxt/costas_u0/dds_sin[2] ,\u_rf_rxt/costas_u0/dds_sin[1] ,\u_rf_rxt/costas_u0/dds_sin[0] }),
+    .data_i({\adc_data_out_i1[11] ,\adc_data_out_i1[10] ,\adc_data_out_i1[9] ,\adc_data_out_i1[8] ,\adc_data_out_i1[7] ,\adc_data_out_i1[6] ,\adc_data_out_i1[5] ,\adc_data_out_i1[4] ,\adc_data_out_i1[3] ,\adc_data_out_i1[2] ,\adc_data_out_i1[1] ,\adc_data_out_i1[0] ,\adc_data_out_q1[11] ,\adc_data_out_q1[10] ,\adc_data_out_q1[9] ,\adc_data_out_q1[8] ,\adc_data_out_q1[7] ,\adc_data_out_q1[6] ,\adc_data_out_q1[5] ,\adc_data_out_q1[4] ,\adc_data_out_q1[3] ,\adc_data_out_q1[2] ,\adc_data_out_q1[1] ,\adc_data_out_q1[0] ,\dac_data_in_i1[11] ,\dac_data_in_i1[10] ,\dac_data_in_i1[9] ,\dac_data_in_i1[8] ,\dac_data_in_i1[7] ,\dac_data_in_i1[6] ,\dac_data_in_i1[5] ,\dac_data_in_i1[4] ,\dac_data_in_i1[3] ,\dac_data_in_i1[2] ,\dac_data_in_i1[1] ,\dac_data_in_i1[0] ,\dac_data_in_q1[11] ,\dac_data_in_q1[10] ,\dac_data_in_q1[9] ,\dac_data_in_q1[8] ,\dac_data_in_q1[7] ,\dac_data_in_q1[6] ,\dac_data_in_q1[5] ,\dac_data_in_q1[4] ,\dac_data_in_q1[3] ,\dac_data_in_q1[2] ,\dac_data_in_q1[1] ,\dac_data_in_q1[0] ,\tx_data_in[7] ,\tx_data_in[6] ,\tx_data_in[5] ,\tx_data_in[4] ,\tx_data_in[3] ,\tx_data_in[2] ,\tx_data_in[1] ,\tx_data_in[0] ,rx_data_valid,tx_data_valid,tx_data_ready,\u_rf_rxt/tx_data_iq ,rx_data_out,\u_rf_rxt/demod_data ,\u_rf_rxt/decoded_data[1] ,\u_rf_rxt/decoded_data[0] ,\u_rf_rxt/bit_clk ,\eth_rx_data[7] ,\eth_rx_data[6] ,\eth_rx_data[5] ,\eth_rx_data[4] ,\eth_rx_data[3] ,\eth_rx_data[2] ,\eth_rx_data[1] ,\eth_rx_data[0] ,eth_rx_frame_end,eth_rx_data_valid,test_clk,\u_rf_rxt/gardner_sync_I ,\u_rf_rxt/gardner_sync_Q ,\u_rf_rxt/gardner_sync_flag ,\u_rf_rxt/gardner_sync_u0/I_y[19] ,\u_rf_rxt/gardner_sync_u0/I_y[18] ,\u_rf_rxt/gardner_sync_u0/I_y[17] ,\u_rf_rxt/gardner_sync_u0/I_y[16] ,\u_rf_rxt/gardner_sync_u0/I_y[15] ,\u_rf_rxt/gardner_sync_u0/I_y[14] ,\u_rf_rxt/gardner_sync_u0/I_y[13] ,\u_rf_rxt/gardner_sync_u0/I_y[12] ,\u_rf_rxt/gardner_sync_u0/I_y[11] ,\u_rf_rxt/gardner_sync_u0/I_y[10] ,\u_rf_rxt/gardner_sync_u0/I_y[9] ,\u_rf_rxt/gardner_sync_u0/I_y[8] ,\u_rf_rxt/gardner_sync_u0/I_y[7] ,\u_rf_rxt/gardner_sync_u0/I_y[6] ,\u_rf_rxt/gardner_sync_u0/I_y[5] ,\u_rf_rxt/gardner_sync_u0/I_y[4] ,\u_rf_rxt/gardner_sync_u0/I_y[3] ,\u_rf_rxt/gardner_sync_u0/I_y[2] ,\u_rf_rxt/gardner_sync_u0/I_y[1] ,\u_rf_rxt/gardner_sync_u0/I_y[0] ,\u_rf_rxt/gardner_sync_u0/Q_y[19] ,\u_rf_rxt/gardner_sync_u0/Q_y[18] ,\u_rf_rxt/gardner_sync_u0/Q_y[17] ,\u_rf_rxt/gardner_sync_u0/Q_y[16] ,\u_rf_rxt/gardner_sync_u0/Q_y[15] ,\u_rf_rxt/gardner_sync_u0/Q_y[14] ,\u_rf_rxt/gardner_sync_u0/Q_y[13] ,\u_rf_rxt/gardner_sync_u0/Q_y[12] ,\u_rf_rxt/gardner_sync_u0/Q_y[11] ,\u_rf_rxt/gardner_sync_u0/Q_y[10] ,\u_rf_rxt/gardner_sync_u0/Q_y[9] ,\u_rf_rxt/gardner_sync_u0/Q_y[8] ,\u_rf_rxt/gardner_sync_u0/Q_y[7] ,\u_rf_rxt/gardner_sync_u0/Q_y[6] ,\u_rf_rxt/gardner_sync_u0/Q_y[5] ,\u_rf_rxt/gardner_sync_u0/Q_y[4] ,\u_rf_rxt/gardner_sync_u0/Q_y[3] ,\u_rf_rxt/gardner_sync_u0/Q_y[2] ,\u_rf_rxt/gardner_sync_u0/Q_y[1] ,\u_rf_rxt/gardner_sync_u0/Q_y[0] ,\u_rf_rxt/costas_u0/sum_a[24] ,\u_rf_rxt/costas_u0/sum_a[23] ,\u_rf_rxt/costas_u0/sum_a[22] ,\u_rf_rxt/costas_u0/sum_a[21] ,\u_rf_rxt/costas_u0/sum_a[20] ,\u_rf_rxt/costas_u0/sum_a[19] ,\u_rf_rxt/costas_u0/sum_a[18] ,\u_rf_rxt/costas_u0/sum_a[17] ,\u_rf_rxt/costas_u0/sum_a[16] ,\u_rf_rxt/costas_u0/sum_a[15] ,\u_rf_rxt/costas_u0/sum_a[14] ,\u_rf_rxt/costas_u0/sum_a[13] ,\u_rf_rxt/costas_u0/sum_a[12] ,\u_rf_rxt/costas_u0/sum_a[11] ,\u_rf_rxt/costas_u0/sum_a[10] ,\u_rf_rxt/costas_u0/sum_a[9] ,\u_rf_rxt/costas_u0/sum_a[8] ,\u_rf_rxt/costas_u0/sum_a[7] ,\u_rf_rxt/costas_u0/sum_a[6] ,\u_rf_rxt/costas_u0/sum_a[5] ,\u_rf_rxt/costas_u0/sum_a[4] ,\u_rf_rxt/costas_u0/sum_a[3] ,\u_rf_rxt/costas_u0/sum_a[2] ,\u_rf_rxt/costas_u0/sum_a[1] ,\u_rf_rxt/costas_u0/sum_a[0] ,\u_rf_rxt/costas_u0/sum_b[24] ,\u_rf_rxt/costas_u0/sum_b[23] ,\u_rf_rxt/costas_u0/sum_b[22] ,\u_rf_rxt/costas_u0/sum_b[21] ,\u_rf_rxt/costas_u0/sum_b[20] ,\u_rf_rxt/costas_u0/sum_b[19] ,\u_rf_rxt/costas_u0/sum_b[18] ,\u_rf_rxt/costas_u0/sum_b[17] ,\u_rf_rxt/costas_u0/sum_b[16] ,\u_rf_rxt/costas_u0/sum_b[15] ,\u_rf_rxt/costas_u0/sum_b[14] ,\u_rf_rxt/costas_u0/sum_b[13] ,\u_rf_rxt/costas_u0/sum_b[12] ,\u_rf_rxt/costas_u0/sum_b[11] ,\u_rf_rxt/costas_u0/sum_b[10] ,\u_rf_rxt/costas_u0/sum_b[9] ,\u_rf_rxt/costas_u0/sum_b[8] ,\u_rf_rxt/costas_u0/sum_b[7] ,\u_rf_rxt/costas_u0/sum_b[6] ,\u_rf_rxt/costas_u0/sum_b[5] ,\u_rf_rxt/costas_u0/sum_b[4] ,\u_rf_rxt/costas_u0/sum_b[3] ,\u_rf_rxt/costas_u0/sum_b[2] ,\u_rf_rxt/costas_u0/sum_b[1] ,\u_rf_rxt/costas_u0/sum_b[0] ,\u_rf_rxt/costas_u0/loop_flt_in[25] ,\u_rf_rxt/costas_u0/loop_flt_in[24] ,\u_rf_rxt/costas_u0/loop_flt_in[23] ,\u_rf_rxt/costas_u0/loop_flt_in[22] ,\u_rf_rxt/costas_u0/loop_flt_in[21] ,\u_rf_rxt/costas_u0/loop_flt_in[20] ,\u_rf_rxt/costas_u0/loop_flt_in[19] ,\u_rf_rxt/costas_u0/loop_flt_in[18] ,\u_rf_rxt/costas_u0/loop_flt_in[17] ,\u_rf_rxt/costas_u0/loop_flt_in[16] ,\u_rf_rxt/costas_u0/loop_flt_in[15] ,\u_rf_rxt/costas_u0/loop_flt_in[14] ,\u_rf_rxt/costas_u0/loop_flt_in[13] ,\u_rf_rxt/costas_u0/loop_flt_in[12] ,\u_rf_rxt/costas_u0/loop_flt_in[11] ,\u_rf_rxt/costas_u0/loop_flt_in[10] ,\u_rf_rxt/costas_u0/loop_flt_in[9] ,\u_rf_rxt/costas_u0/loop_flt_in[8] ,\u_rf_rxt/costas_u0/loop_flt_in[7] ,\u_rf_rxt/costas_u0/loop_flt_in[6] ,\u_rf_rxt/costas_u0/loop_flt_in[5] ,\u_rf_rxt/costas_u0/loop_flt_in[4] ,\u_rf_rxt/costas_u0/loop_flt_in[3] ,\u_rf_rxt/costas_u0/loop_flt_in[2] ,\u_rf_rxt/costas_u0/loop_flt_in[1] ,\u_rf_rxt/costas_u0/loop_flt_in[0] ,\u_rf_rxt/costas_u0/pd[23] ,\u_rf_rxt/costas_u0/pd[22] ,\u_rf_rxt/costas_u0/pd[21] ,\u_rf_rxt/costas_u0/pd[20] ,\u_rf_rxt/costas_u0/pd[19] ,\u_rf_rxt/costas_u0/pd[18] ,\u_rf_rxt/costas_u0/pd[17] ,\u_rf_rxt/costas_u0/pd[16] ,\u_rf_rxt/costas_u0/pd[15] ,\u_rf_rxt/costas_u0/pd[14] ,\u_rf_rxt/costas_u0/pd[13] ,\u_rf_rxt/costas_u0/pd[12] ,\u_rf_rxt/costas_u0/pd[11] ,\u_rf_rxt/costas_u0/pd[10] ,\u_rf_rxt/costas_u0/pd[9] ,\u_rf_rxt/costas_u0/pd[8] ,\u_rf_rxt/costas_u0/pd[7] ,\u_rf_rxt/costas_u0/pd[6] ,\u_rf_rxt/costas_u0/pd[5] ,\u_rf_rxt/costas_u0/pd[4] ,\u_rf_rxt/costas_u0/pd[3] ,\u_rf_rxt/costas_u0/pd[2] ,\u_rf_rxt/costas_u0/pd[1] ,\u_rf_rxt/costas_u0/pd[0] ,\u_rf_rxt/costas_u0/dds_cos[11] ,\u_rf_rxt/costas_u0/dds_cos[10] ,\u_rf_rxt/costas_u0/dds_cos[9] ,\u_rf_rxt/costas_u0/dds_cos[8] ,\u_rf_rxt/costas_u0/dds_cos[7] ,\u_rf_rxt/costas_u0/dds_cos[6] ,\u_rf_rxt/costas_u0/dds_cos[5] ,\u_rf_rxt/costas_u0/dds_cos[4] ,\u_rf_rxt/costas_u0/dds_cos[3] ,\u_rf_rxt/costas_u0/dds_cos[2] ,\u_rf_rxt/costas_u0/dds_cos[1] ,\u_rf_rxt/costas_u0/dds_cos[0] ,\u_rf_rxt/costas_u0/dds_sin[11] ,\u_rf_rxt/costas_u0/dds_sin[10] ,\u_rf_rxt/costas_u0/dds_sin[9] ,\u_rf_rxt/costas_u0/dds_sin[8] ,\u_rf_rxt/costas_u0/dds_sin[7] ,\u_rf_rxt/costas_u0/dds_sin[6] ,\u_rf_rxt/costas_u0/dds_sin[5] ,\u_rf_rxt/costas_u0/dds_sin[4] ,\u_rf_rxt/costas_u0/dds_sin[3] ,\u_rf_rxt/costas_u0/dds_sin[2] ,\u_rf_rxt/costas_u0/dds_sin[1] ,\u_rf_rxt/costas_u0/dds_sin[0] }),
     .clk_i(data_clk)
 );
 

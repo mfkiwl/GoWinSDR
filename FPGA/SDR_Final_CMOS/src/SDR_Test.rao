@@ -32,20 +32,6 @@
                 <Signal>adc_data_out_q1[1]</Signal>
                 <Signal>adc_data_out_q1[0]</Signal>
             </Bus>
-            <Bus capture_enable="true" name="u_rf_rxt/qpsk_i_reg[11:0]">
-                <Signal>u_rf_rxt/qpsk_i_reg[11]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[10]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[9]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[8]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[7]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[6]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[5]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[4]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[3]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[2]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[1]</Signal>
-                <Signal>u_rf_rxt/qpsk_i_reg[0]</Signal>
-            </Bus>
             <Bus capture_enable="true" name="dac_data_in_i1[11:0]">
                 <Signal>dac_data_in_i1[11]</Signal>
                 <Signal>dac_data_in_i1[10]</Signal>
@@ -277,32 +263,6 @@
                 <Signal>u_rf_rxt/costas_u0/dds_cos[1]</Signal>
                 <Signal>u_rf_rxt/costas_u0/dds_cos[0]</Signal>
             </Bus>
-            <Bus capture_enable="true" name="u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[23:0]">
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[23]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[22]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[21]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[20]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[19]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[18]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[17]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[16]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[15]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[14]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[13]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[12]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[11]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[10]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[9]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[8]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[7]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[6]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[5]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[4]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[3]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[2]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[1]</Signal>
-                <Signal>u_rf_rxt/costas_u0/costas_loop_filter_inst/pd_sub[0]</Signal>
-            </Bus>
             <Bus capture_enable="true" name="u_rf_rxt/costas_u0/dds_sin[11:0]">
                 <Signal>u_rf_rxt/costas_u0/dds_sin[11]</Signal>
                 <Signal>u_rf_rxt/costas_u0/dds_sin[10]</Signal>
@@ -386,5 +346,5 @@
             <Expression>M2</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>1000001111000111</GAO_ID>
+    <GAO_ID>0111110010011110</GAO_ID>
 </GAO_CONFIG>

@@ -28,6 +28,7 @@ Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_pll_e
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_pll_eth\gowin_pll_eth_mod.v'
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\interpolate_filter.v'
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\nco.v'
+Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\phase_detector.v'
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\pll_init.v'
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\rf_diff_decode.v'
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\rf_diff_encode.v'
@@ -35,10 +36,9 @@ Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\rf_rxt.v'
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\sys_pll\sys_pll.v'
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\sys_pll\sys_pll_mod.v'
 Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v'
-Undeclared symbol 'gclk_div', assumed default net type 'wire'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v":44)
-Undeclared symbol 'dac_r1_mode', assumed default net type 'wire'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v":57)
-Undeclared symbol 'adc_r1_mode', assumed default net type 'wire'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v":58)
-Analyzing Verilog file 'D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\phase_detector.v'
+Undeclared symbol 'gclk_div', assumed default net type 'wire'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v":47)
+Undeclared symbol 'dac_r1_mode', assumed default net type 'wire'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v":60)
+Undeclared symbol 'adc_r1_mode', assumed default net type 'wire'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v":61)
 Analyzing Verilog file 'E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_crc32.v'
 Analyzing Verilog file 'E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'
 Analyzing included file 'E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_define.v'("E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
@@ -86,7 +86,7 @@ Compiling module 'ad9363_dev_cmos'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src
 WARN  (EX3780) : Using initial value of 'tx_frame' since it is never assigned("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\ad9363_dev_cmos.v":31)
 Compiling module 'DDS_II_Top'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\dds_ii\dds_ii.v":2497)
 Compiling module '**'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\dds_ii\dds_ii.v":2496)
-Compiling module 'rf_rxt'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\rf_rxt.v":1)
+Compiling module 'rf_rxt(SAMPLE_RATE=32'b00000001110101001100000000000000,BIT_RATE=32'b00000000000011110100001001000000)'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\rf_rxt.v":1)
 Compiling module 'Advanced_FIR_Filter_Top'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\advanced_fir_filter\advanced_fir_filter.v":11548)
 Compiling module '**'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\advanced_fir_filter\advanced_fir_filter.v":11547)
 Compiling module 'costas'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\costas.v":1)
@@ -129,9 +129,9 @@ Compiling module '**'("E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipc
 Compiling module '**'("E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
 Trying to combine GAO to RTL design
 NOTE  (EX0101) : Current top module is "top"
-WARN  (EX0211) : The output port "rx_data_missing" of module "rf_rxt" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\rf_rxt.v":13)
+WARN  (EX0211) : The output port "rx_data_missing" of module "rf_rxt(SAMPLE_RATE=32'b00000001110101001100000000000000,BIT_RATE=32'b00000000000011110100001001000000)" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\rf_rxt.v":13)
 [5%] Running netlist conversion ...
-WARN  (CV0016) : Input rx_frame_in_p is unused("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v":8)
+WARN  (CV0016) : Input rx_frame_in_p is unused("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v":11)
 Running device independent optimization ...
 [10%] Optimizing Phase 0 completed
 [15%] Optimizing Phase 1 completed
@@ -148,7 +148,7 @@ Running technical mapping ...
 [80%] Tech-Mapping Phase 3 completed
 [90%] Tech-Mapping Phase 4 completed
 WARN  (NL0002) : The module "PLL_INIT" instantiated to "u_pll_init" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_pll_eth\gowin_pll_eth.v":52)
-WARN  (NL0002) : The module "DDS_II_Top" instantiated to "your_instance_name" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v":138)
+WARN  (NL0002) : The module "DDS_II_Top" instantiated to "your_instance_name" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v":141)
 WARN  (NL0002) : The module "~dds_ii_core.DDS_II_Top" instantiated to "u_dds_compiler_core" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\dds_ii\dds_ii.v":2515)
 WARN  (NL0002) : The module "~dds_lut_table.DDS_II_Top" instantiated to "u_dds_lut_table" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\dds_ii\dds_ii.v":2496)
 WARN  (NL0002) : The module "~rom_style.DDS_II_Top" instantiated to "U_rom_style" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\dds_ii\dds_ii.v":2496)

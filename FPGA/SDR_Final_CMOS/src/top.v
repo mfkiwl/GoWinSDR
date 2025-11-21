@@ -1,4 +1,7 @@
-    module top (
+    module top  #(
+    parameter                           SAMPLE_RATE = 32'd30720000 ,
+    parameter                           BIT_RATE    = 32'd1000000   
+)(
     input                               sys_clk                    ,
     input                               rst_n                      ,
 
@@ -142,8 +145,8 @@ reg                                     led_blink                  ;
     assign      reset       = 1'b1        ;
 
 
-localparam                              integer SYS_CLK_FREQ_HZ = 50_000_000;// adjust if sys_clk differs
-localparam                              integer TEST_CLK_FREQ_HZ = 200_000;
+localparam                              integer SYS_CLK_FREQ_HZ = 50_000_000;
+localparam                              integer TEST_CLK_FREQ_HZ = BIT_RATE / 5;
 localparam                              integer DIV_HALF = SYS_CLK_FREQ_HZ / (2 * TEST_CLK_FREQ_HZ);// toggle every DIV_HALF cycles
 
 reg                    [  31:0]         test_div_cnt               ;
@@ -175,8 +178,8 @@ wire                                    tx_data_valid              ;
 wire                                    tx_data_ready              ;
 
     rf_rxt #(
-    .SAMPLE_RATE                       (32'd30720000              ),
-    .BIT_RATE                          (32'd1000000               ) // 8Mbps for testing
+    .SAMPLE_RATE                       (SAMPLE_RATE               ),
+    .BIT_RATE                          (BIT_RATE                  ) // 8Mbps for testing
     ) u_rf_rxt (
     .clk                               (sys_clk                   ),
     .rst_n                             (rst_n                     ),
