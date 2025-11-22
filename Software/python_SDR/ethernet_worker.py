@@ -80,6 +80,13 @@ class EthernetWorker(QObject):
         self.ack_event = threading.Event()
         self.last_received_ack_seq = -1
 
+        # --- [!! 新增：视频组包缓存 !!] ---
+        # 结构: { frame_id: { 'chunks': {idx: data}, 'total': count, 'timestamp': time } }
+        self.video_reassembly_buffer = {}
+        # 用于发送端的帧计数器
+        self.tx_video_frame_id = 0
+        # -------------------------------
+
         # --- 接收方状态 (SR 修改) ---
         self.recv_base = 0  # 接收窗口基址
         self.recv_buffer = {}  # {seq_num: payload} 存储乱序到达的包
@@ -169,14 +176,87 @@ class EthernetWorker(QObject):
                                     while self.send_base < self.next_seq_num and self.send_base not in self.send_buffer:
                                         self.send_base += 1
                                 self.window_space_cv.notify_all()
+
                         continue
+
+
+                    # if prefix == PREFIX_VIDEO:
+                    #     image = QImage()
+                    #     if image.loadFromData(payload, "JPEG"):
+                    #         self.video_frame_ready.emit(image)
+                    #     else:
+                    #         self.log_received.emit(f"[UDP 警告] 收到损坏的视频包 (JPEG?)")
+                    #     continue
+
+                        # ... (在 _recv_loop 内部)
+
+                        # --- [!! 修改开始: 视频接收逻辑 !!] ---
+
+
+
                     if prefix == PREFIX_VIDEO:
-                        image = QImage()
-                        if image.loadFromData(payload, "JPEG"):
-                            self.video_frame_ready.emit(image)
-                        else:
-                            self.log_received.emit(f"[UDP 警告] 收到损坏的视频包 (JPEG?)")
+                        # 新协议头是 4 字节，HEADER_SIZE 是 5 字节 (Prefix+I)，这里我们手动解析
+                        # 上面 recv 已经把前 HEADER_SIZE 剥离了，但这不对，因为视频包头格式变了。
+                        # 修正逻辑：我们需要回溯一下 raw data 或者针对 video 做特殊解析。
+
+                        # 更简单的改法：利用 data_without_crc
+                        # data_without_crc = [0x01][FID][Idx][Total][Payload...]
+
+                        try:
+                            # 提取头部信息 (跳过 Prefix 0x01)
+                            # data_without_crc[0] 是 prefix
+                            vid_fid = data_without_crc[1]
+                            vid_idx = data_without_crc[2]
+                            vid_total = data_without_crc[3]
+                            vid_payload = data_without_crc[4:]  # 实际图像数据片段
+
+                            # 初始化该帧的缓存
+                            if vid_fid not in self.video_reassembly_buffer:
+                                self.video_reassembly_buffer[vid_fid] = {
+                                    'chunks': {},
+                                    'total': vid_total,
+                                    'ts': time.time()
+                                }
+
+                            # 存入分片
+                            self.video_reassembly_buffer[vid_fid]['chunks'][vid_idx] = vid_payload
+
+                            # 检查是否收齐
+                            current_frame = self.video_reassembly_buffer[vid_fid]
+                            if len(current_frame['chunks']) == vid_total:
+                                # 组装完整 JPEG
+                                full_jpeg = bytearray()
+                                for k in range(vid_total):
+                                    if k in current_frame['chunks']:
+                                        full_jpeg.extend(current_frame['chunks'][k])
+                                    else:
+                                        # 理论上 len 检查通过这步不会发生
+                                        raise ValueError("Missing chunk")
+
+                                # 解码并显示
+                                image = QImage()
+                                if image.loadFromData(full_jpeg, "JPEG"):
+                                    self.video_frame_ready.emit(image)
+                                    # self.log_received.emit(f"收到完整视频帧 ID={vid_fid}, Size={len(full_jpeg)}")
+
+                                # 清理已完成的帧和过期的旧帧 (简单的垃圾回收)
+                                del self.video_reassembly_buffer[vid_fid]
+
+                                # 清理超过 1 秒未收齐的旧帧
+                                now = time.time()
+                                expired_ids = [k for k, v in self.video_reassembly_buffer.items() if
+                                               now - v['ts'] > 1.0]
+                                for k in expired_ids:
+                                    del self.video_reassembly_buffer[k]
+
+                        except Exception as e:
+                            # pass # 视频允许偶尔错误
+                            print(f"视频组包错误: {e}")
+
                         continue
+                    # --- [!! 修改结束 !!] ---
+
+
                     if prefix == PREFIX_AUDIO_STREAM:
                         self.audio_chunk_received.emit(payload)
                         continue
@@ -587,16 +667,68 @@ class EthernetWorker(QObject):
     #     # --- [!! 修复结束 2 !!] ---
     #
     # --- [!! 关键修复 1 (Bug 214a27) !!] ---
+    # @pyqtSlot(bytes)
+    # def send_video_frame(self, jpeg_data: bytes):
+    #     """
+    #     [公共槽] 发送一个实时视频帧 (不可靠)
+    #     (不使用 self._lock)
+    #     """
+    #     if not self.fpga_addr:
+    #         return
+    #
+    # #     # 使用 PREFIX_VIDEO (0x01)，这是为视频保留的
+    # #     if not self._send_unreliable_payload(PREFIX_VIDEO, jpeg_data):
+    # #         pass  # 丢包, 忽略
     @pyqtSlot(bytes)
     def send_video_frame(self, jpeg_data: bytes):
         """
-        [公共槽] 发送一个实时视频帧 (不可靠)
-        (不使用 self._lock)
+        [修改版] 视频分包发送逻辑
+        协议头 (4 bytes): [0x01 (Prefix)] [Frame_ID] [Packet_Idx] [Total_Packets]
         """
         if not self.fpga_addr:
             return
 
-        # 使用 PREFIX_VIDEO (0x01)，这是为视频保留的
-        if not self._send_unreliable_payload(PREFIX_VIDEO, jpeg_data):
-            pass  # 丢包, 忽略
-    # --- [!! 修复结束 1 !!] ---
+        # FPGA 限制 1400，我们设定 Payload 为 1024，留足余量
+        MAX_PAYLOAD = 1024
+        total_len = len(jpeg_data)
+
+        # 计算总包数 (向上取整)
+        total_packets = (total_len + MAX_PAYLOAD - 1) // MAX_PAYLOAD
+
+        # 限制最大包数 (因为包头里 Total_Packets 只有 1 byte，最大 255)
+        if total_packets > 255:
+            print(f"[丢弃] 视频帧过大: {total_len} bytes (需要 {total_packets} 包 > 255)")
+            return
+
+        # 帧 ID 自增 (0-255 循环)
+        self.tx_video_frame_id = (self.tx_video_frame_id + 1) % 256
+        fid = self.tx_video_frame_id
+
+        # 循环发送每个分片
+        for i in range(total_packets):
+            start = i * MAX_PAYLOAD
+            end = min(start + MAX_PAYLOAD, total_len)
+            chunk = jpeg_data[start:end]
+
+            # 构建包头: Prefix(1) + FID(1) + Index(1) + Total(1)
+            # 1. 构建包内容: Prefix(1) + FID(1) + Index(1) + Total(1) + Data(...)
+            # 注意：这里 Prefix 是 0x01 (PREFIX_VIDEO)
+            header = struct.pack('!BBBB', 0x01, fid, i, total_packets)
+            data_without_crc = header + chunk
+            # --- [!! 核心修复 !!] ---
+            # 2. 计算 CRC32
+            crc = zlib.crc32(data_without_crc)
+
+            # 3. 拼接完整的带 CRC 的包
+            final_packet = data_without_crc + struct.pack('!I', crc)
+
+            # 这里的 send_udp_payload 会处理 socket 发送
+            # 视频允许丢包，所以我们不使用可靠重传 (Stop-and-Wait/SR)
+            # 4. 发送
+            self._send_udp_payload(final_packet)
+
+            # [重要] 微小延时，防止瞬间突发流量淹没 FPGA 的 2Mbps 带宽
+            # 1024 bytes * 8 bits = 8192 bits.
+            # 2Mbps = 2,000,000 bits/s.
+            # 理论最小间隔 ≈ 0.004s。设置为 0.002s 比较激进但流畅。
+            time.sleep(0.002)

@@ -9,10 +9,10 @@ from PyQt6.QtCore import QObject, pyqtSignal, QThread, pyqtSlot  # <-- 导入 py
 from PyQt6.QtGui import QImage
 
 # --- 视频流配置 ---
-FRAME_WIDTH = 640
-FRAME_HEIGHT = 480
-FPS_LIMIT = 20  # 限制帧率以节省带宽
-JPEG_QUALITY = 70  # 图像质量 (0-100)
+FRAME_WIDTH = 320
+FRAME_HEIGHT = 240
+FPS_LIMIT = 15  # 限制帧率以节省带宽
+JPEG_QUALITY = 50  # 图像质量 (0-100)
 
 
 class CameraWorker(QObject):
