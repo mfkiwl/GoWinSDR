@@ -12,10 +12,8 @@ from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
 from PyQt6.QtGui import QImage
 
 # --- [!! 核心修改：在这里设置你的P2P IP !!] ---
-# LAN_TARGET_IP = "192.168.43.192"
-# LAN_LISTEN_IP = "192.168.43.217"
-LAN_TARGET_IP = "127.0.0.1"
-LAN_LISTEN_IP = "127.0.0.1"
+LAN_TARGET_IP = "192.168.43.217"
+LAN_LISTEN_IP = "192.168.43.192"
 LAN_PORT = 32768
 # --- [!! 结束核心修改 !!] ---
 
@@ -37,12 +35,12 @@ RETRY_COUNT = 15
 ACK_TIMEOUT = 0.01
 
 # --- [!! SR 滑动窗口 (Selective Repeat) 新增常量 !!] ---
-WINDOW_SIZE = 10
-RELIABLE_TIMEOUT = 0.05
+WINDOW_SIZE = 128
+RELIABLE_TIMEOUT = 0.1
 SR_MAX_RETRIES = 15
 
 # --- [!! 發送速率 (Pacer) 新增常量 !!] ---
-MIN_SEND_INTERVAL = 0.005  # 每個數據包的最小發送間隔 (秒)
+MIN_SEND_INTERVAL = 0.00  # 每個數據包的最小發送間隔 (秒)
 
 
 # --- [!! 結束新增 !!] ---
@@ -81,14 +79,18 @@ class EthernetWorker(QObject):
         self.is_lan_mode = False
         self.ack_event = threading.Event()
         self.last_received_ack_seq = -1
-        self.recv_base = 0
-        self.recv_buffer = {}
-        self.recv_acked = set()
+
+        # --- 接收方状态 (SR 修改) ---
+        self.recv_base = 0  # 接收窗口基址
+        self.recv_buffer = {}  # {seq_num: payload} 存储乱序到达的包
+        self.recv_acked = set()  # 已确认的序列号集合
+
+        # --- SR (Selective Repeat) 发送方状态 ---
         self.send_base = 0
         self.next_seq_num = 0
-        self.send_buffer = {}
-        self.send_timers = {}
-        self.send_retry_count = {}
+        self.send_buffer = {}  # {seq_num: packet_bytes}
+        self.send_timers = {}  # {seq_num: Timer对象}
+        self.send_retry_count = {}  # {seq_num: 重传次数}
         self.sr_lock = threading.Lock()
         self.window_space_cv = threading.Condition(self.sr_lock)
         self.sr_transfer_active = False
@@ -124,14 +126,14 @@ class EthernetWorker(QObject):
             self.recv_acked.clear()
             self._running = True
             self._recv_thread = threading.Thread(
-                target=self._recv_loop, args=(local_listen_ip, local_listen_port), daemon=True
+                target = self._recv_loop, args = (local_listen_ip, local_listen_port), daemon = True
             )
             self._recv_thread.start()
         self.started.emit()
         # self.log_received.emit(f"UDP 正在监听 {local_listen_ip}:{local_listen_port}...")
 
     def _recv_loop(self, listen_ip, listen_port):
-        # (此方法保持不变)
+        # SR 接收逻辑
         try:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -179,8 +181,8 @@ class EthernetWorker(QObject):
                         self.audio_chunk_received.emit(payload)
                         continue
                     if seq_num < self.recv_base:
-                        self.log_received.emit(
-                            f"[UDP SR] 收到旧包 {seq_num} (窗口基址 {self.recv_base}), 重发 ACK")
+                        # self.log_received.emit(
+                        #     f"[UDP SR] 收到旧包 {seq_num} (窗口基址 {self.recv_base}), 重发 ACK")
                         self._send_ack(seq_num, addr)
                         continue
                     if seq_num >= self.recv_base + WINDOW_SIZE:
@@ -196,7 +198,15 @@ class EthernetWorker(QObject):
                         recv_prefix, recv_payload = self.recv_buffer.pop(self.recv_base)
                         self.recv_acked.remove(self.recv_base)
                         self._process_received_packet(recv_prefix, self.recv_base, recv_payload, addr)
-                        self.recv_base += 1
+                        # --- [!! 核心修复 !!] ---
+                        # 如果是文本包(0x00) 或 视频包(0x01)，因为它们重置了序列号或不使用SR流，
+                        # 所以不要让 recv_base 自增，否则窗口基址会变成 1，导致后续 SEQ=0 的包被拒收。
+                        # if recv_prefix == PREFIX_TEXT:
+                        #     self.recv_base = 0  # 确保保持为 0
+                        # else:
+                        self.recv_base += 1  # 只有文件/音频流数据才滑动窗口
+                        # -----------------------
+
                 except socket.timeout:
                     continue
                 except Exception as e:
@@ -224,10 +234,10 @@ class EthernetWorker(QObject):
                     self.log_received.emit(f"[UDP 消息]: {text_message}")
             except Exception:
                 self.log_received.emit(f"[UDP 警告] 收到无法解码的文本包")
-            self.recv_base = 0
-            self.recv_buffer.clear()
-            self.recv_acked.clear()
-            self.log_received.emit(f"[UDP 调试] 文本命令接收完成,序列号已重置")
+            # self.recv_base = 0
+            # self.recv_buffer.clear()
+            # self.recv_acked.clear()
+            # self.log_received.emit(f"[UDP 调试] 文本命令接收完成,序列号已重置")
         elif prefix == PREFIX_FILE_INFO:
             if not self.enable_file_reception:
                 return
@@ -242,9 +252,9 @@ class EthernetWorker(QObject):
             except Exception as e:
                 self.log_received.emit(f"[UDP 错误] 收到损坏的文件头: {e}")
                 self.is_receiving_file = False
-                self.recv_base = 0
-                self.recv_buffer.clear()
-                self.recv_acked.clear()
+                # self.recv_base = 0
+                # self.recv_buffer.clear()
+                # self.recv_acked.clear()
         elif prefix == PREFIX_FILE_DATA:
             if self.is_receiving_file:
                 self.file_buffer.extend(payload)
@@ -256,13 +266,13 @@ class EthernetWorker(QObject):
                     self.is_receiving_file = False
                     self.file_buffer.clear()
                     self.current_file_info.clear()
-                    self.recv_base = 0
-                    self.recv_buffer.clear()
-                    self.recv_acked.clear()
-                    self.log_received.emit(f"[UDP 调试] 文件接收完成,序列号已重置")
-                else:
-                    self.log_received.emit(
-                        f"[UDP 文件] (SEQ={seq_num}) 接收中... 已接收 {len(self.file_buffer)}/{self.current_file_info.get('size', -1)} 字节")
+                    # self.recv_base = 0
+                    # self.recv_buffer.clear()
+                    # self.recv_acked.clear()
+                    # self.log_received.emit(f"[UDP 调试] 文件接收完成,序列号已重置")
+                # else:
+                #     self.log_received.emit(
+                #         f"[UDP 文件] (SEQ={seq_num}) 接收中... 已接收 {len(self.file_buffer)}/{self.current_file_info.get('size', -1)} 字节")
             else:
                 self.log_received.emit(f"[UDP 警告] 收到文件数据 (SEQ={seq_num}),但未在接收文件状态")
         elif prefix == PREFIX_AUDIO_DATA:
@@ -271,12 +281,12 @@ class EthernetWorker(QObject):
             self.log_received.emit(f"[UDP 警告] 收到未知前缀的包: 0x{prefix.hex()}")
 
     def stop_listening(self):
-        # (此方法保持不变)
+        # (保持不变)
         self._running = False
         self.log_received.emit("停止请求已发送 -> 正在等待接收线程退出...")
 
     def set_file_reception_enabled(self, enabled: bool):
-        # (此方法保持不变)
+        # (保持不变)
         self.enable_file_reception = enabled
         if enabled:
             self.log_received.emit("文件接收已启用")
@@ -289,14 +299,18 @@ class EthernetWorker(QObject):
                 self.log_received.emit("[警告] 文件接收已中止")
 
     def _pack_data(self, prefix: bytes, seq_num: int, payload: bytes) -> bytes:
-        # (此方法保持不变)
+        # (保持不变)
         header = struct.pack(HEADER_FORMAT, prefix[0], seq_num)
         data_without_crc = header + payload
         crc = zlib.crc32(data_without_crc)
         return data_without_crc + struct.pack('!I', crc)
 
     def _send_udp_payload(self, raw_bytes: bytes) -> bool:
-        # (此方法保持不变)
+        """
+        [!! 重大修改: 添加 Pacer (速率控制器) !!]
+        這是所有數據包的底層發送函數。
+        ACK 包 (send_ack) 不會調用此函數。
+        """
         addr = self.fpga_addr
         if not addr:
             self.error_occurred.emit("发送失败: 目标地址未设置")
@@ -322,10 +336,6 @@ class EthernetWorker(QObject):
     def _send_ack(self, seq_num_to_ack: int, target_addr: tuple):
         # (此方法保持不变)
         ack_packet = self._pack_data(PREFIX_ACK, seq_num_to_ack, b'')
-        if self.is_lan_mode:
-            if random.random() < 0.05:  # 5% 概率
-                # self.log_received.emit("人为误码产生")
-                return
         try:
             if self.sock:
                 self.sock.sendto(ack_packet, target_addr)
@@ -335,17 +345,19 @@ class EthernetWorker(QObject):
     # --- (SR 辅助函数: _sr_start_timer, _sr_stop_timer, _sr_handle_timeout, _send_sr_stream 保持不变) ---
     def _sr_start_timer(self, seq_num):
         self._sr_stop_timer(seq_num)
-        timer = threading.Timer(RELIABLE_TIMEOUT, self._sr_handle_timeout, args=(seq_num,))
+        timer = threading.Timer(RELIABLE_TIMEOUT, self._sr_handle_timeout, args = (seq_num,))
         timer.daemon = True
         self.send_timers[seq_num] = timer
         timer.start()
 
     def _sr_stop_timer(self, seq_num):
+        """停止特定序列号的计时器"""
         if seq_num in self.send_timers:
             self.send_timers[seq_num].cancel()
             self.send_timers.pop(seq_num, None)
 
     def _sr_handle_timeout(self, seq_num):
+        """处理特定包的超时"""
         with self.sr_lock:
             if not self.sr_transfer_active:
                 return
@@ -361,8 +373,8 @@ class EthernetWorker(QObject):
                     self._sr_stop_timer(sn)
                 self.window_space_cv.notify_all()
                 return
-            self.log_received.emit(
-                f"[UDP SR 重传] 包 {seq_num} 超时! ({retry_count}/{SR_MAX_RETRIES}) 重传")
+            # self.log_received.emit(
+            #     f"[UDP SR 重传] 包 {seq_num} 超时! ({retry_count}/{SR_MAX_RETRIES}) 重传")
             packet = self.send_buffer.get(seq_num)
             if packet:
                 self._send_udp_payload(packet)
@@ -453,12 +465,14 @@ class EthernetWorker(QObject):
         return False
 
     def _send_unreliable_payload(self, prefix: bytes, payload: bytes) -> bool:
-        # (此方法保持不变)
+        """
+        (此方法保持不变, Pacer 將在 _send_udp_payload 中自動應用)
+        """
         packet = self._pack_data(prefix, 0, payload)
         return self._send_udp_payload(packet)
 
     def send_command(self, cmd_str: str):
-        # (此方法保持不变)
+        # (保持不变 - 停等协议)
         with self._lock:
             seq_num = 0
             payload = cmd_str.encode('utf-8')
@@ -470,7 +484,11 @@ class EthernetWorker(QObject):
                 self.log_received.emit(f"-> [UDP发送 文本]: {cmd_str} 失败")
 
     def send_file_udp(self, file_path: str):
-        # (此方法保持不变)
+        """
+        [!! SR !!]
+        1. 使用 "停等" (_send_reliable_payload) 发送文件头 (SEQ=0)
+        2. 使用 "SR" (_send_sr_stream) 发送文件数据 (SEQ=1...N)
+        """
         with self._lock:
             if not self.fpga_addr:
                 self.error_occurred.emit("发送失败: 目标地址未设置")
@@ -480,6 +498,8 @@ class EthernetWorker(QObject):
                 filename = os.path.basename(file_path)
                 self.log_received.emit(f"-> [UDP发送 文件]: {filename} ({file_size} 字节)")
                 start_time = time.time()
+
+                # --- 1. 发送文件头 (SEQ=0, 停等) ---
                 seq_num = 0
                 info_str = f"{filename}:{file_size}"
                 info_payload = info_str.encode('utf-8')
@@ -488,6 +508,8 @@ class EthernetWorker(QObject):
                     self.error_occurred.emit("文件头发送失败,未收到 ACK")
                     return
                 self.log_received.emit(f"-> [UDP发送 文件头] 完成")
+
+                # --- 2. 发送文件数据 (SEQ=1...N, SR) ---
 
                 def file_chunk_generator(f):
                     while True:
@@ -516,7 +538,10 @@ class EthernetWorker(QObject):
                 self.error_occurred.emit(f"文件发送失败: {e}")
 
     def send_audio_udp(self, audio_bytes: bytes):
-        # (此方法保持不变)
+        """
+        [!! SR !!]
+        1. 使用 "SR" (_send_sr_stream) 发送所有音频数据块 (SEQ=0...N)
+        """
         with self._lock:
             if not self.fpga_addr:
                 self.error_occurred.emit("发送失败: 目标地址未设置")
@@ -553,16 +578,14 @@ class EthernetWorker(QObject):
         """
         (不可靠的实时流发送)
         """
-        # --- [!! 关键修复 2 !!] ---
-        # 移除了 'with self._lock:'
-        # 这可以防止实时音频在文件传输期间被阻塞
-        if not self.fpga_addr:
-            return
+        with self._lock:
+            if not self.fpga_addr:
+                return
 
         if not self._send_unreliable_payload(PREFIX_AUDIO_STREAM, audio_data):
             pass
-        # --- [!! 修复结束 2 !!] ---
-
+    #     # --- [!! 修复结束 2 !!] ---
+    #
     # --- [!! 关键修复 1 (Bug 214a27) !!] ---
     @pyqtSlot(bytes)
     def send_video_frame(self, jpeg_data: bytes):
