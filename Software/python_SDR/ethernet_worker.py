@@ -234,9 +234,14 @@ class EthernetWorker(QObject):
                                         raise ValueError("Missing chunk")
 
                                 # 解码并显示
+                                # --- 修改后 (WebP) ---
                                 image = QImage()
-                                if image.loadFromData(full_jpeg, "JPEG"):
+                                # 将 "JPEG" 改为 "WEBP"，或者直接去掉第二个参数让 Qt 自动检测
+                                if image.loadFromData(full_jpeg, "WEBP"):
                                     self.video_frame_ready.emit(image)
+                                else:
+                                    # 如果解码失败，打印个日志方便调试
+                                    print(f"WebP 解码失败，数据长度: {len(full_jpeg)}")
                                     # self.log_received.emit(f"收到完整视频帧 ID={vid_fid}, Size={len(full_jpeg)}")
 
                                 # 清理已完成的帧和过期的旧帧 (简单的垃圾回收)

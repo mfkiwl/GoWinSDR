@@ -107,10 +107,10 @@ class CameraWorker(QObject):
                     self.frame_ready.emit(qt_image.copy())  # 发送 QImage (用 .copy() 确保线程安全)
 
                     # --- 3. 为网络发送准备 (编码为 JPEG) ---
-                    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY]
-                    ret, jpeg_buffer = cv2.imencode('.jpg', frame, encode_param)
+                    encode_param = [int(cv2.IMWRITE_WEBP_QUALITY), JPEG_QUALITY]
+                    ret, webp_buffer = cv2.imencode('.webp', frame, encode_param)
                     if ret:
-                        self.jpeg_bytes_ready.emit(jpeg_buffer.tobytes())  # 发送 bytes
+                        self.jpeg_bytes_ready.emit(webp_buffer.tobytes())  # 发送 bytes
 
                 except Exception as e:
                     if self._running:
