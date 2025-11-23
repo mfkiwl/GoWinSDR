@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="top" Register="34" Lut="54" T_Register="11093(34)" T_Alu="3547(0)" T_Lut="4219(54)" T_MULTALU27X18="6(0)" T_MULT12X12="88(0)" T_Bsram="75(0)">
+ <SubModule name="u_ad9363_dev_cmos"/>
+ <SubModule name="gw_gao_inst_0" Register="1319" Alu="15" Lut="699" Bsram="67" T_Register="1319(1319)" T_Alu="15(15)" T_Lut="699(699)" T_Bsram="67(67)"/>
+ <SubModule name="u_rf_rxt" Register="24" Lut="27" T_Register="8914(24)" T_Alu="3410(0)" T_Lut="2329(27)" T_MULTALU27X18="6(0)" T_MULT12X12="88(0)" T_Bsram="3(0)">
+  <SubModule name="rrc_i1" Register="2065" Alu="698" Lut="457" MULT12X12="21" T_Register="2065(2065)" T_Alu="698(698)" T_Lut="457(457)" T_MULT12X12="21(21)"/>
+  <SubModule name="rrc_q1" Register="2065" Alu="698" Lut="457" MULT12X12="21" T_Register="2065(2065)" T_Alu="698(698)" T_Lut="457(457)" T_MULT12X12="21(21)"/>
+  <SubModule name="costas_u0" Alu="75" Lut="25" T_Register="272(0)" T_Alu="197(75)" T_Lut="219(25)" T_MULT12X12="4(0)" T_Bsram="1(0)">
+   <SubModule name="dds_costas_u0" Register="206" Alu="50" Lut="151" Bsram="1" T_Register="206(206)" T_Alu="50(50)" T_Lut="151(151)" T_Bsram="1(1)"/>
+   <SubModule name="mul_u0" MULT12X12="1" T_MULT12X12="1(1)"/>
+   <SubModule name="mul_u1" MULT12X12="1" T_MULT12X12="1(1)"/>
+   <SubModule name="mul_u2" MULT12X12="1" T_MULT12X12="1(1)"/>
+   <SubModule name="mul_u3" MULT12X12="1" T_MULT12X12="1(1)"/>
+   <SubModule name="costas_loop_filter_inst" Register="66" Alu="72" Lut="43" T_Register="66(66)" T_Alu="72(72)" T_Lut="43(43)"/>
+  </SubModule>
+  <SubModule name="gardner_sync_u0" T_Register="242(0)" T_Alu="409(0)" T_Lut="154(0)" T_MULTALU27X18="6(0)">
+   <SubModule name="interpolate_filter_inst" Register="112" Alu="276" T_Register="112(112)" T_Alu="276(276)" T_MULTALU27X18="6(0)">
+    <SubModule name="mult_interploate_f1_1_I" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+    <SubModule name="mult_interploate_f1_2_I" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+    <SubModule name="mult_interploate_f2_1_I" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+    <SubModule name="mult_interploate_f1_1_Q" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+    <SubModule name="mult_interploate_f1_2_Q" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+    <SubModule name="mult_interploate_f2_1_Q" MULTALU27X18="1" T_MULTALU27X18="1(1)"/>
+   </SubModule>
+   <SubModule name="gardner_ted_inst" Register="97" Alu="116" Lut="152" T_Register="97(97)" T_Alu="116(116)" T_Lut="152(152)"/>
+   <SubModule name="nco_inst" Register="33" Alu="17" Lut="2" T_Register="33(33)" T_Alu="17(17)" T_Lut="2(2)"/>
+  </SubModule>
+  <SubModule name="rrc_i" Register="2065" Alu="698" Lut="457" MULT12X12="21" T_Register="2065(2065)" T_Alu="698(698)" T_Lut="457(457)" T_MULT12X12="21(21)"/>
+  <SubModule name="rrc_q" Register="2065" Alu="698" Lut="457" MULT12X12="21" T_Register="2065(2065)" T_Alu="698(698)" T_Lut="457(457)" T_MULT12X12="21(21)"/>
+  <SubModule name="fifo_tx_u0" Register="107" Alu="12" Lut="96" Bsram="2" T_Register="107(107)" T_Alu="12(12)" T_Lut="96(96)" T_Bsram="2(2)"/>
+  <SubModule name="qpsk_diff_encoder_u0" Register="4" Lut="3" T_Register="4(4)" T_Lut="3(3)"/>
+  <SubModule name="qpsk_diff_decoder_u0" Register="5" Lut="2" T_Register="5(5)" T_Lut="2(2)"/>
+ </SubModule>
+ <SubModule name="eth_inst" Register="417" Alu="98" Lut="616" Bsram="1" T_Register="449(417)" T_Alu="98(98)" T_Lut="685(616)" T_Bsram="1(1)">
+  <SubModule name="pll_inst">
+   <SubModule name="u_pll"/>
+  </SubModule>
+  <SubModule name="crc_inst" Register="32" Lut="69" T_Register="32(32)" T_Lut="69(69)"/>
+  <SubModule name="gmii2rgmii_inst"/>
+ </SubModule>
+ <SubModule name="u_rf_data_processor" Register="65" Lut="101" T_Register="169(65)" T_Alu="12(0)" T_Lut="187(101)" T_Bsram="2(0)">
+  <SubModule name="fifo_eth_rx_u0" Register="104" Alu="12" Lut="86" Bsram="2" T_Register="104(104)" T_Alu="12(12)" T_Lut="86(86)" T_Bsram="2(2)"/>
+ </SubModule>
+ <SubModule name="u_rf_data_depacketizer" Register="104" Lut="179" T_Register="208(104)" T_Alu="12(0)" T_Lut="265(179)" T_Bsram="2(0)">
+  <SubModule name="fifo_eth_tx_u0" Register="104" Alu="12" Lut="86" Bsram="2" T_Register="104(104)" T_Alu="12(12)" T_Lut="86(86)" T_Bsram="2(2)"/>
+ </SubModule>
+</Module>

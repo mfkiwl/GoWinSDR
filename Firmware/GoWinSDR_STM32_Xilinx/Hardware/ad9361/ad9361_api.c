@@ -84,7 +84,7 @@ int32_t ad9361_init (struct ad9361_rf_phy **ad9361_phy, AD9361_InitParam *init_p
 		return -ENOMEM;
 	}
 
-	phy->spi = &hspi1;
+	phy->spi = &hspi2;
 
 	phy->clk_refin = (struct clk *)zmalloc(sizeof(*phy->clk_refin));
 	if (!phy->clk_refin) {

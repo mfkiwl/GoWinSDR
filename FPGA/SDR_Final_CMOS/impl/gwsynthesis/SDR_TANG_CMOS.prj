@@ -4,9 +4,12 @@
     <Version>beta</Version>
     <Device id="GW5AT-60B" package="PBGA484A" speed="1" partNumber="GW5AT-LV60PG484AC1/I0"/>
     <FileList>
+        <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\FIR_Calib\advanced_fir_filter.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\ad9363_dev_cmos.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\advanced_fir_filter\advanced_fir_filter.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\arp_responder.v" type="verilog"/>
+        <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\calibration.v" type="verilog"/>
+        <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\com_fpga.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\costas.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\costas_loop_filter.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\crc.v" type="verilog"/>
@@ -40,6 +43,7 @@
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\sys_pll\sys_pll.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\sys_pll\sys_pll_mod.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v" type="verilog"/>
+        <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\integer_division\integer_division.v" type="verilog"/>
         <File path="E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_crc32.v" type="gao"/>
         <File path="E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v" type="gao"/>
         <File path="E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v" type="gao"/>

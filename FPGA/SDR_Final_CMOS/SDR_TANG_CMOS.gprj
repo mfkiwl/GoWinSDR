@@ -5,9 +5,12 @@
     <Version>5</Version>
     <Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device>
     <FileList>
+        <File path="src/FIR_Calib/advanced_fir_filter.v" type="file.verilog" enable="1"/>
         <File path="src/ad9363_dev_cmos.v" type="file.verilog" enable="1"/>
         <File path="src/advanced_fir_filter/advanced_fir_filter.v" type="file.verilog" enable="1"/>
         <File path="src/arp_responder.v" type="file.verilog" enable="1"/>
+        <File path="src/calibration.v" type="file.verilog" enable="1"/>
+        <File path="src/com_fpga.v" type="file.verilog" enable="1"/>
         <File path="src/costas.v" type="file.verilog" enable="1"/>
         <File path="src/costas_loop_filter.v" type="file.verilog" enable="1"/>
         <File path="src/crc.v" type="file.verilog" enable="1"/>
@@ -31,6 +34,7 @@
         <File path="src/gowin_pll/gowin_pll_mod.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pll_eth/gowin_pll_eth.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pll_eth/gowin_pll_eth_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/integer_division/integer_division.v" type="file.verilog" enable="1"/>
         <File path="src/interpolate_filter.v" type="file.verilog" enable="1"/>
         <File path="src/nco.v" type="file.verilog" enable="1"/>
         <File path="src/phase_detector.v" type="file.verilog" enable="1"/>

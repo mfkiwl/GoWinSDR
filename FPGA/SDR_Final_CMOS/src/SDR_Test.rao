@@ -277,6 +277,101 @@
                 <Signal>u_rf_rxt/costas_u0/dds_sin[1]</Signal>
                 <Signal>u_rf_rxt/costas_u0/dds_sin[0]</Signal>
             </Bus>
+            <Bus capture_enable="true" name="u_calibration/envelop[11:0]">
+                <Signal>u_calibration/envelop[11]</Signal>
+                <Signal>u_calibration/envelop[10]</Signal>
+                <Signal>u_calibration/envelop[9]</Signal>
+                <Signal>u_calibration/envelop[8]</Signal>
+                <Signal>u_calibration/envelop[7]</Signal>
+                <Signal>u_calibration/envelop[6]</Signal>
+                <Signal>u_calibration/envelop[5]</Signal>
+                <Signal>u_calibration/envelop[4]</Signal>
+                <Signal>u_calibration/envelop[3]</Signal>
+                <Signal>u_calibration/envelop[2]</Signal>
+                <Signal>u_calibration/envelop[1]</Signal>
+                <Signal>u_calibration/envelop[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_calibration/freq_out[16:0]">
+                <Signal>u_calibration/freq_out[16]</Signal>
+                <Signal>u_calibration/freq_out[15]</Signal>
+                <Signal>u_calibration/freq_out[14]</Signal>
+                <Signal>u_calibration/freq_out[13]</Signal>
+                <Signal>u_calibration/freq_out[12]</Signal>
+                <Signal>u_calibration/freq_out[11]</Signal>
+                <Signal>u_calibration/freq_out[10]</Signal>
+                <Signal>u_calibration/freq_out[9]</Signal>
+                <Signal>u_calibration/freq_out[8]</Signal>
+                <Signal>u_calibration/freq_out[7]</Signal>
+                <Signal>u_calibration/freq_out[6]</Signal>
+                <Signal>u_calibration/freq_out[5]</Signal>
+                <Signal>u_calibration/freq_out[4]</Signal>
+                <Signal>u_calibration/freq_out[3]</Signal>
+                <Signal>u_calibration/freq_out[2]</Signal>
+                <Signal>u_calibration/freq_out[1]</Signal>
+                <Signal>u_calibration/freq_out[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_calibration/cal_data_out[7:0]">
+                <Signal>u_calibration/cal_data_out[7]</Signal>
+                <Signal>u_calibration/cal_data_out[6]</Signal>
+                <Signal>u_calibration/cal_data_out[5]</Signal>
+                <Signal>u_calibration/cal_data_out[4]</Signal>
+                <Signal>u_calibration/cal_data_out[3]</Signal>
+                <Signal>u_calibration/cal_data_out[2]</Signal>
+                <Signal>u_calibration/cal_data_out[1]</Signal>
+                <Signal>u_calibration/cal_data_out[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_calibration/dut/state[1:0]">
+                <Signal>u_calibration/dut/state[1]</Signal>
+                <Signal>u_calibration/dut/state[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_calibration/dut/average[11:0]">
+                <Signal>u_calibration/dut/average[11]</Signal>
+                <Signal>u_calibration/dut/average[10]</Signal>
+                <Signal>u_calibration/dut/average[9]</Signal>
+                <Signal>u_calibration/dut/average[8]</Signal>
+                <Signal>u_calibration/dut/average[7]</Signal>
+                <Signal>u_calibration/dut/average[6]</Signal>
+                <Signal>u_calibration/dut/average[5]</Signal>
+                <Signal>u_calibration/dut/average[4]</Signal>
+                <Signal>u_calibration/dut/average[3]</Signal>
+                <Signal>u_calibration/dut/average[2]</Signal>
+                <Signal>u_calibration/dut/average[1]</Signal>
+                <Signal>u_calibration/dut/average[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_calibration/dut/period_count[31:0]">
+                <Signal>u_calibration/dut/period_count[31]</Signal>
+                <Signal>u_calibration/dut/period_count[30]</Signal>
+                <Signal>u_calibration/dut/period_count[29]</Signal>
+                <Signal>u_calibration/dut/period_count[28]</Signal>
+                <Signal>u_calibration/dut/period_count[27]</Signal>
+                <Signal>u_calibration/dut/period_count[26]</Signal>
+                <Signal>u_calibration/dut/period_count[25]</Signal>
+                <Signal>u_calibration/dut/period_count[24]</Signal>
+                <Signal>u_calibration/dut/period_count[23]</Signal>
+                <Signal>u_calibration/dut/period_count[22]</Signal>
+                <Signal>u_calibration/dut/period_count[21]</Signal>
+                <Signal>u_calibration/dut/period_count[20]</Signal>
+                <Signal>u_calibration/dut/period_count[19]</Signal>
+                <Signal>u_calibration/dut/period_count[18]</Signal>
+                <Signal>u_calibration/dut/period_count[17]</Signal>
+                <Signal>u_calibration/dut/period_count[16]</Signal>
+                <Signal>u_calibration/dut/period_count[15]</Signal>
+                <Signal>u_calibration/dut/period_count[14]</Signal>
+                <Signal>u_calibration/dut/period_count[13]</Signal>
+                <Signal>u_calibration/dut/period_count[12]</Signal>
+                <Signal>u_calibration/dut/period_count[11]</Signal>
+                <Signal>u_calibration/dut/period_count[10]</Signal>
+                <Signal>u_calibration/dut/period_count[9]</Signal>
+                <Signal>u_calibration/dut/period_count[8]</Signal>
+                <Signal>u_calibration/dut/period_count[7]</Signal>
+                <Signal>u_calibration/dut/period_count[6]</Signal>
+                <Signal>u_calibration/dut/period_count[5]</Signal>
+                <Signal>u_calibration/dut/period_count[4]</Signal>
+                <Signal>u_calibration/dut/period_count[3]</Signal>
+                <Signal>u_calibration/dut/period_count[2]</Signal>
+                <Signal>u_calibration/dut/period_count[1]</Signal>
+                <Signal>u_calibration/dut/period_count[0]</Signal>
+            </Bus>
         </SignalList>
         <Triggers>
             <Trigger index="0">
@@ -346,5 +441,5 @@
             <Expression>M2</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>0111110010011110</GAO_ID>
+    <GAO_ID>1101001101100001</GAO_ID>
 </GAO_CONFIG>

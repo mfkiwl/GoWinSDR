@@ -112,7 +112,7 @@ AD9361_InitParam default_init_param = {
 	0,		//ensm_enable_pin_pulse_mode_enable *** adi,ensm-enable-pin-pulse-mode-enable
 	0,		//ensm_enable_txnrx_control_enable *** adi,ensm-enable-txnrx-control-enable
 	/* LO Control */
-	2400000000UL,	//rx_synthesizer_frequency_hz *** adi,rx-synthesizer-frequency-hz
+	2400005000UL,	//rx_synthesizer_frequency_hz *** adi,rx-synthesizer-frequency-hz
 	2400000000UL,	//tx_synthesizer_frequency_hz *** adi,tx-synthesizer-frequency-hz
 	/* Rate & BW Control */
 	{983040000, 245760000, 122880000, 61440000, 30720000, 30720000},//uint32_t	rx_path_clock_frequencies[6] *** adi,rx-path-clock-frequencies
@@ -399,8 +399,8 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_SPI1_Init();
   MX_USART1_UART_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
   HAL_GPIO_WritePin(RST_FPGA_GPIO_Port, RST_FPGA_Pin, GPIO_PIN_RESET);
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
@@ -445,18 +445,18 @@ int main(void)
 
 
 	// uint8_t tx_ctrl = ad9361_spi_read(ad9361_phy->spi, 0x002);
-	// tx_ctrl = (tx_ctrl & 0xFC) | 0x01;  // 设置bit[1:0]=01，使能FIR+1x插值
+	// tx_ctrl = (tx_ctrl & 0xFC) | 0x01;  // 设置bit[1:0]=01，使能FIR+1x插�??
 	// ad9361_spi_write(ad9361_phy->spi, 0x002, tx_ctrl);
 	// printf("TX Ctrl after FIR enable: 0x%02X\n", ad9361_spi_read(ad9361_phy->spi, 0x002));
 
 	// uint32_t ensm_state;
 	// ad9361_get_en_state_machine_mode(ad9361_phy, &ensm_state);
-	// printf("ENSM状态: %u (FDD=%d)\n", ensm_state, ENSM_MODE_FDD);
+	// printf("ENSM状�??: %u (FDD=%d)\n", ensm_state, ENSM_MODE_FDD);
 
 	// ad9361_set_en_state_machine_mode(ad9361_phy, ENSM_MODE_TX);
 
 	// ad9361_get_en_state_machine_mode(ad9361_phy, &ensm_state);
-	// printf("ENSM状态: %u (FDD=%d)\n", ensm_state, ENSM_MODE_FDD);
+	// printf("ENSM状�??: %u (FDD=%d)\n", ensm_state, ENSM_MODE_FDD);
 
 	int32_t tx_gain = 0;  
 	ad9361_set_tx_attenuation(ad9361_phy, 0, tx_gain);
@@ -465,7 +465,7 @@ int main(void)
 	ad9361_set_tx_rf_port_output(ad9361_phy, 0);
 
 
-	// 3. 读取关键状态
+	// 3. 读取关键状�??
 	uint8_t ensm = ad9361_spi_read(ad9361_phy->spi, 0x017);
 	uint8_t tx_ctrl = ad9361_spi_read(ad9361_phy->spi, 0x002);
 	uint8_t pll = ad9361_spi_read(ad9361_phy->spi, 0x247);
@@ -480,7 +480,7 @@ int main(void)
 	// ad9361_set_rx_rf_port_input(ad9361_phy, 0);
 	// ad9361_set_rx_rf_gain(ad9361_phy, 0, 10); // 10 dB
 
-	/* USER CODE END 2 */
+  /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
@@ -520,8 +520,6 @@ int main(void)
   }
   /* USER CODE END 3 */
 }
-
-
 
 /**
   * @brief System Clock Configuration

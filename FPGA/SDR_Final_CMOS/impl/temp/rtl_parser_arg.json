@@ -2,6 +2,10 @@
  "Device" : "GW5AT-60B",
  "Files" : [
   {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/FIR_Calib/advanced_fir_filter.v",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/ad9363_dev_cmos.v",
    "Type" : "verilog"
   },
@@ -11,6 +15,14 @@
   },
   {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/arp_responder.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/calibration.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/com_fpga.v",
    "Type" : "verilog"
   },
   {
@@ -143,6 +155,10 @@
   },
   {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/top.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/integer_division/integer_division.v",
    "Type" : "verilog"
   }
  ],

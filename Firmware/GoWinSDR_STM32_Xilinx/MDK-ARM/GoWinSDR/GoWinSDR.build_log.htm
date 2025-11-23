@@ -22,26 +22,12 @@ Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 D:\Code\git\GoWinSDR\Firmware\GoWinSDR_STM32_Xilinx\MDK-ARM\GoWinSDR.uvprojx
-Project File Date:  10/10/2025
+Project File Date:  11/23/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\Hardware\MDK\Core\ARM\ARMCC\Bin'
-Rebuild target 'GoWinSDR'
+Build target 'GoWinSDR'
 Note: source file '..\Hardware\ad9361\main.c' - object file renamed from 'GoWinSDR\main.o' to 'GoWinSDR\main_1.o'.
-assembling startup_stm32f411xe.s...
-compiling gpio.c...
-compiling usart.c...
-compiling stm32f4xx_hal_rcc.c...
-compiling stm32f4xx_it.c...
-compiling stm32f4xx_hal_flash.c...
-compiling stm32f4xx_hal_msp.c...
-compiling stm32f4xx_hal_rcc_ex.c...
-compiling stm32f4xx_hal_flash_ramfunc.c...
-compiling spi.c...
-compiling stm32f4xx_hal_flash_ex.c...
-compiling stm32f4xx_hal_gpio.c...
-compiling stm32f4xx_hal_spi.c...
-compiling stm32f4xx_hal_dma_ex.c...
 compiling main.c...
 ../Hardware/api/api.h(10): warning:  #1-D: last line of file ends without a newline
   #endif // API_H
@@ -49,115 +35,11 @@ compiling main.c...
   #endif /* __SOFT_SPI_H */
 ../Hardware/ad9361/command.h(45): warning:  #47-D: incompatible redefinition of macro "NULL"  (declared at line 72 of "E:\Hardware\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h")
   #define NULL		((void *)0)
-../Core/Src/main.c(605): warning:  #1-D: last line of file ends without a newline
-  #endif /* USE_FULL_ASSERT */
-../Core/Src/main.c: 4 warnings, 0 errors
-compiling stm32f4xx_hal_dma.c...
-compiling stm32f4xx_hal_pwr.c...
-compiling stm32f4xx_hal_pwr_ex.c...
-compiling stm32f4xx_hal_tim.c...
-compiling stm32f4xx_hal_tim_ex.c...
-compiling stm32f4xx_hal_exti.c...
-compiling stm32f4xx_hal_cortex.c...
-compiling stm32f4xx_hal.c...
-compiling system_stm32f4xx.c...
-compiling main.c...
-compiling com_fpga.c...
-compiling stm32f4xx_hal_uart.c...
-compiling adc_core.c...
-../Hardware/api/api.h(10): warning:  #1-D: last line of file ends without a newline
-  #endif // API_H
-..\Hardware\ad9361\adc_core.c(235): warning:  #61-D: integer operation result is out of range
-  		tmp &= ~ADC_IQCOR_COEFF_1(~0);
-..\Hardware\ad9361\adc_core.c: 2 warnings, 0 errors
-compiling ad9361_conv.c...
-../Hardware/api/api.h(10): warning:  #1-D: last line of file ends without a newline
-  #endif // API_H
-../Hardware/api/softspi.h(53): warning:  #1-D: last line of file ends without a newline
-  #endif /* __SOFT_SPI_H */
-..\Hardware\ad9361\ad9361_conv.c(543): warning:  #188-D: enumerated type mixed with another type
-  		axiadc_read(st, 0x0004)) ? 0 : 61440000, flags);
-..\Hardware\ad9361\ad9361_conv.c(549): warning:  #188-D: enumerated type mixed with another type
-..\Hardware\ad9361\ad9361_conv.c: 4 warnings, 0 errors
-compiling ad9361_api.c...
-../Hardware/api/api.h(10): warning:  #1-D: last line of file ends without a newline
-  #endif // API_H
-../Hardware/api/softspi.h(53): warning:  #1-D: last line of file ends without a newline
-  #endif /* __SOFT_SPI_H */
-..\Hardware\ad9361\ad9361_api.c(782): warning:  #187-D: use of "=" where "==" may have been intended
-  	if ((phy->dev_sel == ID_AD9363A) && (int_ext = EXT_LO)) {
-..\Hardware\ad9361\ad9361_api.c(1442): warning:  #187-D: use of "=" where "==" may have been intended
-  	if ((phy->dev_sel == ID_AD9363A) && (int_ext = EXT_LO)) {
-..\Hardware\ad9361\ad9361_api.c(1523): warning:  #68-D: integer conversion resulted in a change of sign
-  	fir_cfg->tx_gain = -6 * (fir_conf & TX_FIR_GAIN_6DB);
-..\Hardware\ad9361\ad9361_api.c: 5 warnings, 0 errors
-compiling console.c...
-compiling api.c...
-..\Hardware\api\api.h(10): warning:  #1-D: last line of file ends without a newline
-  #endif // API_H
-..\Hardware\api\api.c(19): warning:  #1-D: last line of file ends without a newline
-  }
-..\Hardware\api\api.c: 2 warnings, 0 errors
-compiling com_debug.c...
-..\Hardware\api\com_debug.c(12): warning:  #1-D: last line of file ends without a newline
-  }
-..\Hardware\api\com_debug.c: 1 warning, 0 errors
-compiling command.c...
-../Hardware/api/api.h(10): warning:  #1-D: last line of file ends without a newline
-  #endif // API_H
-..\Hardware\ad9361\command.c: 1 warning, 0 errors
-compiling softspi.c...
-..\Hardware\api\softspi.h(53): warning:  #1-D: last line of file ends without a newline
-  #endif /* __SOFT_SPI_H */
-..\Hardware\api\softspi.c: 1 warning, 0 errors
-compiling dac_core.c...
-../Hardware/api/api.h(10): warning:  #1-D: last line of file ends without a newline
-  #endif // API_H
-..\Hardware\ad9361\dac_core.c(347): warning:  #61-D: integer operation result is out of range
-  	reg &= ~DAC_DDS_INIT(~0);
-..\Hardware\ad9361\dac_core.c(586): warning:  #61-D: integer operation result is out of range
-  		reg &= ~DAC_IQCOR_COEFF_1(~0);
-..\Hardware\ad9361\dac_core.c: 3 warnings, 0 errors
-compiling platform.c...
-../Hardware/api/api.h(10): warning:  #1-D: last line of file ends without a newline
-  #endif // API_H
-../Hardware/api/softspi.h(53): warning:  #1-D: last line of file ends without a newline
-  #endif /* __SOFT_SPI_H */
-..\Hardware\ad9361\platform.c: 2 warnings, 0 errors
-compiling util.c...
-../Hardware/api/api.h(10): warning:  #1-D: last line of file ends without a newline
-  #endif // API_H
-../Hardware/api/softspi.h(53): warning:  #1-D: last line of file ends without a newline
-  #endif /* __SOFT_SPI_H */
-..\Hardware\ad9361\util.c: 2 warnings, 0 errors
-compiling ad9361.c...
-../Hardware/api/api.h(10): warning:  #1-D: last line of file ends without a newline
-  #endif // API_H
-../Hardware/api/softspi.h(53): warning:  #1-D: last line of file ends without a newline
-  #endif /* __SOFT_SPI_H */
-..\Hardware\ad9361\ad9361.c(2332): warning:  #68-D: integer conversion resulted in a change of sign
-  	tmp = -50000000 + 8ULL * scale_snr_1e3 * sqrt_inv_rc_tconst_1e3 *
-..\Hardware\ad9361\ad9361.c(2342): warning:  #68-D: integer conversion resulted in a change of sign
-  	tmp = (-500000 + 77ULL * sqrt_inv_rc_tconst_1e3 * min_sqrt_term_1e3);
-..\Hardware\ad9361\ad9361.c(2351): warning:  #68-D: integer conversion resulted in a change of sign
-  	data[12] = min_t(uint32_t, 127U, (-500000 + 80 * sqrt_inv_rc_tconst_1e3 *
-..\Hardware\ad9361\ad9361.c(2351): warning:  #68-D: integer conversion resulted in a change of sign
-  	data[12] = min_t(uint32_t, 127U, (-500000 + 80 * sqrt_inv_rc_tconst_1e3 *
-..\Hardware\ad9361\ad9361.c(3866): warning:  #111-D: statement is unreachable
-  	return 0;
-..\Hardware\ad9361\ad9361.c(4498): warning:  #68-D: integer conversion resulted in a change of sign
-  				tmp = (dac_rate / adc_rate) * -1;
-..\Hardware\ad9361\ad9361.c(5444): warning:  #111-D: statement is unreachable
-  	dev_dbg(&phy->spi->dev, "%s: TAPS %"PRIu32", dest %d",
-..\Hardware\ad9361\ad9361.c(5601): warning:  #1293-D: assignment in condition
-  	while ((line = strsep(&ptr, "\n"))) {
-..\Hardware\ad9361\ad9361.c(6464): warning:  #68-D: integer conversion resulted in a change of sign
-  		return -EINVAL;
-..\Hardware\ad9361\ad9361.c: 11 warnings, 0 errors
+../Core/Src/main.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=51966 RO-data=11058 RW-data=2072 ZI-data=5592  
+Program Size: Code=51842 RO-data=11102 RW-data=2088 ZI-data=5592  
 FromELF: creating hex file...
-"GoWinSDR\GoWinSDR.axf" - 0 Error(s), 38 Warning(s).
+"GoWinSDR\GoWinSDR.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -181,7 +63,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE@5.6.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:08
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

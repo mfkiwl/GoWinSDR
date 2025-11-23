@@ -44,6 +44,7 @@
 #include "console.h"
 #include "ad9361_api.h"
 #include "dac_core.h"
+#include "com_fpga.h"
 
 /******************************************************************************/
 /************************ Constants Definitions *******************************/
@@ -103,6 +104,7 @@ command cmd_list[] = {
 	{"dds_tx2_tone1_scale=", "Sets the DDS TX2 Tone 1 scale.", "", set_dds_tx2_tone1_scale},
 	{"dds_tx2_tone2_scale?", "Gets current DDS TX2 Tone 2 scale.", "", dds_tx2_tone2_scale},
 	{"dds_tx2_tone2_scale=", "Sets the DDS TX2 Tone 2 scale.", "", set_dds_tx2_tone2_scale},
+	{"calibration?", "Calibrate the Lo Freq diff.","", lo_diff_cal},
 };
 const char cmd_no = (sizeof(cmd_list) / sizeof(command));
 
@@ -1008,3 +1010,22 @@ void set_dds_tx2_tone2_scale(double* param, char param_no)	// dds_tx2_tone2_scal
 	else
 		show_invalid_param_message(1);
 }
+
+
+
+void lo_diff_cal(double* param, char param_no)
+{
+	console_print("Calibration Start!\n");
+	
+	uint32_t freq_err = QueryDataFromFPGA_Polling();
+	console_print("Current Frequency Error:%d Hz\n", freq_err);
+	
+	uint64_t lo_freq_hz;
+
+	// ad9361_get_rx_lo_freq(ad9361_phy, &lo_freq_hz);
+	
+
+	// ad9361_set_rx_lo_freq(ad9361_phy, lo_freq_hz);
+
+}
+

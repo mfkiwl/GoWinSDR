@@ -46,3 +46,5 @@ gowinsdr\command.o: ../Hardware/api/api.h
 gowinsdr\command.o: ../Core/Inc/spi.h
 gowinsdr\command.o: ..\Hardware\ad9361\config.h
 gowinsdr\command.o: ..\Hardware\ad9361\dac_core.h
+gowinsdr\command.o: ../Hardware/api/com_fpga.h
+gowinsdr\command.o: E:\Hardware\MDK\Core\ARM\ARMCC\Bin\..\include\stdarg.h
