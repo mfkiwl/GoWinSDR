@@ -229,4 +229,8 @@ void get_lo_diff(double* param, char param_no);
 
 void cal_lo_diff(double* param, char param_no);
 
+void rx_lo_up(double* param, char param_no);
+
+void rx_lo_down(double* param, char param_no);
+
 #endif  // __COMMAND_H__

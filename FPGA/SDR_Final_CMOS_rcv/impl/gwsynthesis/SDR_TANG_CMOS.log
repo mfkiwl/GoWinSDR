@@ -127,10 +127,10 @@ Compiling module 'calibration'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src
 Compiling module 'FIR_Calib'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\FIR_Calib\advanced_fir_filter.v":30028)
 Compiling module '**'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\FIR_Calib\advanced_fir_filter.v":30027)
 Compiling module 'sine_frequency_meter'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\calibration.v":62)
-WARN  (EX3791) : Expression size 17 truncated to fit in target size 16("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\calibration.v":88)
-WARN  (EX3791) : Expression size 16 truncated to fit in target size 12("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\calibration.v":91)
-WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\calibration.v":131)
-WARN  (EX3791) : Expression size 31 truncated to fit in target size 24("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\calibration.v":135)
+WARN  (EX3791) : Expression size 27 truncated to fit in target size 26("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\calibration.v":88)
+WARN  (EX3791) : Expression size 22 truncated to fit in target size 12("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\calibration.v":91)
+WARN  (EX3791) : Expression size 31 truncated to fit in target size 24("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\calibration.v":141)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\calibration.v":152)
 Compiling module 'Integer_Division'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\integer_division\integer_division.v":6332)
 Compiling module '**'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\integer_division\integer_division.v":6331)
 Compiling module 'data_sender_24bit'("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\com_fpga.v":1)
@@ -164,15 +164,6 @@ Running technical mapping ...
 [65%] Tech-Mapping Phase 1 completed
 [75%] Tech-Mapping Phase 2 completed
 [80%] Tech-Mapping Phase 3 completed
+GowinSynthesis has been stopped
 [90%] Tech-Mapping Phase 4 completed
-WARN  (NL0002) : The module "PLL_INIT" instantiated to "u_pll_init" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\gowin_pll_eth\gowin_pll_eth.v":52)
-WARN  (NL0002) : The module "(non_restoring_division)/(Integer_Division)(K=32)_30" instantiated to "gen_non_restoring[31].non_restoring_division_inst" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\integer_division\integer_division.v":6331)
-WARN  (NL0002) : The module "DDS_II_Top" instantiated to "your_instance_name" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\top.v":147)
-WARN  (NL0002) : The module "~dds_ii_core.DDS_II_Top" instantiated to "u_dds_compiler_core" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\dds_ii\dds_ii.v":2515)
-WARN  (NL0002) : The module "~dds_lut_table.DDS_II_Top" instantiated to "u_dds_lut_table" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\dds_ii\dds_ii.v":2496)
-WARN  (NL0002) : The module "~rom_style.DDS_II_Top" instantiated to "U_rom_style" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\dds_ii\dds_ii.v":2496)
-WARN  (NL0002) : The module "~dds_pha_cfg.DDS_II_Top" instantiated to "u_dds_pha_cfg" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\dds_ii\dds_ii.v":2496)
-WARN  (NL0002) : The module "~dds_pha_gen.DDS_II_Top" instantiated to "u_dds_pha_gen" is swept in optimizing("D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\src\dds_ii\dds_ii.v":2496)
-[95%] Generate netlist file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\impl\gwsynthesis\SDR_TANG_CMOS.vg" completed
-[100%] Generate report file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS_rcv\impl\gwsynthesis\SDR_TANG_CMOS_syn.rpt.html" completed
 GowinSynthesis finish

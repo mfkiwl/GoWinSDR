@@ -412,7 +412,14 @@
                     <Signal>data_clk</Signal>
                 </SignalList>
             </Trigger>
-            <Trigger index="6"/>
+            <Trigger index="6">
+                <SignalList>
+                    <Bus restorename="u_calibration/dut/state[1:0]">
+                        <Signal>u_calibration/dut/state[1]</Signal>
+                        <Signal>u_calibration/dut/state[0]</Signal>
+                    </Bus>
+                </SignalList>
+            </Trigger>
             <Trigger index="7"/>
             <Trigger index="8"/>
             <Trigger index="9"/>
@@ -429,8 +436,8 @@
             <MatchUnit index="2" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="1" value1="0" trigger="2"/>
             <MatchUnit index="3" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="1" value1="0" trigger="3"/>
             <MatchUnit index="4" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="001" value1="000" trigger="4"/>
-            <MatchUnit index="5" enabled="1" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="0" value1="0" trigger="5"/>
-            <MatchUnit index="6" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="5" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="0" value1="0" trigger="5"/>
+            <MatchUnit index="6" enabled="1" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="01" value1="00" trigger="6"/>
             <MatchUnit index="7" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
             <MatchUnit index="8" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
             <MatchUnit index="9" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
@@ -442,8 +449,8 @@
             <MatchUnit index="15" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
         </MatchUnits>
         <Expressions type="Static">
-            <Expression>M5</Expression>
+            <Expression>M6</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>1100111000111100</GAO_ID>
+    <GAO_ID>0011001000001010</GAO_ID>
 </GAO_CONFIG>

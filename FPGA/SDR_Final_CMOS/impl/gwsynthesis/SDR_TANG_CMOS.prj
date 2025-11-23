@@ -33,6 +33,7 @@
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_pll\gowin_pll_mod.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_pll_eth\gowin_pll_eth.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\gowin_pll_eth\gowin_pll_eth_mod.v" type="verilog"/>
+        <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\integer_division\integer_division.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\interpolate_filter.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\nco.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\phase_detector.v" type="verilog"/>
@@ -43,7 +44,6 @@
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\sys_pll\sys_pll.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\sys_pll\sys_pll_mod.v" type="verilog"/>
         <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v" type="verilog"/>
-        <File path="D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\integer_division\integer_division.v" type="verilog"/>
         <File path="E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_crc32.v" type="gao"/>
         <File path="E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v" type="gao"/>
         <File path="E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v" type="gao"/>

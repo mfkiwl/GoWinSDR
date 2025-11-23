@@ -30,7 +30,7 @@ wire [11:0] envelop;
 		.fir_rfi_o(), //output fir_rfi_o
 		.fir_valid_i(1'b1), //input fir_valid_i
 		.fir_sync_i(1'b1), //input fir_sync_i
-		.fir_data_i(square[23:12]), //input [11:0] fir_data_i
+		.fir_data_i(square[21:10]), //input [11:0] fir_data_i
 		.fir_valid_o(), //output fir_valid_o
 		.fir_sync_o(), //output fir_sync_o
 		.fir_data_o(envelop) //output [11:0] fir_data_o
@@ -62,18 +62,18 @@ endmodule
 module sine_frequency_meter (
     input clk,                    // 30.72 MHz采样时钟
     input rst_n,
-    input [11:0] sine_in,         // 12位正弦信号输入（平方后全正） 
+    input signed [11:0] sine_in,         // 12位正弦信号输入（平方后全正） 
     output reg [23:0] freq_out,   // 输出频率(Hz)
     output reg freq_valid         // 频率有效标志
 );
 
 // 测量输入信号的平均值
-parameter ACCUM_BITS = 32;
-parameter SAMPLE_COUNT = 65536; // 2^16个样本
+parameter ACCUM_BITS = 38;
+parameter SAMPLE_COUNT = 67108864; // 2^26个样本
 
 reg [ACCUM_BITS-1:0] accum;
-reg [15:0] sample_cnt;
-reg [11:0] average;
+reg [25:0] sample_cnt;
+reg signed [11:0] average;
 reg accum_done;
 
 always @(posedge clk or negedge rst_n) begin
@@ -88,7 +88,7 @@ always @(posedge clk or negedge rst_n) begin
             sample_cnt <= sample_cnt + 1;
             accum_done <= 0;
         end else begin
-            average <= accum[ACCUM_BITS-1:16]; // 除以65536
+            average <= accum[ACCUM_BITS-1:26]; // 除以67108864
             accum <= sine_in;
             sample_cnt <= 1;
             accum_done <= 1;
@@ -102,6 +102,7 @@ localparam FREQ_CALC  = 2'd2;
 localparam WAIT = 2'd3;
 
 reg [3:0] wait_count;
+reg [5:0] zero_count;
 
 reg [31:0] period_count;
 reg [1:0] state;
@@ -112,6 +113,7 @@ always @(posedge clk or negedge rst_n) begin
         freq_out <= 0;
         freq_valid <= 1'b0;
         wait_count <= 0;
+        zero_count <= 0;
     end else begin
         case (state)
             CNT_AREA: begin
@@ -119,7 +121,7 @@ always @(posedge clk or negedge rst_n) begin
                 if (sine_in < (average >> 5)) begin
                     state <= FREQ_CALC;
                 end
-                else if (period_count == 32'hffffffff - 2) begin
+                else if (period_count == 32'd40000000 - 2) begin
                     state <= FREQ_CALC;
                 end
             end
@@ -135,15 +137,23 @@ always @(posedge clk or negedge rst_n) begin
                     freq_out <= division_result >> 1;
                     freq_valid <= 1'b1;
                     state <= ZERO_AREA;
+                    zero_count <= 0;
                 end
             end
             ZERO_AREA: begin
                 period_count <= period_count + 1;
-                if (sine_in > (average >> 1)) begin
-                    state <= CNT_AREA;
+                if (sine_in > (average >> 1)) begin                   
+                    zero_count <= zero_count + 1;
+                    if (zero_count == 6'd32) begin
+                        zero_count <= 6'b0;
+                        state <= CNT_AREA;
+                    end
                 end
-                else if (period_count == 32'hffffffff - 2) begin
+                else if (period_count == 32'd40000000 - 2) begin
                     state <= FREQ_CALC;
+                end
+                else begin
+                    zero_count <= 6'b0;
                 end
             end
             default: state <= ZERO_AREA;

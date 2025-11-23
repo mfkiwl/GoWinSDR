@@ -5,5 +5,6 @@
 `define CORE0_DEF_TRIG_3_EN
 `define CORE0_DEF_TRIG_4_EN
 `define CORE0_DEF_TRIG_5_EN
+`define CORE0_DEF_TRIG_6_EN
 `define CORE0_DEF_SYN_BSRAM
 `define CORE0_SEG11

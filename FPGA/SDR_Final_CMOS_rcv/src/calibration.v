@@ -68,11 +68,11 @@ module sine_frequency_meter (
 );
 
 // 测量输入信号的平均值
-parameter ACCUM_BITS = 32;
-parameter SAMPLE_COUNT = 65536; // 2^16个样本
+parameter ACCUM_BITS = 48;
+parameter SAMPLE_COUNT = 67108864; // 2^26个样本
 
 reg [ACCUM_BITS-1:0] accum;
-reg [15:0] sample_cnt;
+reg [25:0] sample_cnt;
 reg [11:0] average;
 reg accum_done;
 
@@ -88,7 +88,7 @@ always @(posedge clk or negedge rst_n) begin
             sample_cnt <= sample_cnt + 1;
             accum_done <= 0;
         end else begin
-            average <= accum[ACCUM_BITS-1:16]; // 除以65536
+            average <= accum[ACCUM_BITS-1:26]; // 除以67108864
             accum <= sine_in;
             sample_cnt <= 1;
             accum_done <= 1;
@@ -101,7 +101,10 @@ localparam CNT_AREA  = 2'd1;
 localparam FREQ_CALC  = 2'd2;
 localparam WAIT = 2'd3;
 
+parameter THRESHOLD_COUNT = 8; // 需要连续超过阈值的次数
+
 reg [3:0] wait_count;
+reg [3:0] zero_to_cnt_count; // 从ZERO_AREA转到CNT_AREA的计数器
 
 reg [31:0] period_count;
 reg [1:0] state;
@@ -112,38 +115,49 @@ always @(posedge clk or negedge rst_n) begin
         freq_out <= 0;
         freq_valid <= 1'b0;
         wait_count <= 0;
+        zero_to_cnt_count <= 0;
     end else begin
         case (state)
             CNT_AREA: begin
                 period_count <= period_count + 1;
+                zero_to_cnt_count <= 0; // 重置计数器
                 if (sine_in < (average >> 4)) begin
                     state <= FREQ_CALC;
                 end
-                else if (period_count == 32'hffffffff - 2) begin
+                else if (period_count == 32'd40000000 - 2) begin
                     state <= FREQ_CALC;
                 end
             end
             FREQ_CALC: begin
                 period_count <= 0;
+                zero_to_cnt_count <= 0;
                 state <= WAIT;
             end
             WAIT: begin
-                wait_count <= wait_count + 1;
+                // wait_count <= wait_count + 1;
                 period_count <= period_count + 1;
-                if (wait_count == 4'd1) begin
-                    wait_count <= 0;
-                    freq_out <= division_result >> 1;
-                    freq_valid <= 1'b1;
-                    state <= ZERO_AREA;
-                end
+                zero_to_cnt_count <= 0;
+                // wait_count <= 0;
+                freq_out <= division_result >> 1;
+                freq_valid <= 1'b1;
+                state <= ZERO_AREA;
             end
             ZERO_AREA: begin
                 period_count <= period_count + 1;
                 if (sine_in > (average >> 1)) begin
-                    state <= CNT_AREA;
+                    if (zero_to_cnt_count >= THRESHOLD_COUNT - 1) begin
+                        state <= CNT_AREA;
+                        zero_to_cnt_count <= 0;
+                    end else begin
+                        zero_to_cnt_count <= zero_to_cnt_count + 1;
+                    end
+                end else begin
+                    zero_to_cnt_count <= 0; // 如果低于阈值,重置计数器
                 end
-                else if (period_count == 32'hffffffff - 2) begin
+                
+                if (period_count == 32'd40000000 - 2) begin
                     state <= FREQ_CALC;
+                    zero_to_cnt_count <= 0;
                 end
             end
             default: state <= ZERO_AREA;

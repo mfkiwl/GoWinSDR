@@ -529,7 +529,7 @@
       "SubInsts" : [
        {
         "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS_rcv/src/calibration.v",
-        "InstLine" : 155,
+        "InstLine" : 169,
         "InstName" : "your_instance_name",
         "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS_rcv/src/integer_division/integer_division.v",
         "ModuleLine" : 6332,
