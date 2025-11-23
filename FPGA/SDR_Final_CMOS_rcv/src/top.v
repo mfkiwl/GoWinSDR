@@ -30,10 +30,15 @@
     output              RGMII_TXEN,
     output              RGMII_RST_N,
 
-    output                              led           ,
-    input                              trig                           
-    );
+    // Calibration Module Interface
+    output      [7:0]                   cal_data_out               ,
+    output                              cal_data_clk               ,
+    output                              cal_valid                  ,
+    input                               cal_request                ,
 
+    output                              led           ,
+    input                               trig                           
+    );
 wire trig_out;
 assign trig_out = tx_data_valid;
 //  wire                                    clk_40M                    ;
@@ -305,5 +310,14 @@ rf_data_depacketizer #(
     .frame_length       (depack_frame_length)
 );
 
-    
-    endmodule
+calibration u_calibration (
+    .sample_clk                        (data_clk                  ),
+    .rst_n                             (rst_n                     ),
+    .data_in                           (adc_data_out_i1           ),
+    .cal_data_out                      (cal_data_out              ),
+    .cal_data_clk                      (cal_data_clk              ),
+    .cal_valid                         (cal_valid                 ),
+    .cal_request                       (cal_request               )
+);    
+
+endmodule

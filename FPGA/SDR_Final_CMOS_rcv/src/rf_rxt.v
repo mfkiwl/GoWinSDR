@@ -43,29 +43,33 @@ wire [11:0] rrc_out_i_adc;
 wire [11:0] rrc_out_q_adc;
 wire        rrc_out_valid_adc;
 
-Advanced_FIR_Filter_Top rrc_i1(
-    .clk(sample_clk), //input clk
-    .rstn(rst_n), //input rstn
-    .fir_rfi_o( ), //output fir_rfi_o
-    .fir_valid_i(adc_in_valid), //input fir_valid_i
-    .fir_sync_i(1'b1), //input fir_sync_i
-    .fir_data_i(adc_data_in_i1), //input [11:0] fir_data_i
-    .fir_valid_o(rrc_out_valid_adc), //output fir_valid_o
-    .fir_sync_o(    ), //output fir_sync_o
-    .fir_data_o(rrc_out_i_adc) //output [11:0] fir_data_o
-);
+// Advanced_FIR_Filter_Top rrc_i1(
+//     .clk(sample_clk), //input clk
+//     .rstn(rst_n), //input rstn
+//     .fir_rfi_o( ), //output fir_rfi_o
+//     .fir_valid_i(adc_in_valid), //input fir_valid_i
+//     .fir_sync_i(1'b1), //input fir_sync_i
+//     .fir_data_i(adc_data_in_i1), //input [11:0] fir_data_i
+//     .fir_valid_o(rrc_out_valid_adc), //output fir_valid_o
+//     .fir_sync_o(    ), //output fir_sync_o
+//     .fir_data_o(rrc_out_i_adc) //output [11:0] fir_data_o
+// );
 
-Advanced_FIR_Filter_Top rrc_q1(
-    .clk(sample_clk), //input clk
-    .rstn(rst_n), //input rstn
-    .fir_rfi_o( ), //output fir_rfi_o
-    .fir_valid_i(adc_in_valid), //input fir_valid_i
-    .fir_sync_i(1'b1), //input fir_sync_i
-    .fir_data_i(adc_data_in_q1), //input [11:0] fir_data_i
-    .fir_valid_o(    ), //output fir_valid_o
-    .fir_sync_o(    ), //output fir_sync_o
-    .fir_data_o(rrc_out_q_adc) //output [11:0] fir_data_o
-);
+// Advanced_FIR_Filter_Top rrc_q1(
+//     .clk(sample_clk), //input clk
+//     .rstn(rst_n), //input rstn
+//     .fir_rfi_o( ), //output fir_rfi_o
+//     .fir_valid_i(adc_in_valid), //input fir_valid_i
+//     .fir_sync_i(1'b1), //input fir_sync_i
+//     .fir_data_i(adc_data_in_q1), //input [11:0] fir_data_i
+//     .fir_valid_o(    ), //output fir_valid_o
+//     .fir_sync_o(    ), //output fir_sync_o
+//     .fir_data_o(rrc_out_q_adc) //output [11:0] fir_data_o
+// );
+
+// Bypass RRC filter for testing
+assign rrc_out_i_adc = adc_data_in_i1;
+assign rrc_out_q_adc = adc_data_in_q1;
 
 wire signed [11:0] costas_out_i_dbg;
 wire signed [11:0] costas_out_q_dbg;
@@ -373,8 +377,10 @@ wire decoded_valid;
 qpsk_differential_decoder qpsk_diff_decoder_u0 (
     .clk(demod_bit_clk),
     .rst_n(rst_n),
-    .i_in(gardner_sync_I),
-    .q_in(gardner_sync_Q),
+    // .i_in(gardner_sync_I),
+    // .q_in(gardner_sync_Q),
+    .i_in(demod_data),
+    .q_in(demod_data),
     .data_valid(demod_valid),
     .data_out(decoded_data),
     .out_valid(decoded_valid)

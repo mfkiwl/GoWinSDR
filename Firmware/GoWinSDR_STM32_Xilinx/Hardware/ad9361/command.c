@@ -104,7 +104,8 @@ command cmd_list[] = {
 	{"dds_tx2_tone1_scale=", "Sets the DDS TX2 Tone 1 scale.", "", set_dds_tx2_tone1_scale},
 	{"dds_tx2_tone2_scale?", "Gets current DDS TX2 Tone 2 scale.", "", dds_tx2_tone2_scale},
 	{"dds_tx2_tone2_scale=", "Sets the DDS TX2 Tone 2 scale.", "", set_dds_tx2_tone2_scale},
-	{"calibration?", "Calibrate the Lo Freq diff.","", lo_diff_cal},
+	{"calibration?", "Get Lo Freq diff.","", get_lo_diff},
+	{"calibration=", "Calibrate Lo Freq diff.","", cal_lo_diff},
 };
 const char cmd_no = (sizeof(cmd_list) / sizeof(command));
 
@@ -1013,19 +1014,62 @@ void set_dds_tx2_tone2_scale(double* param, char param_no)	// dds_tx2_tone2_scal
 
 
 
-void lo_diff_cal(double* param, char param_no)
+void get_lo_diff(double* param, char param_no)
 {
-	console_print("Calibration Start!\n");
-	
+
 	uint32_t freq_err = QueryDataFromFPGA_Polling();
 	console_print("Current Frequency Error:%d Hz\n", freq_err);
+
+}
+
+void cal_lo_diff(double* param, char param_no)
+{
+	uint32_t freq_err_sum = 0;
+	for (int i = 0; i < 10; i++){
+		HAL_Delay(1000);
+		uint32_t freq_err = QueryDataFromFPGA_Polling();
+		console_print("[Calibration]::Current Frequency Error:%d Hz\n", freq_err);
+		freq_err_sum += freq_err;
+	}
+
+	uint32_t freq_err = freq_err_sum / 10;
 	
+	if (freq_err > 100000)
+	{
+		console_print("[Calibration]::Calibration Fail!\n");
+		return;
+	}
+
 	uint64_t lo_freq_hz;
-
-	// ad9361_get_rx_lo_freq(ad9361_phy, &lo_freq_hz);
+	ad9361_get_rx_lo_freq(ad9361_phy, &lo_freq_hz);
+	console_print("[Calibration]::Current Lo Frequency:%d%d%d Hz\n", (uint32_t)(lo_freq_hz / 1000000000), (uint32_t)((lo_freq_hz % 1000000000) / 1000000), (uint32_t)(lo_freq_hz % 1000000));
 	
+	uint32_t adj_up_err, adj_down_err;
 
-	// ad9361_set_rx_lo_freq(ad9361_phy, lo_freq_hz);
-
+	ad9361_set_rx_lo_freq(ad9361_phy, lo_freq_hz + freq_err);
+	console_print("[Calibration]::Setting Lo Freq to: %d%d%d Hz\n", (uint32_t)((lo_freq_hz + freq_err) / 1000000000), (uint32_t)(((lo_freq_hz + freq_err) % 1000000000) / 1000000), (uint32_t)((lo_freq_hz + freq_err) % 1000000));
+	HAL_Delay(8000);
+	adj_up_err = QueryDataFromFPGA_Polling();
+	console_print("[Calibration]::Current Frequency Error:%d Hz\n", adj_up_err);
+	
+	ad9361_set_rx_lo_freq(ad9361_phy, lo_freq_hz - freq_err);
+	console_print("[Calibration]::Setting Lo Freq to: %d%d%d Hz\n", (uint32_t)((lo_freq_hz - freq_err) / 1000000000), (uint32_t)(((lo_freq_hz - freq_err) % 1000000000) / 1000000), (uint32_t)((lo_freq_hz - freq_err) % 1000000));
+	HAL_Delay(8000);
+	adj_down_err = QueryDataFromFPGA_Polling();
+	console_print("[Calibration]::Current Frequency Error:%d Hz\n", adj_down_err);
+	
+	if (adj_up_err > freq_err && adj_down_err > freq_err){
+		console_print("[Calibration]::Calibration Fail!\n");
+	}
+	else if (adj_up_err > adj_down_err){
+		lo_freq_hz -= freq_err;
+		console_print("[Calibration]::Calibration Done!\n");
+	}
+	else{
+		lo_freq_hz += freq_err;
+		console_print("[Calibration]::Calibration Done!\n");
+	}
+	ad9361_set_rx_lo_freq(ad9361_phy, lo_freq_hz);
+	console_print("[Calibration]::New Lo Freq:%d%d%d Hz\n", (uint32_t)(lo_freq_hz / 1000000000), (uint32_t)((lo_freq_hz % 1000000000) / 1000000), (uint32_t)(lo_freq_hz % 1000000));
 }
 

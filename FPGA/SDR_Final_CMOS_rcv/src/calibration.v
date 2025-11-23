@@ -5,8 +5,22 @@ module calibration(
     input wire [11:0] data_in,
 
     // 连接到物理接口
-    output reg [7:0] cal_value
+    output wire [7:0] cal_data_out,
+    output wire cal_data_clk,
+    output wire cal_valid,
+
+    input wire cal_request
 );
+
+wire [23:0] square;
+    Gowin_MULT_1212 square_u0(
+        .dout(square), //output [23:0] dout
+        .a(data_in), //input [11:0] a
+        .b(data_in), //input [11:0] b
+        .clk(sample_clk), //input clk
+        .ce(1'b1), //input ce
+        .reset(~rst_n) //input reset
+    );
 
 wire [11:0] envelop;
 
@@ -16,14 +30,14 @@ wire [11:0] envelop;
 		.fir_rfi_o(), //output fir_rfi_o
 		.fir_valid_i(1'b1), //input fir_valid_i
 		.fir_sync_i(1'b1), //input fir_sync_i
-		.fir_data_i(data_in), //input [11:0] fir_data_i
+		.fir_data_i(square[23:12]), //input [11:0] fir_data_i
 		.fir_valid_o(), //output fir_valid_o
 		.fir_sync_o(), //output fir_sync_o
 		.fir_data_o(envelop) //output [11:0] fir_data_o
 	);
      
 
-wire [16:0] freq_out;
+wire [23:0] freq_out;
 wire freq_valid;
     sine_frequency_meter dut (
     .clk(sample_clk),
@@ -33,120 +47,117 @@ wire freq_valid;
     .freq_valid(freq_valid)
     );
 
-endmodule
+    data_sender_24bit u_sender (
+        .sample_clk(sample_clk),
+        .rst_n(rst_n),
+        .data_in(freq_out), 
+        .request(cal_request),
+        .data_out(cal_data_out),
+        .valid(cal_valid),
+        .data_clk(cal_data_clk)
+    );
 
+endmodule
 
 module sine_frequency_meter (
     input clk,                    // 30.72 MHz采样时钟
     input rst_n,
-    input [11:0] sine_in,         // 12位正弦信号输入
-    output reg [16:0] freq_out,   // 输出频率(Hz)，最大131kHz可表示
+    input [11:0] sine_in,         // 12位正弦信号输入（平方后全正） 
+    output reg [23:0] freq_out,   // 输出频率(Hz)
     output reg freq_valid         // 频率有效标志
 );
 
-// 参数定义
-parameter CLK_FREQ = 30720000;    // 采样频率30.72MHz
-parameter MID_VALUE = 12'd2048;   // 12位有符号数中点(假设2048为0点)
+// 测量输入信号的平均值
+parameter ACCUM_BITS = 32;
+parameter SAMPLE_COUNT = 65536; // 2^16个样本
 
-// 内部信号
-reg [11:0] sine_delay1, sine_delay2;
-reg [11:0] sine_diff;
-reg cross_flag;
-wire zero_cross;
-reg zero_cross_r;
-reg [31:0] cycle_counter;
-reg [31:0] prev_cycle;
-reg [31:0] period_counter;
-reg count_en;
-reg freq_calc_en;
-reg [16:0] calc_freq;
+reg [ACCUM_BITS-1:0] accum;
+reg [15:0] sample_cnt;
+reg [11:0] average;
+reg accum_done;
 
-// ============================================================
-// 第一阶段：过零检测（检测上升过零点）
-// ============================================================
 always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-        sine_delay1 <= 0;
-        sine_delay2 <= 0;
+        accum <= 0;
+        sample_cnt <= 0;
+        average <= 0;
+        accum_done <= 0;
     end else begin
-        sine_delay1 <= sine_in;
-        sine_delay2 <= sine_delay1;
-    end
-end
-
-// 过零检测：上升过零
-// 条件：前一个样本 < MID_VALUE 且当前样本 >= MID_VALUE
-assign zero_cross = (sine_delay2 < MID_VALUE) && (sine_delay1 >= MID_VALUE);
-
-always @(posedge clk or negedge rst_n) begin
-    if (!rst_n)
-        zero_cross_r <= 0;
-    else
-        zero_cross_r <= zero_cross;
-end
-
-// ============================================================
-// 第二阶段：周期计数
-// 每次检测到上升过零，计算距离上次过零的时间
-// ============================================================
-always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        cycle_counter <= 0;
-        prev_cycle <= 0;
-        period_counter <= 0;
-        count_en <= 0;
-        freq_calc_en <= 0;
-    end else begin
-        if (zero_cross && zero_cross_r == 0) begin  // 过零沿检测
-            if (count_en == 0) begin
-                // 第一次过零，使能计数
-                count_en <= 1;
-                cycle_counter <= 1;
-                prev_cycle <= 0;
-            end else begin
-                // 后续过零，保存周期
-                period_counter <= cycle_counter;
-                prev_cycle <= cycle_counter;
-                cycle_counter <= 1;
-                freq_calc_en <= 1;  // 触发频率计算
-            end
-        end else if (count_en) begin
-            if (cycle_counter < 32'h7FFFFFFF)
-                cycle_counter <= cycle_counter + 1;
-        end
-    end
-end
-
-// ============================================================
-// 第三阶段：频率计算
-// freq = CLK_FREQ / (period_counter * 2)
-// 乘以2是因为一个完整周期有两次过零（上升和下降）
-// ============================================================
-always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        calc_freq <= 0;
-        freq_valid <= 0;
-    end else if (freq_calc_en) begin
-        if (period_counter > 0) begin
-            // 简化计算：freq = 30720000 / (period_counter * 2)
-            // 为了避免除法，使用查表或移位
-            calc_freq <= CLK_FREQ / (period_counter << 1);
-            freq_valid <= 1;
+        if (sample_cnt < SAMPLE_COUNT - 1) begin
+            accum <= accum + sine_in;
+            sample_cnt <= sample_cnt + 1;
+            accum_done <= 0;
         end else begin
-            freq_valid <= 0;
+            average <= accum[ACCUM_BITS-1:16]; // 除以65536
+            accum <= sine_in;
+            sample_cnt <= 1;
+            accum_done <= 1;
         end
     end
 end
 
-// ============================================================
-// 输出频率结果
-// ============================================================
+localparam ZERO_AREA = 2'd0;
+localparam CNT_AREA  = 2'd1;
+localparam FREQ_CALC  = 2'd2;
+localparam WAIT = 2'd3;
+
+reg [3:0] wait_count;
+
+reg [31:0] period_count;
+reg [1:0] state;
 always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
+        state <= CNT_AREA;
+        period_count <= 0;
         freq_out <= 0;
-    end else if (freq_calc_en && freq_valid) begin
-        freq_out <= calc_freq;
+        freq_valid <= 1'b0;
+        wait_count <= 0;
+    end else begin
+        case (state)
+            CNT_AREA: begin
+                period_count <= period_count + 1;
+                if (sine_in < (average >> 4)) begin
+                    state <= FREQ_CALC;
+                end
+                else if (period_count == 32'hffffffff - 2) begin
+                    state <= FREQ_CALC;
+                end
+            end
+            FREQ_CALC: begin
+                period_count <= 0;
+                state <= WAIT;
+            end
+            WAIT: begin
+                wait_count <= wait_count + 1;
+                period_count <= period_count + 1;
+                if (wait_count == 4'd1) begin
+                    wait_count <= 0;
+                    freq_out <= division_result >> 1;
+                    freq_valid <= 1'b1;
+                    state <= ZERO_AREA;
+                end
+            end
+            ZERO_AREA: begin
+                period_count <= period_count + 1;
+                if (sine_in > (average >> 1)) begin
+                    state <= CNT_AREA;
+                end
+                else if (period_count == 32'hffffffff - 2) begin
+                    state <= FREQ_CALC;
+                end
+            end
+            default: state <= ZERO_AREA;
+        endcase
     end
 end
+
+wire [31:0] division_result;
+	Integer_Division your_instance_name(
+		.clk(clk), //input clk
+		.rstn(rst_n), //input rstn
+		.dividend(32'd30720000), //input [31:0] dividend
+		.divisor(period_count), //input [31:0] divisor
+		.quotient(division_result) //output [31:0] quotient
+	);
 
 endmodule

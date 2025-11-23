@@ -60,34 +60,6 @@
                 <Signal>dac_data_in_q1[1]</Signal>
                 <Signal>dac_data_in_q1[0]</Signal>
             </Bus>
-            <Bus capture_enable="true" name="u_rf_rxt/costas_out_i_dbg[11:0]">
-                <Signal>u_rf_rxt/costas_out_i_dbg[11]</Signal>
-                <Signal>u_rf_rxt/costas_out_i_dbg[10]</Signal>
-                <Signal>u_rf_rxt/costas_out_i_dbg[9]</Signal>
-                <Signal>u_rf_rxt/costas_out_i_dbg[8]</Signal>
-                <Signal>u_rf_rxt/costas_out_i_dbg[7]</Signal>
-                <Signal>u_rf_rxt/costas_out_i_dbg[6]</Signal>
-                <Signal>u_rf_rxt/costas_out_i_dbg[5]</Signal>
-                <Signal>u_rf_rxt/costas_out_i_dbg[4]</Signal>
-                <Signal>u_rf_rxt/costas_out_i_dbg[3]</Signal>
-                <Signal>u_rf_rxt/costas_out_i_dbg[2]</Signal>
-                <Signal>u_rf_rxt/costas_out_i_dbg[1]</Signal>
-                <Signal>u_rf_rxt/costas_out_i_dbg[0]</Signal>
-            </Bus>
-            <Bus capture_enable="true" name="u_rf_rxt/costas_out_q_dbg[11:0]">
-                <Signal>u_rf_rxt/costas_out_q_dbg[11]</Signal>
-                <Signal>u_rf_rxt/costas_out_q_dbg[10]</Signal>
-                <Signal>u_rf_rxt/costas_out_q_dbg[9]</Signal>
-                <Signal>u_rf_rxt/costas_out_q_dbg[8]</Signal>
-                <Signal>u_rf_rxt/costas_out_q_dbg[7]</Signal>
-                <Signal>u_rf_rxt/costas_out_q_dbg[6]</Signal>
-                <Signal>u_rf_rxt/costas_out_q_dbg[5]</Signal>
-                <Signal>u_rf_rxt/costas_out_q_dbg[4]</Signal>
-                <Signal>u_rf_rxt/costas_out_q_dbg[3]</Signal>
-                <Signal>u_rf_rxt/costas_out_q_dbg[2]</Signal>
-                <Signal>u_rf_rxt/costas_out_q_dbg[1]</Signal>
-                <Signal>u_rf_rxt/costas_out_q_dbg[0]</Signal>
-            </Bus>
             <Bus capture_enable="true" name="tx_data_in[7:0]">
                 <Signal>tx_data_in[7]</Signal>
                 <Signal>tx_data_in[6]</Signal>
@@ -305,6 +277,101 @@
                 <Signal>u_rf_rxt/costas_u0/dds_sin[1]</Signal>
                 <Signal>u_rf_rxt/costas_u0/dds_sin[0]</Signal>
             </Bus>
+            <Bus capture_enable="true" name="u_calibration/envelop[11:0]">
+                <Signal>u_calibration/envelop[11]</Signal>
+                <Signal>u_calibration/envelop[10]</Signal>
+                <Signal>u_calibration/envelop[9]</Signal>
+                <Signal>u_calibration/envelop[8]</Signal>
+                <Signal>u_calibration/envelop[7]</Signal>
+                <Signal>u_calibration/envelop[6]</Signal>
+                <Signal>u_calibration/envelop[5]</Signal>
+                <Signal>u_calibration/envelop[4]</Signal>
+                <Signal>u_calibration/envelop[3]</Signal>
+                <Signal>u_calibration/envelop[2]</Signal>
+                <Signal>u_calibration/envelop[1]</Signal>
+                <Signal>u_calibration/envelop[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_calibration/freq_out[16:0]">
+                <Signal>u_calibration/freq_out[16]</Signal>
+                <Signal>u_calibration/freq_out[15]</Signal>
+                <Signal>u_calibration/freq_out[14]</Signal>
+                <Signal>u_calibration/freq_out[13]</Signal>
+                <Signal>u_calibration/freq_out[12]</Signal>
+                <Signal>u_calibration/freq_out[11]</Signal>
+                <Signal>u_calibration/freq_out[10]</Signal>
+                <Signal>u_calibration/freq_out[9]</Signal>
+                <Signal>u_calibration/freq_out[8]</Signal>
+                <Signal>u_calibration/freq_out[7]</Signal>
+                <Signal>u_calibration/freq_out[6]</Signal>
+                <Signal>u_calibration/freq_out[5]</Signal>
+                <Signal>u_calibration/freq_out[4]</Signal>
+                <Signal>u_calibration/freq_out[3]</Signal>
+                <Signal>u_calibration/freq_out[2]</Signal>
+                <Signal>u_calibration/freq_out[1]</Signal>
+                <Signal>u_calibration/freq_out[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_calibration/cal_data_out[7:0]">
+                <Signal>u_calibration/cal_data_out[7]</Signal>
+                <Signal>u_calibration/cal_data_out[6]</Signal>
+                <Signal>u_calibration/cal_data_out[5]</Signal>
+                <Signal>u_calibration/cal_data_out[4]</Signal>
+                <Signal>u_calibration/cal_data_out[3]</Signal>
+                <Signal>u_calibration/cal_data_out[2]</Signal>
+                <Signal>u_calibration/cal_data_out[1]</Signal>
+                <Signal>u_calibration/cal_data_out[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_calibration/dut/state[1:0]">
+                <Signal>u_calibration/dut/state[1]</Signal>
+                <Signal>u_calibration/dut/state[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_calibration/dut/average[11:0]">
+                <Signal>u_calibration/dut/average[11]</Signal>
+                <Signal>u_calibration/dut/average[10]</Signal>
+                <Signal>u_calibration/dut/average[9]</Signal>
+                <Signal>u_calibration/dut/average[8]</Signal>
+                <Signal>u_calibration/dut/average[7]</Signal>
+                <Signal>u_calibration/dut/average[6]</Signal>
+                <Signal>u_calibration/dut/average[5]</Signal>
+                <Signal>u_calibration/dut/average[4]</Signal>
+                <Signal>u_calibration/dut/average[3]</Signal>
+                <Signal>u_calibration/dut/average[2]</Signal>
+                <Signal>u_calibration/dut/average[1]</Signal>
+                <Signal>u_calibration/dut/average[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_calibration/dut/period_count[31:0]">
+                <Signal>u_calibration/dut/period_count[31]</Signal>
+                <Signal>u_calibration/dut/period_count[30]</Signal>
+                <Signal>u_calibration/dut/period_count[29]</Signal>
+                <Signal>u_calibration/dut/period_count[28]</Signal>
+                <Signal>u_calibration/dut/period_count[27]</Signal>
+                <Signal>u_calibration/dut/period_count[26]</Signal>
+                <Signal>u_calibration/dut/period_count[25]</Signal>
+                <Signal>u_calibration/dut/period_count[24]</Signal>
+                <Signal>u_calibration/dut/period_count[23]</Signal>
+                <Signal>u_calibration/dut/period_count[22]</Signal>
+                <Signal>u_calibration/dut/period_count[21]</Signal>
+                <Signal>u_calibration/dut/period_count[20]</Signal>
+                <Signal>u_calibration/dut/period_count[19]</Signal>
+                <Signal>u_calibration/dut/period_count[18]</Signal>
+                <Signal>u_calibration/dut/period_count[17]</Signal>
+                <Signal>u_calibration/dut/period_count[16]</Signal>
+                <Signal>u_calibration/dut/period_count[15]</Signal>
+                <Signal>u_calibration/dut/period_count[14]</Signal>
+                <Signal>u_calibration/dut/period_count[13]</Signal>
+                <Signal>u_calibration/dut/period_count[12]</Signal>
+                <Signal>u_calibration/dut/period_count[11]</Signal>
+                <Signal>u_calibration/dut/period_count[10]</Signal>
+                <Signal>u_calibration/dut/period_count[9]</Signal>
+                <Signal>u_calibration/dut/period_count[8]</Signal>
+                <Signal>u_calibration/dut/period_count[7]</Signal>
+                <Signal>u_calibration/dut/period_count[6]</Signal>
+                <Signal>u_calibration/dut/period_count[5]</Signal>
+                <Signal>u_calibration/dut/period_count[4]</Signal>
+                <Signal>u_calibration/dut/period_count[3]</Signal>
+                <Signal>u_calibration/dut/period_count[2]</Signal>
+                <Signal>u_calibration/dut/period_count[1]</Signal>
+                <Signal>u_calibration/dut/period_count[0]</Signal>
+            </Bus>
         </SignalList>
         <Triggers>
             <Trigger index="0">
@@ -342,7 +409,7 @@
             </Trigger>
             <Trigger index="5">
                 <SignalList>
-                    <Signal>trig</Signal>
+                    <Signal>data_clk</Signal>
                 </SignalList>
             </Trigger>
             <Trigger index="6"/>
@@ -362,7 +429,7 @@
             <MatchUnit index="2" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="1" value1="0" trigger="2"/>
             <MatchUnit index="3" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="1" value1="0" trigger="3"/>
             <MatchUnit index="4" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="001" value1="000" trigger="4"/>
-            <MatchUnit index="5" enabled="1" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="1" value1="0" trigger="5"/>
+            <MatchUnit index="5" enabled="1" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="0" value1="0" trigger="5"/>
             <MatchUnit index="6" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
             <MatchUnit index="7" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
             <MatchUnit index="8" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
@@ -378,5 +445,5 @@
             <Expression>M5</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>0111100100000001</GAO_ID>
+    <GAO_ID>1100111000111100</GAO_ID>
 </GAO_CONFIG>

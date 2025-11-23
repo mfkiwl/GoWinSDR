@@ -999,6 +999,13 @@ Section Cross References
     adc_core.o(i.adc_set_calib_phase) refers to adc_core.o(i.adc_set_calib_scale_phase) for adc_set_calib_scale_phase
     adc_core.o(i.adc_set_calib_scale) refers to adc_core.o(i.adc_set_calib_scale_phase) for adc_set_calib_scale_phase
     adc_core.o(i.adc_set_calib_scale_phase) refers to util.o(i.do_div) for do_div
+    command.o(i.cal_lo_diff) refers to com_fpga.o(i.QueryDataFromFPGA_Polling) for QueryDataFromFPGA_Polling
+    command.o(i.cal_lo_diff) refers to console.o(i.console_print) for console_print
+    command.o(i.cal_lo_diff) refers to ad9361_api.o(i.ad9361_get_rx_lo_freq) for ad9361_get_rx_lo_freq
+    command.o(i.cal_lo_diff) refers to uldiv.o(.text) for __aeabi_uldivmod
+    command.o(i.cal_lo_diff) refers to ad9361_api.o(i.ad9361_set_rx_lo_freq) for ad9361_set_rx_lo_freq
+    command.o(i.cal_lo_diff) refers to stm32f4xx_hal.o(i.HAL_Delay) for HAL_Delay
+    command.o(i.cal_lo_diff) refers to main.o(.data) for ad9361_phy
     command.o(i.dds_tx2_tone2_scale) refers to console.o(i.console_print) for console_print
     command.o(i.dds_tx2_tone2_scale) refers to dac_core.o(.bss) for dds_st
     command.o(i.get_dds_tx1_tone1_freq) refers to console.o(i.console_print) for console_print
@@ -1025,6 +1032,8 @@ Section Cross References
     command.o(i.get_dds_tx2_tone2_phase) refers to dac_core.o(.bss) for dds_st
     command.o(i.get_help) refers to console.o(i.console_print) for console_print
     command.o(i.get_help) refers to command.o(.data) for .data
+    command.o(i.get_lo_diff) refers to com_fpga.o(i.QueryDataFromFPGA_Polling) for QueryDataFromFPGA_Polling
+    command.o(i.get_lo_diff) refers to console.o(i.console_print) for console_print
     command.o(i.get_register) refers to console.o(i.console_print) for console_print
     command.o(i.get_rx1_gc_mode) refers to ad9361_api.o(i.ad9361_get_rx_gain_control_mode) for ad9361_get_rx_gain_control_mode
     command.o(i.get_rx1_gc_mode) refers to console.o(i.console_print) for console_print
@@ -1070,8 +1079,6 @@ Section Cross References
     command.o(i.get_tx_samp_freq) refers to ad9361_api.o(i.ad9361_get_tx_sampling_freq) for ad9361_get_tx_sampling_freq
     command.o(i.get_tx_samp_freq) refers to console.o(i.console_print) for console_print
     command.o(i.get_tx_samp_freq) refers to main.o(.data) for ad9361_phy
-    command.o(i.lo_diff_cal) refers to console.o(i.console_print) for console_print
-    command.o(i.lo_diff_cal) refers to com_fpga.o(i.QueryDataFromFPGA_Polling) for QueryDataFromFPGA_Polling
     command.o(i.set_dds_tx1_tone1_freq) refers to dfixui.o(.text) for __aeabi_d2uiz
     command.o(i.set_dds_tx1_tone1_freq) refers to dac_core.o(i.dds_set_frequency) for dds_set_frequency
     command.o(i.set_dds_tx1_tone1_freq) refers to console.o(i.console_print) for console_print
@@ -1270,7 +1277,8 @@ Section Cross References
     command.o(.data) refers to command.o(i.set_dds_tx2_tone1_scale) for set_dds_tx2_tone1_scale
     command.o(.data) refers to command.o(i.dds_tx2_tone2_scale) for dds_tx2_tone2_scale
     command.o(.data) refers to command.o(i.set_dds_tx2_tone2_scale) for set_dds_tx2_tone2_scale
-    command.o(.data) refers to command.o(i.lo_diff_cal) for lo_diff_cal
+    command.o(.data) refers to command.o(i.get_lo_diff) for get_lo_diff
+    command.o(.data) refers to command.o(i.cal_lo_diff) for cal_lo_diff
     console.o(i.console_check_commands) refers to memcpya.o(.text) for __aeabi_memcpy4
     console.o(i.console_check_commands) refers to atof.o(i.__hardfp_atof) for __hardfp_atof
     console.o(i.console_check_commands) refers to dmul.o(.text) for __aeabi_dmul
@@ -2691,212 +2699,213 @@ Image Symbol Table
     i.axiadc_read                            0x0800a794   Section        0  platform.o(i.axiadc_read)
     i.axiadc_set_pnsel                       0x0800a7a2   Section        0  platform.o(i.axiadc_set_pnsel)
     i.axiadc_write                           0x0800a80e   Section        0  platform.o(i.axiadc_write)
-    i.clk_get_rate                           0x0800a814   Section        0  util.o(i.clk_get_rate)
-    i.clk_prepare_enable                     0x0800a88c   Section        0  util.o(i.clk_prepare_enable)
-    i.clk_set_rate                           0x0800a890   Section        0  util.o(i.clk_set_rate)
-    i.console_check_commands                 0x0800aaa0   Section        0  console.o(i.console_check_commands)
-    i.console_get_command                    0x0800acf8   Section        0  console.o(i.console_get_command)
-    i.console_print                          0x0800ad24   Section        0  console.o(i.console_print)
-    i.dac_init                               0x0800aecc   Section        0  dac_core.o(i.dac_init)
-    i.dac_start_sync                         0x0800aece   Section        0  dac_core.o(i.dac_start_sync)
-    i.dac_stop                               0x0800aed0   Section        0  dac_core.o(i.dac_stop)
-    i.dds_set_frequency                      0x0800aed4   Section        0  dac_core.o(i.dds_set_frequency)
-    i.dds_set_phase                          0x0800af20   Section        0  dac_core.o(i.dds_set_phase)
-    i.dds_set_scale                          0x0800af68   Section        0  dac_core.o(i.dds_set_scale)
-    i.dds_tx2_tone2_scale                    0x0800afd4   Section        0  command.o(i.dds_tx2_tone2_scale)
-    i.dds_update                             0x0800affc   Section        0  dac_core.o(i.dds_update)
-    i.do_div                                 0x0800b058   Section        0  util.o(i.do_div)
-    i.find_first_bit                         0x0800b06e   Section        0  util.o(i.find_first_bit)
-    i.fputc                                  0x0800b0a0   Section        0  usart.o(i.fputc)
-    i.free                                   0x0800b0b8   Section        0  malloc.o(i.free)
-    i.get_dds_tx1_tone1_freq                 0x0800b108   Section        0  command.o(i.get_dds_tx1_tone1_freq)
-    i.get_dds_tx1_tone1_phase                0x0800b130   Section        0  command.o(i.get_dds_tx1_tone1_phase)
-    i.get_dds_tx1_tone1_scale                0x0800b160   Section        0  command.o(i.get_dds_tx1_tone1_scale)
-    i.get_dds_tx1_tone2_freq                 0x0800b188   Section        0  command.o(i.get_dds_tx1_tone2_freq)
-    i.get_dds_tx1_tone2_phase                0x0800b1b0   Section        0  command.o(i.get_dds_tx1_tone2_phase)
-    i.get_dds_tx1_tone2_scale                0x0800b1e0   Section        0  command.o(i.get_dds_tx1_tone2_scale)
-    i.get_dds_tx2_tone1_freq                 0x0800b208   Section        0  command.o(i.get_dds_tx2_tone1_freq)
-    i.get_dds_tx2_tone1_phase                0x0800b230   Section        0  command.o(i.get_dds_tx2_tone1_phase)
-    i.get_dds_tx2_tone1_scale                0x0800b260   Section        0  command.o(i.get_dds_tx2_tone1_scale)
-    i.get_dds_tx2_tone2_freq                 0x0800b288   Section        0  command.o(i.get_dds_tx2_tone2_freq)
-    i.get_dds_tx2_tone2_phase                0x0800b2b0   Section        0  command.o(i.get_dds_tx2_tone2_phase)
-    i.get_help                               0x0800b2e0   Section        0  command.o(i.get_help)
-    i.get_register                           0x0800b32c   Section        0  command.o(i.get_register)
-    i.get_rx1_gc_mode                        0x0800b358   Section        0  command.o(i.get_rx1_gc_mode)
-    i.get_rx1_rf_gain                        0x0800b388   Section        0  command.o(i.get_rx1_rf_gain)
-    i.get_rx2_gc_mode                        0x0800b3b4   Section        0  command.o(i.get_rx2_gc_mode)
-    i.get_rx2_rf_gain                        0x0800b3e4   Section        0  command.o(i.get_rx2_rf_gain)
-    i.get_rx_fir_en                          0x0800b410   Section        0  command.o(i.get_rx_fir_en)
-    i.get_rx_lo_freq                         0x0800b43c   Section        0  command.o(i.get_rx_lo_freq)
-    i.get_rx_rf_bandwidth                    0x0800b47c   Section        0  command.o(i.get_rx_rf_bandwidth)
-    i.get_rx_samp_freq                       0x0800b4ac   Section        0  command.o(i.get_rx_samp_freq)
-    i.get_tx1_attenuation                    0x0800b4dc   Section        0  command.o(i.get_tx1_attenuation)
-    i.get_tx2_attenuation                    0x0800b50c   Section        0  command.o(i.get_tx2_attenuation)
-    i.get_tx_fir_en                          0x0800b53c   Section        0  command.o(i.get_tx_fir_en)
-    i.get_tx_lo_freq                         0x0800b568   Section        0  command.o(i.get_tx_lo_freq)
-    i.get_tx_rf_bandwidth                    0x0800b5a8   Section        0  command.o(i.get_tx_rf_bandwidth)
-    i.get_tx_samp_freq                       0x0800b5d8   Section        0  command.o(i.get_tx_samp_freq)
-    i.gpio_data                              0x0800b608   Section        0  platform.o(i.gpio_data)
-    i.gpio_is_valid                          0x0800b650   Section        0  platform.o(i.gpio_is_valid)
-    i.gpio_set_value                         0x0800b65c   Section        0  platform.o(i.gpio_set_value)
-    i.ilog2                                  0x0800b664   Section        0  util.o(i.ilog2)
-    i.int_sqrt                               0x0800b6c8   Section        0  util.o(i.int_sqrt)
-    i.int_to_str                             0x0800b6ec   Section        0  console.o(i.int_to_str)
-    i.lo_diff_cal                            0x0800b74c   Section        0  command.o(i.lo_diff_cal)
-    i.main                                   0x0800b798   Section        0  main.o(i.main)
-    i.malloc                                 0x0800bb9c   Section        0  malloc.o(i.malloc)
-    i.mdelay                                 0x0800bc08   Section        0  platform.o(i.mdelay)
-    i.register_clocks                        0x0800bc0c   Section        0  ad9361.o(i.register_clocks)
-    i.set_dds_tx1_tone1_freq                 0x0800bee0   Section        0  command.o(i.set_dds_tx1_tone1_freq)
-    i.set_dds_tx1_tone1_phase                0x0800bf3c   Section        0  command.o(i.set_dds_tx1_tone1_phase)
-    i.set_dds_tx1_tone1_scale                0x0800bfbc   Section        0  command.o(i.set_dds_tx1_tone1_scale)
-    i.set_dds_tx1_tone2_freq                 0x0800c020   Section        0  command.o(i.set_dds_tx1_tone2_freq)
-    i.set_dds_tx1_tone2_phase                0x0800c07c   Section        0  command.o(i.set_dds_tx1_tone2_phase)
-    i.set_dds_tx1_tone2_scale                0x0800c0fc   Section        0  command.o(i.set_dds_tx1_tone2_scale)
-    i.set_dds_tx2_tone1_freq                 0x0800c160   Section        0  command.o(i.set_dds_tx2_tone1_freq)
-    i.set_dds_tx2_tone1_phase                0x0800c1bc   Section        0  command.o(i.set_dds_tx2_tone1_phase)
-    i.set_dds_tx2_tone1_scale                0x0800c23c   Section        0  command.o(i.set_dds_tx2_tone1_scale)
-    i.set_dds_tx2_tone2_freq                 0x0800c2a0   Section        0  command.o(i.set_dds_tx2_tone2_freq)
-    i.set_dds_tx2_tone2_phase                0x0800c2fc   Section        0  command.o(i.set_dds_tx2_tone2_phase)
-    i.set_dds_tx2_tone2_scale                0x0800c37c   Section        0  command.o(i.set_dds_tx2_tone2_scale)
-    i.set_full_table_gain                    0x0800c3e0   Section        0  ad9361.o(i.set_full_table_gain)
-    set_full_table_gain                      0x0800c3e1   Thumb Code   144  ad9361.o(i.set_full_table_gain)
-    i.set_rx1_gc_mode                        0x0800c4d4   Section        0  command.o(i.set_rx1_gc_mode)
-    i.set_rx1_rf_gain                        0x0800c51c   Section        0  command.o(i.set_rx1_rf_gain)
-    i.set_rx2_gc_mode                        0x0800c564   Section        0  command.o(i.set_rx2_gc_mode)
-    i.set_rx2_rf_gain                        0x0800c5ac   Section        0  command.o(i.set_rx2_rf_gain)
-    i.set_rx_fir_en                          0x0800c5f4   Section        0  command.o(i.set_rx_fir_en)
-    i.set_rx_lo_freq                         0x0800c63c   Section        0  command.o(i.set_rx_lo_freq)
-    i.set_rx_rf_bandwidth                    0x0800c6a4   Section        0  command.o(i.set_rx_rf_bandwidth)
-    i.set_rx_samp_freq                       0x0800c6f0   Section        0  command.o(i.set_rx_samp_freq)
-    i.set_split_table_gain                   0x0800c744   Section        0  ad9361.o(i.set_split_table_gain)
-    set_split_table_gain                     0x0800c745   Thumb Code   222  ad9361.o(i.set_split_table_gain)
-    i.set_tx1_attenuation                    0x0800c940   Section        0  command.o(i.set_tx1_attenuation)
-    i.set_tx2_attenuation                    0x0800c98c   Section        0  command.o(i.set_tx2_attenuation)
-    i.set_tx_fir_en                          0x0800c9d8   Section        0  command.o(i.set_tx_fir_en)
-    i.set_tx_lo_freq                         0x0800ca20   Section        0  command.o(i.set_tx_lo_freq)
-    i.set_tx_rf_bandwidth                    0x0800ca88   Section        0  command.o(i.set_tx_rf_bandwidth)
-    i.set_tx_samp_freq                       0x0800cab4   Section        0  command.o(i.set_tx_samp_freq)
-    i.show_invalid_param_message             0x0800cb08   Section        0  command.o(i.show_invalid_param_message)
-    i.spi_write_then_read                    0x0800cb64   Section        0  platform.o(i.spi_write_then_read)
-    i.uart_read_char                         0x0800cbac   Section        0  console.o(i.uart_read_char)
-    i.uart_write_char                        0x0800cbc0   Section        0  console.o(i.uart_write_char)
-    i.uart_write_string                      0x0800cbd8   Section        0  console.o(i.uart_write_string)
-    i.udelay                                 0x0800cbec   Section        0  platform.o(i.udelay)
-    i.zmalloc                                0x0800cbfe   Section        0  util.o(i.zmalloc)
-    .constdata                               0x0800cc1a   Section       16  system_stm32f4xx.o(.constdata)
-    .constdata                               0x0800cc2a   Section        8  system_stm32f4xx.o(.constdata)
-    .constdata                               0x0800cc34   Section     7097  ad9361.o(.constdata)
-    tia_table                                0x0800cc34   Data           2  ad9361.o(.constdata)
-    SynthLUT_FDD                             0x0800cc36   Data        2226  ad9361.o(.constdata)
-    SynthLUT_TDD                             0x0800d4e8   Data        2226  ad9361.o(.constdata)
-    full_gain_table                          0x0800dd9a   Data         693  ad9361.o(.constdata)
-    split_gain_table                         0x0800e04f   Data         369  ad9361.o(.constdata)
-    gm_st_gain                               0x0800e1c0   Data          16  ad9361.o(.constdata)
-    gm_st_ctrl                               0x0800e1d0   Data          16  ad9361.o(.constdata)
-    lna_table                                0x0800e1e0   Data          12  ad9361.o(.constdata)
-    mixer_table                              0x0800e1ec   Data          48  ad9361.o(.constdata)
-    gain_step_calib_reg_val                  0x0800e21c   Data          80  ad9361.o(.constdata)
-    __func__                                 0x0800e26c   Data          13  ad9361.o(.constdata)
-    __func__                                 0x0800e279   Data          21  ad9361.o(.constdata)
-    __func__                                 0x0800e28e   Data          17  ad9361.o(.constdata)
-    __func__                                 0x0800e29f   Data          17  ad9361.o(.constdata)
-    __func__                                 0x0800e2b0   Data          23  ad9361.o(.constdata)
-    __func__                                 0x0800e2c7   Data          15  ad9361.o(.constdata)
-    __func__                                 0x0800e2d6   Data          30  ad9361.o(.constdata)
-    __func__                                 0x0800e2f4   Data          20  ad9361.o(.constdata)
-    __func__                                 0x0800e308   Data          22  ad9361.o(.constdata)
-    __func__                                 0x0800e31e   Data          20  ad9361.o(.constdata)
-    __func__                                 0x0800e332   Data          20  ad9361.o(.constdata)
-    __func__                                 0x0800e346   Data          33  ad9361.o(.constdata)
-    __func__                                 0x0800e367   Data          33  ad9361.o(.constdata)
-    __func__                                 0x0800e388   Data          33  ad9361.o(.constdata)
-    __func__                                 0x0800e3a9   Data          27  ad9361.o(.constdata)
-    __func__                                 0x0800e3c4   Data          26  ad9361.o(.constdata)
-    __func__                                 0x0800e3de   Data          26  ad9361.o(.constdata)
-    __func__                                 0x0800e3f8   Data          29  ad9361.o(.constdata)
-    __func__                                 0x0800e415   Data          28  ad9361.o(.constdata)
-    __func__                                 0x0800e431   Data          21  ad9361.o(.constdata)
-    __func__                                 0x0800e446   Data          24  ad9361.o(.constdata)
-    __func__                                 0x0800e45e   Data          27  ad9361.o(.constdata)
-    __func__                                 0x0800e479   Data          26  ad9361.o(.constdata)
-    __func__                                 0x0800e493   Data          26  ad9361.o(.constdata)
-    __func__                                 0x0800e4ad   Data          26  ad9361.o(.constdata)
-    __func__                                 0x0800e4c7   Data          21  ad9361.o(.constdata)
-    __func__                                 0x0800e4dc   Data          19  ad9361.o(.constdata)
-    __func__                                 0x0800e4ef   Data          21  ad9361.o(.constdata)
-    __func__                                 0x0800e504   Data          21  ad9361.o(.constdata)
-    __func__                                 0x0800e519   Data          21  ad9361.o(.constdata)
-    __func__                                 0x0800e52e   Data          16  ad9361.o(.constdata)
-    __func__                                 0x0800e53e   Data          18  ad9361.o(.constdata)
-    __func__                                 0x0800e550   Data          20  ad9361.o(.constdata)
-    __func__                                 0x0800e564   Data          20  ad9361.o(.constdata)
-    __func__                                 0x0800e578   Data          23  ad9361.o(.constdata)
-    __func__                                 0x0800e58f   Data          17  ad9361.o(.constdata)
-    __func__                                 0x0800e5a0   Data          18  ad9361.o(.constdata)
-    __func__                                 0x0800e5b2   Data          32  ad9361.o(.constdata)
-    __func__                                 0x0800e5d2   Data          27  ad9361.o(.constdata)
-    __func__                                 0x0800e5ed   Data          32  ad9361.o(.constdata)
-    __func__                                 0x0800e62c   Data          21  ad9361.o(.constdata)
-    __func__                                 0x0800e641   Data          22  ad9361.o(.constdata)
-    __func__                                 0x0800e657   Data          24  ad9361.o(.constdata)
-    __func__                                 0x0800e66f   Data          23  ad9361.o(.constdata)
-    __func__                                 0x0800e686   Data          21  ad9361.o(.constdata)
-    __func__                                 0x0800e69b   Data          11  ad9361.o(.constdata)
-    __func__                                 0x0800e6a6   Data          13  ad9361.o(.constdata)
-    __func__                                 0x0800e6b3   Data          20  ad9361.o(.constdata)
-    __func__                                 0x0800e6c7   Data          30  ad9361.o(.constdata)
-    __func__                                 0x0800e6e5   Data          28  ad9361.o(.constdata)
-    __func__                                 0x0800e701   Data          27  ad9361.o(.constdata)
-    __func__                                 0x0800e71c   Data          29  ad9361.o(.constdata)
-    __func__                                 0x0800e739   Data          27  ad9361.o(.constdata)
-    __func__                                 0x0800e754   Data          22  ad9361.o(.constdata)
-    __func__                                 0x0800e76a   Data          29  ad9361.o(.constdata)
-    __func__                                 0x0800e787   Data          28  ad9361.o(.constdata)
-    __func__                                 0x0800e7a3   Data          26  ad9361.o(.constdata)
-    __func__                                 0x0800e7bd   Data          22  ad9361.o(.constdata)
-    __func__                                 0x0800e7d3   Data          26  ad9361.o(.constdata)
-    .constdata                               0x0800e7ed   Section      223  ad9361_api.o(.constdata)
-    __func__                                 0x0800e7ed   Data          12  ad9361_api.o(.constdata)
-    __func__                                 0x0800e7f9   Data          22  ad9361_api.o(.constdata)
-    __func__                                 0x0800e80f   Data          22  ad9361_api.o(.constdata)
-    __func__                                 0x0800e825   Data          25  ad9361_api.o(.constdata)
-    __func__                                 0x0800e83e   Data          19  ad9361_api.o(.constdata)
-    __func__                                 0x0800e851   Data          32  ad9361_api.o(.constdata)
-    __func__                                 0x0800e871   Data          26  ad9361_api.o(.constdata)
-    __func__                                 0x0800e88b   Data          26  ad9361_api.o(.constdata)
-    __func__                                 0x0800e8a5   Data          25  ad9361_api.o(.constdata)
-    __func__                                 0x0800e8be   Data          14  ad9361_api.o(.constdata)
-    .constdata                               0x0800e8cc   Section       68  ad9361_conv.o(.constdata)
-    __func__                                 0x0800e8cc   Data          37  ad9361_conv.o(.constdata)
-    __func__                                 0x0800e8f1   Data          16  ad9361_conv.o(.constdata)
-    .constdata                               0x0800e910   Section        1  command.o(.constdata)
-    .constdata                               0x0800e911   Section       64  ctype_c.o(.constdata)
-    .conststring                             0x0800e954   Section      159  ad9361.o(.conststring)
-    .conststring                             0x0800e9f4   Section       21  ad9361_api.o(.conststring)
-    .conststring                             0x0800ea0c   Section     2993  command.o(.conststring)
+    i.cal_lo_diff                            0x0800a814   Section        0  command.o(i.cal_lo_diff)
+    i.clk_get_rate                           0x0800aab4   Section        0  util.o(i.clk_get_rate)
+    i.clk_prepare_enable                     0x0800ab2c   Section        0  util.o(i.clk_prepare_enable)
+    i.clk_set_rate                           0x0800ab30   Section        0  util.o(i.clk_set_rate)
+    i.console_check_commands                 0x0800ad40   Section        0  console.o(i.console_check_commands)
+    i.console_get_command                    0x0800af98   Section        0  console.o(i.console_get_command)
+    i.console_print                          0x0800afc4   Section        0  console.o(i.console_print)
+    i.dac_init                               0x0800b16c   Section        0  dac_core.o(i.dac_init)
+    i.dac_start_sync                         0x0800b16e   Section        0  dac_core.o(i.dac_start_sync)
+    i.dac_stop                               0x0800b170   Section        0  dac_core.o(i.dac_stop)
+    i.dds_set_frequency                      0x0800b174   Section        0  dac_core.o(i.dds_set_frequency)
+    i.dds_set_phase                          0x0800b1c0   Section        0  dac_core.o(i.dds_set_phase)
+    i.dds_set_scale                          0x0800b208   Section        0  dac_core.o(i.dds_set_scale)
+    i.dds_tx2_tone2_scale                    0x0800b274   Section        0  command.o(i.dds_tx2_tone2_scale)
+    i.dds_update                             0x0800b29c   Section        0  dac_core.o(i.dds_update)
+    i.do_div                                 0x0800b2f8   Section        0  util.o(i.do_div)
+    i.find_first_bit                         0x0800b30e   Section        0  util.o(i.find_first_bit)
+    i.fputc                                  0x0800b340   Section        0  usart.o(i.fputc)
+    i.free                                   0x0800b358   Section        0  malloc.o(i.free)
+    i.get_dds_tx1_tone1_freq                 0x0800b3a8   Section        0  command.o(i.get_dds_tx1_tone1_freq)
+    i.get_dds_tx1_tone1_phase                0x0800b3d0   Section        0  command.o(i.get_dds_tx1_tone1_phase)
+    i.get_dds_tx1_tone1_scale                0x0800b400   Section        0  command.o(i.get_dds_tx1_tone1_scale)
+    i.get_dds_tx1_tone2_freq                 0x0800b428   Section        0  command.o(i.get_dds_tx1_tone2_freq)
+    i.get_dds_tx1_tone2_phase                0x0800b450   Section        0  command.o(i.get_dds_tx1_tone2_phase)
+    i.get_dds_tx1_tone2_scale                0x0800b480   Section        0  command.o(i.get_dds_tx1_tone2_scale)
+    i.get_dds_tx2_tone1_freq                 0x0800b4a8   Section        0  command.o(i.get_dds_tx2_tone1_freq)
+    i.get_dds_tx2_tone1_phase                0x0800b4d0   Section        0  command.o(i.get_dds_tx2_tone1_phase)
+    i.get_dds_tx2_tone1_scale                0x0800b500   Section        0  command.o(i.get_dds_tx2_tone1_scale)
+    i.get_dds_tx2_tone2_freq                 0x0800b528   Section        0  command.o(i.get_dds_tx2_tone2_freq)
+    i.get_dds_tx2_tone2_phase                0x0800b550   Section        0  command.o(i.get_dds_tx2_tone2_phase)
+    i.get_help                               0x0800b580   Section        0  command.o(i.get_help)
+    i.get_lo_diff                            0x0800b5cc   Section        0  command.o(i.get_lo_diff)
+    i.get_register                           0x0800b600   Section        0  command.o(i.get_register)
+    i.get_rx1_gc_mode                        0x0800b62c   Section        0  command.o(i.get_rx1_gc_mode)
+    i.get_rx1_rf_gain                        0x0800b65c   Section        0  command.o(i.get_rx1_rf_gain)
+    i.get_rx2_gc_mode                        0x0800b688   Section        0  command.o(i.get_rx2_gc_mode)
+    i.get_rx2_rf_gain                        0x0800b6b8   Section        0  command.o(i.get_rx2_rf_gain)
+    i.get_rx_fir_en                          0x0800b6e4   Section        0  command.o(i.get_rx_fir_en)
+    i.get_rx_lo_freq                         0x0800b710   Section        0  command.o(i.get_rx_lo_freq)
+    i.get_rx_rf_bandwidth                    0x0800b750   Section        0  command.o(i.get_rx_rf_bandwidth)
+    i.get_rx_samp_freq                       0x0800b780   Section        0  command.o(i.get_rx_samp_freq)
+    i.get_tx1_attenuation                    0x0800b7b0   Section        0  command.o(i.get_tx1_attenuation)
+    i.get_tx2_attenuation                    0x0800b7e0   Section        0  command.o(i.get_tx2_attenuation)
+    i.get_tx_fir_en                          0x0800b810   Section        0  command.o(i.get_tx_fir_en)
+    i.get_tx_lo_freq                         0x0800b83c   Section        0  command.o(i.get_tx_lo_freq)
+    i.get_tx_rf_bandwidth                    0x0800b87c   Section        0  command.o(i.get_tx_rf_bandwidth)
+    i.get_tx_samp_freq                       0x0800b8ac   Section        0  command.o(i.get_tx_samp_freq)
+    i.gpio_data                              0x0800b8dc   Section        0  platform.o(i.gpio_data)
+    i.gpio_is_valid                          0x0800b924   Section        0  platform.o(i.gpio_is_valid)
+    i.gpio_set_value                         0x0800b930   Section        0  platform.o(i.gpio_set_value)
+    i.ilog2                                  0x0800b938   Section        0  util.o(i.ilog2)
+    i.int_sqrt                               0x0800b99c   Section        0  util.o(i.int_sqrt)
+    i.int_to_str                             0x0800b9c0   Section        0  console.o(i.int_to_str)
+    i.main                                   0x0800ba20   Section        0  main.o(i.main)
+    i.malloc                                 0x0800be24   Section        0  malloc.o(i.malloc)
+    i.mdelay                                 0x0800be90   Section        0  platform.o(i.mdelay)
+    i.register_clocks                        0x0800be94   Section        0  ad9361.o(i.register_clocks)
+    i.set_dds_tx1_tone1_freq                 0x0800c168   Section        0  command.o(i.set_dds_tx1_tone1_freq)
+    i.set_dds_tx1_tone1_phase                0x0800c1c4   Section        0  command.o(i.set_dds_tx1_tone1_phase)
+    i.set_dds_tx1_tone1_scale                0x0800c244   Section        0  command.o(i.set_dds_tx1_tone1_scale)
+    i.set_dds_tx1_tone2_freq                 0x0800c2a8   Section        0  command.o(i.set_dds_tx1_tone2_freq)
+    i.set_dds_tx1_tone2_phase                0x0800c304   Section        0  command.o(i.set_dds_tx1_tone2_phase)
+    i.set_dds_tx1_tone2_scale                0x0800c384   Section        0  command.o(i.set_dds_tx1_tone2_scale)
+    i.set_dds_tx2_tone1_freq                 0x0800c3e8   Section        0  command.o(i.set_dds_tx2_tone1_freq)
+    i.set_dds_tx2_tone1_phase                0x0800c444   Section        0  command.o(i.set_dds_tx2_tone1_phase)
+    i.set_dds_tx2_tone1_scale                0x0800c4c4   Section        0  command.o(i.set_dds_tx2_tone1_scale)
+    i.set_dds_tx2_tone2_freq                 0x0800c528   Section        0  command.o(i.set_dds_tx2_tone2_freq)
+    i.set_dds_tx2_tone2_phase                0x0800c584   Section        0  command.o(i.set_dds_tx2_tone2_phase)
+    i.set_dds_tx2_tone2_scale                0x0800c604   Section        0  command.o(i.set_dds_tx2_tone2_scale)
+    i.set_full_table_gain                    0x0800c668   Section        0  ad9361.o(i.set_full_table_gain)
+    set_full_table_gain                      0x0800c669   Thumb Code   144  ad9361.o(i.set_full_table_gain)
+    i.set_rx1_gc_mode                        0x0800c75c   Section        0  command.o(i.set_rx1_gc_mode)
+    i.set_rx1_rf_gain                        0x0800c7a4   Section        0  command.o(i.set_rx1_rf_gain)
+    i.set_rx2_gc_mode                        0x0800c7ec   Section        0  command.o(i.set_rx2_gc_mode)
+    i.set_rx2_rf_gain                        0x0800c834   Section        0  command.o(i.set_rx2_rf_gain)
+    i.set_rx_fir_en                          0x0800c87c   Section        0  command.o(i.set_rx_fir_en)
+    i.set_rx_lo_freq                         0x0800c8c4   Section        0  command.o(i.set_rx_lo_freq)
+    i.set_rx_rf_bandwidth                    0x0800c92c   Section        0  command.o(i.set_rx_rf_bandwidth)
+    i.set_rx_samp_freq                       0x0800c978   Section        0  command.o(i.set_rx_samp_freq)
+    i.set_split_table_gain                   0x0800c9cc   Section        0  ad9361.o(i.set_split_table_gain)
+    set_split_table_gain                     0x0800c9cd   Thumb Code   222  ad9361.o(i.set_split_table_gain)
+    i.set_tx1_attenuation                    0x0800cbc8   Section        0  command.o(i.set_tx1_attenuation)
+    i.set_tx2_attenuation                    0x0800cc14   Section        0  command.o(i.set_tx2_attenuation)
+    i.set_tx_fir_en                          0x0800cc60   Section        0  command.o(i.set_tx_fir_en)
+    i.set_tx_lo_freq                         0x0800cca8   Section        0  command.o(i.set_tx_lo_freq)
+    i.set_tx_rf_bandwidth                    0x0800cd10   Section        0  command.o(i.set_tx_rf_bandwidth)
+    i.set_tx_samp_freq                       0x0800cd3c   Section        0  command.o(i.set_tx_samp_freq)
+    i.show_invalid_param_message             0x0800cd90   Section        0  command.o(i.show_invalid_param_message)
+    i.spi_write_then_read                    0x0800cdec   Section        0  platform.o(i.spi_write_then_read)
+    i.uart_read_char                         0x0800ce34   Section        0  console.o(i.uart_read_char)
+    i.uart_write_char                        0x0800ce48   Section        0  console.o(i.uart_write_char)
+    i.uart_write_string                      0x0800ce60   Section        0  console.o(i.uart_write_string)
+    i.udelay                                 0x0800ce74   Section        0  platform.o(i.udelay)
+    i.zmalloc                                0x0800ce86   Section        0  util.o(i.zmalloc)
+    .constdata                               0x0800cea2   Section       16  system_stm32f4xx.o(.constdata)
+    .constdata                               0x0800ceb2   Section        8  system_stm32f4xx.o(.constdata)
+    .constdata                               0x0800cebc   Section     7097  ad9361.o(.constdata)
+    tia_table                                0x0800cebc   Data           2  ad9361.o(.constdata)
+    SynthLUT_FDD                             0x0800cebe   Data        2226  ad9361.o(.constdata)
+    SynthLUT_TDD                             0x0800d770   Data        2226  ad9361.o(.constdata)
+    full_gain_table                          0x0800e022   Data         693  ad9361.o(.constdata)
+    split_gain_table                         0x0800e2d7   Data         369  ad9361.o(.constdata)
+    gm_st_gain                               0x0800e448   Data          16  ad9361.o(.constdata)
+    gm_st_ctrl                               0x0800e458   Data          16  ad9361.o(.constdata)
+    lna_table                                0x0800e468   Data          12  ad9361.o(.constdata)
+    mixer_table                              0x0800e474   Data          48  ad9361.o(.constdata)
+    gain_step_calib_reg_val                  0x0800e4a4   Data          80  ad9361.o(.constdata)
+    __func__                                 0x0800e4f4   Data          13  ad9361.o(.constdata)
+    __func__                                 0x0800e501   Data          21  ad9361.o(.constdata)
+    __func__                                 0x0800e516   Data          17  ad9361.o(.constdata)
+    __func__                                 0x0800e527   Data          17  ad9361.o(.constdata)
+    __func__                                 0x0800e538   Data          23  ad9361.o(.constdata)
+    __func__                                 0x0800e54f   Data          15  ad9361.o(.constdata)
+    __func__                                 0x0800e55e   Data          30  ad9361.o(.constdata)
+    __func__                                 0x0800e57c   Data          20  ad9361.o(.constdata)
+    __func__                                 0x0800e590   Data          22  ad9361.o(.constdata)
+    __func__                                 0x0800e5a6   Data          20  ad9361.o(.constdata)
+    __func__                                 0x0800e5ba   Data          20  ad9361.o(.constdata)
+    __func__                                 0x0800e5ce   Data          33  ad9361.o(.constdata)
+    __func__                                 0x0800e5ef   Data          33  ad9361.o(.constdata)
+    __func__                                 0x0800e610   Data          33  ad9361.o(.constdata)
+    __func__                                 0x0800e631   Data          27  ad9361.o(.constdata)
+    __func__                                 0x0800e64c   Data          26  ad9361.o(.constdata)
+    __func__                                 0x0800e666   Data          26  ad9361.o(.constdata)
+    __func__                                 0x0800e680   Data          29  ad9361.o(.constdata)
+    __func__                                 0x0800e69d   Data          28  ad9361.o(.constdata)
+    __func__                                 0x0800e6b9   Data          21  ad9361.o(.constdata)
+    __func__                                 0x0800e6ce   Data          24  ad9361.o(.constdata)
+    __func__                                 0x0800e6e6   Data          27  ad9361.o(.constdata)
+    __func__                                 0x0800e701   Data          26  ad9361.o(.constdata)
+    __func__                                 0x0800e71b   Data          26  ad9361.o(.constdata)
+    __func__                                 0x0800e735   Data          26  ad9361.o(.constdata)
+    __func__                                 0x0800e74f   Data          21  ad9361.o(.constdata)
+    __func__                                 0x0800e764   Data          19  ad9361.o(.constdata)
+    __func__                                 0x0800e777   Data          21  ad9361.o(.constdata)
+    __func__                                 0x0800e78c   Data          21  ad9361.o(.constdata)
+    __func__                                 0x0800e7a1   Data          21  ad9361.o(.constdata)
+    __func__                                 0x0800e7b6   Data          16  ad9361.o(.constdata)
+    __func__                                 0x0800e7c6   Data          18  ad9361.o(.constdata)
+    __func__                                 0x0800e7d8   Data          20  ad9361.o(.constdata)
+    __func__                                 0x0800e7ec   Data          20  ad9361.o(.constdata)
+    __func__                                 0x0800e800   Data          23  ad9361.o(.constdata)
+    __func__                                 0x0800e817   Data          17  ad9361.o(.constdata)
+    __func__                                 0x0800e828   Data          18  ad9361.o(.constdata)
+    __func__                                 0x0800e83a   Data          32  ad9361.o(.constdata)
+    __func__                                 0x0800e85a   Data          27  ad9361.o(.constdata)
+    __func__                                 0x0800e875   Data          32  ad9361.o(.constdata)
+    __func__                                 0x0800e8b4   Data          21  ad9361.o(.constdata)
+    __func__                                 0x0800e8c9   Data          22  ad9361.o(.constdata)
+    __func__                                 0x0800e8df   Data          24  ad9361.o(.constdata)
+    __func__                                 0x0800e8f7   Data          23  ad9361.o(.constdata)
+    __func__                                 0x0800e90e   Data          21  ad9361.o(.constdata)
+    __func__                                 0x0800e923   Data          11  ad9361.o(.constdata)
+    __func__                                 0x0800e92e   Data          13  ad9361.o(.constdata)
+    __func__                                 0x0800e93b   Data          20  ad9361.o(.constdata)
+    __func__                                 0x0800e94f   Data          30  ad9361.o(.constdata)
+    __func__                                 0x0800e96d   Data          28  ad9361.o(.constdata)
+    __func__                                 0x0800e989   Data          27  ad9361.o(.constdata)
+    __func__                                 0x0800e9a4   Data          29  ad9361.o(.constdata)
+    __func__                                 0x0800e9c1   Data          27  ad9361.o(.constdata)
+    __func__                                 0x0800e9dc   Data          22  ad9361.o(.constdata)
+    __func__                                 0x0800e9f2   Data          29  ad9361.o(.constdata)
+    __func__                                 0x0800ea0f   Data          28  ad9361.o(.constdata)
+    __func__                                 0x0800ea2b   Data          26  ad9361.o(.constdata)
+    __func__                                 0x0800ea45   Data          22  ad9361.o(.constdata)
+    __func__                                 0x0800ea5b   Data          26  ad9361.o(.constdata)
+    .constdata                               0x0800ea75   Section      223  ad9361_api.o(.constdata)
+    __func__                                 0x0800ea75   Data          12  ad9361_api.o(.constdata)
+    __func__                                 0x0800ea81   Data          22  ad9361_api.o(.constdata)
+    __func__                                 0x0800ea97   Data          22  ad9361_api.o(.constdata)
+    __func__                                 0x0800eaad   Data          25  ad9361_api.o(.constdata)
+    __func__                                 0x0800eac6   Data          19  ad9361_api.o(.constdata)
+    __func__                                 0x0800ead9   Data          32  ad9361_api.o(.constdata)
+    __func__                                 0x0800eaf9   Data          26  ad9361_api.o(.constdata)
+    __func__                                 0x0800eb13   Data          26  ad9361_api.o(.constdata)
+    __func__                                 0x0800eb2d   Data          25  ad9361_api.o(.constdata)
+    __func__                                 0x0800eb46   Data          14  ad9361_api.o(.constdata)
+    .constdata                               0x0800eb54   Section       68  ad9361_conv.o(.constdata)
+    __func__                                 0x0800eb54   Data          37  ad9361_conv.o(.constdata)
+    __func__                                 0x0800eb79   Data          16  ad9361_conv.o(.constdata)
+    .constdata                               0x0800eb98   Section        1  command.o(.constdata)
+    .constdata                               0x0800eb99   Section       64  ctype_c.o(.constdata)
+    .conststring                             0x0800ebdc   Section      159  ad9361.o(.conststring)
+    .conststring                             0x0800ec7c   Section       21  ad9361_api.o(.conststring)
+    .conststring                             0x0800ec94   Section     3025  command.o(.conststring)
     .data                                    0x20000000   Section     1136  main.o(.data)
     .data                                    0x20000470   Section       12  stm32f4xx_hal.o(.data)
     .data                                    0x2000047c   Section        4  system_stm32f4xx.o(.data)
     .data                                    0x20000480   Section       16  ad9361_api.o(.data)
     axiadc_chip_info_tbl                     0x20000480   Data          16  ad9361_api.o(.data)
     .data                                    0x20000490   Section        1  adc_core.o(.data)
-    .data                                    0x20000494   Section      880  command.o(.data)
-    .data                                    0x20000804   Section       17  console.o(.data)
-    buffer                                   0x20000804   Data          17  console.o(.data)
-    .data                                    0x20000815   Section        1  softspi.o(.data)
-    spi_mode                                 0x20000815   Data           1  softspi.o(.data)
-    .data                                    0x20000818   Section        4  stdout.o(.data)
-    .data                                    0x2000081c   Section        4  mvars.o(.data)
-    .data                                    0x20000820   Section        4  mvars.o(.data)
-    .data                                    0x20000824   Section        4  errno.o(.data)
-    _errno                                   0x20000824   Data           4  errno.o(.data)
-    .bss                                     0x20000828   Section       70  main.o(.bss)
-    .bss                                     0x20000870   Section       88  spi.o(.bss)
-    .bss                                     0x200008c8   Section       68  usart.o(.bss)
-    .bss                                     0x2000090c   Section      240  dac_core.o(.bss)
-    HEAP                                     0x20000a00   Section     4096  startup_stm32f411xe.o(HEAP)
-    STACK                                    0x20001a00   Section     1024  startup_stm32f411xe.o(STACK)
+    .data                                    0x20000494   Section      896  command.o(.data)
+    .data                                    0x20000814   Section       17  console.o(.data)
+    buffer                                   0x20000814   Data          17  console.o(.data)
+    .data                                    0x20000825   Section        1  softspi.o(.data)
+    spi_mode                                 0x20000825   Data           1  softspi.o(.data)
+    .data                                    0x20000828   Section        4  stdout.o(.data)
+    .data                                    0x2000082c   Section        4  mvars.o(.data)
+    .data                                    0x20000830   Section        4  mvars.o(.data)
+    .data                                    0x20000834   Section        4  errno.o(.data)
+    _errno                                   0x20000834   Data           4  errno.o(.data)
+    .bss                                     0x20000838   Section       70  main.o(.bss)
+    .bss                                     0x20000880   Section       88  spi.o(.bss)
+    .bss                                     0x200008d8   Section       68  usart.o(.bss)
+    .bss                                     0x2000091c   Section      240  dac_core.o(.bss)
+    HEAP                                     0x20000a10   Section     4096  startup_stm32f411xe.o(HEAP)
+    STACK                                    0x20001a10   Section     1024  startup_stm32f411xe.o(STACK)
 
     Global Symbols
 
@@ -3220,101 +3229,102 @@ Image Symbol Table
     axiadc_read                              0x0800a795   Thumb Code    14  platform.o(i.axiadc_read)
     axiadc_set_pnsel                         0x0800a7a3   Thumb Code   108  platform.o(i.axiadc_set_pnsel)
     axiadc_write                             0x0800a80f   Thumb Code     6  platform.o(i.axiadc_write)
-    clk_get_rate                             0x0800a815   Thumb Code   120  util.o(i.clk_get_rate)
-    clk_prepare_enable                       0x0800a88d   Thumb Code     4  util.o(i.clk_prepare_enable)
-    clk_set_rate                             0x0800a891   Thumb Code   526  util.o(i.clk_set_rate)
-    console_check_commands                   0x0800aaa1   Thumb Code   562  console.o(i.console_check_commands)
-    console_get_command                      0x0800acf9   Thumb Code    42  console.o(i.console_get_command)
-    console_print                            0x0800ad25   Thumb Code   412  console.o(i.console_print)
-    dac_init                                 0x0800aecd   Thumb Code     2  dac_core.o(i.dac_init)
-    dac_start_sync                           0x0800aecf   Thumb Code     2  dac_core.o(i.dac_start_sync)
-    dac_stop                                 0x0800aed1   Thumb Code     2  dac_core.o(i.dac_stop)
-    dds_set_frequency                        0x0800aed5   Thumb Code    70  dac_core.o(i.dds_set_frequency)
-    dds_set_phase                            0x0800af21   Thumb Code    64  dac_core.o(i.dds_set_phase)
-    dds_set_scale                            0x0800af69   Thumb Code    96  dac_core.o(i.dds_set_scale)
-    dds_tx2_tone2_scale                      0x0800afd5   Thumb Code    10  command.o(i.dds_tx2_tone2_scale)
-    dds_update                               0x0800affd   Thumb Code    86  dac_core.o(i.dds_update)
-    do_div                                   0x0800b059   Thumb Code    22  util.o(i.do_div)
-    find_first_bit                           0x0800b06f   Thumb Code    48  util.o(i.find_first_bit)
-    fputc                                    0x0800b0a1   Thumb Code    20  usart.o(i.fputc)
-    free                                     0x0800b0b9   Thumb Code    76  malloc.o(i.free)
-    get_dds_tx1_tone1_freq                   0x0800b109   Thumb Code    10  command.o(i.get_dds_tx1_tone1_freq)
-    get_dds_tx1_tone1_phase                  0x0800b131   Thumb Code    18  command.o(i.get_dds_tx1_tone1_phase)
-    get_dds_tx1_tone1_scale                  0x0800b161   Thumb Code    10  command.o(i.get_dds_tx1_tone1_scale)
-    get_dds_tx1_tone2_freq                   0x0800b189   Thumb Code    10  command.o(i.get_dds_tx1_tone2_freq)
-    get_dds_tx1_tone2_phase                  0x0800b1b1   Thumb Code    18  command.o(i.get_dds_tx1_tone2_phase)
-    get_dds_tx1_tone2_scale                  0x0800b1e1   Thumb Code    10  command.o(i.get_dds_tx1_tone2_scale)
-    get_dds_tx2_tone1_freq                   0x0800b209   Thumb Code    10  command.o(i.get_dds_tx2_tone1_freq)
-    get_dds_tx2_tone1_phase                  0x0800b231   Thumb Code    18  command.o(i.get_dds_tx2_tone1_phase)
-    get_dds_tx2_tone1_scale                  0x0800b261   Thumb Code    10  command.o(i.get_dds_tx2_tone1_scale)
-    get_dds_tx2_tone2_freq                   0x0800b289   Thumb Code    10  command.o(i.get_dds_tx2_tone2_freq)
-    get_dds_tx2_tone2_phase                  0x0800b2b1   Thumb Code    18  command.o(i.get_dds_tx2_tone2_phase)
-    get_help                                 0x0800b2e1   Thumb Code    36  command.o(i.get_help)
-    get_register                             0x0800b32d   Thumb Code     6  command.o(i.get_register)
-    get_rx1_gc_mode                          0x0800b359   Thumb Code    26  command.o(i.get_rx1_gc_mode)
-    get_rx1_rf_gain                          0x0800b389   Thumb Code    24  command.o(i.get_rx1_rf_gain)
-    get_rx2_gc_mode                          0x0800b3b5   Thumb Code    26  command.o(i.get_rx2_gc_mode)
-    get_rx2_rf_gain                          0x0800b3e5   Thumb Code    24  command.o(i.get_rx2_rf_gain)
-    get_rx_fir_en                            0x0800b411   Thumb Code    24  command.o(i.get_rx_fir_en)
-    get_rx_lo_freq                           0x0800b43d   Thumb Code    38  command.o(i.get_rx_lo_freq)
-    get_rx_rf_bandwidth                      0x0800b47d   Thumb Code    22  command.o(i.get_rx_rf_bandwidth)
-    get_rx_samp_freq                         0x0800b4ad   Thumb Code    22  command.o(i.get_rx_samp_freq)
-    get_tx1_attenuation                      0x0800b4dd   Thumb Code    24  command.o(i.get_tx1_attenuation)
-    get_tx2_attenuation                      0x0800b50d   Thumb Code    24  command.o(i.get_tx2_attenuation)
-    get_tx_fir_en                            0x0800b53d   Thumb Code    24  command.o(i.get_tx_fir_en)
-    get_tx_lo_freq                           0x0800b569   Thumb Code    38  command.o(i.get_tx_lo_freq)
-    get_tx_rf_bandwidth                      0x0800b5a9   Thumb Code    22  command.o(i.get_tx_rf_bandwidth)
-    get_tx_samp_freq                         0x0800b5d9   Thumb Code    22  command.o(i.get_tx_samp_freq)
-    gpio_data                                0x0800b609   Thumb Code    56  platform.o(i.gpio_data)
-    gpio_is_valid                            0x0800b651   Thumb Code    12  platform.o(i.gpio_is_valid)
-    gpio_set_value                           0x0800b65d   Thumb Code     8  platform.o(i.gpio_set_value)
-    ilog2                                    0x0800b665   Thumb Code   100  util.o(i.ilog2)
-    int_sqrt                                 0x0800b6c9   Thumb Code    34  util.o(i.int_sqrt)
-    int_to_str                               0x0800b6ed   Thumb Code    72  console.o(i.int_to_str)
-    lo_diff_cal                              0x0800b74d   Thumb Code    24  command.o(i.lo_diff_cal)
-    main                                     0x0800b799   Thumb Code   624  main.o(i.main)
-    malloc                                   0x0800bb9d   Thumb Code    92  malloc.o(i.malloc)
-    mdelay                                   0x0800bc09   Thumb Code     4  platform.o(i.mdelay)
-    register_clocks                          0x0800bc0d   Thumb Code   464  ad9361.o(i.register_clocks)
-    set_dds_tx1_tone1_freq                   0x0800bee1   Thumb Code    64  command.o(i.set_dds_tx1_tone1_freq)
-    set_dds_tx1_tone1_phase                  0x0800bf3d   Thumb Code    96  command.o(i.set_dds_tx1_tone1_phase)
-    set_dds_tx1_tone1_scale                  0x0800bfbd   Thumb Code    66  command.o(i.set_dds_tx1_tone1_scale)
-    set_dds_tx1_tone2_freq                   0x0800c021   Thumb Code    64  command.o(i.set_dds_tx1_tone2_freq)
-    set_dds_tx1_tone2_phase                  0x0800c07d   Thumb Code    96  command.o(i.set_dds_tx1_tone2_phase)
-    set_dds_tx1_tone2_scale                  0x0800c0fd   Thumb Code    66  command.o(i.set_dds_tx1_tone2_scale)
-    set_dds_tx2_tone1_freq                   0x0800c161   Thumb Code    64  command.o(i.set_dds_tx2_tone1_freq)
-    set_dds_tx2_tone1_phase                  0x0800c1bd   Thumb Code    96  command.o(i.set_dds_tx2_tone1_phase)
-    set_dds_tx2_tone1_scale                  0x0800c23d   Thumb Code    66  command.o(i.set_dds_tx2_tone1_scale)
-    set_dds_tx2_tone2_freq                   0x0800c2a1   Thumb Code    64  command.o(i.set_dds_tx2_tone2_freq)
-    set_dds_tx2_tone2_phase                  0x0800c2fd   Thumb Code    96  command.o(i.set_dds_tx2_tone2_phase)
-    set_dds_tx2_tone2_scale                  0x0800c37d   Thumb Code    66  command.o(i.set_dds_tx2_tone2_scale)
-    set_rx1_gc_mode                          0x0800c4d5   Thumb Code    52  command.o(i.set_rx1_gc_mode)
-    set_rx1_rf_gain                          0x0800c51d   Thumb Code    52  command.o(i.set_rx1_rf_gain)
-    set_rx2_gc_mode                          0x0800c565   Thumb Code    52  command.o(i.set_rx2_gc_mode)
-    set_rx2_rf_gain                          0x0800c5ad   Thumb Code    52  command.o(i.set_rx2_rf_gain)
-    set_rx_fir_en                            0x0800c5f5   Thumb Code    50  command.o(i.set_rx_fir_en)
-    set_rx_lo_freq                           0x0800c63d   Thumb Code    78  command.o(i.set_rx_lo_freq)
-    set_rx_rf_bandwidth                      0x0800c6a5   Thumb Code    50  command.o(i.set_rx_rf_bandwidth)
-    set_rx_samp_freq                         0x0800c6f1   Thumb Code    60  command.o(i.set_rx_samp_freq)
-    set_tx1_attenuation                      0x0800c941   Thumb Code    52  command.o(i.set_tx1_attenuation)
-    set_tx2_attenuation                      0x0800c98d   Thumb Code    52  command.o(i.set_tx2_attenuation)
-    set_tx_fir_en                            0x0800c9d9   Thumb Code    50  command.o(i.set_tx_fir_en)
-    set_tx_lo_freq                           0x0800ca21   Thumb Code    78  command.o(i.set_tx_lo_freq)
-    set_tx_rf_bandwidth                      0x0800ca89   Thumb Code    40  command.o(i.set_tx_rf_bandwidth)
-    set_tx_samp_freq                         0x0800cab5   Thumb Code    60  command.o(i.set_tx_samp_freq)
-    show_invalid_param_message               0x0800cb09   Thumb Code    38  command.o(i.show_invalid_param_message)
-    spi_write_then_read                      0x0800cb65   Thumb Code    66  platform.o(i.spi_write_then_read)
-    uart_read_char                           0x0800cbad   Thumb Code    14  console.o(i.uart_read_char)
-    uart_write_char                          0x0800cbc1   Thumb Code    18  console.o(i.uart_write_char)
-    uart_write_string                        0x0800cbd9   Thumb Code    20  console.o(i.uart_write_string)
-    udelay                                   0x0800cbed   Thumb Code    18  platform.o(i.udelay)
-    zmalloc                                  0x0800cbff   Thumb Code    28  util.o(i.zmalloc)
-    AHBPrescTable                            0x0800cc1a   Data          16  system_stm32f4xx.o(.constdata)
-    APBPrescTable                            0x0800cc2a   Data           8  system_stm32f4xx.o(.constdata)
-    cmd_no                                   0x0800e910   Data           1  command.o(.constdata)
-    __ctype_categories                       0x0800e911   Data          64  ctype_c.o(.constdata)
-    Region$$Table$$Base                      0x0800f5c0   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0800f5e0   Number         0  anon$$obj.o(Region$$Table)
+    cal_lo_diff                              0x0800a815   Thumb Code   418  command.o(i.cal_lo_diff)
+    clk_get_rate                             0x0800aab5   Thumb Code   120  util.o(i.clk_get_rate)
+    clk_prepare_enable                       0x0800ab2d   Thumb Code     4  util.o(i.clk_prepare_enable)
+    clk_set_rate                             0x0800ab31   Thumb Code   526  util.o(i.clk_set_rate)
+    console_check_commands                   0x0800ad41   Thumb Code   562  console.o(i.console_check_commands)
+    console_get_command                      0x0800af99   Thumb Code    42  console.o(i.console_get_command)
+    console_print                            0x0800afc5   Thumb Code   412  console.o(i.console_print)
+    dac_init                                 0x0800b16d   Thumb Code     2  dac_core.o(i.dac_init)
+    dac_start_sync                           0x0800b16f   Thumb Code     2  dac_core.o(i.dac_start_sync)
+    dac_stop                                 0x0800b171   Thumb Code     2  dac_core.o(i.dac_stop)
+    dds_set_frequency                        0x0800b175   Thumb Code    70  dac_core.o(i.dds_set_frequency)
+    dds_set_phase                            0x0800b1c1   Thumb Code    64  dac_core.o(i.dds_set_phase)
+    dds_set_scale                            0x0800b209   Thumb Code    96  dac_core.o(i.dds_set_scale)
+    dds_tx2_tone2_scale                      0x0800b275   Thumb Code    10  command.o(i.dds_tx2_tone2_scale)
+    dds_update                               0x0800b29d   Thumb Code    86  dac_core.o(i.dds_update)
+    do_div                                   0x0800b2f9   Thumb Code    22  util.o(i.do_div)
+    find_first_bit                           0x0800b30f   Thumb Code    48  util.o(i.find_first_bit)
+    fputc                                    0x0800b341   Thumb Code    20  usart.o(i.fputc)
+    free                                     0x0800b359   Thumb Code    76  malloc.o(i.free)
+    get_dds_tx1_tone1_freq                   0x0800b3a9   Thumb Code    10  command.o(i.get_dds_tx1_tone1_freq)
+    get_dds_tx1_tone1_phase                  0x0800b3d1   Thumb Code    18  command.o(i.get_dds_tx1_tone1_phase)
+    get_dds_tx1_tone1_scale                  0x0800b401   Thumb Code    10  command.o(i.get_dds_tx1_tone1_scale)
+    get_dds_tx1_tone2_freq                   0x0800b429   Thumb Code    10  command.o(i.get_dds_tx1_tone2_freq)
+    get_dds_tx1_tone2_phase                  0x0800b451   Thumb Code    18  command.o(i.get_dds_tx1_tone2_phase)
+    get_dds_tx1_tone2_scale                  0x0800b481   Thumb Code    10  command.o(i.get_dds_tx1_tone2_scale)
+    get_dds_tx2_tone1_freq                   0x0800b4a9   Thumb Code    10  command.o(i.get_dds_tx2_tone1_freq)
+    get_dds_tx2_tone1_phase                  0x0800b4d1   Thumb Code    18  command.o(i.get_dds_tx2_tone1_phase)
+    get_dds_tx2_tone1_scale                  0x0800b501   Thumb Code    10  command.o(i.get_dds_tx2_tone1_scale)
+    get_dds_tx2_tone2_freq                   0x0800b529   Thumb Code    10  command.o(i.get_dds_tx2_tone2_freq)
+    get_dds_tx2_tone2_phase                  0x0800b551   Thumb Code    18  command.o(i.get_dds_tx2_tone2_phase)
+    get_help                                 0x0800b581   Thumb Code    36  command.o(i.get_help)
+    get_lo_diff                              0x0800b5cd   Thumb Code    18  command.o(i.get_lo_diff)
+    get_register                             0x0800b601   Thumb Code     6  command.o(i.get_register)
+    get_rx1_gc_mode                          0x0800b62d   Thumb Code    26  command.o(i.get_rx1_gc_mode)
+    get_rx1_rf_gain                          0x0800b65d   Thumb Code    24  command.o(i.get_rx1_rf_gain)
+    get_rx2_gc_mode                          0x0800b689   Thumb Code    26  command.o(i.get_rx2_gc_mode)
+    get_rx2_rf_gain                          0x0800b6b9   Thumb Code    24  command.o(i.get_rx2_rf_gain)
+    get_rx_fir_en                            0x0800b6e5   Thumb Code    24  command.o(i.get_rx_fir_en)
+    get_rx_lo_freq                           0x0800b711   Thumb Code    38  command.o(i.get_rx_lo_freq)
+    get_rx_rf_bandwidth                      0x0800b751   Thumb Code    22  command.o(i.get_rx_rf_bandwidth)
+    get_rx_samp_freq                         0x0800b781   Thumb Code    22  command.o(i.get_rx_samp_freq)
+    get_tx1_attenuation                      0x0800b7b1   Thumb Code    24  command.o(i.get_tx1_attenuation)
+    get_tx2_attenuation                      0x0800b7e1   Thumb Code    24  command.o(i.get_tx2_attenuation)
+    get_tx_fir_en                            0x0800b811   Thumb Code    24  command.o(i.get_tx_fir_en)
+    get_tx_lo_freq                           0x0800b83d   Thumb Code    38  command.o(i.get_tx_lo_freq)
+    get_tx_rf_bandwidth                      0x0800b87d   Thumb Code    22  command.o(i.get_tx_rf_bandwidth)
+    get_tx_samp_freq                         0x0800b8ad   Thumb Code    22  command.o(i.get_tx_samp_freq)
+    gpio_data                                0x0800b8dd   Thumb Code    56  platform.o(i.gpio_data)
+    gpio_is_valid                            0x0800b925   Thumb Code    12  platform.o(i.gpio_is_valid)
+    gpio_set_value                           0x0800b931   Thumb Code     8  platform.o(i.gpio_set_value)
+    ilog2                                    0x0800b939   Thumb Code   100  util.o(i.ilog2)
+    int_sqrt                                 0x0800b99d   Thumb Code    34  util.o(i.int_sqrt)
+    int_to_str                               0x0800b9c1   Thumb Code    72  console.o(i.int_to_str)
+    main                                     0x0800ba21   Thumb Code   624  main.o(i.main)
+    malloc                                   0x0800be25   Thumb Code    92  malloc.o(i.malloc)
+    mdelay                                   0x0800be91   Thumb Code     4  platform.o(i.mdelay)
+    register_clocks                          0x0800be95   Thumb Code   464  ad9361.o(i.register_clocks)
+    set_dds_tx1_tone1_freq                   0x0800c169   Thumb Code    64  command.o(i.set_dds_tx1_tone1_freq)
+    set_dds_tx1_tone1_phase                  0x0800c1c5   Thumb Code    96  command.o(i.set_dds_tx1_tone1_phase)
+    set_dds_tx1_tone1_scale                  0x0800c245   Thumb Code    66  command.o(i.set_dds_tx1_tone1_scale)
+    set_dds_tx1_tone2_freq                   0x0800c2a9   Thumb Code    64  command.o(i.set_dds_tx1_tone2_freq)
+    set_dds_tx1_tone2_phase                  0x0800c305   Thumb Code    96  command.o(i.set_dds_tx1_tone2_phase)
+    set_dds_tx1_tone2_scale                  0x0800c385   Thumb Code    66  command.o(i.set_dds_tx1_tone2_scale)
+    set_dds_tx2_tone1_freq                   0x0800c3e9   Thumb Code    64  command.o(i.set_dds_tx2_tone1_freq)
+    set_dds_tx2_tone1_phase                  0x0800c445   Thumb Code    96  command.o(i.set_dds_tx2_tone1_phase)
+    set_dds_tx2_tone1_scale                  0x0800c4c5   Thumb Code    66  command.o(i.set_dds_tx2_tone1_scale)
+    set_dds_tx2_tone2_freq                   0x0800c529   Thumb Code    64  command.o(i.set_dds_tx2_tone2_freq)
+    set_dds_tx2_tone2_phase                  0x0800c585   Thumb Code    96  command.o(i.set_dds_tx2_tone2_phase)
+    set_dds_tx2_tone2_scale                  0x0800c605   Thumb Code    66  command.o(i.set_dds_tx2_tone2_scale)
+    set_rx1_gc_mode                          0x0800c75d   Thumb Code    52  command.o(i.set_rx1_gc_mode)
+    set_rx1_rf_gain                          0x0800c7a5   Thumb Code    52  command.o(i.set_rx1_rf_gain)
+    set_rx2_gc_mode                          0x0800c7ed   Thumb Code    52  command.o(i.set_rx2_gc_mode)
+    set_rx2_rf_gain                          0x0800c835   Thumb Code    52  command.o(i.set_rx2_rf_gain)
+    set_rx_fir_en                            0x0800c87d   Thumb Code    50  command.o(i.set_rx_fir_en)
+    set_rx_lo_freq                           0x0800c8c5   Thumb Code    78  command.o(i.set_rx_lo_freq)
+    set_rx_rf_bandwidth                      0x0800c92d   Thumb Code    50  command.o(i.set_rx_rf_bandwidth)
+    set_rx_samp_freq                         0x0800c979   Thumb Code    60  command.o(i.set_rx_samp_freq)
+    set_tx1_attenuation                      0x0800cbc9   Thumb Code    52  command.o(i.set_tx1_attenuation)
+    set_tx2_attenuation                      0x0800cc15   Thumb Code    52  command.o(i.set_tx2_attenuation)
+    set_tx_fir_en                            0x0800cc61   Thumb Code    50  command.o(i.set_tx_fir_en)
+    set_tx_lo_freq                           0x0800cca9   Thumb Code    78  command.o(i.set_tx_lo_freq)
+    set_tx_rf_bandwidth                      0x0800cd11   Thumb Code    40  command.o(i.set_tx_rf_bandwidth)
+    set_tx_samp_freq                         0x0800cd3d   Thumb Code    60  command.o(i.set_tx_samp_freq)
+    show_invalid_param_message               0x0800cd91   Thumb Code    38  command.o(i.show_invalid_param_message)
+    spi_write_then_read                      0x0800cded   Thumb Code    66  platform.o(i.spi_write_then_read)
+    uart_read_char                           0x0800ce35   Thumb Code    14  console.o(i.uart_read_char)
+    uart_write_char                          0x0800ce49   Thumb Code    18  console.o(i.uart_write_char)
+    uart_write_string                        0x0800ce61   Thumb Code    20  console.o(i.uart_write_string)
+    udelay                                   0x0800ce75   Thumb Code    18  platform.o(i.udelay)
+    zmalloc                                  0x0800ce87   Thumb Code    28  util.o(i.zmalloc)
+    AHBPrescTable                            0x0800cea2   Data          16  system_stm32f4xx.o(.constdata)
+    APBPrescTable                            0x0800ceb2   Data           8  system_stm32f4xx.o(.constdata)
+    cmd_no                                   0x0800eb98   Data           1  command.o(.constdata)
+    __ctype_categories                       0x0800eb99   Data          64  ctype_c.o(.constdata)
+    Region$$Table$$Base                      0x0800f868   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800f888   Number         0  anon$$obj.o(Region$$Table)
     cmd                                      0x20000000   Data           1  main.o(.data)
     param_no                                 0x20000001   Data           1  main.o(.data)
     invalid_cmd                              0x20000002   Data           1  main.o(.data)
@@ -3328,18 +3338,18 @@ Image Symbol Table
     uwTick                                   0x20000478   Data           4  stm32f4xx_hal.o(.data)
     SystemCoreClock                          0x2000047c   Data           4  system_stm32f4xx.o(.data)
     adc_st                                   0x20000490   Data           1  adc_core.o(.data)
-    cmd_list                                 0x20000494   Data         880  command.o(.data)
-    __stdout                                 0x20000818   Data           4  stdout.o(.data)
-    __microlib_freelist                      0x2000081c   Data           4  mvars.o(.data)
-    __microlib_freelist_initialised          0x20000820   Data           4  mvars.o(.data)
-    param                                    0x20000828   Data          40  main.o(.bss)
-    received_cmd                             0x20000850   Data          30  main.o(.bss)
-    hspi2                                    0x20000870   Data          88  spi.o(.bss)
-    huart1                                   0x200008c8   Data          68  usart.o(.bss)
-    dds_st                                   0x2000090c   Data         240  dac_core.o(.bss)
-    __heap_base                              0x20000a00   Data           0  startup_stm32f411xe.o(HEAP)
-    __heap_limit                             0x20001a00   Data           0  startup_stm32f411xe.o(HEAP)
-    __initial_sp                             0x20001e00   Data           0  startup_stm32f411xe.o(STACK)
+    cmd_list                                 0x20000494   Data         896  command.o(.data)
+    __stdout                                 0x20000828   Data           4  stdout.o(.data)
+    __microlib_freelist                      0x2000082c   Data           4  mvars.o(.data)
+    __microlib_freelist_initialised          0x20000830   Data           4  mvars.o(.data)
+    param                                    0x20000838   Data          40  main.o(.bss)
+    received_cmd                             0x20000860   Data          30  main.o(.bss)
+    hspi2                                    0x20000880   Data          88  spi.o(.bss)
+    huart1                                   0x200008d8   Data          68  usart.o(.bss)
+    dds_st                                   0x2000091c   Data         240  dac_core.o(.bss)
+    __heap_base                              0x20000a10   Data           0  startup_stm32f411xe.o(HEAP)
+    __heap_limit                             0x20001a10   Data           0  startup_stm32f411xe.o(HEAP)
+    __initial_sp                             0x20001e10   Data           0  startup_stm32f411xe.o(STACK)
 
 
 
@@ -3349,422 +3359,423 @@ Memory Map of the image
 
   Image Entry point : 0x08000199
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000fe08, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x0000f98c])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000100c0, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x0000fc34])
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000f5e0, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000f888, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x00000198   Data   RO            3    RESET               startup_stm32f411xe.o
-    0x08000198   0x08000198   0x00000000   Code   RO         4747  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x08000198   0x08000198   0x00000004   Code   RO         5077    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x0800019c   0x0800019c   0x00000004   Code   RO         5080    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x080001a0   0x080001a0   0x00000000   Code   RO         5082    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x080001a0   0x080001a0   0x00000000   Code   RO         5084    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x080001a0   0x080001a0   0x00000008   Code   RO         5085    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x080001a8   0x080001a8   0x00000004   Code   RO         5092    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
-    0x080001ac   0x080001ac   0x00000000   Code   RO         5087    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
-    0x080001ac   0x080001ac   0x00000000   Code   RO         5089    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
-    0x080001ac   0x080001ac   0x00000004   Code   RO         5078    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x08000198   0x08000198   0x00000000   Code   RO         4878  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x08000198   0x08000198   0x00000004   Code   RO         5208    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x0800019c   0x0800019c   0x00000004   Code   RO         5211    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x080001a0   0x080001a0   0x00000000   Code   RO         5213    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x080001a0   0x080001a0   0x00000000   Code   RO         5215    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x080001a0   0x080001a0   0x00000008   Code   RO         5216    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x080001a8   0x080001a8   0x00000004   Code   RO         5223    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
+    0x080001ac   0x080001ac   0x00000000   Code   RO         5218    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
+    0x080001ac   0x080001ac   0x00000000   Code   RO         5220    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
+    0x080001ac   0x080001ac   0x00000004   Code   RO         5209    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x080001b0   0x080001b0   0x00000024   Code   RO            4    .text               startup_stm32f411xe.o
-    0x080001d4   0x080001d4   0x00000062   Code   RO         4750    .text               mc_w.l(uldiv.o)
-    0x08000236   0x08000236   0x00000020   Code   RO         4752    .text               mc_w.l(llushr.o)
-    0x08000256   0x08000256   0x00000024   Code   RO         4754    .text               mc_w.l(memcpya.o)
-    0x0800027a   0x0800027a   0x00000024   Code   RO         4756    .text               mc_w.l(memseta.o)
-    0x0800029e   0x0800029e   0x0000014e   Code   RO         5057    .text               mf_w.l(dadd.o)
-    0x080003ec   0x080003ec   0x000000e4   Code   RO         5059    .text               mf_w.l(dmul.o)
-    0x080004d0   0x080004d0   0x000000de   Code   RO         5061    .text               mf_w.l(ddiv.o)
-    0x080005ae   0x080005ae   0x0000001a   Code   RO         5065    .text               mf_w.l(dfltui.o)
-    0x080005c8   0x080005c8   0x00000018   Code   RO         5067    .text               mf_w.l(dfltul.o)
-    0x080005e0   0x080005e0   0x0000003e   Code   RO         5069    .text               mf_w.l(dfixi.o)
-    0x0800061e   0x0800061e   0x00000032   Code   RO         5071    .text               mf_w.l(dfixui.o)
-    0x08000650   0x08000650   0x00000030   Code   RO         5073    .text               mf_w.l(dfixul.o)
-    0x08000680   0x08000680   0x00000030   Code   RO         5075    .text               mf_w.l(cdcmple.o)
-    0x080006b0   0x080006b0   0x0000002c   Code   RO         5094    .text               mc_w.l(uidiv.o)
-    0x080006dc   0x080006dc   0x0000001e   Code   RO         5096    .text               mc_w.l(llshl.o)
-    0x080006fa   0x080006fa   0x00000024   Code   RO         5098    .text               mc_w.l(llsshr.o)
-    0x0800071e   0x0800071e   0x00000040   Code   RO         5113    .text               mc_w.l(_sgetc.o)
+    0x080001d4   0x080001d4   0x00000062   Code   RO         4881    .text               mc_w.l(uldiv.o)
+    0x08000236   0x08000236   0x00000020   Code   RO         4883    .text               mc_w.l(llushr.o)
+    0x08000256   0x08000256   0x00000024   Code   RO         4885    .text               mc_w.l(memcpya.o)
+    0x0800027a   0x0800027a   0x00000024   Code   RO         4887    .text               mc_w.l(memseta.o)
+    0x0800029e   0x0800029e   0x0000014e   Code   RO         5188    .text               mf_w.l(dadd.o)
+    0x080003ec   0x080003ec   0x000000e4   Code   RO         5190    .text               mf_w.l(dmul.o)
+    0x080004d0   0x080004d0   0x000000de   Code   RO         5192    .text               mf_w.l(ddiv.o)
+    0x080005ae   0x080005ae   0x0000001a   Code   RO         5196    .text               mf_w.l(dfltui.o)
+    0x080005c8   0x080005c8   0x00000018   Code   RO         5198    .text               mf_w.l(dfltul.o)
+    0x080005e0   0x080005e0   0x0000003e   Code   RO         5200    .text               mf_w.l(dfixi.o)
+    0x0800061e   0x0800061e   0x00000032   Code   RO         5202    .text               mf_w.l(dfixui.o)
+    0x08000650   0x08000650   0x00000030   Code   RO         5204    .text               mf_w.l(dfixul.o)
+    0x08000680   0x08000680   0x00000030   Code   RO         5206    .text               mf_w.l(cdcmple.o)
+    0x080006b0   0x080006b0   0x0000002c   Code   RO         5225    .text               mc_w.l(uidiv.o)
+    0x080006dc   0x080006dc   0x0000001e   Code   RO         5227    .text               mc_w.l(llshl.o)
+    0x080006fa   0x080006fa   0x00000024   Code   RO         5229    .text               mc_w.l(llsshr.o)
+    0x0800071e   0x0800071e   0x00000040   Code   RO         5244    .text               mc_w.l(_sgetc.o)
     0x0800075e   0x0800075e   0x00000002   PAD
-    0x08000760   0x08000760   0x0000009c   Code   RO         5115    .text               mc_w.l(strtod.o)
-    0x080007fc   0x080007fc   0x00000000   Code   RO         5117    .text               mc_w.l(iusefp.o)
-    0x080007fc   0x080007fc   0x000000ba   Code   RO         5118    .text               mf_w.l(depilogue.o)
+    0x08000760   0x08000760   0x0000009c   Code   RO         5246    .text               mc_w.l(strtod.o)
+    0x080007fc   0x080007fc   0x00000000   Code   RO         5248    .text               mc_w.l(iusefp.o)
+    0x080007fc   0x080007fc   0x000000ba   Code   RO         5249    .text               mf_w.l(depilogue.o)
     0x080008b6   0x080008b6   0x00000002   PAD
-    0x080008b8   0x080008b8   0x00000030   Code   RO         5120    .text               mf_w.l(cdrcmple.o)
-    0x080008e8   0x080008e8   0x00000024   Code   RO         5122    .text               mc_w.l(init.o)
-    0x0800090c   0x0800090c   0x0000000a   Code   RO         5124    .text               mc_w.l(isspace_c.o)
+    0x080008b8   0x080008b8   0x00000030   Code   RO         5251    .text               mf_w.l(cdrcmple.o)
+    0x080008e8   0x080008e8   0x00000024   Code   RO         5253    .text               mc_w.l(init.o)
+    0x0800090c   0x0800090c   0x0000000a   Code   RO         5255    .text               mc_w.l(isspace_c.o)
     0x08000916   0x08000916   0x00000002   PAD
-    0x08000918   0x08000918   0x00000360   Code   RO         5128    .text               mc_w.l(scanf_fp.o)
-    0x08000c78   0x08000c78   0x00000028   Code   RO         5132    .text               mc_w.l(ctype_c.o)
-    0x08000ca0   0x08000ca0   0x00000038   Code   RO         5135    .text               mf_w.l(d2f.o)
-    0x08000cd8   0x08000cd8   0x0000006e   Code   RO         5137    .text               mf_w.l(fepilogue.o)
-    0x08000d46   0x08000d46   0x0000005e   Code   RO         5147    .text               mc_w.l(__dclz77c.o)
-    0x08000da4   0x08000da4   0x00000002   Code   RO          337    i.BusFault_Handler  stm32f4xx_it.o
-    0x08000da6   0x08000da6   0x00000002   Code   RO          338    i.DebugMon_Handler  stm32f4xx_it.o
-    0x08000da8   0x08000da8   0x00000002   Code   RO         4478    i.ERR_PTR           util.o
+    0x08000918   0x08000918   0x00000360   Code   RO         5259    .text               mc_w.l(scanf_fp.o)
+    0x08000c78   0x08000c78   0x00000028   Code   RO         5263    .text               mc_w.l(ctype_c.o)
+    0x08000ca0   0x08000ca0   0x00000038   Code   RO         5266    .text               mf_w.l(d2f.o)
+    0x08000cd8   0x08000cd8   0x0000006e   Code   RO         5268    .text               mf_w.l(fepilogue.o)
+    0x08000d46   0x08000d46   0x0000005e   Code   RO         5278    .text               mc_w.l(__dclz77c.o)
+    0x08000da4   0x08000da4   0x00000002   Code   RO          427    i.BusFault_Handler  stm32f4xx_it.o
+    0x08000da6   0x08000da6   0x00000002   Code   RO          428    i.DebugMon_Handler  stm32f4xx_it.o
+    0x08000da8   0x08000da8   0x00000002   Code   RO         4609    i.ERR_PTR           util.o
     0x08000daa   0x08000daa   0x00000004   Code   RO           13    i.Error_Handler     main.o
     0x08000dae   0x08000dae   0x00000002   PAD
-    0x08000db0   0x08000db0   0x00000024   Code   RO         1717    i.HAL_Delay         stm32f4xx_hal.o
-    0x08000dd4   0x08000dd4   0x000001e0   Code   RO         1167    i.HAL_GPIO_Init     stm32f4xx_hal_gpio.o
-    0x08000fb4   0x08000fb4   0x0000000a   Code   RO         1169    i.HAL_GPIO_ReadPin  stm32f4xx_hal_gpio.o
-    0x08000fbe   0x08000fbe   0x00000010   Code   RO         1170    i.HAL_GPIO_TogglePin  stm32f4xx_hal_gpio.o
-    0x08000fce   0x08000fce   0x0000000a   Code   RO         1171    i.HAL_GPIO_WritePin  stm32f4xx_hal_gpio.o
-    0x08000fd8   0x08000fd8   0x0000000c   Code   RO         1723    i.HAL_GetTick       stm32f4xx_hal.o
-    0x08000fe4   0x08000fe4   0x00000010   Code   RO         1729    i.HAL_IncTick       stm32f4xx_hal.o
-    0x08000ff4   0x08000ff4   0x00000034   Code   RO         1730    i.HAL_Init          stm32f4xx_hal.o
-    0x08001028   0x08001028   0x00000040   Code   RO         1731    i.HAL_InitTick      stm32f4xx_hal.o
-    0x08001068   0x08001068   0x00000030   Code   RO          412    i.HAL_MspInit       stm32f4xx_hal_msp.o
-    0x08001098   0x08001098   0x00000040   Code   RO         1586    i.HAL_NVIC_SetPriority  stm32f4xx_hal_cortex.o
-    0x080010d8   0x080010d8   0x00000024   Code   RO         1587    i.HAL_NVIC_SetPriorityGrouping  stm32f4xx_hal_cortex.o
-    0x080010fc   0x080010fc   0x00000134   Code   RO          759    i.HAL_RCC_ClockConfig  stm32f4xx_hal_rcc.o
-    0x08001230   0x08001230   0x00000020   Code   RO          766    i.HAL_RCC_GetPCLK1Freq  stm32f4xx_hal_rcc.o
-    0x08001250   0x08001250   0x00000020   Code   RO          767    i.HAL_RCC_GetPCLK2Freq  stm32f4xx_hal_rcc.o
-    0x08001270   0x08001270   0x00000064   Code   RO          768    i.HAL_RCC_GetSysClockFreq  stm32f4xx_hal_rcc.o
-    0x080012d4   0x080012d4   0x0000036c   Code   RO          771    i.HAL_RCC_OscConfig  stm32f4xx_hal_rcc.o
-    0x08001640   0x08001640   0x000000bc   Code   RO          447    i.HAL_SPI_Init      stm32f4xx_hal_spi.o
-    0x080016fc   0x080016fc   0x0000006c   Code   RO          244    i.HAL_SPI_MspInit   spi.o
-    0x08001768   0x08001768   0x00000028   Code   RO         1591    i.HAL_SYSTICK_Config  stm32f4xx_hal_cortex.o
-    0x08001790   0x08001790   0x00000062   Code   RO         2033    i.HAL_UART_Init     stm32f4xx_hal_uart.o
+    0x08000db0   0x08000db0   0x00000024   Code   RO         1807    i.HAL_Delay         stm32f4xx_hal.o
+    0x08000dd4   0x08000dd4   0x000001e0   Code   RO         1257    i.HAL_GPIO_Init     stm32f4xx_hal_gpio.o
+    0x08000fb4   0x08000fb4   0x0000000a   Code   RO         1259    i.HAL_GPIO_ReadPin  stm32f4xx_hal_gpio.o
+    0x08000fbe   0x08000fbe   0x00000010   Code   RO         1260    i.HAL_GPIO_TogglePin  stm32f4xx_hal_gpio.o
+    0x08000fce   0x08000fce   0x0000000a   Code   RO         1261    i.HAL_GPIO_WritePin  stm32f4xx_hal_gpio.o
+    0x08000fd8   0x08000fd8   0x0000000c   Code   RO         1813    i.HAL_GetTick       stm32f4xx_hal.o
+    0x08000fe4   0x08000fe4   0x00000010   Code   RO         1819    i.HAL_IncTick       stm32f4xx_hal.o
+    0x08000ff4   0x08000ff4   0x00000034   Code   RO         1820    i.HAL_Init          stm32f4xx_hal.o
+    0x08001028   0x08001028   0x00000040   Code   RO         1821    i.HAL_InitTick      stm32f4xx_hal.o
+    0x08001068   0x08001068   0x00000030   Code   RO          502    i.HAL_MspInit       stm32f4xx_hal_msp.o
+    0x08001098   0x08001098   0x00000040   Code   RO         1676    i.HAL_NVIC_SetPriority  stm32f4xx_hal_cortex.o
+    0x080010d8   0x080010d8   0x00000024   Code   RO         1677    i.HAL_NVIC_SetPriorityGrouping  stm32f4xx_hal_cortex.o
+    0x080010fc   0x080010fc   0x00000134   Code   RO          849    i.HAL_RCC_ClockConfig  stm32f4xx_hal_rcc.o
+    0x08001230   0x08001230   0x00000020   Code   RO          856    i.HAL_RCC_GetPCLK1Freq  stm32f4xx_hal_rcc.o
+    0x08001250   0x08001250   0x00000020   Code   RO          857    i.HAL_RCC_GetPCLK2Freq  stm32f4xx_hal_rcc.o
+    0x08001270   0x08001270   0x00000064   Code   RO          858    i.HAL_RCC_GetSysClockFreq  stm32f4xx_hal_rcc.o
+    0x080012d4   0x080012d4   0x0000036c   Code   RO          861    i.HAL_RCC_OscConfig  stm32f4xx_hal_rcc.o
+    0x08001640   0x08001640   0x000000bc   Code   RO          537    i.HAL_SPI_Init      stm32f4xx_hal_spi.o
+    0x080016fc   0x080016fc   0x0000006c   Code   RO          334    i.HAL_SPI_MspInit   spi.o
+    0x08001768   0x08001768   0x00000028   Code   RO         1681    i.HAL_SYSTICK_Config  stm32f4xx_hal_cortex.o
+    0x08001790   0x08001790   0x00000062   Code   RO         2123    i.HAL_UART_Init     stm32f4xx_hal_uart.o
     0x080017f2   0x080017f2   0x00000002   PAD
-    0x080017f4   0x080017f4   0x00000068   Code   RO          286    i.HAL_UART_MspInit  usart.o
-    0x0800185c   0x0800185c   0x000000c0   Code   RO         2036    i.HAL_UART_Receive  stm32f4xx_hal_uart.o
-    0x0800191c   0x0800191c   0x000000b2   Code   RO         2041    i.HAL_UART_Transmit  stm32f4xx_hal_uart.o
-    0x080019ce   0x080019ce   0x00000002   Code   RO          339    i.HardFault_Handler  stm32f4xx_it.o
+    0x080017f4   0x080017f4   0x00000068   Code   RO          376    i.HAL_UART_MspInit  usart.o
+    0x0800185c   0x0800185c   0x000000c0   Code   RO         2126    i.HAL_UART_Receive  stm32f4xx_hal_uart.o
+    0x0800191c   0x0800191c   0x000000b2   Code   RO         2131    i.HAL_UART_Transmit  stm32f4xx_hal_uart.o
+    0x080019ce   0x080019ce   0x00000002   Code   RO          429    i.HardFault_Handler  stm32f4xx_it.o
     0x080019d0   0x080019d0   0x000000cc   Code   RO          219    i.MX_GPIO_Init      gpio.o
-    0x08001a9c   0x08001a9c   0x00000044   Code   RO          245    i.MX_SPI2_Init      spi.o
-    0x08001ae0   0x08001ae0   0x00000038   Code   RO          287    i.MX_USART1_UART_Init  usart.o
-    0x08001b18   0x08001b18   0x00000002   Code   RO          340    i.MemManage_Handler  stm32f4xx_it.o
-    0x08001b1a   0x08001b1a   0x00000002   Code   RO          341    i.NMI_Handler       stm32f4xx_it.o
-    0x08001b1c   0x08001b1c   0x00000002   Code   RO          342    i.PendSV_Handler    stm32f4xx_it.o
+    0x08001a9c   0x08001a9c   0x00000044   Code   RO          335    i.MX_SPI2_Init      spi.o
+    0x08001ae0   0x08001ae0   0x00000038   Code   RO          377    i.MX_USART1_UART_Init  usart.o
+    0x08001b18   0x08001b18   0x00000002   Code   RO          430    i.MemManage_Handler  stm32f4xx_it.o
+    0x08001b1a   0x08001b1a   0x00000002   Code   RO          431    i.NMI_Handler       stm32f4xx_it.o
+    0x08001b1c   0x08001b1c   0x00000002   Code   RO          432    i.PendSV_Handler    stm32f4xx_it.o
     0x08001b1e   0x08001b1e   0x00000002   PAD
-    0x08001b20   0x08001b20   0x00000080   Code   RO         4614    i.QueryDataFromFPGA_Polling  com_fpga.o
-    0x08001ba0   0x08001ba0   0x0000000c   Code   RO         4615    i.ReadDataBus       com_fpga.o
-    0x08001bac   0x08001bac   0x00000002   Code   RO          343    i.SVC_Handler       stm32f4xx_it.o
-    0x08001bae   0x08001bae   0x00000016   Code   RO         4680    i.Soft_SPI_Delay    softspi.o
-    0x08001bc4   0x08001bc4   0x000000d0   Code   RO         4681    i.Soft_SPI_Init     softspi.o
-    0x08001c94   0x08001c94   0x00000040   Code   RO         4682    i.Soft_SPI_ReadBuffer  softspi.o
-    0x08001cd4   0x08001cd4   0x00000044   Code   RO         4684    i.Soft_SPI_TransferBuffer  softspi.o
-    0x08001d18   0x08001d18   0x000000e8   Code   RO         4685    i.Soft_SPI_TransferByte  softspi.o
-    0x08001e00   0x08001e00   0x00000004   Code   RO          344    i.SysTick_Handler   stm32f4xx_it.o
+    0x08001b20   0x08001b20   0x00000080   Code   RO         4745    i.QueryDataFromFPGA_Polling  com_fpga.o
+    0x08001ba0   0x08001ba0   0x0000000c   Code   RO         4746    i.ReadDataBus       com_fpga.o
+    0x08001bac   0x08001bac   0x00000002   Code   RO          433    i.SVC_Handler       stm32f4xx_it.o
+    0x08001bae   0x08001bae   0x00000016   Code   RO         4811    i.Soft_SPI_Delay    softspi.o
+    0x08001bc4   0x08001bc4   0x000000d0   Code   RO         4812    i.Soft_SPI_Init     softspi.o
+    0x08001c94   0x08001c94   0x00000040   Code   RO         4813    i.Soft_SPI_ReadBuffer  softspi.o
+    0x08001cd4   0x08001cd4   0x00000044   Code   RO         4815    i.Soft_SPI_TransferBuffer  softspi.o
+    0x08001d18   0x08001d18   0x000000e8   Code   RO         4816    i.Soft_SPI_TransferByte  softspi.o
+    0x08001e00   0x08001e00   0x00000004   Code   RO          434    i.SysTick_Handler   stm32f4xx_it.o
     0x08001e04   0x08001e04   0x00000090   Code   RO           14    i.SystemClock_Config  main.o
-    0x08001e94   0x08001e94   0x00000010   Code   RO         2362    i.SystemInit        system_stm32f4xx.o
-    0x08001ea4   0x08001ea4   0x0000010c   Code   RO         2059    i.UART_SetConfig    stm32f4xx_hal_uart.o
-    0x08001fb0   0x08001fb0   0x00000078   Code   RO         2062    i.UART_WaitOnFlagUntilTimeout  stm32f4xx_hal_uart.o
-    0x08002028   0x08002028   0x00000002   Code   RO          345    i.UsageFault_Handler  stm32f4xx_it.o
+    0x08001e94   0x08001e94   0x00000010   Code   RO         2452    i.SystemInit        system_stm32f4xx.o
+    0x08001ea4   0x08001ea4   0x0000010c   Code   RO         2149    i.UART_SetConfig    stm32f4xx_hal_uart.o
+    0x08001fb0   0x08001fb0   0x00000078   Code   RO         2152    i.UART_WaitOnFlagUntilTimeout  stm32f4xx_hal_uart.o
+    0x08002028   0x08002028   0x00000002   Code   RO          435    i.UsageFault_Handler  stm32f4xx_it.o
     0x0800202a   0x0800202a   0x00000002   PAD
-    0x0800202c   0x0800202c   0x00000020   Code   RO         4997    i.__0printf         mc_w.l(printfa.o)
-    0x0800204c   0x0800204c   0x00000020   Code   RO         1593    i.__NVIC_SetPriority  stm32f4xx_hal_cortex.o
-    0x0800206c   0x0800206c   0x00000026   Code   RO         2399    i.__ad9361_spi_readf  ad9361.o
-    0x08002092   0x08002092   0x00000040   Code   RO         2400    i.__ad9361_spi_writef  ad9361.o
-    0x080020d2   0x080020d2   0x00000064   Code   RO         2401    i.__ad9361_tx_quad_calib  ad9361.o
+    0x0800202c   0x0800202c   0x00000020   Code   RO         5128    i.__0printf         mc_w.l(printfa.o)
+    0x0800204c   0x0800204c   0x00000020   Code   RO         1683    i.__NVIC_SetPriority  stm32f4xx_hal_cortex.o
+    0x0800206c   0x0800206c   0x00000026   Code   RO         2489    i.__ad9361_spi_readf  ad9361.o
+    0x08002092   0x08002092   0x00000040   Code   RO         2490    i.__ad9361_spi_writef  ad9361.o
+    0x080020d2   0x080020d2   0x00000064   Code   RO         2491    i.__ad9361_tx_quad_calib  ad9361.o
     0x08002136   0x08002136   0x00000002   PAD
-    0x08002138   0x08002138   0x0000008c   Code   RO         2402    i.__ad9361_update_rf_bandwidth  ad9361.o
+    0x08002138   0x08002138   0x0000008c   Code   RO         2492    i.__ad9361_update_rf_bandwidth  ad9361.o
     0x080021c4   0x080021c4   0x00000004   PAD
-    0x080021c8   0x080021c8   0x00000038   Code   RO         4741    i.__hardfp_atof     m_wm.l(atof.o)
-    0x08002200   0x08002200   0x0000000c   Code   RO         5103    i.__read_errno      mc_w.l(errno.o)
-    0x0800220c   0x0800220c   0x0000000e   Code   RO         5141    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x0800221a   0x0800221a   0x00000002   Code   RO         5142    i.__scatterload_null  mc_w.l(handlers.o)
-    0x0800221c   0x0800221c   0x0000000e   Code   RO         5143    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x080021c8   0x080021c8   0x00000038   Code   RO         4872    i.__hardfp_atof     m_wm.l(atof.o)
+    0x08002200   0x08002200   0x0000000c   Code   RO         5234    i.__read_errno      mc_w.l(errno.o)
+    0x0800220c   0x0800220c   0x0000000e   Code   RO         5272    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x0800221a   0x0800221a   0x00000002   Code   RO         5273    i.__scatterload_null  mc_w.l(handlers.o)
+    0x0800221c   0x0800221c   0x0000000e   Code   RO         5274    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x0800222a   0x0800222a   0x00000002   PAD
-    0x0800222c   0x0800222c   0x0000000c   Code   RO         5104    i.__set_errno       mc_w.l(errno.o)
-    0x08002238   0x08002238   0x00000184   Code   RO         5004    i._fp_digits        mc_w.l(printfa.o)
-    0x080023bc   0x080023bc   0x0000000e   Code   RO         5130    i._is_digit         mc_w.l(scanf_fp.o)
+    0x0800222c   0x0800222c   0x0000000c   Code   RO         5235    i.__set_errno       mc_w.l(errno.o)
+    0x08002238   0x08002238   0x00000184   Code   RO         5135    i._fp_digits        mc_w.l(printfa.o)
+    0x080023bc   0x080023bc   0x0000000e   Code   RO         5261    i._is_digit         mc_w.l(scanf_fp.o)
     0x080023ca   0x080023ca   0x00000002   PAD
-    0x080023cc   0x080023cc   0x000006b4   Code   RO         5005    i._printf_core      mc_w.l(printfa.o)
-    0x08002a80   0x08002a80   0x00000024   Code   RO         5006    i._printf_post_padding  mc_w.l(printfa.o)
-    0x08002aa4   0x08002aa4   0x0000002e   Code   RO         5007    i._printf_pre_padding  mc_w.l(printfa.o)
-    0x08002ad2   0x08002ad2   0x0000001c   Code   RO         2403    i.ad9361_1rx1tx_channel_map  ad9361.o
+    0x080023cc   0x080023cc   0x000006b4   Code   RO         5136    i._printf_core      mc_w.l(printfa.o)
+    0x08002a80   0x08002a80   0x00000024   Code   RO         5137    i._printf_post_padding  mc_w.l(printfa.o)
+    0x08002aa4   0x08002aa4   0x0000002e   Code   RO         5138    i._printf_pre_padding  mc_w.l(printfa.o)
+    0x08002ad2   0x08002ad2   0x0000001c   Code   RO         2493    i.ad9361_1rx1tx_channel_map  ad9361.o
     0x08002aee   0x08002aee   0x00000002   PAD
-    0x08002af0   0x08002af0   0x00000098   Code   RO         2404    i.ad9361_auxadc_setup  ad9361.o
-    0x08002b88   0x08002b88   0x000000fc   Code   RO         2406    i.ad9361_auxdac_set  ad9361.o
-    0x08002c84   0x08002c84   0x000000b8   Code   RO         2407    i.ad9361_auxdac_setup  ad9361.o
-    0x08002d3c   0x08002d3c   0x0000004c   Code   RO         2408    i.ad9361_bbpll_recalc_rate  ad9361.o
-    0x08002d88   0x08002d88   0x0000007c   Code   RO         2409    i.ad9361_bbpll_round_rate  ad9361.o
-    0x08002e04   0x08002e04   0x00000160   Code   RO         2410    i.ad9361_bbpll_set_rate  ad9361.o
-    0x08002f64   0x08002f64   0x000000a4   Code   RO         2411    i.ad9361_bist_loopback  ad9361.o
-    0x08003008   0x08003008   0x00000054   Code   RO         2412    i.ad9361_bist_prbs  ad9361.o
-    0x0800305c   0x0800305c   0x00000098   Code   RO         2414    i.ad9361_calc_rfpll_int_divder  ad9361.o
-    0x080030f4   0x080030f4   0x000002d4   Code   RO         2415    i.ad9361_calculate_rf_clock_chain  ad9361.o
-    0x080033c8   0x080033c8   0x00000084   Code   RO         2416    i.ad9361_check_cal_done  ad9361.o
-    0x0800344c   0x0800344c   0x00000016   Code   RO         2418    i.ad9361_clk_factor_recalc_rate  ad9361.o
+    0x08002af0   0x08002af0   0x00000098   Code   RO         2494    i.ad9361_auxadc_setup  ad9361.o
+    0x08002b88   0x08002b88   0x000000fc   Code   RO         2496    i.ad9361_auxdac_set  ad9361.o
+    0x08002c84   0x08002c84   0x000000b8   Code   RO         2497    i.ad9361_auxdac_setup  ad9361.o
+    0x08002d3c   0x08002d3c   0x0000004c   Code   RO         2498    i.ad9361_bbpll_recalc_rate  ad9361.o
+    0x08002d88   0x08002d88   0x0000007c   Code   RO         2499    i.ad9361_bbpll_round_rate  ad9361.o
+    0x08002e04   0x08002e04   0x00000160   Code   RO         2500    i.ad9361_bbpll_set_rate  ad9361.o
+    0x08002f64   0x08002f64   0x000000a4   Code   RO         2501    i.ad9361_bist_loopback  ad9361.o
+    0x08003008   0x08003008   0x00000054   Code   RO         2502    i.ad9361_bist_prbs  ad9361.o
+    0x0800305c   0x0800305c   0x00000098   Code   RO         2504    i.ad9361_calc_rfpll_int_divder  ad9361.o
+    0x080030f4   0x080030f4   0x000002d4   Code   RO         2505    i.ad9361_calculate_rf_clock_chain  ad9361.o
+    0x080033c8   0x080033c8   0x00000084   Code   RO         2506    i.ad9361_check_cal_done  ad9361.o
+    0x0800344c   0x0800344c   0x00000016   Code   RO         2508    i.ad9361_clk_factor_recalc_rate  ad9361.o
     0x08003462   0x08003462   0x00000002   PAD
-    0x08003464   0x08003464   0x00000070   Code   RO         2419    i.ad9361_clk_factor_round_rate  ad9361.o
-    0x080034d4   0x080034d4   0x0000009c   Code   RO         2420    i.ad9361_clk_factor_set_rate  ad9361.o
-    0x08003570   0x08003570   0x00000068   Code   RO         2421    i.ad9361_clk_mux_set_parent  ad9361.o
-    0x080035d8   0x080035d8   0x00000118   Code   RO         2422    i.ad9361_clk_register  ad9361.o
-    0x080036f0   0x080036f0   0x00000520   Code   RO         3559    i.ad9361_dig_tune   ad9361_conv.o
-    0x08003c10   0x08003c10   0x00000110   Code   RO         3560    i.ad9361_dig_tune_iodelay  ad9361_conv.o
-    0x08003d20   0x08003d20   0x000000a8   Code   RO         3561    i.ad9361_dig_tune_verbose_print  ad9361_conv.o
-    0x08003dc8   0x08003dc8   0x000000a4   Code   RO         2423    i.ad9361_do_calib_run  ad9361.o
-    0x08003e6c   0x08003e6c   0x00000020   Code   RO         2424    i.ad9361_en_dis_rx  ad9361.o
-    0x08003e8c   0x08003e8c   0x00000020   Code   RO         2425    i.ad9361_en_dis_tx  ad9361.o
-    0x08003eac   0x08003eac   0x00000154   Code   RO         2426    i.ad9361_ensm_force_state  ad9361.o
-    0x08004000   0x08004000   0x00000100   Code   RO         2427    i.ad9361_ensm_restore_prev_state  ad9361.o
-    0x08004100   0x08004100   0x000002fc   Code   RO         2428    i.ad9361_ensm_set_state  ad9361.o
-    0x080043fc   0x080043fc   0x0000018c   Code   RO         2430    i.ad9361_fastlock_prepare  ad9361.o
-    0x08004588   0x08004588   0x0000002c   Code   RO         2431    i.ad9361_fastlock_readval  ad9361.o
-    0x080045b4   0x080045b4   0x00000050   Code   RO         2435    i.ad9361_find_opt   ad9361.o
-    0x08004604   0x08004604   0x00000008   Code   RO         2436    i.ad9361_from_clk   ad9361.o
-    0x0800460c   0x0800460c   0x0000078e   Code   RO         2437    i.ad9361_gc_setup   ad9361.o
+    0x08003464   0x08003464   0x00000070   Code   RO         2509    i.ad9361_clk_factor_round_rate  ad9361.o
+    0x080034d4   0x080034d4   0x0000009c   Code   RO         2510    i.ad9361_clk_factor_set_rate  ad9361.o
+    0x08003570   0x08003570   0x00000068   Code   RO         2511    i.ad9361_clk_mux_set_parent  ad9361.o
+    0x080035d8   0x080035d8   0x00000118   Code   RO         2512    i.ad9361_clk_register  ad9361.o
+    0x080036f0   0x080036f0   0x00000520   Code   RO         3659    i.ad9361_dig_tune   ad9361_conv.o
+    0x08003c10   0x08003c10   0x00000110   Code   RO         3660    i.ad9361_dig_tune_iodelay  ad9361_conv.o
+    0x08003d20   0x08003d20   0x000000a8   Code   RO         3661    i.ad9361_dig_tune_verbose_print  ad9361_conv.o
+    0x08003dc8   0x08003dc8   0x000000a4   Code   RO         2513    i.ad9361_do_calib_run  ad9361.o
+    0x08003e6c   0x08003e6c   0x00000020   Code   RO         2514    i.ad9361_en_dis_rx  ad9361.o
+    0x08003e8c   0x08003e8c   0x00000020   Code   RO         2515    i.ad9361_en_dis_tx  ad9361.o
+    0x08003eac   0x08003eac   0x00000154   Code   RO         2516    i.ad9361_ensm_force_state  ad9361.o
+    0x08004000   0x08004000   0x00000100   Code   RO         2517    i.ad9361_ensm_restore_prev_state  ad9361.o
+    0x08004100   0x08004100   0x000002fc   Code   RO         2518    i.ad9361_ensm_set_state  ad9361.o
+    0x080043fc   0x080043fc   0x0000018c   Code   RO         2520    i.ad9361_fastlock_prepare  ad9361.o
+    0x08004588   0x08004588   0x0000002c   Code   RO         2521    i.ad9361_fastlock_readval  ad9361.o
+    0x080045b4   0x080045b4   0x00000050   Code   RO         2525    i.ad9361_find_opt   ad9361.o
+    0x08004604   0x08004604   0x00000008   Code   RO         2526    i.ad9361_from_clk   ad9361.o
+    0x0800460c   0x0800460c   0x0000078e   Code   RO         2527    i.ad9361_gc_setup   ad9361.o
     0x08004d9a   0x08004d9a   0x00000002   PAD
-    0x08004d9c   0x08004d9c   0x00000234   Code   RO         2438    i.ad9361_gc_update  ad9361.o
-    0x08004fd0   0x08004fd0   0x00000160   Code   RO         2443    i.ad9361_get_clk_scaler  ad9361.o
-    0x08005130   0x08005130   0x00000076   Code   RO         2444    i.ad9361_get_full_table_gain  ad9361.o
-    0x080051a6   0x080051a6   0x00000012   Code   RO         3114    i.ad9361_get_rx_fir_en_dis  ad9361_api.o
-    0x080051b8   0x080051b8   0x0000010c   Code   RO         2445    i.ad9361_get_rx_gain  ad9361.o
-    0x080052c4   0x080052c4   0x0000000c   Code   RO         3115    i.ad9361_get_rx_gain_control_mode  ad9361_api.o
-    0x080052d0   0x080052d0   0x00000018   Code   RO         3116    i.ad9361_get_rx_lo_freq  ad9361_api.o
-    0x080052e8   0x080052e8   0x0000000a   Code   RO         3119    i.ad9361_get_rx_rf_bandwidth  ad9361_api.o
+    0x08004d9c   0x08004d9c   0x00000234   Code   RO         2528    i.ad9361_gc_update  ad9361.o
+    0x08004fd0   0x08004fd0   0x00000160   Code   RO         2533    i.ad9361_get_clk_scaler  ad9361.o
+    0x08005130   0x08005130   0x00000076   Code   RO         2534    i.ad9361_get_full_table_gain  ad9361.o
+    0x080051a6   0x080051a6   0x00000012   Code   RO         3214    i.ad9361_get_rx_fir_en_dis  ad9361_api.o
+    0x080051b8   0x080051b8   0x0000010c   Code   RO         2535    i.ad9361_get_rx_gain  ad9361.o
+    0x080052c4   0x080052c4   0x0000000c   Code   RO         3215    i.ad9361_get_rx_gain_control_mode  ad9361_api.o
+    0x080052d0   0x080052d0   0x00000018   Code   RO         3216    i.ad9361_get_rx_lo_freq  ad9361_api.o
+    0x080052e8   0x080052e8   0x0000000a   Code   RO         3219    i.ad9361_get_rx_rf_bandwidth  ad9361_api.o
     0x080052f2   0x080052f2   0x00000002   PAD
-    0x080052f4   0x080052f4   0x00000078   Code   RO         3120    i.ad9361_get_rx_rf_gain  ad9361_api.o
-    0x0800536c   0x0800536c   0x00000010   Code   RO         3124    i.ad9361_get_rx_sampling_freq  ad9361_api.o
-    0x0800537c   0x0800537c   0x000000d8   Code   RO         2446    i.ad9361_get_split_table_gain  ad9361.o
-    0x08005454   0x08005454   0x00000026   Code   RO         2449    i.ad9361_get_tx_atten  ad9361.o
+    0x080052f4   0x080052f4   0x00000078   Code   RO         3220    i.ad9361_get_rx_rf_gain  ad9361_api.o
+    0x0800536c   0x0800536c   0x00000010   Code   RO         3224    i.ad9361_get_rx_sampling_freq  ad9361_api.o
+    0x0800537c   0x0800537c   0x000000d8   Code   RO         2536    i.ad9361_get_split_table_gain  ad9361.o
+    0x08005454   0x08005454   0x00000026   Code   RO         2539    i.ad9361_get_tx_atten  ad9361.o
     0x0800547a   0x0800547a   0x00000002   PAD
-    0x0800547c   0x0800547c   0x0000006c   Code   RO         3127    i.ad9361_get_tx_attenuation  ad9361_api.o
-    0x080054e8   0x080054e8   0x00000012   Code   RO         3130    i.ad9361_get_tx_fir_en_dis  ad9361_api.o
-    0x080054fa   0x080054fa   0x00000018   Code   RO         3131    i.ad9361_get_tx_lo_freq  ad9361_api.o
-    0x08005512   0x08005512   0x0000000a   Code   RO         3133    i.ad9361_get_tx_rf_bandwidth  ad9361_api.o
-    0x0800551c   0x0800551c   0x00000012   Code   RO         3136    i.ad9361_get_tx_sampling_freq  ad9361_api.o
+    0x0800547c   0x0800547c   0x0000006c   Code   RO         3227    i.ad9361_get_tx_attenuation  ad9361_api.o
+    0x080054e8   0x080054e8   0x00000012   Code   RO         3230    i.ad9361_get_tx_fir_en_dis  ad9361_api.o
+    0x080054fa   0x080054fa   0x00000018   Code   RO         3231    i.ad9361_get_tx_lo_freq  ad9361_api.o
+    0x08005512   0x08005512   0x0000000a   Code   RO         3233    i.ad9361_get_tx_rf_bandwidth  ad9361_api.o
+    0x0800551c   0x0800551c   0x00000012   Code   RO         3236    i.ad9361_get_tx_sampling_freq  ad9361_api.o
     0x0800552e   0x0800552e   0x00000002   PAD
-    0x08005530   0x08005530   0x000000cc   Code   RO         2450    i.ad9361_gpo_setup  ad9361.o
-    0x080055fc   0x080055fc   0x00000028   Code   RO         2451    i.ad9361_gt_tableindex  ad9361.o
-    0x08005624   0x08005624   0x0000008c   Code   RO         3562    i.ad9361_hdl_loopback  ad9361_conv.o
-    0x080056b0   0x080056b0   0x00000cfc   Code   RO         3137    i.ad9361_init       ad9361_api.o
-    0x080063ac   0x080063ac   0x00000014   Code   RO         2452    i.ad9361_init_gain_info  ad9361.o
-    0x080063c0   0x080063c0   0x0000004a   Code   RO         2453    i.ad9361_init_gain_tables  ad9361.o
-    0x0800640a   0x0800640a   0x0000001e   Code   RO         2454    i.ad9361_int_loopback_fix_ch_cross  ad9361.o
-    0x08006428   0x08006428   0x0000002a   Code   RO         3563    i.ad9361_iodelay_set  ad9361_conv.o
+    0x08005530   0x08005530   0x000000cc   Code   RO         2540    i.ad9361_gpo_setup  ad9361.o
+    0x080055fc   0x080055fc   0x00000028   Code   RO         2541    i.ad9361_gt_tableindex  ad9361.o
+    0x08005624   0x08005624   0x0000008c   Code   RO         3662    i.ad9361_hdl_loopback  ad9361_conv.o
+    0x080056b0   0x080056b0   0x00000cfc   Code   RO         3237    i.ad9361_init       ad9361_api.o
+    0x080063ac   0x080063ac   0x00000014   Code   RO         2542    i.ad9361_init_gain_info  ad9361.o
+    0x080063c0   0x080063c0   0x0000004a   Code   RO         2543    i.ad9361_init_gain_tables  ad9361.o
+    0x0800640a   0x0800640a   0x0000001e   Code   RO         2544    i.ad9361_int_loopback_fix_ch_cross  ad9361.o
+    0x08006428   0x08006428   0x0000002a   Code   RO         3663    i.ad9361_iodelay_set  ad9361_conv.o
     0x08006452   0x08006452   0x00000002   PAD
-    0x08006454   0x08006454   0x00000238   Code   RO         2455    i.ad9361_load_fir_filter_coef  ad9361.o
-    0x0800668c   0x0800668c   0x000001a0   Code   RO         2456    i.ad9361_load_gt    ad9361.o
-    0x0800682c   0x0800682c   0x000000d0   Code   RO         2457    i.ad9361_load_mixer_gm_subtable  ad9361.o
-    0x080068fc   0x080068fc   0x00000020   Code   RO         3564    i.ad9361_midscale_iodelay  ad9361_conv.o
-    0x0800691c   0x0800691c   0x00000118   Code   RO         3565    i.ad9361_post_setup  ad9361_conv.o
-    0x08006a34   0x08006a34   0x000000e8   Code   RO         2460    i.ad9361_pp_port_setup  ad9361.o
-    0x08006b1c   0x08006b1c   0x00000026   Code   RO         2462    i.ad9361_ref_div_sel  ad9361.o
+    0x08006454   0x08006454   0x00000238   Code   RO         2545    i.ad9361_load_fir_filter_coef  ad9361.o
+    0x0800668c   0x0800668c   0x000001a0   Code   RO         2546    i.ad9361_load_gt    ad9361.o
+    0x0800682c   0x0800682c   0x000000d0   Code   RO         2547    i.ad9361_load_mixer_gm_subtable  ad9361.o
+    0x080068fc   0x080068fc   0x00000020   Code   RO         3664    i.ad9361_midscale_iodelay  ad9361_conv.o
+    0x0800691c   0x0800691c   0x00000118   Code   RO         3665    i.ad9361_post_setup  ad9361_conv.o
+    0x08006a34   0x08006a34   0x000000e8   Code   RO         2550    i.ad9361_pp_port_setup  ad9361.o
+    0x08006b1c   0x08006b1c   0x00000026   Code   RO         2552    i.ad9361_ref_div_sel  ad9361.o
     0x08006b42   0x08006b42   0x00000002   PAD
-    0x08006b44   0x08006b44   0x000000bc   Code   RO         2463    i.ad9361_reset      ad9361.o
-    0x08006c00   0x08006c00   0x000000dc   Code   RO         2464    i.ad9361_rf_dc_offset_calib  ad9361.o
-    0x08006cdc   0x08006cdc   0x00000084   Code   RO         2465    i.ad9361_rf_port_setup  ad9361.o
-    0x08006d60   0x08006d60   0x0000000e   Code   RO         2466    i.ad9361_rfpll_dummy_recalc_rate  ad9361.o
-    0x08006d6e   0x08006d6e   0x00000010   Code   RO         2467    i.ad9361_rfpll_dummy_set_rate  ad9361.o
+    0x08006b44   0x08006b44   0x000000bc   Code   RO         2553    i.ad9361_reset      ad9361.o
+    0x08006c00   0x08006c00   0x000000dc   Code   RO         2554    i.ad9361_rf_dc_offset_calib  ad9361.o
+    0x08006cdc   0x08006cdc   0x00000084   Code   RO         2555    i.ad9361_rf_port_setup  ad9361.o
+    0x08006d60   0x08006d60   0x0000000e   Code   RO         2556    i.ad9361_rfpll_dummy_recalc_rate  ad9361.o
+    0x08006d6e   0x08006d6e   0x00000010   Code   RO         2557    i.ad9361_rfpll_dummy_set_rate  ad9361.o
     0x08006d7e   0x08006d7e   0x00000002   PAD
-    0x08006d80   0x08006d80   0x00000160   Code   RO         2468    i.ad9361_rfpll_int_recalc_rate  ad9361.o
-    0x08006ee0   0x08006ee0   0x00000060   Code   RO         2469    i.ad9361_rfpll_int_round_rate  ad9361.o
-    0x08006f40   0x08006f40   0x0000025c   Code   RO         2470    i.ad9361_rfpll_int_set_rate  ad9361.o
-    0x0800719c   0x0800719c   0x00000052   Code   RO         2471    i.ad9361_rfpll_recalc_rate  ad9361.o
-    0x080071ee   0x080071ee   0x00000072   Code   RO         2472    i.ad9361_rfpll_round_rate  ad9361.o
-    0x08007260   0x08007260   0x0000010c   Code   RO         2473    i.ad9361_rfpll_set_rate  ad9361.o
-    0x0800736c   0x0800736c   0x0000021c   Code   RO         2474    i.ad9361_rfpll_vco_init  ad9361.o
-    0x08007588   0x08007588   0x000001f8   Code   RO         2476    i.ad9361_rssi_setup  ad9361.o
-    0x08007780   0x08007780   0x00000054   Code   RO         2477    i.ad9361_run_calibration  ad9361.o
-    0x080077d4   0x080077d4   0x000006fc   Code   RO         2478    i.ad9361_rx_adc_setup  ad9361.o
-    0x08007ed0   0x08007ed0   0x00000140   Code   RO         2479    i.ad9361_rx_bb_analog_filter_calib  ad9361.o
-    0x08008010   0x08008010   0x00000154   Code   RO         2480    i.ad9361_rx_tia_calib  ad9361.o
-    0x08008164   0x08008164   0x0000025a   Code   RO         2481    i.ad9361_set_clk_scaler  ad9361.o
+    0x08006d80   0x08006d80   0x00000160   Code   RO         2558    i.ad9361_rfpll_int_recalc_rate  ad9361.o
+    0x08006ee0   0x08006ee0   0x00000060   Code   RO         2559    i.ad9361_rfpll_int_round_rate  ad9361.o
+    0x08006f40   0x08006f40   0x0000025c   Code   RO         2560    i.ad9361_rfpll_int_set_rate  ad9361.o
+    0x0800719c   0x0800719c   0x00000052   Code   RO         2561    i.ad9361_rfpll_recalc_rate  ad9361.o
+    0x080071ee   0x080071ee   0x00000072   Code   RO         2562    i.ad9361_rfpll_round_rate  ad9361.o
+    0x08007260   0x08007260   0x0000010c   Code   RO         2563    i.ad9361_rfpll_set_rate  ad9361.o
+    0x0800736c   0x0800736c   0x0000021c   Code   RO         2564    i.ad9361_rfpll_vco_init  ad9361.o
+    0x08007588   0x08007588   0x000001f8   Code   RO         2566    i.ad9361_rssi_setup  ad9361.o
+    0x08007780   0x08007780   0x00000054   Code   RO         2567    i.ad9361_run_calibration  ad9361.o
+    0x080077d4   0x080077d4   0x000006fc   Code   RO         2568    i.ad9361_rx_adc_setup  ad9361.o
+    0x08007ed0   0x08007ed0   0x00000140   Code   RO         2569    i.ad9361_rx_bb_analog_filter_calib  ad9361.o
+    0x08008010   0x08008010   0x00000154   Code   RO         2570    i.ad9361_rx_tia_calib  ad9361.o
+    0x08008164   0x08008164   0x0000025a   Code   RO         2571    i.ad9361_set_clk_scaler  ad9361.o
     0x080083be   0x080083be   0x00000002   PAD
-    0x080083c0   0x080083c0   0x00000068   Code   RO         2482    i.ad9361_set_dcxo_tune  ad9361.o
-    0x08008428   0x08008428   0x00000066   Code   RO         3142    i.ad9361_set_en_state_machine_mode  ad9361_api.o
+    0x080083c0   0x080083c0   0x00000068   Code   RO         2572    i.ad9361_set_dcxo_tune  ad9361.o
+    0x08008428   0x08008428   0x00000066   Code   RO         3242    i.ad9361_set_en_state_machine_mode  ad9361_api.o
     0x0800848e   0x0800848e   0x00000002   PAD
-    0x08008490   0x08008490   0x0000006a   Code   RO         2483    i.ad9361_set_ensm_mode  ad9361.o
+    0x08008490   0x08008490   0x0000006a   Code   RO         2573    i.ad9361_set_ensm_mode  ad9361.o
     0x080084fa   0x080084fa   0x00000002   PAD
-    0x080084fc   0x080084fc   0x0000014c   Code   RO         2484    i.ad9361_set_gain_ctrl_mode  ad9361.o
-    0x08008648   0x08008648   0x00000026   Code   RO         3145    i.ad9361_set_rx_fir_config  ad9361_api.o
+    0x080084fc   0x080084fc   0x0000014c   Code   RO         2574    i.ad9361_set_gain_ctrl_mode  ad9361.o
+    0x08008648   0x08008648   0x00000026   Code   RO         3245    i.ad9361_set_rx_fir_config  ad9361_api.o
     0x0800866e   0x0800866e   0x00000002   PAD
-    0x08008670   0x08008670   0x00000030   Code   RO         3146    i.ad9361_set_rx_fir_en_dis  ad9361_api.o
-    0x080086a0   0x080086a0   0x000000e0   Code   RO         2485    i.ad9361_set_rx_gain  ad9361.o
-    0x08008780   0x08008780   0x0000007c   Code   RO         3147    i.ad9361_set_rx_gain_control_mode  ad9361_api.o
-    0x080087fc   0x080087fc   0x0000001c   Code   RO         3148    i.ad9361_set_rx_lo_freq  ad9361_api.o
-    0x08008818   0x08008818   0x00000024   Code   RO         3152    i.ad9361_set_rx_rf_bandwidth  ad9361_api.o
-    0x0800883c   0x0800883c   0x00000078   Code   RO         3153    i.ad9361_set_rx_rf_gain  ad9361_api.o
-    0x080088b4   0x080088b4   0x00000032   Code   RO         3156    i.ad9361_set_rx_sampling_freq  ad9361_api.o
+    0x08008670   0x08008670   0x00000030   Code   RO         3246    i.ad9361_set_rx_fir_en_dis  ad9361_api.o
+    0x080086a0   0x080086a0   0x000000e0   Code   RO         2575    i.ad9361_set_rx_gain  ad9361.o
+    0x08008780   0x08008780   0x0000007c   Code   RO         3247    i.ad9361_set_rx_gain_control_mode  ad9361_api.o
+    0x080087fc   0x080087fc   0x0000001c   Code   RO         3248    i.ad9361_set_rx_lo_freq  ad9361_api.o
+    0x08008818   0x08008818   0x00000024   Code   RO         3252    i.ad9361_set_rx_rf_bandwidth  ad9361_api.o
+    0x0800883c   0x0800883c   0x00000078   Code   RO         3253    i.ad9361_set_rx_rf_gain  ad9361_api.o
+    0x080088b4   0x080088b4   0x00000032   Code   RO         3256    i.ad9361_set_rx_sampling_freq  ad9361_api.o
     0x080088e6   0x080088e6   0x00000002   PAD
-    0x080088e8   0x080088e8   0x000001d0   Code   RO         2486    i.ad9361_set_trx_clock_chain  ad9361.o
-    0x08008ab8   0x08008ab8   0x00000028   Code   RO         2487    i.ad9361_set_trx_clock_chain_freq  ad9361.o
-    0x08008ae0   0x08008ae0   0x000000d4   Code   RO         2488    i.ad9361_set_tx_atten  ad9361.o
-    0x08008bb4   0x08008bb4   0x00000088   Code   RO         3161    i.ad9361_set_tx_attenuation  ad9361_api.o
-    0x08008c3c   0x08008c3c   0x00000022   Code   RO         3163    i.ad9361_set_tx_fir_config  ad9361_api.o
+    0x080088e8   0x080088e8   0x000001d0   Code   RO         2576    i.ad9361_set_trx_clock_chain  ad9361.o
+    0x08008ab8   0x08008ab8   0x00000028   Code   RO         2577    i.ad9361_set_trx_clock_chain_freq  ad9361.o
+    0x08008ae0   0x08008ae0   0x000000d4   Code   RO         2578    i.ad9361_set_tx_atten  ad9361.o
+    0x08008bb4   0x08008bb4   0x00000088   Code   RO         3261    i.ad9361_set_tx_attenuation  ad9361_api.o
+    0x08008c3c   0x08008c3c   0x00000022   Code   RO         3263    i.ad9361_set_tx_fir_config  ad9361_api.o
     0x08008c5e   0x08008c5e   0x00000002   PAD
-    0x08008c60   0x08008c60   0x00000030   Code   RO         3164    i.ad9361_set_tx_fir_en_dis  ad9361_api.o
-    0x08008c90   0x08008c90   0x0000001c   Code   RO         3165    i.ad9361_set_tx_lo_freq  ad9361_api.o
-    0x08008cac   0x08008cac   0x00000024   Code   RO         3168    i.ad9361_set_tx_rf_bandwidth  ad9361_api.o
-    0x08008cd0   0x08008cd0   0x00000014   Code   RO         3169    i.ad9361_set_tx_rf_port_output  ad9361_api.o
-    0x08008ce4   0x08008ce4   0x00000032   Code   RO         3170    i.ad9361_set_tx_sampling_freq  ad9361_api.o
+    0x08008c60   0x08008c60   0x00000030   Code   RO         3264    i.ad9361_set_tx_fir_en_dis  ad9361_api.o
+    0x08008c90   0x08008c90   0x0000001c   Code   RO         3265    i.ad9361_set_tx_lo_freq  ad9361_api.o
+    0x08008cac   0x08008cac   0x00000024   Code   RO         3268    i.ad9361_set_tx_rf_bandwidth  ad9361_api.o
+    0x08008cd0   0x08008cd0   0x00000014   Code   RO         3269    i.ad9361_set_tx_rf_port_output  ad9361_api.o
+    0x08008ce4   0x08008ce4   0x00000032   Code   RO         3270    i.ad9361_set_tx_sampling_freq  ad9361_api.o
     0x08008d16   0x08008d16   0x00000002   PAD
-    0x08008d18   0x08008d18   0x000007c0   Code   RO         2489    i.ad9361_setup      ad9361.o
-    0x080094d8   0x080094d8   0x00000014   Code   RO         2490    i.ad9361_spi_read   ad9361.o
-    0x080094ec   0x080094ec   0x00000060   Code   RO         2491    i.ad9361_spi_readm  ad9361.o
-    0x0800954c   0x0800954c   0x00000054   Code   RO         2492    i.ad9361_spi_write  ad9361.o
-    0x080095a0   0x080095a0   0x0000007c   Code   RO         2493    i.ad9361_spi_writem  ad9361.o
-    0x0800961c   0x0800961c   0x00000008   Code   RO         2495    i.ad9361_to_clk     ad9361.o
-    0x08009624   0x08009624   0x00000032   Code   RO         2496    i.ad9361_to_refclk_scaler  ad9361.o
+    0x08008d18   0x08008d18   0x000007c0   Code   RO         2579    i.ad9361_setup      ad9361.o
+    0x080094d8   0x080094d8   0x00000014   Code   RO         2580    i.ad9361_spi_read   ad9361.o
+    0x080094ec   0x080094ec   0x00000060   Code   RO         2581    i.ad9361_spi_readm  ad9361.o
+    0x0800954c   0x0800954c   0x00000054   Code   RO         2582    i.ad9361_spi_write  ad9361.o
+    0x080095a0   0x080095a0   0x0000007c   Code   RO         2583    i.ad9361_spi_writem  ad9361.o
+    0x0800961c   0x0800961c   0x00000008   Code   RO         2585    i.ad9361_to_clk     ad9361.o
+    0x08009624   0x08009624   0x00000032   Code   RO         2586    i.ad9361_to_refclk_scaler  ad9361.o
     0x08009656   0x08009656   0x00000002   PAD
-    0x08009658   0x08009658   0x000000f4   Code   RO         2497    i.ad9361_tracking_control  ad9361.o
-    0x0800974c   0x0800974c   0x00000190   Code   RO         2498    i.ad9361_trx_ext_lo_control  ad9361.o
-    0x080098dc   0x080098dc   0x00000054   Code   RO         2499    i.ad9361_trx_vco_cal_control  ad9361.o
-    0x08009930   0x08009930   0x000000c8   Code   RO         2500    i.ad9361_tx_bb_analog_filter_calib  ad9361.o
-    0x080099f8   0x080099f8   0x00000128   Code   RO         2501    i.ad9361_tx_bb_second_filter_calib  ad9361.o
-    0x08009b20   0x08009b20   0x00000064   Code   RO         2502    i.ad9361_tx_mute    ad9361.o
-    0x08009b84   0x08009b84   0x0000042c   Code   RO         2503    i.ad9361_tx_quad_calib  ad9361.o
-    0x08009fb0   0x08009fb0   0x0000009c   Code   RO         2504    i.ad9361_tx_quad_phase_search  ad9361.o
-    0x0800a04c   0x0800a04c   0x00000078   Code   RO         2505    i.ad9361_txmon_control  ad9361.o
-    0x0800a0c4   0x0800a0c4   0x000000a8   Code   RO         2506    i.ad9361_txmon_setup  ad9361.o
-    0x0800a16c   0x0800a16c   0x00000120   Code   RO         2507    i.ad9361_txrx_synth_cp_calib  ad9361.o
-    0x0800a28c   0x0800a28c   0x00000062   Code   RO         2508    i.ad9361_update_rf_bandwidth  ad9361.o
+    0x08009658   0x08009658   0x000000f4   Code   RO         2587    i.ad9361_tracking_control  ad9361.o
+    0x0800974c   0x0800974c   0x00000190   Code   RO         2588    i.ad9361_trx_ext_lo_control  ad9361.o
+    0x080098dc   0x080098dc   0x00000054   Code   RO         2589    i.ad9361_trx_vco_cal_control  ad9361.o
+    0x08009930   0x08009930   0x000000c8   Code   RO         2590    i.ad9361_tx_bb_analog_filter_calib  ad9361.o
+    0x080099f8   0x080099f8   0x00000128   Code   RO         2591    i.ad9361_tx_bb_second_filter_calib  ad9361.o
+    0x08009b20   0x08009b20   0x00000064   Code   RO         2592    i.ad9361_tx_mute    ad9361.o
+    0x08009b84   0x08009b84   0x0000042c   Code   RO         2593    i.ad9361_tx_quad_calib  ad9361.o
+    0x08009fb0   0x08009fb0   0x0000009c   Code   RO         2594    i.ad9361_tx_quad_phase_search  ad9361.o
+    0x0800a04c   0x0800a04c   0x00000078   Code   RO         2595    i.ad9361_txmon_control  ad9361.o
+    0x0800a0c4   0x0800a0c4   0x000000a8   Code   RO         2596    i.ad9361_txmon_setup  ad9361.o
+    0x0800a16c   0x0800a16c   0x00000120   Code   RO         2597    i.ad9361_txrx_synth_cp_calib  ad9361.o
+    0x0800a28c   0x0800a28c   0x00000062   Code   RO         2598    i.ad9361_update_rf_bandwidth  ad9361.o
     0x0800a2ee   0x0800a2ee   0x00000002   PAD
-    0x0800a2f0   0x0800a2f0   0x00000304   Code   RO         2509    i.ad9361_validate_enable_fir  ad9361.o
-    0x0800a5f4   0x0800a5f4   0x00000028   Code   RO         2510    i.ad9361_validate_rf_bw  ad9361.o
-    0x0800a61c   0x0800a61c   0x00000044   Code   RO         2511    i.ad9361_validate_rfpll  ad9361.o
-    0x0800a660   0x0800a660   0x000000c8   Code   RO         2512    i.ad9361_validate_trx_clock_chain  ad9361.o
-    0x0800a728   0x0800a728   0x00000010   Code   RO         3636    i.adc_init          adc_core.o
-    0x0800a738   0x0800a738   0x00000002   Code   RO         3637    i.adc_read          adc_core.o
-    0x0800a73a   0x0800a73a   0x00000002   Code   RO         3641    i.adc_write         adc_core.o
-    0x0800a73c   0x0800a73c   0x0000003e   Code   RO         4359    i.axiadc_idelay_set  platform.o
-    0x0800a77a   0x0800a77a   0x00000016   Code   RO         4360    i.axiadc_init       platform.o
-    0x0800a790   0x0800a790   0x00000004   Code   RO         4361    i.axiadc_post_setup  platform.o
-    0x0800a794   0x0800a794   0x0000000e   Code   RO         4362    i.axiadc_read       platform.o
-    0x0800a7a2   0x0800a7a2   0x0000006c   Code   RO         4363    i.axiadc_set_pnsel  platform.o
-    0x0800a80e   0x0800a80e   0x00000006   Code   RO         4364    i.axiadc_write      platform.o
-    0x0800a814   0x0800a814   0x00000078   Code   RO         4479    i.clk_get_rate      util.o
-    0x0800a88c   0x0800a88c   0x00000004   Code   RO         4480    i.clk_prepare_enable  util.o
-    0x0800a890   0x0800a890   0x0000020e   Code   RO         4481    i.clk_set_rate      util.o
-    0x0800aa9e   0x0800aa9e   0x00000002   PAD
-    0x0800aaa0   0x0800aaa0   0x00000258   Code   RO         4108    i.console_check_commands  console.o
-    0x0800acf8   0x0800acf8   0x0000002a   Code   RO         4109    i.console_get_command  console.o
-    0x0800ad22   0x0800ad22   0x00000002   PAD
-    0x0800ad24   0x0800ad24   0x000001a8   Code   RO         4111    i.console_print     console.o
-    0x0800aecc   0x0800aecc   0x00000002   Code   RO         4190    i.dac_init          dac_core.o
-    0x0800aece   0x0800aece   0x00000002   Code   RO         4192    i.dac_start_sync    dac_core.o
-    0x0800aed0   0x0800aed0   0x00000002   Code   RO         4193    i.dac_stop          dac_core.o
-    0x0800aed2   0x0800aed2   0x00000002   PAD
-    0x0800aed4   0x0800aed4   0x0000004c   Code   RO         4206    i.dds_set_frequency  dac_core.o
-    0x0800af20   0x0800af20   0x00000048   Code   RO         4207    i.dds_set_phase     dac_core.o
-    0x0800af68   0x0800af68   0x0000006c   Code   RO         4208    i.dds_set_scale     dac_core.o
-    0x0800afd4   0x0800afd4   0x00000028   Code   RO         3736    i.dds_tx2_tone2_scale  command.o
-    0x0800affc   0x0800affc   0x0000005c   Code   RO         4210    i.dds_update        dac_core.o
-    0x0800b058   0x0800b058   0x00000016   Code   RO         4482    i.do_div            util.o
-    0x0800b06e   0x0800b06e   0x00000030   Code   RO         4483    i.find_first_bit    util.o
-    0x0800b09e   0x0800b09e   0x00000002   PAD
-    0x0800b0a0   0x0800b0a0   0x00000018   Code   RO          288    i.fputc             usart.o
-    0x0800b0b8   0x0800b0b8   0x00000050   Code   RO         5025    i.free              mc_w.l(malloc.o)
-    0x0800b108   0x0800b108   0x00000028   Code   RO         3737    i.get_dds_tx1_tone1_freq  command.o
-    0x0800b130   0x0800b130   0x00000030   Code   RO         3738    i.get_dds_tx1_tone1_phase  command.o
-    0x0800b160   0x0800b160   0x00000028   Code   RO         3739    i.get_dds_tx1_tone1_scale  command.o
-    0x0800b188   0x0800b188   0x00000028   Code   RO         3740    i.get_dds_tx1_tone2_freq  command.o
-    0x0800b1b0   0x0800b1b0   0x00000030   Code   RO         3741    i.get_dds_tx1_tone2_phase  command.o
-    0x0800b1e0   0x0800b1e0   0x00000028   Code   RO         3742    i.get_dds_tx1_tone2_scale  command.o
-    0x0800b208   0x0800b208   0x00000028   Code   RO         3743    i.get_dds_tx2_tone1_freq  command.o
-    0x0800b230   0x0800b230   0x00000030   Code   RO         3744    i.get_dds_tx2_tone1_phase  command.o
-    0x0800b260   0x0800b260   0x00000028   Code   RO         3745    i.get_dds_tx2_tone1_scale  command.o
-    0x0800b288   0x0800b288   0x00000028   Code   RO         3746    i.get_dds_tx2_tone2_freq  command.o
-    0x0800b2b0   0x0800b2b0   0x00000030   Code   RO         3747    i.get_dds_tx2_tone2_phase  command.o
-    0x0800b2e0   0x0800b2e0   0x0000004c   Code   RO         3748    i.get_help          command.o
-    0x0800b32c   0x0800b32c   0x0000002c   Code   RO         3749    i.get_register      command.o
-    0x0800b358   0x0800b358   0x00000030   Code   RO         3750    i.get_rx1_gc_mode   command.o
-    0x0800b388   0x0800b388   0x0000002c   Code   RO         3751    i.get_rx1_rf_gain   command.o
-    0x0800b3b4   0x0800b3b4   0x00000030   Code   RO         3752    i.get_rx2_gc_mode   command.o
-    0x0800b3e4   0x0800b3e4   0x0000002c   Code   RO         3753    i.get_rx2_rf_gain   command.o
-    0x0800b410   0x0800b410   0x0000002c   Code   RO         3754    i.get_rx_fir_en     command.o
-    0x0800b43c   0x0800b43c   0x00000040   Code   RO         3755    i.get_rx_lo_freq    command.o
-    0x0800b47c   0x0800b47c   0x00000030   Code   RO         3756    i.get_rx_rf_bandwidth  command.o
-    0x0800b4ac   0x0800b4ac   0x00000030   Code   RO         3757    i.get_rx_samp_freq  command.o
-    0x0800b4dc   0x0800b4dc   0x00000030   Code   RO         3758    i.get_tx1_attenuation  command.o
-    0x0800b50c   0x0800b50c   0x00000030   Code   RO         3759    i.get_tx2_attenuation  command.o
-    0x0800b53c   0x0800b53c   0x0000002c   Code   RO         3760    i.get_tx_fir_en     command.o
-    0x0800b568   0x0800b568   0x00000040   Code   RO         3761    i.get_tx_lo_freq    command.o
-    0x0800b5a8   0x0800b5a8   0x00000030   Code   RO         3762    i.get_tx_rf_bandwidth  command.o
-    0x0800b5d8   0x0800b5d8   0x00000030   Code   RO         3763    i.get_tx_samp_freq  command.o
-    0x0800b608   0x0800b608   0x00000048   Code   RO         4365    i.gpio_data         platform.o
-    0x0800b650   0x0800b650   0x0000000c   Code   RO         4368    i.gpio_is_valid     platform.o
-    0x0800b65c   0x0800b65c   0x00000008   Code   RO         4369    i.gpio_set_value    platform.o
-    0x0800b664   0x0800b664   0x00000064   Code   RO         4484    i.ilog2             util.o
-    0x0800b6c8   0x0800b6c8   0x00000022   Code   RO         4485    i.int_sqrt          util.o
-    0x0800b6ea   0x0800b6ea   0x00000002   PAD
-    0x0800b6ec   0x0800b6ec   0x00000060   Code   RO         4112    i.int_to_str        console.o
-    0x0800b74c   0x0800b74c   0x0000004c   Code   RO         3764    i.lo_diff_cal       command.o
-    0x0800b798   0x0800b798   0x00000404   Code   RO           15    i.main              main.o
-    0x0800bb9c   0x0800bb9c   0x0000006c   Code   RO         5026    i.malloc            mc_w.l(malloc.o)
-    0x0800bc08   0x0800bc08   0x00000004   Code   RO         4370    i.mdelay            platform.o
-    0x0800bc0c   0x0800bc0c   0x000002d4   Code   RO         2513    i.register_clocks   ad9361.o
-    0x0800bee0   0x0800bee0   0x0000005c   Code   RO         3765    i.set_dds_tx1_tone1_freq  command.o
-    0x0800bf3c   0x0800bf3c   0x00000080   Code   RO         3766    i.set_dds_tx1_tone1_phase  command.o
-    0x0800bfbc   0x0800bfbc   0x00000064   Code   RO         3767    i.set_dds_tx1_tone1_scale  command.o
-    0x0800c020   0x0800c020   0x0000005c   Code   RO         3768    i.set_dds_tx1_tone2_freq  command.o
-    0x0800c07c   0x0800c07c   0x00000080   Code   RO         3769    i.set_dds_tx1_tone2_phase  command.o
-    0x0800c0fc   0x0800c0fc   0x00000064   Code   RO         3770    i.set_dds_tx1_tone2_scale  command.o
-    0x0800c160   0x0800c160   0x0000005c   Code   RO         3771    i.set_dds_tx2_tone1_freq  command.o
-    0x0800c1bc   0x0800c1bc   0x00000080   Code   RO         3772    i.set_dds_tx2_tone1_phase  command.o
-    0x0800c23c   0x0800c23c   0x00000064   Code   RO         3773    i.set_dds_tx2_tone1_scale  command.o
-    0x0800c2a0   0x0800c2a0   0x0000005c   Code   RO         3774    i.set_dds_tx2_tone2_freq  command.o
-    0x0800c2fc   0x0800c2fc   0x00000080   Code   RO         3775    i.set_dds_tx2_tone2_phase  command.o
-    0x0800c37c   0x0800c37c   0x00000064   Code   RO         3776    i.set_dds_tx2_tone2_scale  command.o
-    0x0800c3e0   0x0800c3e0   0x000000f4   Code   RO         2514    i.set_full_table_gain  ad9361.o
-    0x0800c4d4   0x0800c4d4   0x00000048   Code   RO         3777    i.set_rx1_gc_mode   command.o
-    0x0800c51c   0x0800c51c   0x00000048   Code   RO         3778    i.set_rx1_rf_gain   command.o
-    0x0800c564   0x0800c564   0x00000048   Code   RO         3779    i.set_rx2_gc_mode   command.o
-    0x0800c5ac   0x0800c5ac   0x00000048   Code   RO         3780    i.set_rx2_rf_gain   command.o
-    0x0800c5f4   0x0800c5f4   0x00000048   Code   RO         3781    i.set_rx_fir_en     command.o
-    0x0800c63c   0x0800c63c   0x00000068   Code   RO         3782    i.set_rx_lo_freq    command.o
-    0x0800c6a4   0x0800c6a4   0x0000004c   Code   RO         3783    i.set_rx_rf_bandwidth  command.o
-    0x0800c6f0   0x0800c6f0   0x00000054   Code   RO         3784    i.set_rx_samp_freq  command.o
-    0x0800c744   0x0800c744   0x000001fc   Code   RO         2515    i.set_split_table_gain  ad9361.o
-    0x0800c940   0x0800c940   0x0000004c   Code   RO         3785    i.set_tx1_attenuation  command.o
-    0x0800c98c   0x0800c98c   0x0000004c   Code   RO         3786    i.set_tx2_attenuation  command.o
-    0x0800c9d8   0x0800c9d8   0x00000048   Code   RO         3787    i.set_tx_fir_en     command.o
-    0x0800ca20   0x0800ca20   0x00000068   Code   RO         3788    i.set_tx_lo_freq    command.o
-    0x0800ca88   0x0800ca88   0x0000002c   Code   RO         3789    i.set_tx_rf_bandwidth  command.o
-    0x0800cab4   0x0800cab4   0x00000054   Code   RO         3790    i.set_tx_samp_freq  command.o
-    0x0800cb08   0x0800cb08   0x0000005c   Code   RO         3791    i.show_invalid_param_message  command.o
-    0x0800cb64   0x0800cb64   0x00000048   Code   RO         4374    i.spi_write_then_read  platform.o
-    0x0800cbac   0x0800cbac   0x00000014   Code   RO         4114    i.uart_read_char    console.o
-    0x0800cbc0   0x0800cbc0   0x00000018   Code   RO         4115    i.uart_write_char   console.o
-    0x0800cbd8   0x0800cbd8   0x00000014   Code   RO         4116    i.uart_write_string  console.o
-    0x0800cbec   0x0800cbec   0x00000012   Code   RO         4375    i.udelay            platform.o
-    0x0800cbfe   0x0800cbfe   0x0000001c   Code   RO         4486    i.zmalloc           util.o
-    0x0800cc1a   0x0800cc1a   0x00000010   Data   RO         2363    .constdata          system_stm32f4xx.o
-    0x0800cc2a   0x0800cc2a   0x00000008   Data   RO         2364    .constdata          system_stm32f4xx.o
-    0x0800cc32   0x0800cc32   0x00000002   PAD
-    0x0800cc34   0x0800cc34   0x00001bb9   Data   RO         2518    .constdata          ad9361.o
-    0x0800e7ed   0x0800e7ed   0x000000df   Data   RO         3176    .constdata          ad9361_api.o
-    0x0800e8cc   0x0800e8cc   0x00000044   Data   RO         3566    .constdata          ad9361_conv.o
-    0x0800e910   0x0800e910   0x00000001   Data   RO         3792    .constdata          command.o
-    0x0800e911   0x0800e911   0x00000040   Data   RO         5133    .constdata          mc_w.l(ctype_c.o)
-    0x0800e951   0x0800e951   0x00000003   PAD
-    0x0800e954   0x0800e954   0x0000009f   Data   RO         2520    .conststring        ad9361.o
-    0x0800e9f3   0x0800e9f3   0x00000001   PAD
-    0x0800e9f4   0x0800e9f4   0x00000015   Data   RO         3177    .conststring        ad9361_api.o
-    0x0800ea09   0x0800ea09   0x00000003   PAD
-    0x0800ea0c   0x0800ea0c   0x00000bb1   Data   RO         3793    .conststring        command.o
-    0x0800f5bd   0x0800f5bd   0x00000003   PAD
-    0x0800f5c0   0x0800f5c0   0x00000020   Data   RO         5139    Region$$Table       anon$$obj.o
+    0x0800a2f0   0x0800a2f0   0x00000304   Code   RO         2599    i.ad9361_validate_enable_fir  ad9361.o
+    0x0800a5f4   0x0800a5f4   0x00000028   Code   RO         2600    i.ad9361_validate_rf_bw  ad9361.o
+    0x0800a61c   0x0800a61c   0x00000044   Code   RO         2601    i.ad9361_validate_rfpll  ad9361.o
+    0x0800a660   0x0800a660   0x000000c8   Code   RO         2602    i.ad9361_validate_trx_clock_chain  ad9361.o
+    0x0800a728   0x0800a728   0x00000010   Code   RO         3736    i.adc_init          adc_core.o
+    0x0800a738   0x0800a738   0x00000002   Code   RO         3737    i.adc_read          adc_core.o
+    0x0800a73a   0x0800a73a   0x00000002   Code   RO         3741    i.adc_write         adc_core.o
+    0x0800a73c   0x0800a73c   0x0000003e   Code   RO         4490    i.axiadc_idelay_set  platform.o
+    0x0800a77a   0x0800a77a   0x00000016   Code   RO         4491    i.axiadc_init       platform.o
+    0x0800a790   0x0800a790   0x00000004   Code   RO         4492    i.axiadc_post_setup  platform.o
+    0x0800a794   0x0800a794   0x0000000e   Code   RO         4493    i.axiadc_read       platform.o
+    0x0800a7a2   0x0800a7a2   0x0000006c   Code   RO         4494    i.axiadc_set_pnsel  platform.o
+    0x0800a80e   0x0800a80e   0x00000006   Code   RO         4495    i.axiadc_write      platform.o
+    0x0800a814   0x0800a814   0x000002a0   Code   RO         3836    i.cal_lo_diff       command.o
+    0x0800aab4   0x0800aab4   0x00000078   Code   RO         4610    i.clk_get_rate      util.o
+    0x0800ab2c   0x0800ab2c   0x00000004   Code   RO         4611    i.clk_prepare_enable  util.o
+    0x0800ab30   0x0800ab30   0x0000020e   Code   RO         4612    i.clk_set_rate      util.o
+    0x0800ad3e   0x0800ad3e   0x00000002   PAD
+    0x0800ad40   0x0800ad40   0x00000258   Code   RO         4229    i.console_check_commands  console.o
+    0x0800af98   0x0800af98   0x0000002a   Code   RO         4230    i.console_get_command  console.o
+    0x0800afc2   0x0800afc2   0x00000002   PAD
+    0x0800afc4   0x0800afc4   0x000001a8   Code   RO         4232    i.console_print     console.o
+    0x0800b16c   0x0800b16c   0x00000002   Code   RO         4318    i.dac_init          dac_core.o
+    0x0800b16e   0x0800b16e   0x00000002   Code   RO         4320    i.dac_start_sync    dac_core.o
+    0x0800b170   0x0800b170   0x00000002   Code   RO         4321    i.dac_stop          dac_core.o
+    0x0800b172   0x0800b172   0x00000002   PAD
+    0x0800b174   0x0800b174   0x0000004c   Code   RO         4334    i.dds_set_frequency  dac_core.o
+    0x0800b1c0   0x0800b1c0   0x00000048   Code   RO         4335    i.dds_set_phase     dac_core.o
+    0x0800b208   0x0800b208   0x0000006c   Code   RO         4336    i.dds_set_scale     dac_core.o
+    0x0800b274   0x0800b274   0x00000028   Code   RO         3837    i.dds_tx2_tone2_scale  command.o
+    0x0800b29c   0x0800b29c   0x0000005c   Code   RO         4338    i.dds_update        dac_core.o
+    0x0800b2f8   0x0800b2f8   0x00000016   Code   RO         4613    i.do_div            util.o
+    0x0800b30e   0x0800b30e   0x00000030   Code   RO         4614    i.find_first_bit    util.o
+    0x0800b33e   0x0800b33e   0x00000002   PAD
+    0x0800b340   0x0800b340   0x00000018   Code   RO          378    i.fputc             usart.o
+    0x0800b358   0x0800b358   0x00000050   Code   RO         5156    i.free              mc_w.l(malloc.o)
+    0x0800b3a8   0x0800b3a8   0x00000028   Code   RO         3838    i.get_dds_tx1_tone1_freq  command.o
+    0x0800b3d0   0x0800b3d0   0x00000030   Code   RO         3839    i.get_dds_tx1_tone1_phase  command.o
+    0x0800b400   0x0800b400   0x00000028   Code   RO         3840    i.get_dds_tx1_tone1_scale  command.o
+    0x0800b428   0x0800b428   0x00000028   Code   RO         3841    i.get_dds_tx1_tone2_freq  command.o
+    0x0800b450   0x0800b450   0x00000030   Code   RO         3842    i.get_dds_tx1_tone2_phase  command.o
+    0x0800b480   0x0800b480   0x00000028   Code   RO         3843    i.get_dds_tx1_tone2_scale  command.o
+    0x0800b4a8   0x0800b4a8   0x00000028   Code   RO         3844    i.get_dds_tx2_tone1_freq  command.o
+    0x0800b4d0   0x0800b4d0   0x00000030   Code   RO         3845    i.get_dds_tx2_tone1_phase  command.o
+    0x0800b500   0x0800b500   0x00000028   Code   RO         3846    i.get_dds_tx2_tone1_scale  command.o
+    0x0800b528   0x0800b528   0x00000028   Code   RO         3847    i.get_dds_tx2_tone2_freq  command.o
+    0x0800b550   0x0800b550   0x00000030   Code   RO         3848    i.get_dds_tx2_tone2_phase  command.o
+    0x0800b580   0x0800b580   0x0000004c   Code   RO         3849    i.get_help          command.o
+    0x0800b5cc   0x0800b5cc   0x00000034   Code   RO         3850    i.get_lo_diff       command.o
+    0x0800b600   0x0800b600   0x0000002c   Code   RO         3851    i.get_register      command.o
+    0x0800b62c   0x0800b62c   0x00000030   Code   RO         3852    i.get_rx1_gc_mode   command.o
+    0x0800b65c   0x0800b65c   0x0000002c   Code   RO         3853    i.get_rx1_rf_gain   command.o
+    0x0800b688   0x0800b688   0x00000030   Code   RO         3854    i.get_rx2_gc_mode   command.o
+    0x0800b6b8   0x0800b6b8   0x0000002c   Code   RO         3855    i.get_rx2_rf_gain   command.o
+    0x0800b6e4   0x0800b6e4   0x0000002c   Code   RO         3856    i.get_rx_fir_en     command.o
+    0x0800b710   0x0800b710   0x00000040   Code   RO         3857    i.get_rx_lo_freq    command.o
+    0x0800b750   0x0800b750   0x00000030   Code   RO         3858    i.get_rx_rf_bandwidth  command.o
+    0x0800b780   0x0800b780   0x00000030   Code   RO         3859    i.get_rx_samp_freq  command.o
+    0x0800b7b0   0x0800b7b0   0x00000030   Code   RO         3860    i.get_tx1_attenuation  command.o
+    0x0800b7e0   0x0800b7e0   0x00000030   Code   RO         3861    i.get_tx2_attenuation  command.o
+    0x0800b810   0x0800b810   0x0000002c   Code   RO         3862    i.get_tx_fir_en     command.o
+    0x0800b83c   0x0800b83c   0x00000040   Code   RO         3863    i.get_tx_lo_freq    command.o
+    0x0800b87c   0x0800b87c   0x00000030   Code   RO         3864    i.get_tx_rf_bandwidth  command.o
+    0x0800b8ac   0x0800b8ac   0x00000030   Code   RO         3865    i.get_tx_samp_freq  command.o
+    0x0800b8dc   0x0800b8dc   0x00000048   Code   RO         4496    i.gpio_data         platform.o
+    0x0800b924   0x0800b924   0x0000000c   Code   RO         4499    i.gpio_is_valid     platform.o
+    0x0800b930   0x0800b930   0x00000008   Code   RO         4500    i.gpio_set_value    platform.o
+    0x0800b938   0x0800b938   0x00000064   Code   RO         4615    i.ilog2             util.o
+    0x0800b99c   0x0800b99c   0x00000022   Code   RO         4616    i.int_sqrt          util.o
+    0x0800b9be   0x0800b9be   0x00000002   PAD
+    0x0800b9c0   0x0800b9c0   0x00000060   Code   RO         4233    i.int_to_str        console.o
+    0x0800ba20   0x0800ba20   0x00000404   Code   RO           15    i.main              main.o
+    0x0800be24   0x0800be24   0x0000006c   Code   RO         5157    i.malloc            mc_w.l(malloc.o)
+    0x0800be90   0x0800be90   0x00000004   Code   RO         4501    i.mdelay            platform.o
+    0x0800be94   0x0800be94   0x000002d4   Code   RO         2603    i.register_clocks   ad9361.o
+    0x0800c168   0x0800c168   0x0000005c   Code   RO         3866    i.set_dds_tx1_tone1_freq  command.o
+    0x0800c1c4   0x0800c1c4   0x00000080   Code   RO         3867    i.set_dds_tx1_tone1_phase  command.o
+    0x0800c244   0x0800c244   0x00000064   Code   RO         3868    i.set_dds_tx1_tone1_scale  command.o
+    0x0800c2a8   0x0800c2a8   0x0000005c   Code   RO         3869    i.set_dds_tx1_tone2_freq  command.o
+    0x0800c304   0x0800c304   0x00000080   Code   RO         3870    i.set_dds_tx1_tone2_phase  command.o
+    0x0800c384   0x0800c384   0x00000064   Code   RO         3871    i.set_dds_tx1_tone2_scale  command.o
+    0x0800c3e8   0x0800c3e8   0x0000005c   Code   RO         3872    i.set_dds_tx2_tone1_freq  command.o
+    0x0800c444   0x0800c444   0x00000080   Code   RO         3873    i.set_dds_tx2_tone1_phase  command.o
+    0x0800c4c4   0x0800c4c4   0x00000064   Code   RO         3874    i.set_dds_tx2_tone1_scale  command.o
+    0x0800c528   0x0800c528   0x0000005c   Code   RO         3875    i.set_dds_tx2_tone2_freq  command.o
+    0x0800c584   0x0800c584   0x00000080   Code   RO         3876    i.set_dds_tx2_tone2_phase  command.o
+    0x0800c604   0x0800c604   0x00000064   Code   RO         3877    i.set_dds_tx2_tone2_scale  command.o
+    0x0800c668   0x0800c668   0x000000f4   Code   RO         2604    i.set_full_table_gain  ad9361.o
+    0x0800c75c   0x0800c75c   0x00000048   Code   RO         3878    i.set_rx1_gc_mode   command.o
+    0x0800c7a4   0x0800c7a4   0x00000048   Code   RO         3879    i.set_rx1_rf_gain   command.o
+    0x0800c7ec   0x0800c7ec   0x00000048   Code   RO         3880    i.set_rx2_gc_mode   command.o
+    0x0800c834   0x0800c834   0x00000048   Code   RO         3881    i.set_rx2_rf_gain   command.o
+    0x0800c87c   0x0800c87c   0x00000048   Code   RO         3882    i.set_rx_fir_en     command.o
+    0x0800c8c4   0x0800c8c4   0x00000068   Code   RO         3883    i.set_rx_lo_freq    command.o
+    0x0800c92c   0x0800c92c   0x0000004c   Code   RO         3884    i.set_rx_rf_bandwidth  command.o
+    0x0800c978   0x0800c978   0x00000054   Code   RO         3885    i.set_rx_samp_freq  command.o
+    0x0800c9cc   0x0800c9cc   0x000001fc   Code   RO         2605    i.set_split_table_gain  ad9361.o
+    0x0800cbc8   0x0800cbc8   0x0000004c   Code   RO         3886    i.set_tx1_attenuation  command.o
+    0x0800cc14   0x0800cc14   0x0000004c   Code   RO         3887    i.set_tx2_attenuation  command.o
+    0x0800cc60   0x0800cc60   0x00000048   Code   RO         3888    i.set_tx_fir_en     command.o
+    0x0800cca8   0x0800cca8   0x00000068   Code   RO         3889    i.set_tx_lo_freq    command.o
+    0x0800cd10   0x0800cd10   0x0000002c   Code   RO         3890    i.set_tx_rf_bandwidth  command.o
+    0x0800cd3c   0x0800cd3c   0x00000054   Code   RO         3891    i.set_tx_samp_freq  command.o
+    0x0800cd90   0x0800cd90   0x0000005c   Code   RO         3892    i.show_invalid_param_message  command.o
+    0x0800cdec   0x0800cdec   0x00000048   Code   RO         4505    i.spi_write_then_read  platform.o
+    0x0800ce34   0x0800ce34   0x00000014   Code   RO         4235    i.uart_read_char    console.o
+    0x0800ce48   0x0800ce48   0x00000018   Code   RO         4236    i.uart_write_char   console.o
+    0x0800ce60   0x0800ce60   0x00000014   Code   RO         4237    i.uart_write_string  console.o
+    0x0800ce74   0x0800ce74   0x00000012   Code   RO         4506    i.udelay            platform.o
+    0x0800ce86   0x0800ce86   0x0000001c   Code   RO         4617    i.zmalloc           util.o
+    0x0800cea2   0x0800cea2   0x00000010   Data   RO         2453    .constdata          system_stm32f4xx.o
+    0x0800ceb2   0x0800ceb2   0x00000008   Data   RO         2454    .constdata          system_stm32f4xx.o
+    0x0800ceba   0x0800ceba   0x00000002   PAD
+    0x0800cebc   0x0800cebc   0x00001bb9   Data   RO         2608    .constdata          ad9361.o
+    0x0800ea75   0x0800ea75   0x000000df   Data   RO         3276    .constdata          ad9361_api.o
+    0x0800eb54   0x0800eb54   0x00000044   Data   RO         3666    .constdata          ad9361_conv.o
+    0x0800eb98   0x0800eb98   0x00000001   Data   RO         3893    .constdata          command.o
+    0x0800eb99   0x0800eb99   0x00000040   Data   RO         5264    .constdata          mc_w.l(ctype_c.o)
+    0x0800ebd9   0x0800ebd9   0x00000003   PAD
+    0x0800ebdc   0x0800ebdc   0x0000009f   Data   RO         2610    .conststring        ad9361.o
+    0x0800ec7b   0x0800ec7b   0x00000001   PAD
+    0x0800ec7c   0x0800ec7c   0x00000015   Data   RO         3277    .conststring        ad9361_api.o
+    0x0800ec91   0x0800ec91   0x00000003   PAD
+    0x0800ec94   0x0800ec94   0x00000bd1   Data   RO         3894    .conststring        command.o
+    0x0800f865   0x0800f865   0x00000003   PAD
+    0x0800f868   0x0800f868   0x00000020   Data   RO         5270    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x0800f5e0, Size: 0x00001e00, Max: 0x00020000, ABSOLUTE, COMPRESSED[0x000003ac])
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x0800f888, Size: 0x00001e10, Max: 0x00020000, ABSOLUTE, COMPRESSED[0x000003ac])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000   COMPRESSED   0x00000470   Data   RW           17    .data               main.o
-    0x20000470   COMPRESSED   0x0000000c   Data   RW         1737    .data               stm32f4xx_hal.o
-    0x2000047c   COMPRESSED   0x00000004   Data   RW         2365    .data               system_stm32f4xx.o
-    0x20000480   COMPRESSED   0x00000010   Data   RW         3178    .data               ad9361_api.o
-    0x20000490   COMPRESSED   0x00000001   Data   RW         3642    .data               adc_core.o
+    0x20000470   COMPRESSED   0x0000000c   Data   RW         1827    .data               stm32f4xx_hal.o
+    0x2000047c   COMPRESSED   0x00000004   Data   RW         2455    .data               system_stm32f4xx.o
+    0x20000480   COMPRESSED   0x00000010   Data   RW         3278    .data               ad9361_api.o
+    0x20000490   COMPRESSED   0x00000001   Data   RW         3742    .data               adc_core.o
     0x20000491   COMPRESSED   0x00000003   PAD
-    0x20000494   COMPRESSED   0x00000370   Data   RW         3794    .data               command.o
-    0x20000804   COMPRESSED   0x00000011   Data   RW         4117    .data               console.o
-    0x20000815   COMPRESSED   0x00000001   Data   RW         4687    .data               softspi.o
-    0x20000816   COMPRESSED   0x00000002   PAD
-    0x20000818   COMPRESSED   0x00000004   Data   RW         5093    .data               mc_w.l(stdout.o)
-    0x2000081c   COMPRESSED   0x00000004   Data   RW         5100    .data               mc_w.l(mvars.o)
-    0x20000820   COMPRESSED   0x00000004   Data   RW         5101    .data               mc_w.l(mvars.o)
-    0x20000824   COMPRESSED   0x00000004   Data   RW         5105    .data               mc_w.l(errno.o)
-    0x20000828        -       0x00000046   Zero   RW           16    .bss                main.o
-    0x2000086e   COMPRESSED   0x00000002   PAD
-    0x20000870        -       0x00000058   Zero   RW          246    .bss                spi.o
-    0x200008c8        -       0x00000044   Zero   RW          289    .bss                usart.o
-    0x2000090c        -       0x000000f0   Zero   RW         4211    .bss                dac_core.o
-    0x200009fc   COMPRESSED   0x00000004   PAD
-    0x20000a00        -       0x00001000   Zero   RW            2    HEAP                startup_stm32f411xe.o
-    0x20001a00        -       0x00000400   Zero   RW            1    STACK               startup_stm32f411xe.o
+    0x20000494   COMPRESSED   0x00000380   Data   RW         3895    .data               command.o
+    0x20000814   COMPRESSED   0x00000011   Data   RW         4238    .data               console.o
+    0x20000825   COMPRESSED   0x00000001   Data   RW         4818    .data               softspi.o
+    0x20000826   COMPRESSED   0x00000002   PAD
+    0x20000828   COMPRESSED   0x00000004   Data   RW         5224    .data               mc_w.l(stdout.o)
+    0x2000082c   COMPRESSED   0x00000004   Data   RW         5231    .data               mc_w.l(mvars.o)
+    0x20000830   COMPRESSED   0x00000004   Data   RW         5232    .data               mc_w.l(mvars.o)
+    0x20000834   COMPRESSED   0x00000004   Data   RW         5236    .data               mc_w.l(errno.o)
+    0x20000838        -       0x00000046   Zero   RW           16    .bss                main.o
+    0x2000087e   COMPRESSED   0x00000002   PAD
+    0x20000880        -       0x00000058   Zero   RW          336    .bss                spi.o
+    0x200008d8        -       0x00000044   Zero   RW          379    .bss                usart.o
+    0x2000091c        -       0x000000f0   Zero   RW         4339    .bss                dac_core.o
+    0x20000a0c   COMPRESSED   0x00000004   PAD
+    0x20000a10        -       0x00001000   Zero   RW            2    HEAP                startup_stm32f411xe.o
+    0x20001a10        -       0x00000400   Zero   RW            1    STACK               startup_stm32f411xe.o
 
 
 ==============================================================================
@@ -3779,11 +3790,11 @@ Image component sizes
       2246        194         68          0          0       9963   ad9361_conv.o
         20          4          0          1          0       5228   adc_core.o
        140         14          0          0          0       1918   com_fpga.o
-      3848       1550       2994        880          0      40503   command.o
+      4496       1786       3026        896          0     104141   command.o
       1226         86          0         17          0       7387   console.o
-       354         32          0          0        240       5209   dac_core.o
-       204         14          0          0          0       1019   gpio.o
-      1176        412          0       1136         70     468567   main.o
+       354         32          0          0        240       8673   dac_core.o
+       204         14          0          0          0     389675   gpio.o
+      1176        412          0       1136         70     453175   main.o
        402         22          0          0          0       8285   platform.o
        594         30          0          1          0       5700   softspi.o
        176         22          0          0         88       1749   spi.o
@@ -3801,7 +3812,7 @@ Image component sizes
        884         40          0          0          0       6592   util.o
 
     ----------------------------------------------------------------------
-     46260       8070      11035       2072       5592     834036   Object Totals
+     46908       8306      11067       2088       5592    1274402   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         60          4          9          5          6          0   (incl. Padding)
 
@@ -3876,15 +3887,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     51842       8250      11102       2088       5592     808912   Grand Totals
-     51842       8250      11102        940       5592     808912   ELF Image Totals (compressed)
-     51842       8250      11102        940          0          0   ROM Totals
+     52490       8486      11134       2104       5592    1249178   Grand Totals
+     52490       8486      11134        940       5592    1249178   ELF Image Totals (compressed)
+     52490       8486      11134        940          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                62944 (  61.47kB)
-    Total RW  Size (RW Data + ZI Data)              7680 (   7.50kB)
-    Total ROM Size (Code + RO Data + RW Data)      63884 (  62.39kB)
+    Total RO  Size (Code + RO Data)                63624 (  62.13kB)
+    Total RW  Size (RW Data + ZI Data)              7696 (   7.52kB)
+    Total ROM Size (Code + RO Data + RW Data)      64564 (  63.05kB)
 
 ==============================================================================
 

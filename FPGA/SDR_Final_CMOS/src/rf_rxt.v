@@ -377,8 +377,10 @@ wire decoded_valid;
 qpsk_differential_decoder qpsk_diff_decoder_u0 (
     .clk(demod_bit_clk),
     .rst_n(rst_n),
-    .i_in(gardner_sync_I),
-    .q_in(gardner_sync_Q),
+    // .i_in(gardner_sync_I),
+    // .q_in(gardner_sync_Q),
+    .i_in(demod_data),
+    .q_in(demod_data),
     .data_valid(demod_valid),
     .data_out(decoded_data),
     .out_valid(decoded_valid)

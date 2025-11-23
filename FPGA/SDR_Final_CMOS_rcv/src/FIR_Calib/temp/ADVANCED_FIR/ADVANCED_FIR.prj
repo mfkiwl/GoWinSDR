@@ -12,7 +12,7 @@
         <Option type="disable_insert_pad" value="1"/>
         <Option type="enable_dsrm" value="0"/>
         <Option type="include_path" value="E:/Program_File(x86)/Gowin/Gowin_V1.9.12_x64/IDE/ipcore/ADVANCED_FIR/data"/>
-        <Option type="include_path" value="D:/Code/Gowin/SDR_Final_CMOS_rcv/src/FIR_Calib/temp/ADVANCED_FIR"/>
+        <Option type="include_path" value="D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/FIR_Calib/temp/ADVANCED_FIR"/>
         <Option type="output_file" value="advanced_fir_filter.vg"/>
         <Option type="output_template" value="advanced_fir_filter_tmp.v"/>
         <Option type="ram_balance" value="1"/>

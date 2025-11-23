@@ -8,7 +8,7 @@ version=1.0
 
 [Config]
 CHANNEL_N=1
-COEFFICIENT_FILE=D:\\Code\\git\\GoWinSDR\\Matlab\\fir_coefficients_dec.txt
+COEFFICIENT_FILE=D:/Code/git/GoWinSDR/Matlab/fir_coefficients_dec.txt
 COEFFWIDTH=12
 Coefficient_Reload=false
 Decimator_Factor=2
@@ -20,5 +20,5 @@ Interpolator_Factor=2
 LANG=0
 ODATAWIDTH=12
 Synthesis_tool=GowinSynthesis
-TAPS_NUMBER=60
+TAPS_NUMBER=72
 TDM_VALUE=1
