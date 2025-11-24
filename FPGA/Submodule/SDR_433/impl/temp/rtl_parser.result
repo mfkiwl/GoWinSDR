@@ -17,7 +17,7 @@
    },
    {
     "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/SDR_433/src/top.v",
-    "InstLine" : 113,
+    "InstLine" : 95,
     "InstName" : "u_demod_433",
     "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/SDR_433/src/demod_433.v",
     "ModuleLine" : 1,

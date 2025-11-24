@@ -29,6 +29,8 @@ gowinsdr\com_fpga.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ram
 gowinsdr\com_fpga.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 gowinsdr\com_fpga.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 gowinsdr\com_fpga.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
+gowinsdr\com_fpga.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
+gowinsdr\com_fpga.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 gowinsdr\com_fpga.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 gowinsdr\com_fpga.o: E:\Hardware\MDK\Core\ARM\ARMCC\Bin\..\include\stdio.h
 gowinsdr\com_fpga.o: E:\Hardware\MDK\Core\ARM\ARMCC\Bin\..\include\string.h

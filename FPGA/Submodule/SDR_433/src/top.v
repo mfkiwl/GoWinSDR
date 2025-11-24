@@ -84,31 +84,13 @@ wire                                    dac_in_valid               ;
         end
     end
 
-reg                    [  23:0]         led_cnt                    ;
-reg                                     led_blink                  ;
-
-    always @(posedge data_clk or negedge rst_n) begin
-        if (!rst_n) begin
-            led_cnt   <= 24'd0;
-            led_blink <= 1'b0;
-        end else begin
-            if (led_cnt == 24'd9_999_999) begin
-                led_cnt   <= 24'd0;
-                led_blink <= ~led_blink;
-            end else begin
-                led_cnt <= led_cnt + 1'b1;
-            end
-        end
-    end
-
-    assign led = led_blink;
+    assign led = demod_data;
 
     assign      en_agc      = 1'b0        ;
     assign      sync_in     = 1'b1        ;
     assign      reset       = 1'b1        ;
 
-wire demod_data_valid;
-wire [11:0] demod_data;
+wire demod_data;
 
 demod_433 u_demod_433 (
     .sys_clk            (data_clk                   ),
@@ -118,8 +100,7 @@ demod_433 u_demod_433 (
     .adc_data_q1        (adc_data_out_q1           ),
     .adc_data_valid     (adc_out_valid             ),
 
-    .demod_data         (demod_data                 ),
-    .demod_data_valid   (demod_data_valid           )
+    .demod_data         (demod_data                 )
     );
 
 endmodule

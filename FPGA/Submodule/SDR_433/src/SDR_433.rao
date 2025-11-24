@@ -60,22 +60,8 @@
                 <Signal>u_ad9363_dev_cmos/dac_data_in_q1[1]</Signal>
                 <Signal>u_ad9363_dev_cmos/dac_data_in_q1[0]</Signal>
             </Bus>
-            <Bus capture_enable="true" name="u_demod_433/magnitude[12:0]">
-                <Signal>u_demod_433/magnitude[12]</Signal>
-                <Signal>u_demod_433/magnitude[11]</Signal>
-                <Signal>u_demod_433/magnitude[10]</Signal>
-                <Signal>u_demod_433/magnitude[9]</Signal>
-                <Signal>u_demod_433/magnitude[8]</Signal>
-                <Signal>u_demod_433/magnitude[7]</Signal>
-                <Signal>u_demod_433/magnitude[6]</Signal>
-                <Signal>u_demod_433/magnitude[5]</Signal>
-                <Signal>u_demod_433/magnitude[4]</Signal>
-                <Signal>u_demod_433/magnitude[3]</Signal>
-                <Signal>u_demod_433/magnitude[2]</Signal>
-                <Signal>u_demod_433/magnitude[1]</Signal>
-                <Signal>u_demod_433/magnitude[0]</Signal>
-            </Bus>
             <Signal capture_enable="true">trig_in</Signal>
+            <Signal capture_enable="true">demod_data</Signal>
         </SignalList>
         <Triggers>
             <Trigger index="0">
@@ -121,5 +107,5 @@
             <Expression>M0</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>1101000001000101</GAO_ID>
+    <GAO_ID>0010000000011001</GAO_ID>
 </GAO_CONFIG>

@@ -38,7 +38,8 @@
 *******************************************************************************/
 #ifndef __COMMAND_H__
 #define __COMMAND_H__
-
+#include "main.h"
+#include "tim.h"
 /******************************************************************************/
 /********************** Macros and Constants Definitions **********************/
 /******************************************************************************/
@@ -232,5 +233,11 @@ void cal_lo_diff(double* param, char param_no);
 void rx_lo_up(double* param, char param_no);
 
 void rx_lo_down(double* param, char param_no);
+
+void query_led_state(double* param, char param_no);
+
+void query_led_state_set(double* param, char param_no);
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 
 #endif  // __COMMAND_H__

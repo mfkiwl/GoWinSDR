@@ -108,6 +108,8 @@ command cmd_list[] = {
 	{"calibration=", "Calibrate Lo Freq diff.","", cal_lo_diff},
 	{"rx_lo_up=", "Increase RX LO frequency.","", rx_lo_up},
 	{"rx_lo_down=", "Decrease RX LO frequency.","", rx_lo_down},
+	{"query_led_state?", "Decrease RX LO frequency.","", query_led_state},
+	{"query_led_state=", "Decrease RX LO frequency.","", query_led_state_set},
 };
 const char cmd_no = (sizeof(cmd_list) / sizeof(command));
 
@@ -1129,5 +1131,93 @@ void rx_lo_down(double* param, char param_no)
 		console_print("New RX LO Frequency:%d%d%d Hz\n", (uint32_t)(lo_freq_hz / 1000000000), (uint32_t)((lo_freq_hz % 1000000000) / 1000000), (uint32_t)(lo_freq_hz % 1000000));
 	}
 	
+}
+
+uint8_t led_state = 0;
+uint8_t led_interrupt_en = 0;
+uint8_t led_short_lock;
+uint8_t led_short_count;
+void query_led_state(double *param, char param_no)
+{
+	console_print("led_state=%d\n", led_state);
+}
+
+void query_led_state_set(double* param, char param_no)
+{
+	if(param_no >= 1)
+	{
+		uint8_t en = param[0];
+		if (en == 1)
+		{
+			led_interrupt_en = 1;
+			HAL_TIM_Base_Start_IT(&htim1);
+			console_print("LED Interrupt Enabled\n");
+		}
+		else
+		{
+			led_interrupt_en = 0;
+			HAL_TIM_Base_Stop_IT(&htim1);
+			console_print("LED Interrupt Disabled\n");
+		}
+	}
+}
+
+uint32_t rise_trig_time = 0;
+uint32_t fall_trig_time = 0;
+uint8_t edge_dir=0;
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	if (GPIO_Pin == GPIO_PIN_9 && led_interrupt_en)
+	{
+		if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9) == GPIO_PIN_SET)
+		{
+			rise_trig_time = HAL_GetTick();
+			edge_dir = 0;
+		}
+		else
+		{
+			fall_trig_time = HAL_GetTick();
+			edge_dir = 1;
+		}
+		
+		if (edge_dir == 0){
+			if (HAL_GetTick() - rise_trig_time > 20){
+				edge_dir = 0;
+			}
+			return;
+		}
+			
+
+		if (fall_trig_time - rise_trig_time > 5) 
+		{
+			led_state = !led_state;
+			led_short_lock = led_state;
+			// console_print("LED Toggle\n");
+		}
+		else
+		{
+			if (led_short_count == 0){
+				led_short_lock = led_state;
+				// console_print("Short Lock\n");
+			}
+			led_short_count = 100; 
+			// console_print("short\n");
+		}
+	}
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if (htim->Instance == TIM1)
+	{
+		if (led_short_count > 0){
+			led_short_count--;
+			led_state = 1;
+		}
+		else{
+			led_state = led_short_lock;
+			// console_print("Back: %d\n", led_state);
+		}
+	}
 }
 
