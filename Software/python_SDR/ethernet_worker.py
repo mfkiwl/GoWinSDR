@@ -31,16 +31,16 @@ HEADER_SIZE = struct.calcsize(HEADER_FORMAT)
 CRC_SIZE = struct.calcsize('!I')
 
 # --- [!! 停等协议 (Stop-and-Wait) 常量 !!] ---
-RETRY_COUNT = 15
+RETRY_COUNT = 128
 ACK_TIMEOUT = 0.01
 
 # --- [!! SR 滑动窗口 (Selective Repeat) 新增常量 !!] ---
-WINDOW_SIZE = 128
+WINDOW_SIZE = 15
 RELIABLE_TIMEOUT = 0.1
 SR_MAX_RETRIES = 15
 
 # --- [!! 發送速率 (Pacer) 新增常量 !!] ---
-MIN_SEND_INTERVAL = 0.00  # 每個數據包的最小發送間隔 (秒)
+MIN_SEND_INTERVAL = 0.002  # 每個數據包的最小發送間隔 (秒)
 
 
 # --- [!! 結束新增 !!] ---
