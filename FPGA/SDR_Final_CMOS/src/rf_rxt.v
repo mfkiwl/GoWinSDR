@@ -33,8 +33,8 @@ module rf_rxt #(
 wire signed [11:0] costas_out_i;
 wire signed [11:0] costas_out_q;
 
-assign costas_out_i = adc_data_in_i1 + adc_data_in_q1;
-assign costas_out_q = adc_data_in_i1 + adc_data_in_q1;
+assign costas_out_i = adc_data_in_i1;
+assign costas_out_q = adc_data_in_q1;
 
 // assign costas_out_i = rrc_out_i_adc;
 // assign costas_out_q = rrc_out_q_adc;
