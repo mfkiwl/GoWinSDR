@@ -8,6 +8,14 @@
   "ModuleName" : "arp_responder"
  },
  {
+  "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas_loop_filter.v",
+  "InstLine" : 13,
+  "InstName" : "costas_loop_filter",
+  "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas_loop_filter.v",
+  "ModuleLine" : 13,
+  "ModuleName" : "costas_loop_filter"
+ },
+ {
   "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_frame_buf/eth_frame_buf.v",
   "InstLine" : 760,
   "InstName" : "eth_frame_buf",
@@ -213,11 +221,11 @@
        },
        {
         "InstFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas.v",
-        "InstLine" : 91,
+        "InstLine" : 96,
         "InstName" : "costas_loop_filter_inst",
-        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas_loop_filter.v",
-        "ModuleLine" : 13,
-        "ModuleName" : "costas_loop_filter"
+        "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas_flt_new.v",
+        "ModuleLine" : 1,
+        "ModuleName" : "costas_loop_filter_new"
        }
       ]
      },

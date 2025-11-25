@@ -14,7 +14,7 @@ module costas (
     wire        clk_sam     ; 
     wire signed [11:0]  dds_sin   ;
     wire signed [11:0]  dds_cos   ;
-    wire signed [23:0] pd          ;  //costas环路滤波器输出
+    wire signed [24:0] pd          ;  //costas环路滤波器输出
 
     assign clk_sam = sample_clk;
 
@@ -22,7 +22,7 @@ module costas (
 		.clk_i(clk_sam), //input clk_i
 		.rst_n_i(rst_n), //input rst_n_i
 		.phase_valid_i(1'b1), //input phase_valid_i
-		.phase_off_i(25'h1ffffff-{pd[23], pd}), //input [24:0] phase_off_i
+		.phase_off_i(25'h1ffffff-pd), //input [24:0] phase_off_i
 		.cosine_o(dds_cos), //output [11:0] cosine_o
 		.sine_o(dds_sin), //output [11:0] sine_o
 		.data_valid_o() //output data_valid_o
@@ -82,19 +82,24 @@ wire signed [23:0] sum_qc;
     wire signed sign_product_1 = sum_b[24] ? ~sum_a[24] : sum_a[24];
     wire signed sign_product_2 = sum_a[24] ? ~sum_b[24] : sum_b[24];
     wire signed [25:0] loop_flt_in = {sign_product_1, sum_a[23:0]} + {sign_product_2, sum_b[23:0]}; // 26q12
-    localparam upbit = 18;
+    localparam upbit = 2;
     localparam out_width = 58;
     wire signed [out_width -1 :0] expanded_filt_in;
     assign expanded_filt_in = {{(out_width - (26 + upbit)){loop_flt_in[25]}}, loop_flt_in, {upbit{1'b0}}};
     
     //costas环路滤波器
-    costas_loop_filter costas_loop_filter_inst
-    (
-        .clk             (clk_sam         ), //采样频率
-        .rst_n           (rst_n           ),
-        .pd_err          (expanded_filt_in    ), //由鉴相器输出的原始相位误差信号
-        
-        .pd              (pd              )  //滤波器输出, 用于调整dds相位偏移
+    costas_loop_filter_new #(
+        .ERROR_WIDTH(26),           // 匹配expanded_filt_in的位宽
+        .PHASE_WIDTH(25),           // 匹配pd的位宽
+        .KP_WIDTH(24),              // 比例增益位宽
+        .KI_WIDTH(24)               // 积分增益位宽
+    ) costas_loop_filter_inst (
+        .clk(clk_sam),              // 采样频率
+        .rst_n(rst_n),
+        .error_in(loop_flt_in), // 由鉴相器输出的原始相位误差信号
+        .error_valid(1'b1),         // 误差始终有效
+        .phase_out(pd),             // 滤波器输出, 用于调整dds相位偏移
+        .phase_valid()              // 输出有效信号(未使用)
     );
     
 endmodule

@@ -95,6 +95,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\rf_rxt.v<br>
 D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\sys_pll\sys_pll.v<br>
 D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\sys_pll\sys_pll_mod.v<br>
 D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\top.v<br>
+D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\costas_flt_new.v<br>
 E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_crc32.v<br>
 E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v<br>
 E:\Program_File(x86)\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v<br>
@@ -126,7 +127,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 </tr>
 <tr>
 <td class="label">Created Time</td>
-<td>Mon Nov 24 17:31:17 2025
+<td>Tue Nov 25 19:28:45 2025
 </td>
 </tr>
 <tr>
@@ -142,11 +143,11 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 </tr>
 <tr>
 <td class="label">Synthesis Process</td>
-<td>Running parser:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 3s, Elapsed time = 0h 0m 2s, Peak memory usage = 2435.012MB<br/>Running netlist conversion:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 0MB<br/>Running device independent optimization:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 0: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s, Peak memory usage = 2435.012MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 1: CPU time = 0h 0m 0.812s, Elapsed time = 0h 0m 0.818s, Peak memory usage = 2435.012MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 2: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s, Peak memory usage = 2435.012MB<br/>Running inference:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 0: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s, Peak memory usage = 2435.012MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 1: CPU time = 0h 0m 0.125s, Elapsed time = 0h 0m 0.132s, Peak memory usage = 2435.012MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 2: CPU time = 0h 0m 0.14s, Elapsed time = 0h 0m 0.144s, Peak memory usage = 2435.012MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 3: CPU time = 0h 0m 0.109s, Elapsed time = 0h 0m 0.098s, Peak memory usage = 2435.012MB<br/>Running technical mapping:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 0: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s, Peak memory usage = 2435.012MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 1: CPU time = 0h 0m 0.953s, Elapsed time = 0h 0m 0.956s, Peak memory usage = 2435.012MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 2: CPU time = 0h 0m 0.421s, Elapsed time = 0h 0m 0.41s, Peak memory usage = 2435.012MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 3: CPU time = 0h 0m 9s, Elapsed time = 0h 0m 9s, Peak memory usage = 2435.012MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 4: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s, Peak memory usage = 2435.012MB<br/>Generate output files:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s, Peak memory usage = 2435.012MB<br/></td>
+<td>Running parser:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s, Peak memory usage = 2403.520MB<br/>Running netlist conversion:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 0MB<br/>Running device independent optimization:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 0: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s, Peak memory usage = 2403.520MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 1: CPU time = 0h 0m 0.703s, Elapsed time = 0h 0m 0.708s, Peak memory usage = 2403.520MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 2: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s, Peak memory usage = 2403.520MB<br/>Running inference:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 0: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s, Peak memory usage = 2403.520MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 1: CPU time = 0h 0m 0.14s, Elapsed time = 0h 0m 0.146s, Peak memory usage = 2403.520MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 2: CPU time = 0h 0m 0.125s, Elapsed time = 0h 0m 0.114s, Peak memory usage = 2403.520MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 3: CPU time = 0h 0m 0.062s, Elapsed time = 0h 0m 0.073s, Peak memory usage = 2403.520MB<br/>Running technical mapping:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 0: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s, Peak memory usage = 2403.520MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 1: CPU time = 0h 0m 0.656s, Elapsed time = 0h 0m 0.665s, Peak memory usage = 2403.520MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 2: CPU time = 0h 0m 0.359s, Elapsed time = 0h 0m 0.36s, Peak memory usage = 2403.520MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 3: CPU time = 0h 0m 16s, Elapsed time = 0h 0m 17s, Peak memory usage = 2403.520MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 4: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s, Peak memory usage = 2403.520MB<br/>Generate output files:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 4s, Elapsed time = 0h 0m 4s, Peak memory usage = 2403.520MB<br/></td>
 </tr>
 <tr>
 <td class="label">Total Time and Memory Usage</td>
-<td>CPU time = 0h 0m 23s, Elapsed time = 0h 0m 22s, Peak memory usage = 2435.012MB</td>
+<td>CPU time = 0h 0m 30s, Elapsed time = 0h 0m 31s, Peak memory usage = 2403.520MB</td>
 </tr>
 </table>
 <h1><a name="resource">Resource</a></h1>
@@ -174,7 +175,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 </tr>
 <tr>
 <td class="label"><b>Register </b></td>
-<td>12121</td>
+<td>11478</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspDFFSE</td>
@@ -186,27 +187,27 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspDFFPE</td>
-<td>84</td>
+<td>76</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspDFFCE</td>
-<td>11162</td>
+<td>10527</td>
 </tr>
 <tr>
 <td class="label"><b>LUT </b></td>
-<td>3788</td>
+<td>3485</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspLUT2</td>
-<td>412</td>
+<td>324</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspLUT3</td>
-<td>1326</td>
+<td>1290</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspLUT4</td>
-<td>2050</td>
+<td>1871</td>
 </tr>
 <tr>
 <td class="label"><b>MUX </b></td>
@@ -218,11 +219,11 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 </tr>
 <tr>
 <td class="label"><b>ALU </b></td>
-<td>5721</td>
+<td>5305</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspALU</td>
-<td>5721</td>
+<td>5305</td>
 </tr>
 <tr>
 <td class="label"><b>INV </b></td>
@@ -250,7 +251,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspMULTALU27X18</td>
-<td>6</td>
+<td>1</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspMULT12X12</td>
@@ -258,11 +259,11 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 </tr>
 <tr>
 <td class="label"><b>BSRAM </b></td>
-<td>90</td>
+<td>65</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspSDPB</td>
-<td>89</td>
+<td>64</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbsppROM</td>
@@ -294,13 +295,13 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 </tr>
 <tr>
 <td class="label">Logic</td>
-<td>9597(3876 LUT, 5721 ALU) / 59904</td>
-<td>17%</td>
+<td>8878(3573 LUT, 5305 ALU) / 59904</td>
+<td>15%</td>
 </tr>
 <tr>
 <td class="label">Register</td>
-<td>12121 / 60780</td>
-<td>20%</td>
+<td>11478 / 60780</td>
+<td>19%</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp--Register as Latch</td>
@@ -309,13 +310,13 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp--Register as FF</td>
-<td>12121 / 60780</td>
-<td>20%</td>
+<td>11478 / 60780</td>
+<td>19%</td>
 </tr>
 <tr>
 <td class="label">BSRAM</td>
-<td>90 / 118</td>
-<td>77%</td>
+<td>65 / 118</td>
+<td>56%</td>
 </tr>
 </table>
 <h1><a name="timing">Timing</a></h1>
@@ -456,8 +457,8 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>1</td>
 <td>sys_clk</td>
 <td>50.000(MHz)</td>
-<td>381.134(MHz)</td>
-<td>3</td>
+<td>283.688(MHz)</td>
+<td>4</td>
 <td>TOP</td>
 </tr>
 <tr>
@@ -472,8 +473,8 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>3</td>
 <td>RGMII_RXCLK</td>
 <td>100.000(MHz)</td>
-<td>130.336(MHz)</td>
-<td>9</td>
+<td>140.845(MHz)</td>
+<td>8</td>
 <td>TOP</td>
 </tr>
 <tr>
@@ -496,7 +497,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>6</td>
 <td>u_rf_rxt/rx_clk_out</td>
 <td>100.000(MHz)</td>
-<td>142.071(MHz)</td>
+<td>143.472(MHz)</td>
 <td>8</td>
 <td>TOP</td>
 </tr>
@@ -520,8 +521,8 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>9</td>
 <td>eth_inst/pll_inst/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
 <td>125.000(MHz)</td>
-<td>66.867(MHz)</td>
-<td>7</td>
+<td>72.622(MHz)</td>
+<td>6</td>
 <td>TOP</td>
 </tr>
 </table>
@@ -589,7 +590,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>0.000</td>
 <td>tINS</td>
 <td>RR</td>
-<td>9726</td>
+<td>10057</td>
 <td>rx_clk_in_p_ibuf/O</td>
 </tr>
 <tr>
@@ -17016,7 +17017,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>0.000</td>
 <td>tINS</td>
 <td>RR</td>
-<td>9726</td>
+<td>10057</td>
 <td>rx_clk_in_p_ibuf/O</td>
 </tr>
 <tr>
@@ -17121,7 +17122,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>0.000</td>
 <td>tINS</td>
 <td>RR</td>
-<td>9726</td>
+<td>10057</td>
 <td>rx_clk_in_p_ibuf/O</td>
 </tr>
 <tr>
@@ -33004,7 +33005,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>0.000</td>
 <td>tINS</td>
 <td>RR</td>
-<td>9726</td>
+<td>10057</td>
 <td>rx_clk_in_p_ibuf/O</td>
 </tr>
 <tr>
@@ -33109,7 +33110,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>0.000</td>
 <td>tINS</td>
 <td>RR</td>
-<td>9726</td>
+<td>10057</td>
 <td>rx_clk_in_p_ibuf/O</td>
 </tr>
 <tr>
@@ -48448,7 +48449,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>0.000</td>
 <td>tINS</td>
 <td>RR</td>
-<td>9726</td>
+<td>10057</td>
 <td>rx_clk_in_p_ibuf/O</td>
 </tr>
 <tr>
@@ -48553,7 +48554,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>0.000</td>
 <td>tINS</td>
 <td>RR</td>
-<td>9726</td>
+<td>10057</td>
 <td>rx_clk_in_p_ibuf/O</td>
 </tr>
 <tr>
@@ -63348,7 +63349,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>0.000</td>
 <td>tINS</td>
 <td>RR</td>
-<td>9726</td>
+<td>10057</td>
 <td>rx_clk_in_p_ibuf/O</td>
 </tr>
 <tr>
@@ -63453,7 +63454,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>0.000</td>
 <td>tINS</td>
 <td>RR</td>
-<td>9726</td>
+<td>10057</td>
 <td>rx_clk_in_p_ibuf/O</td>
 </tr>
 <tr>
@@ -77704,7 +77705,7 @@ D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\RTL_GAO\gw_gao_top.v<b
 <td>0.000</td>
 <td>tINS</td>
 <td>RR</td>
-<td>9726</td>
+<td>10057</td>
 <td>rx_clk_in_p_ibuf/O</td>
 </tr>
 <tr>

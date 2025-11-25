@@ -12,6 +12,7 @@
         <File path="src/calibration.v" type="file.verilog" enable="1"/>
         <File path="src/com_fpga.v" type="file.verilog" enable="1"/>
         <File path="src/costas.v" type="file.verilog" enable="1"/>
+        <File path="src/costas_flt_new.v" type="file.verilog" enable="1"/>
         <File path="src/costas_loop_filter.v" type="file.verilog" enable="1"/>
         <File path="src/crc.v" type="file.verilog" enable="1"/>
         <File path="src/dds_ii/dds_ii.v" type="file.verilog" enable="1"/>
