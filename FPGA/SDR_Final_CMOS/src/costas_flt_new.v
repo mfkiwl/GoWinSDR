@@ -14,7 +14,7 @@ module costas_loop_filter_new #(
 
     // 环路滤波器参数 (可根据需要调整)
     localparam signed [KP_WIDTH-1:0] KP = 24'sd1600;    // 比例增益 (64/32768 ≈ 0.00195) - 再降低4倍
-    localparam signed [KI_WIDTH-1:0] KI = 24'sd256;     // 积分增益 (2/32768 ≈ 0.00006) - 再降低4倍
+    localparam signed [KI_WIDTH-1:0] KI = 24'sd10000;     // 积分增益 (2/32768 ≈ 0.00006) - 再降低4倍 //可以考虑往大了造比如32768
 
     // 内部信号
     reg signed [ERROR_WIDTH+KP_WIDTH-1:0] proportional_term;
