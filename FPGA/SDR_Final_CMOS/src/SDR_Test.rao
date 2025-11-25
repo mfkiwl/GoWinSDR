@@ -258,6 +258,46 @@
                 <Signal>u_rf_rxt/costas_out_q_dbg[1]</Signal>
                 <Signal>u_rf_rxt/costas_out_q_dbg[0]</Signal>
             </Bus>
+            <Bus capture_enable="true" name="u_calibration/freq_out[23:0]">
+                <Signal>u_calibration/freq_out[23]</Signal>
+                <Signal>u_calibration/freq_out[22]</Signal>
+                <Signal>u_calibration/freq_out[21]</Signal>
+                <Signal>u_calibration/freq_out[20]</Signal>
+                <Signal>u_calibration/freq_out[19]</Signal>
+                <Signal>u_calibration/freq_out[18]</Signal>
+                <Signal>u_calibration/freq_out[17]</Signal>
+                <Signal>u_calibration/freq_out[16]</Signal>
+                <Signal>u_calibration/freq_out[15]</Signal>
+                <Signal>u_calibration/freq_out[14]</Signal>
+                <Signal>u_calibration/freq_out[13]</Signal>
+                <Signal>u_calibration/freq_out[12]</Signal>
+                <Signal>u_calibration/freq_out[11]</Signal>
+                <Signal>u_calibration/freq_out[10]</Signal>
+                <Signal>u_calibration/freq_out[9]</Signal>
+                <Signal>u_calibration/freq_out[8]</Signal>
+                <Signal>u_calibration/freq_out[7]</Signal>
+                <Signal>u_calibration/freq_out[6]</Signal>
+                <Signal>u_calibration/freq_out[5]</Signal>
+                <Signal>u_calibration/freq_out[4]</Signal>
+                <Signal>u_calibration/freq_out[3]</Signal>
+                <Signal>u_calibration/freq_out[2]</Signal>
+                <Signal>u_calibration/freq_out[1]</Signal>
+                <Signal>u_calibration/freq_out[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_calibration/envelop[11:0]">
+                <Signal>u_calibration/envelop[11]</Signal>
+                <Signal>u_calibration/envelop[10]</Signal>
+                <Signal>u_calibration/envelop[9]</Signal>
+                <Signal>u_calibration/envelop[8]</Signal>
+                <Signal>u_calibration/envelop[7]</Signal>
+                <Signal>u_calibration/envelop[6]</Signal>
+                <Signal>u_calibration/envelop[5]</Signal>
+                <Signal>u_calibration/envelop[4]</Signal>
+                <Signal>u_calibration/envelop[3]</Signal>
+                <Signal>u_calibration/envelop[2]</Signal>
+                <Signal>u_calibration/envelop[1]</Signal>
+                <Signal>u_calibration/envelop[0]</Signal>
+            </Bus>
         </SignalList>
         <Triggers>
             <Trigger index="0">
@@ -331,5 +371,5 @@
             <Expression>M2</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>1111001110101100</GAO_ID>
+    <GAO_ID>1100111011001110</GAO_ID>
 </GAO_CONFIG>

@@ -1,8 +1,8 @@
 module costas_loop_filter_new #(
     parameter ERROR_WIDTH = 26,      // 输入误差信号位宽
     parameter PHASE_WIDTH = 24,      // 相位累加器位宽
-    parameter KP_WIDTH = 16,         // 比例增益位宽
-    parameter KI_WIDTH = 16          // 积分增益位宽
+    parameter KP_WIDTH = 24,         // 比例增益位宽
+    parameter KI_WIDTH = 24          // 积分增益位宽
 )(
     input wire clk,
     input wire rst_n,
