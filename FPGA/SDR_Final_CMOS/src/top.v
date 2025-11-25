@@ -37,6 +37,7 @@
     input                               cal_request                ,
 
     output                              led           ,
+    output                              iot_signal                 ,
     output                              trig_out                           
     );
 
@@ -319,5 +320,18 @@ calibration u_calibration (
     .cal_valid                         (cal_valid                 ),
     .cal_request                       (cal_request               )
 );    
+
+wire demod_data;
+assign iot_signal = demod_data;
+demod_433 u_demod_433 (
+    .sys_clk            (data_clk                   ),
+    .rst_n              (rst_n                      ),
+
+    .adc_data_i1        (adc_data_out_i1           ),
+    .adc_data_q1        (adc_data_out_q1           ),
+    .adc_data_valid     (adc_out_valid             ),
+
+    .demod_data         (demod_data                 )
+    );
 
 endmodule

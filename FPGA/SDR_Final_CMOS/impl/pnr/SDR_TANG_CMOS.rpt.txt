@@ -12,27 +12,27 @@
   <Part Number>: GW5AT-LV60PG484AC1/I0
   <Device>: GW5AT-60
   <Device Version>: B
-  <Created Time>:Tue Nov 25 22:50:53 2025
+  <Created Time>:Tue Nov 25 23:02:49 2025
 
 
 2. PnR Details
 
   Running placement:
     Placement Phase 0: CPU time = 0h 0m 6s, Elapsed time = 0h 0m 6s
-    Placement Phase 1: CPU time = 0h 0m 5s, Elapsed time = 0h 0m 5s
-    Placement Phase 2: CPU time = 0h 1m 12s, Elapsed time = 0h 1m 12s
-    Placement Phase 3: CPU time = 0h 0m 6s, Elapsed time = 0h 0m 6s
-    Total Placement: CPU time = 0h 1m 30s, Elapsed time = 0h 1m 30s
+    Placement Phase 1: CPU time = 0h 0m 6s, Elapsed time = 0h 0m 6s
+    Placement Phase 2: CPU time = 0h 1m 21s, Elapsed time = 0h 1m 21s
+    Placement Phase 3: CPU time = 0h 0m 5s, Elapsed time = 0h 0m 5s
+    Total Placement: CPU time = 0h 1m 38s, Elapsed time = 0h 1m 38s
  Running routing:
-    Routing Phase 0: CPU time = 0h 0m 0.009s, Elapsed time = 0h 0m 0.009s
-    Routing Phase 1: CPU time = 0h 0m 40s, Elapsed time = 0h 0m 40s
-    Routing Phase 2: CPU time = 0h 0m 0.222s, Elapsed time = 0h 0m 0.222s
+    Routing Phase 0: CPU time = 0h 0m 0.007s, Elapsed time = 0h 0m 0.007s
+    Routing Phase 1: CPU time = 0h 0m 47s, Elapsed time = 0h 0m 47s
+    Routing Phase 2: CPU time = 0h 0m 0.441s, Elapsed time = 0h 0m 0.442s
     Routing Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s
-    Total Routing: CPU time = 0h 0m 40s, Elapsed time = 0h 0m 40s
+    Total Routing: CPU time = 0h 0m 47s, Elapsed time = 0h 0m 47s
  Generate output files:
-    CPU time = 0h 0m 7s, Elapsed time = 0h 0m 7s
+    CPU time = 0h 0m 8s, Elapsed time = 0h 0m 8s
 
- Total Time and Memory Usage: CPU time = 0h 2m 17s, Elapsed time = 0h 2m 17s, Peak memory usage = 2416MB
+ Total Time and Memory Usage: CPU time = 0h 2m 33s, Elapsed time = 0h 2m 33s, Peak memory usage = 2416MB
 
 
 3. Resource Usage Summary
@@ -40,19 +40,19 @@
   --------------------------------------------------------------------------------
   Resources                   | Usage                               | Utilization
   --------------------------------------------------------------------------------
-  Logic                       | 9136/59904                          |  16%
-    --LUT,ALU,ROM16           | 9136(3603 LUT, 5533 ALU, 0 ROM16)   | -
+  Logic                       | 9253/59904                          |  16%
+    --LUT,ALU,ROM16           | 9253(3668 LUT, 5585 ALU, 0 ROM16)   | -
     --SSRAM(RAM16)            | 0                                   | -
-  Register                    | 11631/60780                         |  20%
+  Register                    | 11707/60780                         |  20%
     --Logic Register as Latch | 0/59904                             |  0%
-    --Logic Register as FF    | 11618/59904                         |  20%
+    --Logic Register as FF    | 11693/59904                         |  20%
     --I/O Register as Latch   | 0/876                               |  0%
-    --I/O Register as FF      | 13/876                              |  2%
-  CLS                         | 8820/29952                          |  30%
-  I/O Port                    | 65/297                              |  22%
-  I/O Buf                     | 64                                  | -
+    --I/O Register as FF      | 14/876                              |  2%
+  CLS                         | 8846/29952                          |  30%
+  I/O Port                    | 66/297                              |  23%
+  I/O Buf                     | 65                                  | -
     --Input Buf               | 25                                  | -
-    --Output Buf              | 39                                  | -
+    --Output Buf              | 40                                  | -
     --Inout Buf               | 0                                   | -
   IOLOGIC                     | 29/293                              | 10%
     --IDDR                    | 12
@@ -60,8 +60,8 @@
   BSRAM                       | 74/118                              | 63%
     --SDPB                    | 73
     --pROM                    | 1
-  DSP                         | 61.5/118                            | 53%
-    --MULT12X12               | 119
+  DSP                         | 62.5/118                            | 53%
+    --MULT12X12               | 121
     --MULTALU27X18            | 2
   ================================================================================
 
@@ -76,7 +76,7 @@
   bank 2   | 16/26       | 62%         
   bank 3   | 0/8         | 0%          
   bank 4   | 4/16        | 25%         
-  bank 5   | 9/34        | 27%         
+  bank 5   | 10/34       | 30%         
   bank 6   | 0/20        | 0%          
   bank 7   | 1/24        | 5%          
   bank 8   | 14/24       | 59%         
@@ -94,7 +94,7 @@
   ------------------------------------------
   PRIMARY       | 8/8           | 100%
   LW            | 8/8           | 100%
-  GCLK_PIN      | 12/40         | 30%
+  GCLK_PIN      | 13/40         | 33%
   PLLA          | 1/8           | 13%
   ==========================================
 
@@ -104,12 +104,12 @@
   -------------------------------------------
   Signal         | Global Clock   | Location
   -------------------------------------------
-  tx_clk_out_p_d | PRIMARY        |  PTR1 PTR2 PTR3 PBR1 PBR2
+  tx_clk_out_p_d | PRIMARY        |  PTR1 PTR2 PTR3 PBR1 PBR2 PBR3
   RGMII_RXCLK_d  | PRIMARY        |  PTR1 PTR2 PBR1 PBR2
   test_clk_reg   | PRIMARY        |  PTR2 PBR1 PBR2
   u_rf_rxt_4_4   | PRIMARY        |  PTR1 PTR2 PBR1 PBR2
   rx_clk_out     | PRIMARY        |  PTR2 PBR1 PBR2
-  RGMII_GTXCLK_d | PRIMARY        |  PTR1 PTR2 PBR1 PBR2
+  RGMII_GTXCLK_d | PRIMARY        |  PTR1 PBR1 PBR2
   cal_data_clk_d | PRIMARY        |  PTR3 PBR2 PBR3
   gw_gao_inst_0/control0[0]| PRIMARY        |  PTR1 PTR2 PBR1 PBR2
   sys_clk_d      | LW             |  -
@@ -191,6 +191,7 @@ cal_data_out[7]  | -         | L15/5         | Y          | out   | IOR48[B] | -
 cal_data_clk     | -         | K19/5         | Y          | out   | IOR57[B] | GCLKC_6         | LVCMOS25   | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 2.5        | MEDIUM        | NONE         
 cal_valid        | -         | H18/4         | Y          | out   | IOR32[B] | -               | LVCMOS25   | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 2.5        | MEDIUM        | NONE         
 led              | -         | AA18/8        | Y          | out   | IOB77[A] | BPLL1_T_IN2/BPLL1_T_FB0 | LVCMOS25   | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 2.5        | MEDIUM        | NONE         
+iot_signal       | -         | K18/5         | Y          | out   | IOR57[A] | GCLKT_6         | LVCMOS25   | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 2.5        | MEDIUM        | NONE         
 trig_out         | -         | J19/5         | Y          | out   | IOR41[A] | GCLKT_7         | LVCMOS25   | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 2.5        | MEDIUM        | NONE         
 tdo_pad_o        | -         | U13/12        | N          | out   | IOR3[B]  | TDO             | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 ========================================================================================================================================================================================================================
@@ -487,7 +488,7 @@ M16/5    | -                | in    | IOR52[B] | -               | LVCMOS25 | 8 
 J20/5    | -                | in    | IOR54[A] | GCLKT_5         | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 J21/5    | -                | in    | IOR54[B] | GCLKC_5         | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 M17/5    | -                | in    | IOR56[A] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
-K18/5    | -                | in    | IOR57[A] | GCLKT_6         | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
+K18/5    | iot_signal       | out   | IOR57[A] | GCLKT_6         | LVCMOS25 | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 K19/5    | cal_data_clk     | out   | IOR57[B] | GCLKC_6         | LVCMOS25 | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 K21/5    | -                | in    | IOR59[A] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 K22/5    | -                | in    | IOR59[B] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         

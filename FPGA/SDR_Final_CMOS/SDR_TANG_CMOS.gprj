@@ -37,6 +37,7 @@
         <File path="src/gowin_pll_eth/gowin_pll_eth_mod.v" type="file.verilog" enable="1"/>
         <File path="src/integer_division/integer_division.v" type="file.verilog" enable="1"/>
         <File path="src/interpolate_filter.v" type="file.verilog" enable="1"/>
+        <File path="src/led_control.v" type="file.verilog" enable="1"/>
         <File path="src/nco.v" type="file.verilog" enable="1"/>
         <File path="src/phase_detector.v" type="file.verilog" enable="1"/>
         <File path="src/pll_init.v" type="file.verilog" enable="1"/>
