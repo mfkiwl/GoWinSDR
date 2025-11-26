@@ -1,5 +1,5 @@
 # 文件名: py代码/main_window.py
-# (已修改: 添加“无线物联网”页面及控制逻辑)
+# (已修改: 添加文件传输进度信号连接)
 
 from PyQt6.QtWidgets import (QMainWindow, QWidget, QHBoxLayout, QVBoxLayout,
                              QSplitter, QTabWidget)
@@ -22,11 +22,7 @@ from realtime_audio_widget import RealtimeAudioWidget
 from audio_stream_worker import AudioInputWorker, AudioOutputWorker
 from realtime_video_widget import RealtimeVideoWidget
 from camera_worker import CameraWorker
-
-# --- [!! 新增 !!] ---
 from iot_widget import IoTWidget
-
-# --- [!! 结束新增 !!] ---
 
 try:
     from ad9363_config import AD9363_GET_COMMANDS
@@ -97,19 +93,13 @@ class MainWindow(QMainWindow):
         self.video_widget = VideoWidget()
         self.realtime_audio_widget = RealtimeAudioWidget()
         self.realtime_video_widget = RealtimeVideoWidget()
-
-        # --- [!! 新增 !!] ---
         self.iot_widget = IoTWidget()
-        # --- [!! 结束新增 !!] ---
 
         self.tab_widget.addTab(self.file_tab_content, "文件、文本及录音")
         self.tab_widget.addTab(self.video_widget, "网络视频监控 (UDP)")
         self.tab_widget.addTab(self.realtime_audio_widget, "实时语音")
         self.tab_widget.addTab(self.realtime_video_widget, "实时视频")
-
-        # --- [!! 新增 !!] ---
         self.tab_widget.addTab(self.iot_widget, "无线物联网")
-        # --- [!! 结束新增 !!] ---
 
         self.log_widget = LogWidget()
         splitter = QSplitter(Qt.Orientation.Vertical)
@@ -121,7 +111,7 @@ class MainWindow(QMainWindow):
         main_widget = QWidget()
         main_layout = QHBoxLayout(main_widget)
         main_layout.addWidget(left_panel)
-        main_layout.addWidget(right_panel, stretch=1)
+        main_layout.addWidget(right_panel, stretch = 1)
         self.setCentralWidget(main_widget)
 
     def setup_serial_thread(self):
@@ -135,16 +125,10 @@ class MainWindow(QMainWindow):
         self.serial_worker.error_occurred.connect(self.on_serial_error)
         self.serial_worker.param_response_received.connect(self.on_param_response)
 
-        # --- [!! 新增: IoT 逻辑连接 !!] ---
-        # 1. 发送指令
+        # --- IoT 逻辑连接 ---
         self.iot_widget.send_command_signal.connect(self._handle_param_set_command)
-
-        # 2. 接收响应 (情况A: 单片机返回标准的 key=value 格式, 如 query_led_state=1)
         self.serial_worker.param_response_received.connect(self._handle_iot_response)
-
-        # 3. 接收响应 (情况B: 单片机仅返回 raw data "1" 或 "0")
         self.serial_worker.log_received.connect(self._handle_iot_raw_log)
-        # --- [!! 结束新增 !!] ---
 
         self.serial_thread.started.connect(lambda: self.log_widget.append_log("串口线程启动"))
         self.serial_worker.finished.connect(self.serial_thread.quit)
@@ -163,25 +147,21 @@ class MainWindow(QMainWindow):
         else:
             self.log_widget.append_log("[错误] 无法发送命令: SerialWorker 不存在")
 
-    # --- [!! 新增: IoT 响应处理 !!] ---
     def _handle_iot_response(self, command, value):
-        # 处理带等号的响应 (例如: query_led_state=1)
         if command == "query_led_state" or command == "led_state":
             self.iot_widget.handle_response(value)
 
     def _handle_iot_raw_log(self, log_msg):
-        # 处理不带等号的响应 (例如直接返回 "1" 或 "0")
-        # 只有当消息非常短且是 1 或 0 时才传递给 IoT 组件，防止干扰
         msg = log_msg.strip()
         if msg == "1" or msg == "0":
             self.iot_widget.handle_response(msg)
-
-    # --- [!! 结束新增 !!] ---
 
     def setup_ethernet_thread(self):
         self.eth_thread = QThread()
         self.eth_worker = EthernetWorker()
         self.eth_worker.moveToThread(self.eth_thread)
+
+        # --- 基础信号连接 ---
         self.eth_worker.started.connect(self.on_eth_started)
         self.eth_worker.stopped.connect(self.on_eth_stopped)
         self.eth_worker.log_received.connect(self.log_widget.append_log)
@@ -190,6 +170,7 @@ class MainWindow(QMainWindow):
         self.eth_worker.error_occurred.connect(self.on_eth_error)
         self.eth_worker.file_received.connect(self.file_receive_widget.add_received_file)
 
+        # --- 控制信号连接 ---
         self.ethernet_widget.start_listening_clicked.connect(
             self.eth_worker.start_listening, Qt.ConnectionType.QueuedConnection
         )
@@ -199,9 +180,42 @@ class MainWindow(QMainWindow):
         self.ethernet_widget.send_command_clicked.connect(
             self.eth_worker.send_command, Qt.ConnectionType.QueuedConnection
         )
+
+        # --- 文本和文件基础连接 ---
         self.text_audio_widget.send_text_clicked.connect(self.eth_worker.send_command)
         self.file_send_widget.send_file_clicked.connect(self.eth_worker.send_file_udp)
-        self.file_receive_widget.enable_reception_changed.connect(self.eth_worker.set_file_reception_enabled)
+        self.file_receive_widget.enable_reception_changed.connect(
+            self.eth_worker.set_file_reception_enabled
+        )
+
+        # === [!! 新增: 文件传输进度信号连接 !!] ===
+
+        # 1. 文件发送进度: Worker -> 发送 Widget
+        self.eth_worker.file_send_progress.connect(
+            self.file_send_widget.update_progress,
+            Qt.ConnectionType.QueuedConnection
+        )
+
+        # 2. 文件接收进度: Worker -> 接收 Widget
+        self.eth_worker.file_receive_progress.connect(
+            self.file_receive_widget.update_progress,
+            Qt.ConnectionType.QueuedConnection
+        )
+
+        # 3. 文件接收开始: Worker -> 接收 Widget
+        self.eth_worker.file_receive_started.connect(
+            self.file_receive_widget.start_receiving,
+            Qt.ConnectionType.QueuedConnection
+        )
+
+        # 4. 文件传输完成: Worker -> MainWindow 处理函数
+        self.eth_worker.file_transfer_finished.connect(
+            self.on_file_transfer_finished,
+            Qt.ConnectionType.QueuedConnection
+        )
+
+        # ==========================================
+
         self.params_widget.lan_mode_toggled.connect(self.eth_worker.set_lan_mode)
 
         self.eth_thread.start()
@@ -215,23 +229,29 @@ class MainWindow(QMainWindow):
         self.audio_worker.error_occurred.connect(self.log_widget.append_log)
 
     def setup_audio_stream_threads(self):
+        """
+        初始化实时音频流线程
+        """
         self.audio_input_thread = QThread()
         self.audio_input_worker = AudioInputWorker()
         self.audio_input_worker.moveToThread(self.audio_input_thread)
+
         self.audio_output_thread = QThread()
         self.audio_output_worker = AudioOutputWorker()
         self.audio_output_worker.moveToThread(self.audio_output_thread)
 
+        # --- 信号连接 ---
         self.realtime_audio_widget.start_tx_streaming.connect(self.audio_input_worker.start_streaming)
         self.realtime_audio_widget.stop_tx_streaming.connect(self.audio_input_worker.stop_streaming)
         self.audio_input_worker.chunk_ready_array.connect(self.realtime_audio_widget.on_tx_waveform_update)
         self.audio_input_worker.error_occurred.connect(self.log_widget.append_log)
+
         self.realtime_audio_widget.start_rx_playback.connect(self.audio_output_worker.start_playback)
         self.realtime_audio_widget.stop_rx_playback.connect(self.audio_output_worker.stop_playback)
-        self.audio_output_worker.error_occurred.connect(self.log_widget.append_log)
         self.audio_output_worker.waveform_ready.connect(
             self.realtime_audio_widget.on_rx_waveform_update
         )
+        self.audio_output_worker.error_occurred.connect(self.log_widget.append_log)
 
         self.audio_input_thread.start()
         self.audio_output_thread.start()
@@ -258,14 +278,36 @@ class MainWindow(QMainWindow):
         pass
 
     def send_audio_data(self, audio_data: bytes):
-        self.log_widget.append_log("音频录制完成，正在通过UDP发送...")
+        self.log_widget.append_log("音频录制完成,正在通过UDP发送...")
         if self.eth_worker:
             try:
                 self.eth_worker.send_audio_udp(audio_data)
             except Exception as e:
                 self.log_widget.append_log(f"音频数据发送失败: {e}")
         else:
-            self.log_widget.append_log("没有活动的网络连接，无法发送音频数据。")
+            self.log_widget.append_log("没有活动的网络连接,无法发送音频数据。")
+
+    # === [!! 新增: 文件传输完成处理函数 !!] ===
+    @pyqtSlot(bool, str)
+    def on_file_transfer_finished(self, success: bool, message: str):
+        """
+        处理文件传输完成事件
+        :param success: 是否成功
+        :param message: 消息内容
+        """
+        # 通知发送 Widget 完成
+        self.file_send_widget.finish_transfer(success, message)
+
+        # 通知接收 Widget 完成
+        self.file_receive_widget.finish_receiving(success, message)
+
+        # 在日志中显示
+        if success:
+            self.log_widget.append_log(f"✓ 文件传输完成: {message}")
+        else:
+            self.log_widget.append_log(f"✗ 文件传输失败: {message}")
+
+    # ==========================================
 
     def on_serial_connected(self, message):
         self.log_widget.append_log(message)
@@ -389,7 +431,7 @@ class MainWindow(QMainWindow):
         if hasattr(self, "eth_thread") and self.eth_thread.isRunning():
             self.eth_thread.quit()
             if not self.eth_thread.wait(2000):
-                self.log_widget.append_log("网络线程未能正常停止，将强制终止")
+                self.log_widget.append_log("网络线程未能正常停止,将强制终止")
                 self.eth_thread.terminate()
         if hasattr(self, "audio_input_thread") and self.audio_input_thread.isRunning():
             self.audio_input_thread.quit()
@@ -402,7 +444,7 @@ class MainWindow(QMainWindow):
             if hasattr(self, 'camera_worker'): self.camera_worker.stop_streaming()
             self.camera_thread.quit()
             if not self.camera_thread.wait(2000):
-                self.log_widget.append_log("摄像头线程未能正常停止，将强制终止")
+                self.log_widget.append_log("摄像头线程未能正常停止,将强制终止")
                 self.camera_thread.terminate()
 
         event.accept()

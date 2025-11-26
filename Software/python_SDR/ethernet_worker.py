@@ -18,7 +18,7 @@ LAN_PORT = 32768
 # --- [!! 结束核心修改 !!] ---
 
 
-CHUNK_SIZE = 1024
+CHUNK_SIZE = 1024  # 每个数据包的最大有效负载大小 (字节)
 PREFIX_TEXT = b'\x00'
 PREFIX_VIDEO = b'\x01'
 PREFIX_FILE_DATA = b'\x02'
@@ -35,12 +35,12 @@ RETRY_COUNT = 128
 ACK_TIMEOUT = 0.01
 
 # --- [!! SR 滑动窗口 (Selective Repeat) 新增常量 !!] ---
-WINDOW_SIZE = 15
-RELIABLE_TIMEOUT = 0.1
+WINDOW_SIZE = 4
+RELIABLE_TIMEOUT = 0.01
 SR_MAX_RETRIES = 15
 
 # --- [!! 發送速率 (Pacer) 新增常量 !!] ---
-MIN_SEND_INTERVAL = 0.002  # 每個數據包的最小發送間隔 (秒)
+MIN_SEND_INTERVAL = 0.00  # 每個數據包的最小發送間隔 (秒)
 
 
 # --- [!! 結束新增 !!] ---
@@ -64,6 +64,11 @@ class EthernetWorker(QObject):
     finished = pyqtSignal()
     file_received = pyqtSignal(str, bytes)
     audio_chunk_received = pyqtSignal(bytes)
+
+    file_send_progress = pyqtSignal(int, int, float)
+    file_receive_progress = pyqtSignal(int, int, float)
+    file_receive_started = pyqtSignal(str, int)
+    file_transfer_finished = pyqtSignal(bool, str)
 
     def __init__(self):
         super().__init__()
@@ -140,7 +145,9 @@ class EthernetWorker(QObject):
         # self.log_received.emit(f"UDP 正在监听 {local_listen_ip}:{local_listen_port}...")
 
     def _recv_loop(self, listen_ip, listen_port):
-        # SR 接收逻辑
+        """
+        SR 接收逻辑
+        """
         try:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -150,20 +157,90 @@ class EthernetWorker(QObject):
             except Exception as e:
                 self.error_occurred.emit(f"UDP 绑定失败: {e} (地址: {listen_ip}:{listen_port})")
                 return
+
             while self._running:
                 try:
                     data, addr = self.sock.recvfrom(65536)
                     if not data or len(data) < (HEADER_SIZE + CRC_SIZE):
                         continue
+
+                    # CRC 校验
                     received_crc = struct.unpack('!I', data[-CRC_SIZE:])[0]
                     data_without_crc = data[:-CRC_SIZE]
                     calculated_crc = zlib.crc32(data_without_crc)
                     if received_crc != calculated_crc:
                         self.log_received.emit(f"[UDP 错误] 收到 CRC 校验失败的包,已丢弃")
                         continue
+
+                    # 解析包头
                     prefix_byte, seq_num = struct.unpack(HEADER_FORMAT, data_without_crc[:HEADER_SIZE])
                     prefix = bytes([prefix_byte])
                     payload = data_without_crc[HEADER_SIZE:]
+
+                    # ============================================
+                    # [!! 文本命令完全独立处理 !!]
+                    # ============================================
+                    if prefix == PREFIX_TEXT:
+                        try:
+                            text_message = payload.decode('utf-8').strip()
+                            if text_message:
+                                self.log_received.emit(f"[UDP 消息]: {text_message}")
+                        except Exception:
+                            self.log_received.emit(f"[UDP 警告] 收到无法解码的文本包")
+                        self._send_ack(seq_num, addr)
+                        continue
+
+                    # ============================================
+                    # [!! 🔥 关键修复：提前检测并处理文件头 !!]
+                    # ============================================
+                    if prefix == PREFIX_FILE_INFO:
+                        if not self.enable_file_reception:
+                            self._send_ack(seq_num, addr)
+                            continue
+
+                        try:
+                            info_str = payload.decode('utf-8')
+                            filename, filesize_str = info_str.split(':', 1)
+                            filesize = int(filesize_str)
+
+                            # === 立即重置接收窗口（在任何窗口检查之前） ===
+                            self.recv_base = 0
+                            self.recv_buffer.clear()
+                            self.recv_acked.clear()
+
+                            # 标记为已确认
+                            self.recv_acked.add(0)  # 假设文件头总是 seq_num=0
+
+                            # 重置文件接收状态
+                            self.current_file_info = {
+                                "name": filename,
+                                "size": filesize,
+                                "start_time": time.time()
+                            }
+                            self.file_buffer.clear()
+                            self.is_receiving_file = True
+
+                            # 发射接收开始信号
+                            self.file_receive_started.emit(filename, filesize)
+                            self.file_receive_progress.emit(0, filesize, 0.0)
+
+                            self.log_received.emit(
+                                f"[UDP 文件] (SEQ={seq_num}) 开始接收: {filename} ({filesize} 字节)"
+                            )
+
+                            # 滑动窗口到下一个位置
+                            self.recv_base = 1
+
+                        except Exception as e:
+                            self.log_received.emit(f"[UDP 错误] 收到损坏的文件头: {e}")
+                            self.is_receiving_file = False
+
+                        # 发送 ACK
+                        self._send_ack(seq_num, addr)
+                        continue  # 跳过后续 SR 处理
+                    # ============================================
+
+                    # ACK 包处理
                     if prefix == PREFIX_ACK:
                         self.last_received_ack_seq = seq_num
                         self.ack_event.set()
@@ -176,41 +253,16 @@ class EthernetWorker(QObject):
                                     while self.send_base < self.next_seq_num and self.send_base not in self.send_buffer:
                                         self.send_base += 1
                                 self.window_space_cv.notify_all()
-
                         continue
 
-
-                    # if prefix == PREFIX_VIDEO:
-                    #     image = QImage()
-                    #     if image.loadFromData(payload, "JPEG"):
-                    #         self.video_frame_ready.emit(image)
-                    #     else:
-                    #         self.log_received.emit(f"[UDP 警告] 收到损坏的视频包 (JPEG?)")
-                    #     continue
-
-                        # ... (在 _recv_loop 内部)
-
-                        # --- [!! 修改开始: 视频接收逻辑 !!] ---
-
-
-
+                    # 视频包处理 (分片重组)
                     if prefix == PREFIX_VIDEO:
-                        # 新协议头是 4 字节，HEADER_SIZE 是 5 字节 (Prefix+I)，这里我们手动解析
-                        # 上面 recv 已经把前 HEADER_SIZE 剥离了，但这不对，因为视频包头格式变了。
-                        # 修正逻辑：我们需要回溯一下 raw data 或者针对 video 做特殊解析。
-
-                        # 更简单的改法：利用 data_without_crc
-                        # data_without_crc = [0x01][FID][Idx][Total][Payload...]
-
                         try:
-                            # 提取头部信息 (跳过 Prefix 0x01)
-                            # data_without_crc[0] 是 prefix
                             vid_fid = data_without_crc[1]
                             vid_idx = data_without_crc[2]
                             vid_total = data_without_crc[3]
-                            vid_payload = data_without_crc[4:]  # 实际图像数据片段
+                            vid_payload = data_without_crc[4:]
 
-                            # 初始化该帧的缓存
                             if vid_fid not in self.video_reassembly_buffer:
                                 self.video_reassembly_buffer[vid_fid] = {
                                     'chunks': {},
@@ -218,79 +270,75 @@ class EthernetWorker(QObject):
                                     'ts': time.time()
                                 }
 
-                            # 存入分片
                             self.video_reassembly_buffer[vid_fid]['chunks'][vid_idx] = vid_payload
-
-                            # 检查是否收齐
                             current_frame = self.video_reassembly_buffer[vid_fid]
+
                             if len(current_frame['chunks']) == vid_total:
-                                # 组装完整 JPEG
                                 full_jpeg = bytearray()
                                 for k in range(vid_total):
                                     if k in current_frame['chunks']:
                                         full_jpeg.extend(current_frame['chunks'][k])
-                                    else:
-                                        # 理论上 len 检查通过这步不会发生
-                                        raise ValueError("Missing chunk")
 
-                                # 解码并显示
-                                # --- 修改后 (WebP) ---
                                 image = QImage()
-                                # 将 "JPEG" 改为 "WEBP"，或者直接去掉第二个参数让 Qt 自动检测
                                 if image.loadFromData(full_jpeg, "WEBP"):
                                     self.video_frame_ready.emit(image)
-                                else:
-                                    # 如果解码失败，打印个日志方便调试
-                                    print(f"WebP 解码失败，数据长度: {len(full_jpeg)}")
-                                    # self.log_received.emit(f"收到完整视频帧 ID={vid_fid}, Size={len(full_jpeg)}")
 
-                                # 清理已完成的帧和过期的旧帧 (简单的垃圾回收)
                                 del self.video_reassembly_buffer[vid_fid]
 
-                                # 清理超过 1 秒未收齐的旧帧
+                                # 清理过期帧
                                 now = time.time()
-                                expired_ids = [k for k, v in self.video_reassembly_buffer.items() if
-                                               now - v['ts'] > 1.0]
+                                expired_ids = [k for k, v in self.video_reassembly_buffer.items()
+                                               if now - v['ts'] > 1.0]
                                 for k in expired_ids:
                                     del self.video_reassembly_buffer[k]
-
                         except Exception as e:
-                            # pass # 视频允许偶尔错误
-                            print(f"视频组包错误: {e}")
-
+                            pass
                         continue
-                    # --- [!! 修改结束 !!] ---
 
-
+                    # 音频流处理 (不可靠)
                     if prefix == PREFIX_AUDIO_STREAM:
                         self.audio_chunk_received.emit(payload)
                         continue
+
+                    # ============================================
+                    # SR 窗口逻辑 (仅用于文件数据传输)
+                    # ============================================
+
+                    # 检查是否为旧包
                     if seq_num < self.recv_base:
-                        # self.log_received.emit(
-                        #     f"[UDP SR] 收到旧包 {seq_num} (窗口基址 {self.recv_base}), 重发 ACK")
+                        # 重发 ACK (可能是重传包)
                         self._send_ack(seq_num, addr)
                         continue
+
+                    # 检查是否超出窗口
                     if seq_num >= self.recv_base + WINDOW_SIZE:
                         self.log_received.emit(
-                            f"[UDP SR] 收到超出窗口的包 {seq_num} (窗口 [{self.recv_base}, {self.recv_base + WINDOW_SIZE - 1}]), 已丢弃")
+                            f"[UDP SR] 收到超出窗口的包 {seq_num} "
+                            f"(窗口 [{self.recv_base}, {self.recv_base + WINDOW_SIZE - 1}]), 已丢弃"
+                        )
                         continue
+
+                    # 发送 ACK
                     self._send_ack(seq_num, addr)
+
+                    # 检查是否已确认
                     if seq_num in self.recv_acked:
                         continue
+
+                    # 缓存数据包
                     self.recv_buffer[seq_num] = (prefix, payload)
                     self.recv_acked.add(seq_num)
+
+                    # 滑动窗口 - 处理所有连续的已确认包
                     while self.recv_base in self.recv_acked:
                         recv_prefix, recv_payload = self.recv_buffer.pop(self.recv_base)
                         self.recv_acked.remove(self.recv_base)
+
+                        # 处理数据包
                         self._process_received_packet(recv_prefix, self.recv_base, recv_payload, addr)
-                        # --- [!! 核心修复 !!] ---
-                        # 如果是文本包(0x00) 或 视频包(0x01)，因为它们重置了序列号或不使用SR流，
-                        # 所以不要让 recv_base 自增，否则窗口基址会变成 1，导致后续 SEQ=0 的包被拒收。
-                        # if recv_prefix == PREFIX_TEXT:
-                        #     self.recv_base = 0  # 确保保持为 0
-                        # else:
-                        self.recv_base += 1  # 只有文件/音频流数据才滑动窗口
-                        # -----------------------
+
+                        # 窗口滑动
+                        self.recv_base += 1
 
                 except socket.timeout:
                     continue
@@ -298,6 +346,7 @@ class EthernetWorker(QObject):
                     if self._running:
                         self.error_occurred.emit(f"UDP 接收错误: {e}")
                     break
+
         finally:
             try:
                 if self.sock:
@@ -311,57 +360,91 @@ class EthernetWorker(QObject):
             self.log_received.emit("UDP 监听已停止")
 
     def _process_received_packet(self, prefix, seq_num, payload, addr):
-        # (此方法保持不变)
-        if prefix == PREFIX_TEXT:
-            try:
-                text_message = payload.decode('utf-8').strip()
-                if text_message:
-                    self.log_received.emit(f"[UDP 消息]: {text_message}")
-            except Exception:
-                self.log_received.emit(f"[UDP 警告] 收到无法解码的文本包")
-            # self.recv_base = 0
-            # self.recv_buffer.clear()
-            # self.recv_acked.clear()
-            # self.log_received.emit(f"[UDP 调试] 文本命令接收完成,序列号已重置")
-        elif prefix == PREFIX_FILE_INFO:
+        """
+        处理已确认接收的数据包
+        注意: PREFIX_TEXT 不会到达这里,已在 _recv_loop 中处理
+        """
+        if prefix == PREFIX_FILE_INFO:
             if not self.enable_file_reception:
                 return
             try:
                 info_str = payload.decode('utf-8')
                 filename, filesize_str = info_str.split(':', 1)
                 filesize = int(filesize_str)
-                self.current_file_info = {"name": filename, "size": filesize}
+
+                # === [!! 关键修复: 重置接收窗口 !!] ===
+                self.recv_base = 0
+                self.recv_buffer.clear()
+                self.recv_acked.clear()
+                # === [!! 修复结束 !!] ===
+
+                self.current_file_info = {
+                    "name": filename,
+                    "size": filesize,
+                    "start_time": time.time()
+                }
                 self.file_buffer.clear()
                 self.is_receiving_file = True
-                self.log_received.emit(f"[UDP 文件] (SEQ={seq_num}) 开始接收: {filename} ({filesize} 字节)")
+
+                # 发射接收开始信号
+                self.file_receive_started.emit(filename, filesize)
+                self.file_receive_progress.emit(0, filesize, 0.0)
+
+                self.log_received.emit(
+                    f"[UDP 文件] (SEQ={seq_num}) 开始接收: {filename} ({filesize} 字节)"
+                )
             except Exception as e:
                 self.log_received.emit(f"[UDP 错误] 收到损坏的文件头: {e}")
                 self.is_receiving_file = False
-                # self.recv_base = 0
-                # self.recv_buffer.clear()
-                # self.recv_acked.clear()
+
         elif prefix == PREFIX_FILE_DATA:
             if self.is_receiving_file:
                 self.file_buffer.extend(payload)
-                if len(self.file_buffer) >= self.current_file_info.get("size", -1):
-                    file_data_bytes = self.file_buffer[:self.current_file_info["size"]]
+
+                # 发射接收进度信号
+                total_size = self.current_file_info.get("size", -1)
+                received_bytes = len(self.file_buffer)
+
+                # 计算实时速率
+                start_time = self.current_file_info.get("start_time", time.time())
+                elapsed = time.time() - start_time
+                if elapsed > 0:
+                    speed_mbps = (received_bytes * 8) / (elapsed * 1024 * 1024)
+                else:
+                    speed_mbps = 0.0
+
+                self.file_receive_progress.emit(received_bytes, total_size, speed_mbps)
+
+                if received_bytes >= total_size:
+                    file_data_bytes = self.file_buffer[:total_size]
                     filename = self.current_file_info.get("name", "unknown_file")
+
                     self.log_received.emit(f"[UDP 文件] 接收完毕: {filename}")
+                    self.file_transfer_finished.emit(True, "接收完成")
                     self.file_received.emit(filename, bytes(file_data_bytes))
+
                     self.is_receiving_file = False
                     self.file_buffer.clear()
                     self.current_file_info.clear()
-                    # self.recv_base = 0
-                    # self.recv_buffer.clear()
-                    # self.recv_acked.clear()
-                    # self.log_received.emit(f"[UDP 调试] 文件接收完成,序列号已重置")
-                # else:
-                #     self.log_received.emit(
-                #         f"[UDP 文件] (SEQ={seq_num}) 接收中... 已接收 {len(self.file_buffer)}/{self.current_file_info.get('size', -1)} 字节")
-            else:
-                self.log_received.emit(f"[UDP 警告] 收到文件数据 (SEQ={seq_num}),但未在接收文件状态")
+
+                    # === [!! 可选: 这里也可以重置,作为双重保险 !!] ===
+                    self.recv_base = 0
+                    self.recv_buffer.clear()
+                    self.recv_acked.clear()
+                    # === [!! 修复结束 !!] ===
+
         elif prefix == PREFIX_AUDIO_DATA:
             self.log_received.emit(f"[UDP 消息] 收到一个音频包 (SEQ={seq_num}) (暂不处理)")
+
+        elif prefix == PREFIX_TEXT:
+            # 理论上不会到这里,因为已在 _recv_loop 中处理
+            try:
+                text_message = payload.decode('utf-8').strip()
+                if text_message:
+                    self.log_received.emit(f"[UDP 消息]: {text_message}")
+            except Exception:
+                pass
+
         else:
             self.log_received.emit(f"[UDP 警告] 收到未知前缀的包: 0x{prefix.hex()}")
 
@@ -573,16 +656,21 @@ class EthernetWorker(QObject):
         [!! SR !!]
         1. 使用 "停等" (_send_reliable_payload) 发送文件头 (SEQ=0)
         2. 使用 "SR" (_send_sr_stream) 发送文件数据 (SEQ=1...N)
+        添加了进度信号发射
         """
         with self._lock:
             if not self.fpga_addr:
                 self.error_occurred.emit("发送失败: 目标地址未设置")
+                self.file_transfer_finished.emit(False, "目标地址未设置")
                 return
             try:
                 file_size = os.path.getsize(file_path)
                 filename = os.path.basename(file_path)
                 self.log_received.emit(f"-> [UDP发送 文件]: {filename} ({file_size} 字节)")
                 start_time = time.time()
+
+                # 发送前发射初始进度
+                self.file_send_progress.emit(0, file_size, 0.0)
 
                 # --- 1. 发送文件头 (SEQ=0, 停等) ---
                 seq_num = 0
@@ -591,27 +679,50 @@ class EthernetWorker(QObject):
                 self.log_received.emit(f"-> [UDP发送 文件头] (SEQ={seq_num})")
                 if not self._send_reliable_payload(PREFIX_FILE_INFO, seq_num, info_payload):
                     self.error_occurred.emit("文件头发送失败,未收到 ACK")
+                    self.file_transfer_finished.emit(False, "文件头发送失败")
                     return
                 self.log_received.emit(f"-> [UDP发送 文件头] 完成")
 
-                # --- 2. 发送文件数据 (SEQ=1...N, SR) ---
+                # --- 2. 发送文件数据 (SEQ=1...N, SR) 带进度 ---
+                sent_bytes = 0
 
-                def file_chunk_generator(f):
+                def file_chunk_generator_with_progress(f):
+                    nonlocal sent_bytes
                     while True:
                         chunk = f.read(CHUNK_SIZE)
                         if not chunk:
                             break
+                        sent_bytes += len(chunk)
+
+                        # 计算实时速率
+                        elapsed = time.time() - start_time
+                        if elapsed > 0:
+                            speed_mbps = (sent_bytes * 8) / (elapsed * 1024 * 1024)
+                        else:
+                            speed_mbps = 0.0
+
+                        # 发射进度信号
+                        self.file_send_progress.emit(sent_bytes, file_size, speed_mbps)
+
                         yield chunk
 
                 with open(file_path, 'rb') as f:
                     start_seq_num = 1
                     self.log_received.emit(f"-> [UDP SR 发送] 文件数据 (从 SEQ={start_seq_num} 开始)...")
-                    if not self._send_sr_stream(PREFIX_FILE_DATA, start_seq_num, file_chunk_generator(f)):
+                    if not self._send_sr_stream(PREFIX_FILE_DATA, start_seq_num,
+                                                file_chunk_generator_with_progress(f)):
                         self.error_occurred.emit(f"文件数据块发送失败 (SR)")
+                        self.file_transfer_finished.emit(False, "数据发送失败")
                         return
+
                 end_time = time.time()
                 elapsed = end_time - start_time
                 speed_mbps = (file_size * 8) / (elapsed * 1024 * 1024) if elapsed > 0 else 0
+
+                # 最终进度
+                self.file_send_progress.emit(file_size, file_size, speed_mbps)
+                self.file_transfer_finished.emit(True, "发送完成")
+
                 self.log_received.emit(
                     f"-> [UDP发送 文件]: {filename} 完成, "
                     f"耗时: {elapsed:.2f} 秒, "
@@ -619,8 +730,10 @@ class EthernetWorker(QObject):
                 )
             except FileNotFoundError:
                 self.error_occurred.emit(f"文件未找到: {file_path}")
+                self.file_transfer_finished.emit(False, "文件未找到")
             except Exception as e:
                 self.error_occurred.emit(f"文件发送失败: {e}")
+                self.file_transfer_finished.emit(False, str(e))
 
     def send_audio_udp(self, audio_bytes: bytes):
         """
