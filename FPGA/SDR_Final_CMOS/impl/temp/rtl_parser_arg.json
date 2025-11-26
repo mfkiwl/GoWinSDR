@@ -30,6 +30,10 @@
    "Type" : "verilog"
   },
   {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas_flt_new.v",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas_loop_filter.v",
    "Type" : "verilog"
   },
@@ -126,6 +130,10 @@
    "Type" : "verilog"
   },
   {
+   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/led_control.v",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/nco.v",
    "Type" : "verilog"
   },
@@ -159,14 +167,6 @@
   },
   {
    "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/top.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas_flt_new.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/led_control.v",
    "Type" : "verilog"
   }
  ],
