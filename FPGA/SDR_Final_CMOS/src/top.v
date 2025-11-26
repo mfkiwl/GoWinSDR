@@ -1,6 +1,6 @@
     module top  #(
-    parameter                           SAMPLE_RATE = 32'd30720000 ,
-    parameter                           BIT_RATE    = 32'd4000000   
+    parameter                           SAMPLE_RATE = 32'd61440000 ,
+    parameter                           BIT_RATE    = 32'd10000000   
 )(
     input                               sys_clk                    ,
     input                               rst_n                      ,
