@@ -2,171 +2,171 @@
  "Device" : "GW5AT-60B",
  "Files" : [
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/FIR_Calib/advanced_fir_filter.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/FIR_Calib/advanced_fir_filter.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/ad9363_dev_cmos.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/ad9363_dev_cmos.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/advanced_fir_filter/advanced_fir_filter.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/advanced_fir_filter/advanced_fir_filter.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/arp_responder.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/arp_responder.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/calibration.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/calibration.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/com_fpga.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/com_fpga.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas_flt_new.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas_flt_new.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas_loop_filter.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/costas_loop_filter.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/crc.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/crc.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/dds_ii/dds_ii.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/dds_ii/dds_ii.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/dds_ii_costas/dds_ii.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/dds_ii_costas/dds_ii.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_frame_buf/eth_frame_buf.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_frame_buf/eth_frame_buf.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_frame_gene.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_frame_gene.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_pack.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_pack.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_transceiver.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/eth_transceiver.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_eth_rx/fifo_top.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_eth_rx/fifo_top.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_eth_tx/fifo_eth_tx.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_eth_tx/fifo_eth_tx.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top/fifo_top.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top/fifo_top.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top_rx/fifo_top_rx.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/fifo_top_rx/fifo_top_rx.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_sync.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_sync.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_ted.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/gardner_ted.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_ddr/gowin_ddr.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_ddr/gowin_ddr.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_ddr_GMII2RGMII/GMII2RGMII.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_ddr_GMII2RGMII/GMII2RGMII.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult/gowin_mult.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult_1212/gowin_mult.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_mult_1212/gowin_mult.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll_mod.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll/gowin_pll_mod.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll_eth/gowin_pll_eth.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll_eth/gowin_pll_eth.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll_eth/gowin_pll_eth_mod.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/gowin_pll_eth/gowin_pll_eth_mod.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/integer_division/integer_division.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/integer_division/integer_division.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/interpolate_filter.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/led_control.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/led_control.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/nco.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/nco.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/phase_detector.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/phase_detector.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/pll_init.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/pll_init.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_diff_decode.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_diff_decode.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_diff_encode.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_diff_encode.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/rf_rxt.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/sys_pll/sys_pll.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/sys_pll/sys_pll.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/sys_pll/sys_pll_mod.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/sys_pll/sys_pll_mod.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/src/top.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/src/top.v",
    "Type" : "verilog"
   }
  ],
@@ -174,7 +174,7 @@
 
  ],
  "LoopLimit" : 2000,
- "ResultFile" : "D:/Code/git/GoWinSDR/FPGA/SDR_Final_CMOS/impl/temp/rtl_parser.result",
+ "ResultFile" : "D:/Code/FPGA/GoWinSDR/FPGA/SDR_Final_CMOS/impl/temp/rtl_parser.result",
  "Top" : "top",
  "VerilogStd" : "verilog_2001",
  "VhdlStd" : "vhdl_93"

@@ -2,39 +2,39 @@
  "Device" : "GW5AT-60B",
  "Files" : [
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/arp_responder.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/arp_responder.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/crc.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/crc.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/eth_transceiver.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/eth_transceiver.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/fifo_top/fifo_top.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/fifo_top/fifo_top.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/gowin_ddr/GMII2RGMII.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/gowin_ddr/GMII2RGMII.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/gowin_pll/gowin_pll.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/gowin_pll/gowin_pll.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/gowin_pll/gowin_pll_mod.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/gowin_pll/gowin_pll_mod.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/pll_init.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/pll_init.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/top.v",
+   "Path" : "D:/Code/FPGA/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/src/top.v",
    "Type" : "verilog"
   }
  ],
@@ -42,7 +42,7 @@
 
  ],
  "LoopLimit" : 2000,
- "ResultFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/impl/temp/rtl_parser.result",
+ "ResultFile" : "D:/Code/FPGA/GoWinSDR/FPGA/Submodule/ETH_TransRecv_Const/impl/temp/rtl_parser.result",
  "Top" : "eth_loopback_demo",
  "VerilogStd" : "verilog_2001",
  "VhdlStd" : "vhdl_93"
