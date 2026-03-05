@@ -43,7 +43,7 @@ void Soft_SPI_Init(SoftSPI_Mode_t mode)
     /* 配置MISO引脚 - 输入 */
     GPIO_InitStruct.Pin = SOFT_SPI_MISO_PIN;
     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(SOFT_SPI_MISO_PORT, &GPIO_InitStruct);
     
     /* 配置CS引脚 - 推挽输出 */

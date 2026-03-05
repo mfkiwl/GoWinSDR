@@ -50,15 +50,15 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Design File</td>
-<td>D:\Code\Gowin\SDR_TANG_CMOS\impl\gwsynthesis\SDR_TANG_CMOS.vg</td>
+<td>D:\Code\git\GoWinSDR\FPGA\SDR_TANG_CMOS\impl\gwsynthesis\SDR_TANG_CMOS.vg</td>
 </tr>
 <tr>
 <td class="label">Physical Constraints File</td>
-<td>D:\Code\Gowin\SDR_TANG_CMOS\src\SDR_Test.cst</td>
+<td>D:\Code\git\GoWinSDR\FPGA\SDR_TANG_CMOS\src\SDR_Test.cst</td>
 </tr>
 <tr>
 <td class="label">Timing Constraints File</td>
-<td>---</td>
+<td>D:\Code\git\GoWinSDR\FPGA\SDR_TANG_CMOS\src\timeconstrain.sdc</td>
 </tr>
 <tr>
 <td class="label">Tool Version</td>
@@ -78,7 +78,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Created Time</td>
-<td>Fri Oct 24 22:53:51 2025
+<td>Fri Oct 31 21:11:37 2025
 </td>
 </tr>
 <tr>
@@ -136,12 +136,12 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td class="label">rst_n</td>
 <td>-</td>
-<td>AB13/9</td>
+<td>AB20/8</td>
 <td>Y</td>
 <td>in</td>
-<td>IOB54[A]</td>
-<td>-</td>
-<td>LVCMOS15</td>
+<td>IOB85[B]</td>
+<td>CSO_B/DOUT</td>
+<td>LVCMOS33</td>
 <td>OFF</td>
 <td>NONE</td>
 <td>OFF</td>
@@ -151,7 +151,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -448,6 +448,138 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>Y</td>
 <td>in</td>
 <td>IOT99[A]</td>
+<td>-</td>
+<td>LVCMOS33</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>ON</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">RGMII_RXCLK</td>
+<td>-</td>
+<td>G21/2</td>
+<td>Y</td>
+<td>in</td>
+<td>IOT144[A]</td>
+<td>-</td>
+<td>LVCMOS33</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>ON</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">RGMII_RXD[0]</td>
+<td>-</td>
+<td>F18/2</td>
+<td>Y</td>
+<td>in</td>
+<td>IOT117[A]</td>
+<td>-</td>
+<td>LVCMOS33</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>ON</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">RGMII_RXD[1]</td>
+<td>-</td>
+<td>E18/2</td>
+<td>Y</td>
+<td>in</td>
+<td>IOT117[B]</td>
+<td>-</td>
+<td>LVCMOS33</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>ON</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">RGMII_RXD[2]</td>
+<td>-</td>
+<td>C22/2</td>
+<td>Y</td>
+<td>in</td>
+<td>IOT133[A]</td>
+<td>-</td>
+<td>LVCMOS33</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>ON</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">RGMII_RXD[3]</td>
+<td>-</td>
+<td>B22/2</td>
+<td>Y</td>
+<td>in</td>
+<td>IOT133[B]</td>
+<td>-</td>
+<td>LVCMOS33</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>ON</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">RGMII_RXDV</td>
+<td>-</td>
+<td>G22/2</td>
+<td>Y</td>
+<td>in</td>
+<td>IOT144[B]</td>
 <td>-</td>
 <td>LVCMOS33</td>
 <td>OFF</td>
@@ -933,6 +1065,182 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>out</td>
 <td>IOT91[A]</td>
 <td>-</td>
+<td>LVCMOS33</td>
+<td>8</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">PHY_CLK</td>
+<td>-</td>
+<td>V19/8</td>
+<td>Y</td>
+<td>out</td>
+<td>IOB81[B]</td>
+<td>GCLKC_11</td>
+<td>LVCMOS33</td>
+<td>8</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">RGMII_GTXCLK</td>
+<td>-</td>
+<td>F20/2</td>
+<td>Y</td>
+<td>out</td>
+<td>IOT124[B]</td>
+<td>-</td>
+<td>LVCMOS33</td>
+<td>8</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">RGMII_TXD[0]</td>
+<td>-</td>
+<td>D21/2</td>
+<td>Y</td>
+<td>out</td>
+<td>IOT138[B]</td>
+<td>-</td>
+<td>LVCMOS33</td>
+<td>8</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">RGMII_TXD[1]</td>
+<td>-</td>
+<td>E21/2</td>
+<td>Y</td>
+<td>out</td>
+<td>IOT138[A]</td>
+<td>-</td>
+<td>LVCMOS33</td>
+<td>8</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">RGMII_TXD[2]</td>
+<td>-</td>
+<td>D22/2</td>
+<td>Y</td>
+<td>out</td>
+<td>IOT140[B]</td>
+<td>-</td>
+<td>LVCMOS33</td>
+<td>8</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">RGMII_TXD[3]</td>
+<td>-</td>
+<td>E22/2</td>
+<td>Y</td>
+<td>out</td>
+<td>IOT140[A]</td>
+<td>-</td>
+<td>LVCMOS33</td>
+<td>8</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">RGMII_TXEN</td>
+<td>-</td>
+<td>F21/2</td>
+<td>Y</td>
+<td>out</td>
+<td>IOT142[A]</td>
+<td>-</td>
+<td>LVCMOS33</td>
+<td>8</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>SLOW</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>3.3</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">RGMII_RST_N</td>
+<td>-</td>
+<td>W20/8</td>
+<td>Y</td>
+<td>out</td>
+<td>IOB93[B]</td>
+<td>GCLKC_9</td>
 <td>LVCMOS33</td>
 <td>8</td>
 <td>NONE</td>
@@ -1597,13 +1905,13 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">F18/2</td>
-<td>-</td>
+<td>RGMII_RXD[0]</td>
 <td>in</td>
 <td>IOT117[A]</td>
 <td>-</td>
 <td>LVCMOS33</td>
-<td>8</td>
-<td>UP</td>
+<td>OFF</td>
+<td>NONE</td>
 <td>OFF</td>
 <td>ON</td>
 <td>OFF</td>
@@ -1617,13 +1925,13 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">E18/2</td>
-<td>-</td>
+<td>RGMII_RXD[1]</td>
 <td>in</td>
 <td>IOT117[B]</td>
 <td>-</td>
 <td>LVCMOS33</td>
-<td>8</td>
-<td>UP</td>
+<td>OFF</td>
+<td>NONE</td>
 <td>OFF</td>
 <td>ON</td>
 <td>OFF</td>
@@ -1737,15 +2045,15 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">F20/2</td>
-<td>-</td>
-<td>in</td>
+<td>RGMII_GTXCLK</td>
+<td>out</td>
 <td>IOT124[B]</td>
 <td>-</td>
 <td>LVCMOS33</td>
 <td>8</td>
-<td>UP</td>
+<td>NONE</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>OFF</td>
 <td>SLOW</td>
 <td>OFF</td>
@@ -1797,13 +2105,13 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">C22/2</td>
-<td>-</td>
+<td>RGMII_RXD[2]</td>
 <td>in</td>
 <td>IOT133[A]</td>
 <td>-</td>
 <td>LVCMOS33</td>
-<td>8</td>
-<td>UP</td>
+<td>OFF</td>
+<td>NONE</td>
 <td>OFF</td>
 <td>ON</td>
 <td>OFF</td>
@@ -1817,13 +2125,13 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">B22/2</td>
-<td>-</td>
+<td>RGMII_RXD[3]</td>
 <td>in</td>
 <td>IOT133[B]</td>
 <td>-</td>
 <td>LVCMOS33</td>
-<td>8</td>
-<td>UP</td>
+<td>OFF</td>
+<td>NONE</td>
 <td>OFF</td>
 <td>ON</td>
 <td>OFF</td>
@@ -1877,15 +2185,15 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">E21/2</td>
-<td>-</td>
-<td>in</td>
+<td>RGMII_TXD[1]</td>
+<td>out</td>
 <td>IOT138[A]</td>
 <td>-</td>
 <td>LVCMOS33</td>
 <td>8</td>
-<td>UP</td>
+<td>NONE</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>OFF</td>
 <td>SLOW</td>
 <td>OFF</td>
@@ -1897,15 +2205,15 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">D21/2</td>
-<td>-</td>
-<td>in</td>
+<td>RGMII_TXD[0]</td>
+<td>out</td>
 <td>IOT138[B]</td>
 <td>-</td>
 <td>LVCMOS33</td>
 <td>8</td>
-<td>UP</td>
+<td>NONE</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>OFF</td>
 <td>SLOW</td>
 <td>OFF</td>
@@ -1917,15 +2225,15 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">E22/2</td>
-<td>-</td>
-<td>in</td>
+<td>RGMII_TXD[3]</td>
+<td>out</td>
 <td>IOT140[A]</td>
 <td>-</td>
 <td>LVCMOS33</td>
 <td>8</td>
-<td>UP</td>
+<td>NONE</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>OFF</td>
 <td>SLOW</td>
 <td>OFF</td>
@@ -1937,15 +2245,15 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">D22/2</td>
-<td>-</td>
-<td>in</td>
+<td>RGMII_TXD[2]</td>
+<td>out</td>
 <td>IOT140[B]</td>
 <td>-</td>
 <td>LVCMOS33</td>
 <td>8</td>
-<td>UP</td>
+<td>NONE</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>OFF</td>
 <td>SLOW</td>
 <td>OFF</td>
@@ -1957,15 +2265,15 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">F21/2</td>
-<td>-</td>
-<td>in</td>
+<td>RGMII_TXEN</td>
+<td>out</td>
 <td>IOT142[A]</td>
 <td>-</td>
 <td>LVCMOS33</td>
 <td>8</td>
-<td>UP</td>
+<td>NONE</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>OFF</td>
 <td>SLOW</td>
 <td>OFF</td>
@@ -1977,13 +2285,13 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">G21/2</td>
-<td>-</td>
+<td>RGMII_RXCLK</td>
 <td>in</td>
 <td>IOT144[A]</td>
 <td>-</td>
 <td>LVCMOS33</td>
-<td>8</td>
-<td>UP</td>
+<td>OFF</td>
+<td>NONE</td>
 <td>OFF</td>
 <td>ON</td>
 <td>OFF</td>
@@ -1997,13 +2305,13 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">G22/2</td>
-<td>-</td>
+<td>RGMII_RXDV</td>
 <td>in</td>
 <td>IOT144[B]</td>
 <td>-</td>
 <td>LVCMOS33</td>
-<td>8</td>
-<td>UP</td>
+<td>OFF</td>
+<td>NONE</td>
 <td>OFF</td>
 <td>ON</td>
 <td>OFF</td>
@@ -2041,7 +2349,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB1[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2051,7 +2359,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2061,7 +2369,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB1[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2071,7 +2379,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2081,7 +2389,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB3[A]</td>
 <td>BPLL0_T_IN1/BPLL0_T_FB0</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2091,7 +2399,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2101,7 +2409,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB3[B]</td>
 <td>BPLL0_C_IN1/BPLL0_C_FB0</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2111,7 +2419,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2121,7 +2429,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB5[A]</td>
 <td>BPLL0_T_IN2/BPLL0_T_FB1</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2131,7 +2439,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2141,7 +2449,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB5[B]</td>
 <td>BPLL0_C_IN2/BPLL0_C_FB1</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2151,7 +2459,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2161,7 +2469,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB7[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2171,7 +2479,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2181,7 +2489,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB7[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2191,7 +2499,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2201,7 +2509,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB9[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2211,7 +2519,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2221,7 +2529,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB9[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2231,7 +2539,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2241,7 +2549,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB12[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2251,7 +2559,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2261,7 +2569,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB12[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2271,7 +2579,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2281,7 +2589,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB14[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2291,7 +2599,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2301,7 +2609,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB14[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2311,7 +2619,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2321,7 +2629,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB16[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2331,7 +2639,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2341,7 +2649,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB16[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2351,7 +2659,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2361,7 +2669,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB18[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2371,7 +2679,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2381,7 +2689,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB18[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2391,7 +2699,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2401,7 +2709,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB20[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2411,7 +2719,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2421,7 +2729,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB20[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2431,7 +2739,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2441,7 +2749,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB22[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2451,7 +2759,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2461,7 +2769,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB22[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2471,7 +2779,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2481,7 +2789,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB24[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2491,7 +2799,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2501,7 +2809,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB24[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2511,7 +2819,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2521,7 +2829,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB26[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2531,7 +2839,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2541,7 +2849,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB26[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2551,7 +2859,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2561,7 +2869,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB29[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2571,7 +2879,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2581,7 +2889,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB29[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2591,7 +2899,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2601,7 +2909,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB31[A]</td>
 <td>GCLKT_14</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2611,7 +2919,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2621,7 +2929,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB31[B]</td>
 <td>GCLKC_14</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2631,7 +2939,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2641,7 +2949,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB33[A]</td>
 <td>GCLKT_15</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2651,7 +2959,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2661,7 +2969,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB33[B]</td>
 <td>GCLKC_15</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2671,7 +2979,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2681,7 +2989,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB35[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2691,7 +2999,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2701,7 +3009,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB35[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2711,7 +3019,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2721,7 +3029,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB38[A]</td>
 <td>GCLKT_13</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2731,7 +3039,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2741,7 +3049,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB38[B]</td>
 <td>GCLKC_13</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2751,7 +3059,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2761,7 +3069,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB40[A]</td>
 <td>GCLKT_12</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2771,7 +3079,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2781,7 +3089,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB40[B]</td>
 <td>GCLKC_12</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2791,7 +3099,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2801,7 +3109,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB42[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2811,7 +3119,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2821,7 +3129,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB42[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2831,7 +3139,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2841,7 +3149,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB44[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2851,7 +3159,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2861,7 +3169,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB44[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2871,7 +3179,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2881,7 +3189,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB48[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2891,7 +3199,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2901,7 +3209,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB48[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2911,7 +3219,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2921,7 +3229,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB50[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2931,7 +3239,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2941,7 +3249,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB50[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2951,7 +3259,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2961,7 +3269,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB52[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2971,7 +3279,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -2981,7 +3289,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB52[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -2991,19 +3299,19 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
 <tr>
 <td class="label">AB13/9</td>
-<td>rst_n</td>
+<td>-</td>
 <td>in</td>
 <td>IOB54[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
-<td>OFF</td>
-<td>NONE</td>
+<td>LVCMOS33</td>
+<td>8</td>
+<td>UP</td>
 <td>OFF</td>
 <td>ON</td>
 <td>OFF</td>
@@ -3011,7 +3319,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3021,7 +3329,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB54[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3031,7 +3339,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3041,7 +3349,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB56[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3051,7 +3359,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3061,7 +3369,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB56[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3071,7 +3379,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3081,7 +3389,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB58[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3091,7 +3399,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3101,7 +3409,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB58[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3111,7 +3419,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3121,7 +3429,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB60[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3131,7 +3439,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3141,7 +3449,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB60[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3151,7 +3459,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3161,7 +3469,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB62[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3171,7 +3479,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3181,7 +3489,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB62[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3191,7 +3499,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3201,7 +3509,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB65[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3211,7 +3519,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3221,7 +3529,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB65[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3231,7 +3539,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3241,7 +3549,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB67[A]</td>
 <td>BPLL1_T_IN0</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3251,7 +3559,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3261,7 +3569,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB67[B]</td>
 <td>BPLL1_C_IN0</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3271,7 +3579,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3281,7 +3589,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB69[A]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3291,7 +3599,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3301,7 +3609,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB69[B]</td>
 <td>-</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3311,7 +3619,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3321,7 +3629,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB71[A]</td>
 <td>BPLL1_T_IN1/BPLL1_T_FB1</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3331,7 +3639,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3341,7 +3649,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>in</td>
 <td>IOB71[B]</td>
 <td>BPLL1_C_IN1/BPLL1_C_FB1</td>
-<td>LVCMOS15</td>
+<td>LVCMOS33</td>
 <td>8</td>
 <td>UP</td>
 <td>OFF</td>
@@ -3351,7 +3659,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>1.5</td>
+<td>3.3</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -3497,15 +3805,15 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">V19/8</td>
-<td>-</td>
-<td>in</td>
+<td>PHY_CLK</td>
+<td>out</td>
 <td>IOB81[B]</td>
 <td>GCLKC_11</td>
 <td>LVCMOS33</td>
 <td>8</td>
-<td>UP</td>
+<td>NONE</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>OFF</td>
 <td>SLOW</td>
 <td>OFF</td>
@@ -3537,15 +3845,15 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">AB20/8</td>
-<td>-</td>
-<td>out</td>
+<td>rst_n</td>
+<td>in</td>
 <td>IOB85[B]</td>
 <td>CSO_B/DOUT</td>
 <td>LVCMOS33</td>
-<td>8</td>
-<td>UP</td>
 <td>OFF</td>
+<td>NONE</td>
 <td>OFF</td>
+<td>ON</td>
 <td>OFF</td>
 <td>SLOW</td>
 <td>OFF</td>
@@ -3697,15 +4005,15 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">W20/8</td>
-<td>-</td>
-<td>in</td>
+<td>RGMII_RST_N</td>
+<td>out</td>
 <td>IOB93[B]</td>
 <td>GCLKC_9</td>
 <td>LVCMOS33</td>
 <td>8</td>
-<td>UP</td>
+<td>NONE</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>OFF</td>
 <td>SLOW</td>
 <td>OFF</td>

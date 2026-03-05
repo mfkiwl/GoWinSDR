@@ -35,6 +35,8 @@ gowinsdr\dac_core.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ram
 gowinsdr\dac_core.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 gowinsdr\dac_core.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 gowinsdr\dac_core.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
+gowinsdr\dac_core.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
+gowinsdr\dac_core.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 gowinsdr\dac_core.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 gowinsdr\dac_core.o: ../Core/Inc/spi.h
 gowinsdr\dac_core.o: ..\Hardware\ad9361\parameters.h

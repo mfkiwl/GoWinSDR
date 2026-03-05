@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "spi.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -130,8 +131,8 @@ AD9361_InitParam default_init_param = {
 	{8, 5920},	//dcxo_coarse_and_fine_tune[2] *** adi,dcxo-coarse-and-fine-tune
 	CLKOUT_DISABLE,	//clk_output_mode_select *** adi,clk-output-mode-select
 	/* Gain Control */
-	2,		//gc_rx1_mode *** adi,gc-rx1-mode
-	2,		//gc_rx2_mode *** adi,gc-rx2-mode
+	RF_GAIN_SLOWATTACK_AGC,		//gc_rx1_mode *** adi,gc-rx1-mode
+	RF_GAIN_SLOWATTACK_AGC,		//gc_rx2_mode *** adi,gc-rx2-mode
 	58,		//gc_adc_large_overload_thresh *** adi,gc-adc-large-overload-thresh
 	4,		//gc_adc_ovr_sample_size *** adi,gc-adc-ovr-sample-size
 	47,		//gc_adc_small_overload_thresh *** adi,gc-adc-small-overload-thresh
@@ -262,10 +263,10 @@ AD9361_InitParam default_init_param = {
 	1,		//full_port_enable *** adi,full-port-enable
 	0,		//full_duplex_swap_bits_enable *** adi,full-duplex-swap-bits-enable
 	0,		//delay_rx_data *** adi,delay-rx-data
-	0,		//rx_data_clock_delay *** adi,rx-data-clock-delay
-	4,		//rx_data_delay *** adi,rx-data-delay
+	15,		//rx_data_clock_delay *** adi,rx-data-clock-delay
+	0,		//rx_data_delay *** adi,rx-data-delay
 	7,		//tx_fb_clock_delay *** adi,tx-fb-clock-delay
-	0,		//tx_data_delay *** adi,tx-data-delay
+	15,		//tx_data_delay *** adi,tx-data-delay
 	150,	//lvds_bias_mV *** adi,lvds-bias-mV
 	1,		//lvds_rx_onchip_termination_enable *** adi,lvds-rx-onchip-termination-enable 
 	0,		//rx1rx2_phase_inversion_en *** adi,rx1-rx2-phase-inversion-enable
@@ -399,8 +400,9 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_SPI1_Init();
   MX_USART1_UART_Init();
+  MX_SPI2_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   HAL_GPIO_WritePin(RST_FPGA_GPIO_Port, RST_FPGA_Pin, GPIO_PIN_RESET);
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
@@ -445,26 +447,27 @@ int main(void)
 
 
 	// uint8_t tx_ctrl = ad9361_spi_read(ad9361_phy->spi, 0x002);
-	// tx_ctrl = (tx_ctrl & 0xFC) | 0x01;  // 设置bit[1:0]=01，使能FIR+1x插值
+	// tx_ctrl = (tx_ctrl & 0xFC) | 0x01;  // 设置bit[1:0]=01，使能FIR+1x插�??
 	// ad9361_spi_write(ad9361_phy->spi, 0x002, tx_ctrl);
 	// printf("TX Ctrl after FIR enable: 0x%02X\n", ad9361_spi_read(ad9361_phy->spi, 0x002));
 
 	// uint32_t ensm_state;
 	// ad9361_get_en_state_machine_mode(ad9361_phy, &ensm_state);
-	// printf("ENSM状态: %u (FDD=%d)\n", ensm_state, ENSM_MODE_FDD);
+	// printf("ENSM状�??: %u (FDD=%d)\n", ensm_state, ENSM_MODE_FDD);
 
 	// ad9361_set_en_state_machine_mode(ad9361_phy, ENSM_MODE_TX);
 
 	// ad9361_get_en_state_machine_mode(ad9361_phy, &ensm_state);
-	// printf("ENSM状态: %u (FDD=%d)\n", ensm_state, ENSM_MODE_FDD);
+	// printf("ENSM状�??: %u (FDD=%d)\n", ensm_state, ENSM_MODE_FDD);
 
 	int32_t tx_gain = 0;  
 	ad9361_set_tx_attenuation(ad9361_phy, 0, tx_gain);
+	ad9361_set_rx_rf_gain(ad9361_phy, 0, 10);  
 
 	ad9361_set_tx_rf_port_output(ad9361_phy, 0);
 
 
-	// 3. 读取关键状态
+	// 3. 读取关键状�??
 	uint8_t ensm = ad9361_spi_read(ad9361_phy->spi, 0x017);
 	uint8_t tx_ctrl = ad9361_spi_read(ad9361_phy->spi, 0x002);
 	uint8_t pll = ad9361_spi_read(ad9361_phy->spi, 0x247);
@@ -479,7 +482,7 @@ int main(void)
 	// ad9361_set_rx_rf_port_input(ad9361_phy, 0);
 	// ad9361_set_rx_rf_gain(ad9361_phy, 0, 10); // 10 dB
 
-	/* USER CODE END 2 */
+  /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
@@ -488,7 +491,6 @@ int main(void)
 	  console_print("AD9361 Initialization Failed!\n");
 	  while(1);
   }
-  get_help(NULL, 0);
 
   while (1)
   {
@@ -520,8 +522,6 @@ int main(void)
   }
   /* USER CODE END 3 */
 }
-
-
 
 /**
   * @brief System Clock Configuration

@@ -1,0 +1,70 @@
+[
+ {
+  "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/top.v",
+  "InstLine" : 1,
+  "InstName" : "top",
+  "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/top.v",
+  "ModuleLine" : 1,
+  "ModuleName" : "top",
+  "SubInsts" : [
+   {
+    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/top.v",
+    "InstLine" : 43,
+    "InstName" : "uFIFO_TX",
+    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/fifo.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "FIFO"
+   },
+   {
+    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/top.v",
+    "InstLine" : 54,
+    "InstName" : "uBAUDGEN",
+    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/uart_tx.v",
+    "ModuleLine" : 125,
+    "ModuleName" : "BAUDGEN"
+   },
+   {
+    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/top.v",
+    "InstLine" : 60,
+    "InstName" : "uUART_TX",
+    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/uart_tx.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "UART_TX"
+   },
+   {
+    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/top.v",
+    "InstLine" : 74,
+    "InstName" : "upll",
+    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/gowin_pll/gowin_pll.v",
+    "ModuleLine" : 10,
+    "ModuleName" : "Gowin_PLL"
+   },
+   {
+    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/top.v",
+    "InstLine" : 102,
+    "InstName" : "u_ddr3",
+    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/ddr3_memory_interface/ddr3_memory_interface.v",
+    "ModuleLine" : 31236,
+    "ModuleName" : "DDR3_Memory_Interface_Top",
+    "SubInsts" : [
+     {
+      "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/ddr3_memory_interface/ddr3_memory_interface.v",
+      "InstLine" : 31321,
+      "InstName" : "gw3_top",
+      "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/ddr3_memory_interface/ddr3_memory_interface.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "~GW_DDR3_PHY_MC.DDR3_Memory_Interface_Top"
+     }
+    ]
+   },
+   {
+    "InstFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/top.v",
+    "InstLine" : 152,
+    "InstName" : "u_ddr_test",
+    "ModuleFile" : "D:/Code/git/GoWinSDR/FPGA/Submodule/eda_proj/src/ddr3_test.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "ddr3_test"
+   }
+  ]
+ }
+]

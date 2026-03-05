@@ -1,0 +1,3 @@
+Reading netlist file: "D:\Code\git\GoWinSDR\FPGA\Submodule\eda_proj\impl\gwsynthesis\gw138.vg"
+ERROR  (CM2001) : Cannot open file: 'D:\Code\git\GoWinSDR\FPGA\Submodule\eda_proj\impl\gwsynthesis\gw138.vg', no such file or directory
+NOTE  (PA0005) : Processing netlist completed with errors
