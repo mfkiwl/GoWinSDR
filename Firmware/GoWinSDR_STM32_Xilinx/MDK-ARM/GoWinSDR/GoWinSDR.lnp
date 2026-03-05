@@ -3,6 +3,7 @@
 "gowinsdr\main.o"
 "gowinsdr\gpio.o"
 "gowinsdr\spi.o"
+"gowinsdr\tim.o"
 "gowinsdr\usart.o"
 "gowinsdr\stm32f4xx_it.o"
 "gowinsdr\stm32f4xx_hal_msp.o"

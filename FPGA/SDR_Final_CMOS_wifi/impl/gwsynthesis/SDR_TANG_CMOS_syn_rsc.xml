@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="top" Register="56" Lut="48" T_Register="1085(56)" T_Alu="58(0)" T_Lut="1193(48)" T_Bsram="40(0)">
+ <SubModule name="u_ad9363_dev_cmos"/>
+ <SubModule name="eth_inst" Register="260" Alu="16" Lut="423" T_Register="292(260)" T_Alu="16(16)" T_Lut="473(423)">
+  <SubModule name="pll_inst">
+   <SubModule name="u_pll"/>
+  </SubModule>
+  <SubModule name="crc_inst" Register="32" Lut="50" T_Register="32(32)" T_Lut="50(50)"/>
+  <SubModule name="gmii2rgmii_inst"/>
+ </SubModule>
+ <SubModule name="fifo_u0" Register="116" Alu="27" Lut="157" Bsram="16" T_Register="116(116)" T_Alu="27(27)" T_Lut="157(157)" T_Bsram="16(16)"/>
+ <SubModule name="gw_gao_inst_0" Register="621" Alu="15" Lut="515" Bsram="24" T_Register="621(621)" T_Alu="15(15)" T_Lut="515(515)" T_Bsram="24(24)"/>
+</Module>

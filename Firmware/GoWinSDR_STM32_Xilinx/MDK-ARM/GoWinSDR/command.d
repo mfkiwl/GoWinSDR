@@ -1,7 +1,5 @@
 gowinsdr\command.o: ..\Hardware\ad9361\command.c
 gowinsdr\command.o: ..\Hardware\ad9361\command.h
-gowinsdr\command.o: ..\Hardware\ad9361\console.h
-gowinsdr\command.o: ../Core/Inc/usart.h
 gowinsdr\command.o: ../Core/Inc/main.h
 gowinsdr\command.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 gowinsdr\command.o: ../Core/Inc/stm32f4xx_hal_conf.h
@@ -32,7 +30,12 @@ gowinsdr\command.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramf
 gowinsdr\command.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 gowinsdr\command.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 gowinsdr\command.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
+gowinsdr\command.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
+gowinsdr\command.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 gowinsdr\command.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+gowinsdr\command.o: ../Core/Inc/tim.h
+gowinsdr\command.o: ..\Hardware\ad9361\console.h
+gowinsdr\command.o: ../Core/Inc/usart.h
 gowinsdr\command.o: ..\Hardware\ad9361\ad9361_api.h
 gowinsdr\command.o: ..\Hardware\ad9361\util.h
 gowinsdr\command.o: E:\Hardware\MDK\Core\ARM\ARMCC\Bin\..\include\limits.h
@@ -46,3 +49,5 @@ gowinsdr\command.o: ../Hardware/api/api.h
 gowinsdr\command.o: ../Core/Inc/spi.h
 gowinsdr\command.o: ..\Hardware\ad9361\config.h
 gowinsdr\command.o: ..\Hardware\ad9361\dac_core.h
+gowinsdr\command.o: ../Hardware/api/com_fpga.h
+gowinsdr\command.o: E:\Hardware\MDK\Core\ARM\ARMCC\Bin\..\include\stdarg.h

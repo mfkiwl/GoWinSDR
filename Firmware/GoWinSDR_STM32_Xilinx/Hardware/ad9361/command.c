@@ -44,6 +44,7 @@
 #include "console.h"
 #include "ad9361_api.h"
 #include "dac_core.h"
+#include "com_fpga.h"
 
 /******************************************************************************/
 /************************ Constants Definitions *******************************/
@@ -103,6 +104,12 @@ command cmd_list[] = {
 	{"dds_tx2_tone1_scale=", "Sets the DDS TX2 Tone 1 scale.", "", set_dds_tx2_tone1_scale},
 	{"dds_tx2_tone2_scale?", "Gets current DDS TX2 Tone 2 scale.", "", dds_tx2_tone2_scale},
 	{"dds_tx2_tone2_scale=", "Sets the DDS TX2 Tone 2 scale.", "", set_dds_tx2_tone2_scale},
+	{"calibration?", "Get Lo Freq diff.","", get_lo_diff},
+	{"calibration=", "Calibrate Lo Freq diff.","", cal_lo_diff},
+	{"rx_lo_up=", "Increase RX LO frequency.","", rx_lo_up},
+	{"rx_lo_down=", "Decrease RX LO frequency.","", rx_lo_down},
+	{"query_led_state?", "Decrease RX LO frequency.","", query_led_state},
+	{"query_led_state=", "Decrease RX LO frequency.","", query_led_state_set},
 };
 const char cmd_no = (sizeof(cmd_list) / sizeof(command));
 
@@ -1008,3 +1015,209 @@ void set_dds_tx2_tone2_scale(double* param, char param_no)	// dds_tx2_tone2_scal
 	else
 		show_invalid_param_message(1);
 }
+
+
+
+void get_lo_diff(double* param, char param_no)
+{
+
+	uint32_t freq_err = QueryDataFromFPGA_Polling();
+	console_print("Current Frequency Error:%d Hz\n", freq_err);
+
+}
+
+#define Freq_Threshold 20000
+
+void cal_lo_diff(double* param, char param_no)
+{
+	uint32_t freq_err_sum = 0;
+	uint32_t min_val = 0xFFFFFFFF;
+	uint32_t max_val = 0;
+	uint32_t valid_count = 0;
+	for (int i = 0; i < 10; i++){
+		HAL_Delay(1000);
+		uint32_t freq_err = QueryDataFromFPGA_Polling();
+		console_print("[Calibration]::Current Frequency Error:%d Hz\n", freq_err);
+		
+		if (freq_err > Freq_Threshold)
+		{
+			continue;
+		}
+		valid_count++;
+		if (freq_err < min_val) min_val = freq_err;
+		if (freq_err > max_val) max_val = freq_err;
+		
+		freq_err_sum += freq_err;
+	}
+	if (valid_count < 3)
+	{
+		return;
+	}
+
+	freq_err_sum -= (min_val + max_val);
+	freq_err_sum = (freq_err_sum * valid_count) / (valid_count - 2);
+
+	uint32_t freq_err = freq_err_sum / valid_count;
+	console_print("[Calibration]::Average Frequency Error:%d Hz\n", freq_err);
+	
+	if (freq_err > 100000)
+	{
+		console_print("[Calibration]::Calibration Fail!\n");
+		return;
+	}
+
+	uint64_t lo_freq_hz;
+	ad9361_get_rx_lo_freq(ad9361_phy, &lo_freq_hz);
+	console_print("[Calibration]::Current Lo Frequency:%d%d%d Hz\n", (uint32_t)(lo_freq_hz / 1000000000), (uint32_t)((lo_freq_hz % 1000000000) / 1000000), (uint32_t)(lo_freq_hz % 1000000));
+	
+	uint32_t adj_up_err, adj_down_err;
+
+	ad9361_set_rx_lo_freq(ad9361_phy, lo_freq_hz + freq_err);
+	console_print("[Calibration]::Setting Lo Freq to: %d%d%d Hz\n", (uint32_t)((lo_freq_hz + freq_err) / 1000000000), (uint32_t)(((lo_freq_hz + freq_err) % 1000000000) / 1000000), (uint32_t)((lo_freq_hz + freq_err) % 1000000));
+	HAL_Delay(8000);
+	do{
+		adj_up_err = QueryDataFromFPGA_Polling();
+	} while (adj_up_err > 2 * Freq_Threshold);
+
+	console_print("[Calibration]::Current Frequency Error:%d Hz\n", adj_up_err);
+	
+	ad9361_set_rx_lo_freq(ad9361_phy, lo_freq_hz - freq_err);
+	console_print("[Calibration]::Setting Lo Freq to: %d%d%d Hz\n", (uint32_t)((lo_freq_hz - freq_err) / 1000000000), (uint32_t)(((lo_freq_hz - freq_err) % 1000000000) / 1000000), (uint32_t)((lo_freq_hz - freq_err) % 1000000));
+	HAL_Delay(8000);
+	do{
+		adj_down_err = QueryDataFromFPGA_Polling();
+	} while (adj_down_err > 2 * Freq_Threshold);
+	console_print("[Calibration]::Current Frequency Error:%d Hz\n", adj_down_err);
+	
+	if (adj_up_err > freq_err && adj_down_err > freq_err){
+		console_print("[Calibration]::Calibration Fail!\n");
+	}
+	else if (adj_up_err > adj_down_err){
+		lo_freq_hz -= freq_err;
+		console_print("[Calibration]::Calibration Done!\n");
+	}
+	else{
+		lo_freq_hz += freq_err;
+		console_print("[Calibration]::Calibration Done!\n");
+	}
+	ad9361_set_rx_lo_freq(ad9361_phy, lo_freq_hz);
+	console_print("[Calibration]::New Lo Freq:%d%d%d Hz\n", (uint32_t)(lo_freq_hz / 1000000000), (uint32_t)((lo_freq_hz % 1000000000) / 1000000), (uint32_t)(lo_freq_hz % 1000000));
+}
+
+
+void rx_lo_up(double* param, char param_no)
+{
+	if(param_no >= 1)
+	{
+		uint64_t lo_freq_hz;
+		ad9361_get_rx_lo_freq(ad9361_phy, &lo_freq_hz);
+		uint64_t diff = param[0];
+		lo_freq_hz += diff;
+		ad9361_set_rx_lo_freq(ad9361_phy, lo_freq_hz);
+		console_print("New RX LO Frequency:%d%d%d Hz\n", (uint32_t)(lo_freq_hz / 1000000000), (uint32_t)((lo_freq_hz % 1000000000) / 1000000), (uint32_t)(lo_freq_hz % 1000000));
+	}
+	
+}
+
+void rx_lo_down(double* param, char param_no)
+{
+	if(param_no >= 1)
+	{
+		uint64_t lo_freq_hz;
+		ad9361_get_rx_lo_freq(ad9361_phy, &lo_freq_hz);
+		uint64_t diff = param[0];
+		lo_freq_hz -= diff;
+		ad9361_set_rx_lo_freq(ad9361_phy, lo_freq_hz);
+		console_print("New RX LO Frequency:%d%d%d Hz\n", (uint32_t)(lo_freq_hz / 1000000000), (uint32_t)((lo_freq_hz % 1000000000) / 1000000), (uint32_t)(lo_freq_hz % 1000000));
+	}
+	
+}
+
+uint8_t led_state = 0;
+uint8_t led_interrupt_en = 0;
+uint8_t led_short_lock;
+uint8_t led_short_count;
+void query_led_state(double *param, char param_no)
+{
+	console_print("led_state=%d\n", led_state);
+}
+
+void query_led_state_set(double* param, char param_no)
+{
+	if(param_no >= 1)
+	{
+		uint8_t en = param[0];
+		if (en == 1)
+		{
+			led_interrupt_en = 1;
+			HAL_TIM_Base_Start_IT(&htim1);
+			console_print("LED Interrupt Enabled\n");
+		}
+		else
+		{
+			led_interrupt_en = 0;
+			HAL_TIM_Base_Stop_IT(&htim1);
+			console_print("LED Interrupt Disabled\n");
+		}
+	}
+}
+
+uint32_t rise_trig_time = 0;
+uint32_t fall_trig_time = 0;
+uint8_t edge_dir=0;
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	if (GPIO_Pin == GPIO_PIN_9 && led_interrupt_en)
+	{
+		if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9) == GPIO_PIN_SET)
+		{
+			rise_trig_time = HAL_GetTick();
+			edge_dir = 0;
+		}
+		else
+		{
+			fall_trig_time = HAL_GetTick();
+			edge_dir = 1;
+		}
+		
+		if (edge_dir == 0){
+			if (HAL_GetTick() - rise_trig_time > 20){
+				edge_dir = 0;
+			}
+			return;
+		}
+			
+
+		if (fall_trig_time - rise_trig_time > 5) 
+		{
+			led_state = !led_state;
+			led_short_lock = led_state;
+			// console_print("LED Toggle\n");
+		}
+		else
+		{
+			if (led_short_count == 0){
+				led_short_lock = led_state;
+				// console_print("Short Lock\n");
+			}
+			led_short_count = 100; 
+			// console_print("short\n");
+		}
+	}
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if (htim->Instance == TIM1)
+	{
+		if (led_short_count > 0){
+			led_short_count--;
+			led_state = 1;
+		}
+		else{
+			led_state = led_short_lock;
+			// console_print("Back: %d\n", led_state);
+		}
+	}
+}
+
