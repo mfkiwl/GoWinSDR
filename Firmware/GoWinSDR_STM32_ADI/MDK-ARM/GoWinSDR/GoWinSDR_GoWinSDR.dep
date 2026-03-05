@@ -1,911 +1,0 @@
-Dependencies for Project 'GoWinSDR', Target 'GoWinSDR': (DO NOT MODIFY !)
-CompilerVersion: 6210000::V6.21::ARMCLANG
-F (startup_stm32f411xe.s)(0x68BC5278)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 539" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"STM32F411xE SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o gowinsdr/startup_stm32f411xe.o)
-F (../Core/Src/main.c)(0x68BC5274)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/main.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-I (..\Core\Inc\spi.h4.\Core\Inc\gpio.h)(0x00000000)
-F (../Core/Src/gpio.c)(0x68BC5272)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/gpio.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Core/Src/spi.c)(0x68BC5273)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/spi.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Core/Src/stm32f4xx_it.c)(0x68BC5273)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_it.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_it.h)(0x68BC5273)
-F (../Core/Src/stm32f4xx_hal_msp.c)(0x68BC5273)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_msp.o -MD)
-I (..\Core\Inc\main.h4.\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x00000000)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_spi.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_rcc.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_rcc_ex.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_flash.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_flash_ex.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_flash_ramfunc.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_gpio.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_dma_ex.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_dma.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_pwr.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_pwr_ex.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_cortex.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_exti.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_tim.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c)(0x6649DDC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/stm32f4xx_hal_tim_ex.o -MD)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (../Core/Src/system_stm32f4xx.c)(0x6649DD9D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/system_stm32f4xx.o -MD)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-F (..\Hardware\ad9361\ad9361.c)(0x68C0CDD9)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/ad9361.o -MD)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\limits.h)(0x6569B012)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdio.h)(0x669E481D)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdlib.h)(0x6569B012)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\string.h)(0x6569B012)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\inttypes.h)(0x6569B012)
-I (..\Hardware\ad9361\ad9361.hM.\Hardware\api\no_os_gpio.h)(0x00000000)
-I (..\Hardware\ad9361\common.hM.\Hardware\api\no_os_error.h)(0x00000000)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdbool.h)(0x6569B012)
-I (..\Hardware\api\no_os_api.hM.\Core\Inc\main.h)(0x00000000)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-I (..\Hardware\api\no_os_spi.hi.\Hardware\api\no_os_delay.h)(0x00000000)
-I (..\Hardware\ad9361\ad9361_util.hr.\Hardware\api\app_config.h)(0x00000000)
-I (..\Hardware\api\no_os_util.hi.\Hardware\api\no_os_alloc.h)(0x00000000)
-F (..\Hardware\ad9361\ad9361.h)(0x68C0D4D3)()
-F (..\Hardware\ad9361\ad9361_api.c)(0x68BED03A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/ad9361_api.o -MD)
-F (..\Hardware\ad9361\ad9361_api.h)(0x68C0CE25)()
-F (..\Hardware\ad9361\ad9361_conv.c)(0x68BED03A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/ad9361_conv.o -MD)
-F (..\Hardware\ad9361\ad9361_util.c)(0x68BED03A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/ad9361_util.o -MD)
-I (..\Hardware\ad9361\ad9361_util.h)(0x68BF9236)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\limits.h)(0x6569B012)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdio.h)(0x669E481D)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdlib.h)(0x6569B012)
-I (..\Hardware\ad9361\ad9361.hM.\Hardware\api\no_os_gpio.h)(0x00000000)
-I (..\Hardware\ad9361\common.hM.\Hardware\api\no_os_error.h)(0x00000000)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdbool.h)(0x6569B012)
-I (..\Hardware\api\no_os_api.hM.\Core\Inc\main.h)(0x00000000)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-I (..\Hardware\api\app_config.h)(0x68BF7F3F)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\string.h)(0x6569B012)
-I (..\Hardware\api\no_os_delay.h)(0x68C0CFD5)
-F (..\Hardware\ad9361\ad9361_util.h)(0x68BF9236)()
-F (..\Hardware\ad9361\common.h)(0x68BF8DBB)()
-F (..\Hardware\ad9361\iio_ad9361.c)(0x68BF9120)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/iio_ad9361.o -MD)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\inttypes.h)(0x6569B012)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\string.h)(0x6569B012)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\errno.h)(0x6569B012)
-I (..\Hardware\api\no_os_error.hL.\Hardware\ad9361\iio_ad9361.h)(0x00000000)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdio.h)(0x669E481D)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdbool.h)(0x6569B012)
-I (..\Hardware\ad9361\ad9361_api.hN.\Hardware\ad9361\ad9361_util.h)(0x00000000)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\limits.h)(0x6569B012)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdlib.h)(0x6569B012)
-I (..\Hardware\ad9361\ad9361.hM.\Hardware\api\no_os_gpio.h)(0x00000000)
-I (..\Hardware\ad9361\common.hM.\Hardware\api\no_os_api.h)(0x00000000)
-I (..\Core\Inc\main.h\.\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x00000000)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-I (..\Hardware\api\app_config.hv.\Hardware\api\no_os_spi.h)(0x00000000)
-I (..\Hardware\api\no_os_util.hv.\Hardware\api\no_os_alloc.h)(0x00000000)
-F (..\Hardware\ad9361\iio_ad9361.h)(0x68BF914F)()
-F (..\Hardware\api\app_config.c)(0x68BF7C3E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/app_config.o -MD)
-F (..\Hardware\api\app_config.h)(0x68BF7F3F)()
-F (..\Hardware\api\no_os_alloc.c)(0x68BF7C3E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/no_os_alloc.o -MD)
-F (..\Hardware\api\no_os_alloc.h)(0x68BFA577)()
-F (..\Hardware\api\no_os_delay.c)(0x68BF7C3E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/no_os_delay.o -MD)
-F (..\Hardware\api\no_os_delay.h)(0x68C0CFD5)()
-F (..\Hardware\api\no_os_gpio.c)(0x68BF7C3E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/no_os_gpio.o -MD)
-F (..\Hardware\api\no_os_gpio.h)(0x68BFA2C7)()
-F (..\Hardware\api\no_os_spi.c)(0x68BF7C3E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/no_os_spi.o -MD)
-F (..\Hardware\api\no_os_spi.h)(0x68BF7C3E)()
-F (..\Hardware\api\no_os_util.c)(0x68BFA7A4)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/no_os_util.o -MD)
-I (..\Hardware\api\no_os_util.h)(0x68BFA516)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\limits.h)(0x6569B012)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdio.h)(0x669E481D)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdlib.h)(0x6569B012)
-I (..\Hardware\ad9361\ad9361.hM.\Hardware\api\no_os_gpio.h)(0x00000000)
-I (..\Hardware\ad9361\common.hM.\Hardware\api\no_os_error.h)(0x00000000)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdbool.h)(0x6569B012)
-I (..\Hardware\api\no_os_api.hM.\Core\Inc\main.h)(0x00000000)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-I (..\Hardware\api\app_config.h)(0x68BF7F3F)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\string.h)(0x6569B012)
-F (..\Hardware\api\no_os_util.h)(0x68BFA516)()
-F (..\Hardware\api\no_os_error.c)(0x68BF7C3E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/no_os_error.o -MD)
-F (..\Hardware\api\no_os_error.h)(0x68BF7C3E)()
-F (..\Hardware\api\no_os_api.c)(0x68C0D57A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Hardware -I ../Hardware/ad9361 -I ../Hardware/api-I./RTE/_GoWinSDR-IE:/Hardware/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IE:/Hardware/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="539" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o gowinsdr/no_os_api.o -MD)
-I (..\Hardware\api\no_os_api.h)(0x68C0D55E)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6649DDC7)
-I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x68BC5273)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x6649DDC7)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x6649DD9C)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdint.h)(0x6569B012)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_version.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6649DD9E)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6649DD9E)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_compat.h)(0x64F9642C)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\arm_acle.h)(0x6569B010)
-I (d:\Code\git\GoWinSDR\GoWinSDR_STM32\Drivers\CMSIS\Include\mpu_armv7.h)(0x6649DD9E)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x6649DD9C)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stddef.h)(0x6569B012)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6649DDC7)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6649DDC7)
-I (E:\Hardware\MDK\Core\ARM\ARMCLANG\include\stdlib.h)(0x6569B012)
-F (..\Hardware\api\no_os_api.h)(0x68C0D55E)()
