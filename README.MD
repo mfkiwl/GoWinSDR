@@ -16,6 +16,8 @@
 
 ## 工程结构
 
+```
+
 GoWinSDR/
 ├── FPGA/
 │   ├── SDR_Final_CMOS/ # 完整版FPGA项目，基于SDR Base底板，实现所有功能
@@ -31,8 +33,7 @@ GoWinSDR/
 ├── Matlab/  # 用于生成滤波器系数
 ├── Software/ # 基于PyQt的上位机
 └── README.MD
-
-
+```
 
 ## 系统框图
 
@@ -186,7 +187,15 @@ GoWinSDR/
 
 
 
+## ARM端程序使用方法
+
+
+
 ## 上位机功能介绍
+
+
+
+## PCB相关事项
 
 
 
