@@ -11,12 +11,6 @@ import random
 from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
 from PyQt6.QtGui import QImage
 
-# --- [!! 核心修改：在这里设置你的P2P IP !!] ---
-LAN_TARGET_IP = "192.168.43.217"
-LAN_LISTEN_IP = "192.168.43.192"
-LAN_PORT = 32768
-# --- [!! 结束核心修改 !!] ---
-
 
 CHUNK_SIZE = 1024  # 每个数据包的最大有效负载大小 (字节)
 PREFIX_TEXT = b'\x00'
@@ -126,13 +120,8 @@ class EthernetWorker(QObject):
                 return
             local_listen_ip = listen_ip
             local_listen_port = listen_port
-            if self.is_lan_mode:
-                self.fpga_addr = (LAN_TARGET_IP, LAN_PORT)
-                local_listen_ip = LAN_LISTEN_IP
-                local_listen_port = LAN_PORT
-                # self.log_received.emit(f"P2P模式: 目标地址已覆盖为 {self.fpga_addr}")
-            else:
-                self.fpga_addr = (fpga_ip, fpga_port)
+
+            self.fpga_addr = (fpga_ip, fpga_port)
             self.recv_base = 0
             self.recv_buffer.clear()
             self.recv_acked.clear()
