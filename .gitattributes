@@ -1,0 +1,8 @@
+*.fsproj linguist-detectable=false
+*.fs linguist-detectable=false
+
+*.py linguist-detectable=true
+*.v linguist-detectable=true
+*.vhd linguist-detectable=true
+*.c linguist-detectable=true
+*.h linguist-detectable=true
