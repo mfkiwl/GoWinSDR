@@ -6,7 +6,6 @@
 /Firmware/GoWinSDR_STM32/Core/** linguist-vendored
 /Firmware/GoWinSDR_STM32/Drivers/** linguist-vendored
 /Firmware/GoWinSDR_STM32/MDK-ARM/** linguist-vendored
-/Firmware/GoWinSDR_STM32/Hardware/ad9361/** linguist-vendored
 
 *.py linguist-detectable=true
 *.v linguist-detectable=true
