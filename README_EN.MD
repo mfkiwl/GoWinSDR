@@ -2,7 +2,7 @@
 
 **Last edited by ConstString on 2026-03-10**
 
-[Click to Read Chinese Version]: https://github.com/ConstStrings/GoWinSDR/blob/master/README.MD
+[Click to Read Chinese Version]: https://github.com/ConstStrings/GoWinSDR/blob/master/README.MD	"Click to Read Chinese Version"
 
 
 
