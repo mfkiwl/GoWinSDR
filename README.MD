@@ -2,6 +2,10 @@
 
 **最后由ConstString于2026-03-10编辑**
 
+[Click to Read English Version]: https://github.com/ConstStrings/GoWinSDR/blob/master/README_EN.MD
+
+
+
 ## 工程简介
 
 **本项目基于高云 GW5AT-LV60 FPGA与ADI AD9363/AD9361射频收发器，构建了一套灵活可重构的软件无线电（SDR）系统。通过软硬件协同设计，将高速基带处理部署于FPGA，将交互业务部署于Python上位机，通过千兆以太网交互，实现了QPSK等多种实时通信与动态参数配置**
