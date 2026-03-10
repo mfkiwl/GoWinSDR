@@ -1,5 +1,8 @@
 *.fsproj linguist-detectable=false
 *.fs linguist-detectable=false
+*.html linguist-detectable=false
+
+/Firmware/GoWinSDR_STM32/Hardware/ad9361/* linguist-vendored
 
 *.py linguist-detectable=true
 *.v linguist-detectable=true
