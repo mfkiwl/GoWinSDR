@@ -2,7 +2,7 @@
 
 **最后由ConstString于2026-03-10编辑**
 
-**Click to Read English Version：**https://github.com/ConstStrings/GoWinSDR/blob/master/README_EN.MD
+**Click to Read English Version：https://github.com/ConstStrings/GoWinSDR/blob/master/README_EN.MD**
 
 ## 工程简介
 
