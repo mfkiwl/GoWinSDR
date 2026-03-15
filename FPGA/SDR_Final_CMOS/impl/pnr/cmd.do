@@ -1,9 +1,9 @@
--d D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\SDR_TANG_CMOS.vg
+-d D:\Code\FPGA\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\SDR_TANG_CMOS.vg
 -p GW5AT-60B-PBGA484A-1
 -pn GW5AT-LV60PG484AC1/I0
--cst D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\SDR_Test.cst
--cfg D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\device.cfg
--sdc D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\timeconstrain.sdc
+-cst D:\Code\FPGA\GoWinSDR\FPGA\SDR_Final_CMOS\src\SDR_Test.cst
+-cfg D:\Code\FPGA\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\device.cfg
+-sdc D:\Code\FPGA\GoWinSDR\FPGA\SDR_Final_CMOS\src\timeconstrain.sdc
 -gao_crc 1100111011001110
 -bit
 -tr

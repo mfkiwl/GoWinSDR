@@ -1,7 +1,7 @@
-Reading netlist file: "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\SDR_TANG_CMOS.vg"
-Parsing netlist file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\SDR_TANG_CMOS.vg" completed
+Reading netlist file: "D:\Code\FPGA\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\SDR_TANG_CMOS.vg"
+Parsing netlist file "D:\Code\FPGA\GoWinSDR\FPGA\SDR_Final_CMOS\impl\gwsynthesis\SDR_TANG_CMOS.vg" completed
 Processing netlist completed
-Reading constraint file: "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\src\SDR_Test.cst"
+Reading constraint file: "D:\Code\FPGA\GoWinSDR\FPGA\SDR_Final_CMOS\src\SDR_Test.cst"
 Physical Constraint parsed completed
 Running placement......
 [10%] Placement Phase 0 completed
@@ -27,10 +27,10 @@ Bitstream generation in progress......
 Bitstream generation completed
 Running power analysis......
 [100%] Power analysis completed
-Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.power.html" completed
-Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.pin.html" completed
-Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.rpt.html" completed
-Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.rpt.txt" completed
-Generate file "D:\Code\git\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.tr.html" completed
-Wed Nov 26 22:46:50 2025
+Generate file "D:\Code\FPGA\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.power.html" completed
+Generate file "D:\Code\FPGA\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.pin.html" completed
+Generate file "D:\Code\FPGA\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.rpt.html" completed
+Generate file "D:\Code\FPGA\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.rpt.txt" completed
+Generate file "D:\Code\FPGA\GoWinSDR\FPGA\SDR_Final_CMOS\impl\pnr\SDR_TANG_CMOS.tr.html" completed
+Mon Mar 16 00:43:02 2026
 

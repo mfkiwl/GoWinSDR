@@ -1,6 +1,6 @@
 # GoWinSDR
 
-**最后由ConstString于2026-03-10编辑**
+**最后由ConstString于2026-03-16编辑**
 
 **Click to Read English Version：https://github.com/ConstStrings/GoWinSDR/blob/master/README_EN.MD**
 
@@ -314,20 +314,35 @@ query_led_state=  - Decrease RX LO frequency.
 
 
 
-## PCB相关事项
+## PCB相关事项（重要，仔细阅读）
 
 1. 由于包含射频和高速信号，进行PCB打样时**需要进行阻抗管控**！！！，使用嘉立创进行打样，层压选择**JLC06161H-3313**，阻抗管控+/-20%即可
+
 2. 焊接时如果没有把握，**请务必先焊接电源部分，确定电源输出电压正常后再焊接其他部分**，防止烧毁芯片
+
 3. 上电前请**确定各路电源是否对地短路**，即使是SMT也是有可能短路的
+
 4. PCB已经经过多版本迭代，理论上不存在重大问题，请先确定焊接是否到位
 
+5. **重要！！：核心板上可以通过VDDIO设置bank电压，但如果底板和同时提供VDDIO会造成冲突，因此需要在插入核心板前将核心板上的IO供电移除，具体方法如下**
 
+   查看核心板原理图，发现VDDIO供电经过磁珠连接到3.3v电源，我们只需要断开挖煤所使用Bank对应的磁珠，**FB14,FB15,FB16**
+
+   ![](./Image/som1.png)
+
+​	这三个磁珠在核心板背面对应的位置如下，需要用烙铁将这三个磁珠去除即可
+
+​        ![](./Image/som2.png)
 
 ## 测试结果
 
 ### 文件传输测试
 
 ![](./Image/filetrans.png)
+
+### 逻辑分析仪（截图时QPSK正在修复问题，暂时采用BPSK）
+
+![](./Image/logic.png)
 
 ### 频谱情况（早期测试结果）
 

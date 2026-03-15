@@ -1,6 +1,6 @@
 # GoWinSDR
 
-**Last edited by ConstString on 2026-03-10**
+**Last edited by ConstString on 2026-03-16*
 
 **Click to Read Chinese Version: https://github.com/ConstStrings/GoWinSDR/blob/master/README.MD**
 
@@ -360,18 +360,37 @@ The main window (`main_window.py`) uses a left-right split layout: the left pane
 
 ------
 
-## PCB Notes
+## PCB Notes(Important: Read carefully)
 
 1. Due to the presence of RF and high-speed signals, **impedance control is required** when ordering PCB fabrication. When ordering from JLCPCB, select the stackup **JLC06161H-3313** with ±20% impedance tolerance.
+
 2. If you are not confident in your soldering, **always solder the power section first, verify all power rail voltages are correct, and only then solder the remaining components** to avoid damaging chips.
+
 3. Before powering on, **check that none of the power rails are shorted to ground** — shorts can occur even with SMT assembly.
+
 4. The PCB has gone through multiple revision iterations and should not have any major issues. Please ensure soldering quality before troubleshooting.
+
+5. **Important!! The core module supports configuring bank voltage via VDDIO, but if both the core module and the baseboard supply VDDIO simultaneously, a conflict will occur. Therefore, the VDDIO power supply on the core module must be removed before inserting it into the baseboard. The procedure is as follows:**
+
+   Refer to the core module schematic — the VDDIO supply is connected to the 3.3V rail through ferrite beads. You only need to remove the ferrite beads corresponding to the banks used by the project: **FB14, FB15, and FB16**.
+
+      ![](./Image/som1.png)
+
+   The locations of these three ferrite beads on the back of the core module are shown below. Simply desolder and remove them with a soldering iron.
+
+   ​        ![](./Image/som2.png)
+
+   
 
 ## Test Results
 
 ### File Transfer Test
 
 ![img](./Image/filetrans.png)
+
+### Logic Analyzer screenshot (QPSK was undergoing bug fixes at the time; BPSK was used temporarily as a workaround)
+
+![](./Image/logic.png)
 
 ### Spectrum (Early Test Results)
 
