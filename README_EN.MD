@@ -390,7 +390,39 @@ The main window (`main_window.py`) uses a left-right split layout: the left pane
 
 ### Logic Analyzer screenshot (QPSK was undergoing bug fixes at the time; BPSK was used temporarily as a workaround)
 
+#### Complete System Timing Diagram
+
 ![](./Image/logic.png)
+
+#### AD9363 individual test
+
+The test was conducted for BPSK communication in the 2.4GHz frequency band. The top four lines respectively represent the receiving IQ path and the transmitting IQ path. The waveform is relatively complete and there is no obvious distortion.
+
+![](./Image/logic3.png)
+
+![](./Image/logic4.png)
+
+In the 2.4GHz test, **without attaching an antenna**, observe the distortion of the sine monochromatic signal.
+
+![](./Image/logic2.png)
+
+
+
+### Upper computer video transmission
+
+By utilizing the video transmission function of the host computer, real-time video streams can be transmitted through the frequency band customized on the parameter setting page. The test was conducted using the self-receiving and self-transmitting method (which can be between boards) with the video source being a laptop camera. The left screen shows the captured image from the camera, while the right screen displays the image decoded from the radio frequency signal. Thanks to the strong real-time performance of the FPGA, there is almost no delay felt.
+
+![](./Image/video.png)
+
+
+
+### Ethernet data stream
+
+Using the WireShark software, one can view the data streams transmitted in the Ethernet network. The Ethernet data streams during the file transmission process are as follows, divided into data frames and ACK frames.
+
+![](./Image/wireshark.png)
+
+
 
 ### Spectrum (Early Test Results)
 
