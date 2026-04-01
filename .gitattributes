@@ -2,6 +2,7 @@
 *.fs linguist-detectable=false
 *.html linguist-detectable=false
 *.p linguist-detectable=false
+*.toc linguist-detectable=false
 
 /Firmware/GoWinSDR_STM32/Core/** linguist-vendored
 /Firmware/GoWinSDR_STM32/Drivers/** linguist-vendored
